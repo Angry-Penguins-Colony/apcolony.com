@@ -274,6 +274,27 @@ button,
   font-size: 1rem;
   font-weight: 700;
   text-align: center;
+  cursor: pointer;
+
+  &.icon {
+    padding: 6px;
+    height: 36px;
+    width: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 18px;
+      fill: $primary;
+    }
+
+    &:hover {
+      svg {
+        fill: $hover;
+      }
+    }
+  }
 
   &:hover {
     background-color: $hover;
@@ -292,6 +313,9 @@ button,
       color: $hover;
     }
   }
+}
+.button.icon.twitter {
+  padding: 7px;
 }
 
 /* Card
