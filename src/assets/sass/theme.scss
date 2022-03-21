@@ -1,13 +1,61 @@
 /* Bootstrap overrides
 -------------------------------------------------- */
 
-  $body: #000;
-  $headings-font-weight: 300 !important;
-$primary: #1b46c2;
-  $light: #fafafa;
+$body: #000;
+$bg-body: #000226;
+$headings-font-weight: 300 !important;
+$primary: #4279e0;
+$hover: #304986;
+$light: #e6f6fd;
+$dark: #242424;
+$white: #fafafa;
 
-  $headings-font-weight: 300 !important;
-  $a: #1392ff;
+$headings-font-weight: 300 !important;
+$a: #1392ff;
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl {
+    max-width: 576px !important;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl {
+    max-width: 768px !important;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl {
+    max-width: 992px !important;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl {
+    max-width: 1200px !important;
+  }
+}
 
 /* Do not move the imports from here.
 Override Bootstrap variables only above.
@@ -15,20 +63,43 @@ Override Bootstrap variables only above.
 
 // Bootstrap
 
-@import '~bootstrap/scss/bootstrap.scss';
+@import "~bootstrap/scss/bootstrap.scss";
 
-@import '~bootstrap/scss/reboot';
-
-
+@import "~bootstrap/scss/reboot";
 
 .custom-classname.btn-primary {
   background-color: green;
 }
+
+// Fonts
+
+@font-face {
+  font-family: "CHEDROS";
+  src: local("CHEDROS"), url("./../fonts/CHEDROS.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("./../fonts/Montserrat/Montserrat-Regular.ttf") format("true-type");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("./../fonts/Montserrat/Montserrat-Bold.ttf") format("true-type");
+  font-weight: 700;
+}
+
 /* Base
 -------------------------------------------------- */
 html {
   min-height: 100%;
-  font-size: 14px;
+  font-size: 14px; // 16px
+}
+
+body {
+  line-height: 1;
+  font-family: "Montserrat", sans-serif;
+  background-color: $bg-body;
 }
 
 .wrapper {
@@ -56,82 +127,71 @@ html {
   }
 }
 
-/* Navbar
--------------------------------------------------- */
-.elrond-logo {
-  width: 85px;
-  height: 25px;
-}
-
-.dapp-name {
-  line-height: 1;
-  border-left: 1px solid $gray-400;
-  padding-left: 3px;
-  margin-left: 4px;
+h2 {
 }
 
 /* Dashboard
 -------------------------------------------------- */
-.action-btn {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: $white;
-  margin: 0 7px;
+// .action-btn {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   color: $white;
+//   margin: 0 7px;
 
-  button {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    background-color: $white;
+//   button {
+//     border-radius: 50%;
+//     width: 40px;
+//     height: 40px;
+//     background-color: $white;
 
-    &:hover {
-      opacity: 0.9;
-    }
-  }
-}
+//     &:hover {
+//       opacity: 0.9;
+//     }
+//   }
+// }
 
-.transactions {
-  .transaction-icon {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-  }
+// .transactions {
+//   .transaction-icon {
+//     border-radius: 50%;
+//     width: 40px;
+//     height: 40px;
+//   }
 
-  &.table {
+//   &.table {
+//     .transaction-hash .trim {
+//       @include media-breakpoint-down(xl) {
+//         max-width: none;
+//       }
+//       @include media-breakpoint-down(lg) {
+//         max-width: 26rem;
+//       }
+//       @include media-breakpoint-down(md) {
+//         max-width: 12rem;
+//       }
+//       @include media-breakpoint-down(sm) {
+//         max-width: 8rem;
+//       }
+//     }
 
-    .transaction-hash .trim {
-      @include media-breakpoint-down(xl) {
-        max-width: none;
-      }
-      @include media-breakpoint-down(lg) {
-        max-width: 26rem;
-      }
-      @include media-breakpoint-down(md) {
-        max-width: 12rem;
-      }
-      @include media-breakpoint-down(sm) {
-        max-width: 8rem;
-      }
-    }
+//     td,
+//     tr {
+//       padding: 0.65rem;
+//     }
 
-    td, tr {
-      padding: 0.65rem;
-    }
+//     td {
+//       white-space: nowrap;
+//       vertical-align: middle;
+//     }
 
-    td {
-      white-space: nowrap;
-      vertical-align: middle;
-    }
-
-    tr:last-of-type {
-      td {
-        border-bottom: 1px solid #dee2e6;
-      }
-    }
-  }
-}
+//     tr:last-of-type {
+//       td {
+//         border-bottom: 1px solid #dee2e6;
+//       }
+//     }
+//   }
+// }
 
 /* Actions
 -------------------------------------------------- */
@@ -203,31 +263,41 @@ html {
   }
 }
 
-/* Footer
+/* Button
 -------------------------------------------------- */
-footer {
-  div {
-    margin-top: 0.5rem;
-    font-size: 0.75rem;
-    display: inline-block;
-    font-weight: 400;
-    line-height: 1.155rem;
+button,
+.button {
+  padding: 0.9375rem 1.1875rem;
+  border-radius: 9999px;
+  background-color: $primary;
+  color: $light;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
 
-    a {
-      color: $black;
+  &:hover {
+    background-color: $hover;
+    color: $light;
+    text-decoration: none;
+  }
 
-      &:hover {
-        color: $black;
-      }
+  &-outline {
+    background-color: $white;
+    border: 0.1875rem solid $primary;
+    color: $primary;
 
-      #heart {
-        height: 16px;
-        width: 16px;
-
-        path {
-          fill: #c00;
-        }
-      }
+    &:hover {
+      background-color: $white;
+      border-color: $hover;
+      color: $hover;
     }
   }
+}
+
+/* Card
+-------------------------------------------------- */
+.card {
+  border-radius: 0.25rem;
+  background-color: $white;
+  padding: 1rem;
 }

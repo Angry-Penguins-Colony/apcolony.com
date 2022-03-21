@@ -1,10 +1,11 @@
 import React from 'react';
-import { ReactComponent as HeartIcon } from '../../../assets/img/heart.svg';
+// import { ReactComponent as HeartIcon } from '../../../assets/img/heart.svg';
+import './index.scss';
 
 const Footer = () => {
   return (
-    <footer className='text-center mt-2 mb-3'>
-      <div>
+    <footer className='container'>
+      {/* <div>
         <a
           {...{
             target: '_blank'
@@ -14,7 +15,17 @@ const Footer = () => {
         >
           Made with <HeartIcon className='mx-1' /> by Elrond Network.
         </a>
-      </div>
+      </div> */}
+
+      <img src="" alt="" className='logo' />
+      <nav>
+        <a href="">ROADMAP</a>
+        <a href="">TEAM</a>
+        <a href="">LAUNCH PAD</a>
+        <a href="">COMUNITY</a>
+        <a href="">GLOBAL</a>
+        <a href="">FAQ</a>
+      </nav>
     </footer>
   );
 };
