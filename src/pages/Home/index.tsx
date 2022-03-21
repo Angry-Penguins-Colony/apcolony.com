@@ -1,24 +1,39 @@
 import * as React from 'react';
-import { dAppName } from 'config';
+import './index.scss';
 
 const Home = () => {
-  return (
-    <div className='d-flex flex-fill align-items-center container'>
-      <div className='row w-100'>
-        <div className='col-12 col-md-8 col-lg-5 mx-auto'>
-          <div className='card shadow-sm rounded p-4 border-0'>
-            <div className='card-body text-center'>
-              <h2 className='mb-3' data-testid='title'>
-                {dAppName}
-              </h2>
 
-              <p className='mb-3'>
-                This is an Elrond dapp sample.
-              </p>
-            </div>
-          </div>
+  const isSoldout = true; // TODO: get this value by api call
+
+  return (
+    <div id='home'>
+      <div id="icebergHero">
+        <img src="/img/Iceberg-hero.png" />
+      </div>
+      <div id="pinguinOnIceberg">
+        <img src="/img/Pingouin.png" />
+      </div>
+      <div id="publicSale">
+        <h1>PUBLIC SALE</h1>
+        <div className="content">
+          {
+            isSoldout ?
+              <div className="semiBanner">
+                <p>SOLD OUT</p>
+              </div>
+              :
+              <div>
+                pas SOLd out
+                {/* TODO: */}
+              </div>
+          }
+        </div>
+        <div className="saleInfos">
+          <p>PUBLIC SALE INFOS</p>
+          <span className="icon">?</span>
         </div>
       </div>
+      <div style={{ height: '800px' }}></div>
     </div>
   );
 };

@@ -102,6 +102,10 @@ body {
   background-color: $bg-body;
 }
 
+p {
+  margin: 0;
+}
+
 .wrapper {
   min-height: 100vh;
 }
@@ -304,6 +308,7 @@ button,
 
   &-outline {
     background-color: $white;
+    padding: 0.75rem 0.8125rem;
     border: 0.1875rem solid $primary;
     color: $primary;
 

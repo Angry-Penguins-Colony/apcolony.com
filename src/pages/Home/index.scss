@@ -1,0 +1,93 @@
+@import "./../../assets/sass/theme.scss";
+
+#home {
+    #icebergHero {
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+
+        img {
+            height: 360vh;
+        }
+    }
+
+    #pinguinOnIceberg {
+        z-index: 0;
+        position: absolute;
+        top: 36vh;
+        left: calc(50vw - 43vh);
+
+        img {
+            height: 38vh;
+        }
+    }
+
+    #publicSale {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: calc(100vh - 130px);
+        padding-top: 1vh;
+
+        > h1 {
+            color: $primary;
+            font-family: "CHEDROS", sans-serif;
+            font-size: 250px;
+        }
+
+        > .content {
+            > .semiBanner {
+                border-radius: 9999px;
+                padding: 40px 110px 27px 110px;
+                background-color: $white;
+
+                > p {
+                    font-family: "CHEDROS", sans-serif;
+                    font-size: 70px;
+                }
+            }
+        }
+
+        > .saleInfos {
+            position: absolute;
+            bottom: 60px;
+
+            border-radius: 9999px;
+            display: flex;
+            gap: 14px;
+            backdrop-filter: blur(10px);
+            background: #ffffff80;
+
+            > p {
+                padding: 12px 0 12px 24px;
+                color: white;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+            }
+
+            > .icon {
+                color: $primary;
+                font-size: 2rem;
+                padding: 0.3rem 0 0 0.2rem;
+                border-radius: 50%;
+                border: 3px solid $primary;
+                background-color: $white;
+                background: $white;
+                font-family: "CHEDROS", sans-serif;
+                height: 44px;
+                width: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+            }
+        }
+    }
+}
