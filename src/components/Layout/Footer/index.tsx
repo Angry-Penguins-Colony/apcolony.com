@@ -1,6 +1,5 @@
 import React from 'react';
 import NavElements from '../NavElements';
-// import { ReactComponent as HeartIcon } from '../../../assets/img/heart.svg';
 import './index.scss';
 
 const Footer = () => {
@@ -11,6 +10,7 @@ const Footer = () => {
         {/* TODO: replace by good logo */}
         <NavElements />
         <a className="button">CONNECT WALLET</a>
+        {/* TODO: bind button */}
         <div className="social">
           <h3>Follow Us</h3>
           <div className="content">

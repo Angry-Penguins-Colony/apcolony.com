@@ -1,9 +1,16 @@
 import * as React from 'react';
 import './index.scss';
+import Timer from './Timer';
+
+enum SaleStatus {
+  Soon = 0,
+  OnSale = 1,
+  SoldOut = 2
+}
 
 const Home = () => {
 
-  const isSoldout = true; // TODO: get this value by api call
+  const saleInfos = getSaleInfos();
 
   return (
     <div id='home'>
@@ -17,15 +24,30 @@ const Home = () => {
         <h1>PUBLIC SALE</h1>
         <div className="content">
           {
-            isSoldout ?
-              <div className="semiBanner">
-                <p>SOLD OUT</p>
+            saleInfos.status == SaleStatus.Soon &&
+            <>
+              <Timer date={saleInfos.date} />
+              <div className="button connectWallet">CONNECT WALLET</div>
+              {/* TODO: bind button */}
+            </>
+          }
+          {
+            saleInfos.status == SaleStatus.OnSale &&
+            <>
+              <h2>TIME REMAINING</h2>
+              <Timer date={saleInfos.date} />
+              <div className='mint'>
+                <div className="nftLeft">{saleInfos.nftLeft}/10 000</div>
+                <div className="button mintNow">MINT NOW</div>
+                {/* TODO: bind button */}
               </div>
-              :
-              <div>
-                pas SOLd out
-                {/* TODO: */}
-              </div>
+            </>
+          }
+          {
+            saleInfos.status == SaleStatus.SoldOut &&
+            <div className="semiBanner">
+              <p>SOLD OUT</p>
+            </div>
           }
         </div>
         <div className="saleInfos">
@@ -39,3 +61,48 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
+interface saleInfos {
+  status: SaleStatus,
+  date: Date,
+  nftLeft: number
+}
+
+function getSaleInfos(): saleInfos {
+  // get random status (for dev only) TODO: remove and replace by api call
+  const tmp = Math.floor(Math.random() * 3); // TODO: get this value by api call
+
+  switch (tmp) {
+    case SaleStatus.SoldOut:
+      return {
+        status: SaleStatus.SoldOut,
+        date: new Date(),
+        nftLeft: 200 // TODO: get this value by api call
+      };
+      break;
+    case SaleStatus.OnSale:
+      return {
+        status: SaleStatus.OnSale,
+        date: new Date('2022-04-14T00:00:00.000Z'), // TODO: get this value by api call
+        nftLeft: 200 // TODO: get this value by api call
+      };
+      break;
+    case SaleStatus.Soon:
+      return {
+        status: SaleStatus.Soon,
+        date: new Date('2022-04-14T00:00:00.000Z'), // TODO: get this value by api call
+        nftLeft: 200 // TODO: get this value by api call
+      };
+      break;
+
+    default:
+      // TODO: change default value
+      return {
+        status: SaleStatus.SoldOut,
+        date: new Date(),
+        nftLeft: 200 // TODO: get this value by api call
+      };
+  }
+}
