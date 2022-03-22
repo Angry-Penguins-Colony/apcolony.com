@@ -34,6 +34,7 @@
         justify-content: flex-start;
         min-height: calc(100vh - 130px);
         padding-top: 1vh;
+        margin-bottom: 200px;
 
         > h1 {
             color: $primary;
@@ -159,6 +160,25 @@
                 justify-content: center;
                 font-weight: bold;
             }
+        }
+    }
+
+    #welcome {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        > h2 {
+            font-family: "CHEDROS", sans-serif;
+            font-size: 80px;
+            font-weight: bold;
+            color: $white;
+        }
+
+        > img {
+            height: 400px;
         }
     }
 }

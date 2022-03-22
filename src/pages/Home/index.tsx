@@ -55,7 +55,48 @@ const Home = () => {
           <span className="icon">?</span>
         </div>
       </div>
-      <div style={{ height: '800px' }}></div>
+
+      <div id="welcome">
+        <h2>WELCOME TO THE COLONY OF</h2>
+        <img src="/img/Neon_pinguin.png" alt="ANGRY PENGUINS" />
+      </div>
+
+      <div id="ourMarketplace">
+        {/* TODO: */}
+      </div>
+
+      <div id="ourLaunchpad">
+        {/* TODO: */}
+      </div>
+
+      <div id="ourCommunity">
+        {/* TODO: */}
+      </div>
+
+      <div id="manyAdvantage">
+        {/* TODO: */}
+      </div>
+
+      <div id="globalPenguinSociety">
+        {/* TODO: */}
+      </div>
+
+      <div id="roadMap">
+        {/* TODO: */}
+      </div>
+
+      <div id="theTeam">
+        {/* TODO: */}
+      </div>
+
+      <div id="faq">
+        {/* TODO: */}
+      </div>
+
+      {/* TODO: add coral */}
+
+      <div style={{ height: '1600px' }}></div>
+      {/* TODO: remove end padding */}
     </div>
   );
 };
