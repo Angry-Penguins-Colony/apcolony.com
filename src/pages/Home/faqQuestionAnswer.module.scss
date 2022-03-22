@@ -1,0 +1,73 @@
+@import "./../../assets/sass/theme.scss";
+
+.faqQuestionAnswer {
+    background-color: #ffffff33;
+    border-radius: 33px;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+        background-color: #ffffff2e;
+    }
+
+    > .head {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 15px 15px 25px;
+        cursor: pointer;
+
+        > .question {
+            font-family: "CHEDROS", sans-serif;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: $white;
+            position: relative;
+            top: 0.2rem;
+        }
+        > .icon {
+            > .expand {
+                display: flex;
+            }
+            > .reduce {
+                display: none;
+            }
+            img {
+                width: 60%;
+            }
+        }
+    }
+
+    > .answer {
+        display: none;
+        padding: 0 100px 30px 25px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.2rem;
+        font-weight: normal;
+        color: $white;
+        overflow: hidden;
+
+        max-height: 0px;
+        padding-bottom: 0;
+        transition: max-height 0.3s ease-in-out, padding-bottom 0.3s ease-in-out;
+    }
+
+    &.isOpen {
+        > .head {
+            > .icon {
+                > .expand {
+                    display: none;
+                }
+                > .reduce {
+                    display: flex;
+                }
+            }
+        }
+        > .answer {
+            display: block;
+            padding-bottom: 30px;
+            max-height: 9999px;
+        }
+    }
+}

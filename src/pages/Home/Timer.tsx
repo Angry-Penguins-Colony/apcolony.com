@@ -34,10 +34,13 @@ const Timer = (props: { date: any; }) => {
 
     return (
         <div className="semiBanner time">
-            <div className="days">
-                <span className='time'>{getDays()}</span>
-                <span className='label'>DAYS</span>
-            </div>
+            {
+                getDays() != '00' &&
+                <div className="days">
+                    <span className='time'>{getDays()}</span>
+                    <span className='label'>DAYS</span>
+                </div>
+            }
             <div className="hours">
                 <span className='time'>{getHours()}</span>
                 <span className='label'>HOURS</span>
