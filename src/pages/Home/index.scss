@@ -439,6 +439,8 @@
 
             > .video {
                 grid-area: video;
+                border-radius: 20px;
+                overflow: hidden;
             }
 
             > .globalPoint {
@@ -498,11 +500,21 @@
                 grid-area: moreInfos;
                 padding: 0 10% 50% 10%;
                 border-radius: 20px;
-                background: #ffffff20; // TODO: add background image
+                background-image: url(/assets/img/GPS_background_link.jpg);
+                background-size: cover;
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-end;
                 align-items: center;
+                position: relative;
+
+                &:before {
+                    content: "";
+                    background-color: #00000033;
+                    position: absolute;
+                    inset: 0;
+                    z-index: 1;
+                }
 
                 > h3 {
                     font-family: "Montserrat", sans-serif;
@@ -511,9 +523,11 @@
                     color: $white;
                     margin-bottom: 2rem;
                     text-align: center;
+                    z-index: 2;
                 }
 
                 > .button {
+                    z-index: 2;
                 }
             }
         }

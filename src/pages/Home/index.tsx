@@ -4,6 +4,7 @@ import FaqQuestionAnswer from './FaqQuestionAnswer';
 import './index.scss';
 import TeamMember from './TeamMember';
 import Timer from './Timer';
+import VideoPlayer from './VideoPlayer';
 
 enum SaleStatus {
   Soon = 0,
@@ -129,7 +130,7 @@ const Home = () => {
             </ul>
           </div>
           <div className="video">
-            {/* TODO: add video */}
+            <VideoPlayer videoSource="/video/GPS Institutional Clip.mp4" thumbnail="/img/GPS Institutional Clip_thumbnail.jpg" />
           </div>
           <div className="globalPoint develop">
             <div className="title">
