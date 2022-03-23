@@ -69,7 +69,22 @@ const Home = () => {
       </div>
 
       <div id="ourLaunchpad">
-        {/* TODO: */}
+        <h2>OUR LAUNCHPAD</h2>
+        <p className="subTitle">A strive to empower ambitious projects on Elrond</p>
+        <div className="submersibleAndCard container-sm">
+          <div className="submersible">
+            <img src="/img/Deep Sea Submersible.png" />
+          </div>
+          <div className="card card-white">
+            <p>Once our collection is deployed and our marketplace implemented, <b>we will take on an incubator role.</b></p>
+            <p><b>Participating in the construction of Elrond is our duty.</b></p>
+            <p><b>Our launchpad primarily focuses on Play-To-Earns</b> and <b>universes that add real value</b> to the Elrond ecosystem.</p>
+            <p>We’ll support serious and ambitious projects in their development on the blockchain.</p>
+          </div>
+        </div>
+        <div className="launchpadWill">
+          {/* TODO: */}
+        </div>
       </div>
 
       <div id="ourCommunity">
@@ -98,8 +113,65 @@ const Home = () => {
         </div>
       </div>
 
-      <div id="globalPenguinSociety">
-        {/* TODO: */}
+      <div id="globalPenguinSociety" className='container'>
+        <h2>GLOBAL PENGUIN<br /> SOCIETY</h2>
+        <div className="content">
+          <div className="weEstablished">
+            <h3>We established a long-term partnership with the Global Penguin Society.</h3>
+            <p>By minting our penguins, you help the organization tackle climate change, marine pollution, human disturbance and many other issues in order to protect what we love the most: penguins.</p>
+          </div>
+          <div className="card card-white">
+            <h3>OUR ACHIEVEMENTS</h3>
+            <ul>
+              <li>10% of our benefits directly donated to the Global Penguin Society.</li>
+              <li>More than 15,000$ (117 EGLD) already donated to the organization.</li>
+              <li>Our holders voted to fund a first mission: cleaning the house of the penguins by removing plastics spread all over their colonies !</li>
+            </ul>
+          </div>
+          <div className="video">
+            {/* TODO: add video */}
+          </div>
+          <div className="globalPoint develop">
+            <div className="title">
+              <div className="number">01</div>
+              <h3>DEVELOP</h3>
+            </div>
+            <p className="content">
+              sound science to use in the conservation of penguins and marine environments at local, regional, and global scales.
+            </p>
+          </div>
+          <div className="globalPoint identity">
+            <div className="title">
+              <div className="number">02</div>
+              <h3>IDENTIFY</h3>
+            </div>
+            <p className="content">
+              priority areas for the conservation of penguins and their ecosystems, propose and implement guidelines for their protection.
+            </p>
+          </div>
+          <div className="globalPoint educate">
+            <div className="title">
+              <div className="number">03</div>
+              <h3>EDUCATE</h3>
+            </div>
+            <p className="content">
+              communities and decision makers about the importance of penguins and their habitats, aiming at achieving lasting behavioral changes.
+            </p>
+          </div>
+          <div className="globalPoint influence">
+            <div className="title">
+              <div className="number">04</div>
+              <h3>INFLUENCE</h3>
+            </div>
+            <p className="content">
+              the establishment, implementation, and effectiveness of public and private conservation policies
+            </p>
+          </div>
+          <div className="moreInfo">
+            <h3>FOR MORE INFORMATION VISIT THEIR WEBSITE</h3>
+            <a href='https://globalpenguinsociety.org/' target='_blank' rel="noreferrer" className="button">GLOBALPENGUINSOCIETY.ORG</a>
+          </div>
+        </div>
       </div>
 
       <div id="roadMap">
