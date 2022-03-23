@@ -190,11 +190,13 @@
             font-size: 1.6rem;
             color: $white;
             text-align: center;
+            margin-bottom: 1rem;
         }
 
         > h2 {
             text-align: center;
-            margin-bottom: 295px;
+            margin-bottom: 290px;
+            font-size: 3.125rem;
         }
 
         > .content {
@@ -209,14 +211,12 @@
                 flex-basis: calc(30% - 1px);
                 position: relative;
                 background: $white;
-                // height: 230px;
                 border-radius: 20px;
                 max-width: 530px;
                 min-height: 200px;
 
                 > .image {
                     position: absolute;
-                    // top: -68%;
                     bottom: calc(100% - 50px);
                     right: 0;
                     left: 0;
@@ -229,25 +229,18 @@
                         }
                     }
                     &.wallet {
-                        // img {
                         width: 80%;
-                        // top: -80%;
                         bottom: calc(100% - 95px);
                         left: 8%;
-                        // }
                     }
                     &.airdrop {
-                        // img {
                         width: 90%;
-                        // top: -170%;
                         bottom: calc(100% - 90px);
                         left: 7%;
-                        // }
                     }
                     &.early {
                         perspective: 270px;
                         width: 96%;
-                        // top: -32%;
                         bottom: calc(100% - 75px);
                         right: 4%;
                         img {
@@ -255,11 +248,11 @@
                         }
                     }
                     &.community {
-                        width: 94%;
-                        // top: -66%;
-                        bottom: calc(100% - 70px);
+                        bottom: calc(100% - 65px);
                         img {
                             border-radius: 50%;
+                            aspect-ratio: 1 / 1;
+                            object-fit: cover;
                         }
                     }
 
