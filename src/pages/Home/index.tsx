@@ -2,6 +2,7 @@ import * as React from 'react';
 import AvantageCard from './AvantageCard';
 import FaqQuestionAnswer from './FaqQuestionAnswer';
 import './index.scss';
+import ItemsSlider from './ItemsSlider';
 import TeamMember from './TeamMember';
 import Timer from './Timer';
 import VideoPlayer from './VideoPlayer';
@@ -66,7 +67,50 @@ const Home = () => {
       </div>
 
       <div id="ourMarketplace">
-        {/* TODO: */}
+        <div className="head container">
+          <div className='title'>
+            <h2>OUR MARKETPLACE</h2>
+            <div className="subTitle">Customize your Angry Penguins using our marketplace !</div>
+            <p>Trade accessories with other holders and try to <b>upgrade your penguin</b> with the rarest attributes !</p>
+          </div>
+          <div className="card card-white">
+            <div>
+              <div className="item">
+                <img src="/img/Pinguin_hat_1.png" className='hat' />
+              </div>
+              <p className="desc">Equip your penguin with new skins, weapons, clothes, beak, eyes and necklaces to make it your own !</p>
+            </div>
+            <div>
+              <div className="item">
+                <img src="/img/Wallet_icon.png" className='wallet' />
+              </div>
+              <p className="desc">The rarest accessories generate a passive income that can be used in the marketplace to buy new ones !</p>
+            </div>
+            <div>
+              <div className="item">
+                <img src="/img/Gift-alone.png" className='gift' />
+              </div>
+              <p className="desc">A progressive opening of the marketplace to projects relying on customization & the use of secondary accessories via SFTs !</p>
+            </div>
+          </div>
+        </div>
+        <div className="slider">
+          <div className="frontPenguin">
+            <img src="/img/penguins/Untitled design-6.png" alt="" />
+          </div>
+          <ItemsSlider />
+        </div>
+      </div>
+
+      <div id="technologicalInputs" className='container'>
+        <div className="left">
+          <h2>TECHNOLOGICAL INPUTS FROM OUR MARKETPLACE</h2>
+          <img src="/img/APC_Technology_Icone.png" />
+        </div>
+        <div className="right">
+          <div className="subTitle">Our launchpad will allow us to provide solutions to projects requiring the implementation of SFTs for customization & the use of secondary accessories dynamics.</div>
+          <p>The sharing of this knowledge will allow, in the long run, to <b>interconnect several universes,</b> in particular by integrating them <b>into our marketplace</b> with a perspective of developing even more significant projects like <b>Play-To-Earns !</b></p>
+        </div>
       </div>
 
       <div id="ourLaunchpad">

@@ -1,0 +1,78 @@
+@import "./../../assets/sass/theme.scss";
+
+$caseSize: 200px;
+$gapSize: 13px;
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-$caseSize * 10 - $gapSize * 11);
+    }
+}
+
+@keyframes revertScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX($caseSize * 10 + $gapSize * 11);
+    }
+}
+
+.itemsSlider {
+    transform: scale(1.1) rotateX(4deg) rotateZ(7deg) rotateY(4.3deg);
+    left: 10vw;
+
+    max-width: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    height: $caseSize * 2 + $gapSize;
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+
+    > .track {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: $gapSize;
+        width: $caseSize * 20 + $gapSize * 20;
+        overflow: hidden;
+
+        > .anItem {
+            overflow: hidden;
+            width: $caseSize;
+            min-width: $caseSize;
+            height: $caseSize;
+            border-radius: 15px;
+            background-color: #ffffff33;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: scroll 10s linear infinite;
+
+            > img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        &.revert {
+            flex-direction: row-reverse;
+            top: $caseSize + $gapSize;
+            left: auto;
+            right: 0;
+
+            > .anItem {
+                animation: revertScroll 10s linear infinite;
+            }
+        }
+    }
+}
