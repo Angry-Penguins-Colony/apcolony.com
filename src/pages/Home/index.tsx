@@ -287,7 +287,59 @@ const Home = () => {
       </div>
 
       <div id="roadMap">
-        {/* TODO: */}
+        <h2>ROAD MAP</h2>
+        <div className="content">
+          <img src="/img/roadmap/Blue_line.svg" className='blue_line' />
+          <img src="/img/roadmap/White_doted_line.svg" className='white_doted_line' />
+          <img src="/img/roadmap/APC_COIN.svg" className='coin coin_1' />
+          <img src="/img/roadmap/APC_COIN.svg" className='coin coin_2' />
+          <img src="/img/roadmap/APC_COIN.svg" className='coin coin_3' />
+          <img src="/img/roadmap/APC_COIN.svg" className='coin coin_4' />
+          <img src="/img/roadmap/APC_COIN.svg" className='coin coin_5' />
+          <img src="/img/roadmap/APC_COIN.svg" className='coin coin_6' />
+          <img src="/img/roadmap/APC_COIN.svg" className='coin coin_7' />
+          <img src="/img/roadmap/APC_COIN.svg" className='coin coin_8' />
+          <img src="/img/roadmap/APC_COIN.svg" className='coin coin_9' />
+          <img src="/img/roadmap/APC_COIN.svg" className='coin coin_little coin_10' />
+          <img src="/img/roadmap/APC_COIN.svg" className='coin coin_little coin_11' />
+          <img src="/img/roadmap/APC_COIN.svg" className='coin coin_little coin_12' />
+          <img src="/img/roadmap/APC_COIN.svg" className='coin coin_little coin_13' />
+          <img src="/img/roadmap/APC_COIN.svg" className='coin coin_little coin_14' />
+          <img src="/img/roadmap/APC_COIN.svg" className='coin coin_little coin_15' />
+          <img src="/img/roadmap/coin_1.png" className='img_coin img_coin_1' />
+          <img src="/img/roadmap/coin_2.png" className='img_coin img_coin_2' />
+          <img src="/img/roadmap/coin_3.png" className='img_coin img_coin_3' />
+          <img src="/img/roadmap/coin_4.png" className='img_coin img_coin_4' />
+          <img src="/img/roadmap/coin_5.png" className='img_coin img_coin_5' />
+          <img src="/img/roadmap/coin_6.png" className='img_coin img_coin_6' />
+          <img src="/img/roadmap/coin_7.png" className='img_coin img_coin_7' />
+          <img src="/img/roadmap/coin_8.png" className='img_coin img_coin_8' />
+          <img src="/img/roadmap/coin_9.png" className='img_coin img_coin_9' />
+          <img src="/img/roadmap/coin_10.png" className='img_coin img_coin_10' />
+          <img src="/img/roadmap/coin_11.png" className='img_coin img_coin_11' />
+          <img src="/img/roadmap/coin_12.png" className='img_coin img_coin_12' />
+          <img src="/img/roadmap/coin_13.png" className='img_coin img_coin_13' />
+          <img src="/img/roadmap/coin_14.png" className='img_coin img_coin_14' />
+          <img src="/img/roadmap/coin_15.png" className='img_coin img_coin_15' />
+          <p className='text text_1'><b>A first free presale of 100 penguins SOLD OUT in 54 seconds.</b><br />The first 100 colony emperors are born & receive Angry Penguins Eggs that will hatch after the public sale</p>
+          <p className='text text_2'><b>Announcing the first customizable collection</b> on Elrond via the purchase and resale of penguin accessories, a feature available through the creation of our own marketplace.</p>
+          <p className='text text_3'><b>500 eggs SOLD OUT in one evening during presale 1.</b></p>
+          <p className='text text_4'><b>Launch of the discord votes</b> for the emperors to determine the future of the project, the results are published in the penguin-agora.</p>
+          <p className='text text_5'><b>Community vote</b> to choose <b>the design of the Angry Penguin Eggs</b> and <b>the royalties they generate</b></p>
+          <p className='text text_6'><b>The first 600 Prime emperors receive their eggs</b><br /> (Prime emperors = people who bought eggs during the first presale) and wait for them to hatch after the public sale</p>
+          <p className='text text_7'><b>2000 eggs SOLD OUT in less than 5 minutes during presale 2.</b></p>
+          <p className='text text_8'><b>First donation made to the Global Penguin Society</b> in order to clean up penguin colonies from plastic waste.</p>
+          <p className='text text_9'></p>
+          <p className='text text_10'><b>Birth of the Angry Penguins</b> Hatching of the eggs 1 week after the public sale & launch of the Angry Penguins.</p>
+          <p className='text text_11'><b>Launch of our marketplace</b> allowing the purchase and sale of our penguins, but especially the purchase of attributes to customize them.</p>
+          <p className='text text_12'><b>Surprise drop with the Global Penguin Society.</b></p>
+          <p className='text text_13'><b>Launch of our token:</b><br /> some penguins start to generate a passive income depending on the rarity of their attributes that will be used initially to buy attributes to customize the penguins.</p>
+          <p className='text text_14'><b>Deployment of Angry Penguins’ Launchpad.</b></p>
+          <p className='text text_15'><b>Coming soon…</b></p>
+
+          <img src='/img/roadmap/public_sale.svg' className="publicSale"></img>
+
+        </div>
       </div>
 
       <div id="theTeam" className='container'>

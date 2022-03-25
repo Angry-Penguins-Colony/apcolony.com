@@ -889,6 +889,361 @@
         }
     }
 
+    #roadMap {
+        > .content {
+            height: 100vh;
+            overflow: auto;
+            display: flex;
+            position: relative;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            > .blue_line {
+                height: 60vh;
+                margin-top: 25vh;
+                position: relative;
+                left: -12vh;
+                z-index: 1;
+            }
+
+            > .white_doted_line {
+                height: 59vh;
+                position: absolute;
+                top: 25.8vh;
+                left: -11.4vh;
+                z-index: 0;
+            }
+
+            .coin {
+                position: absolute;
+                transform-origin: 57px center;
+                top: 1vh;
+                left: 1vh;
+                z-index: 1;
+
+                &_little {
+                    width: 65px;
+                    transform-origin: 37px center;
+                }
+
+                &_1 {
+                    top: 22vh;
+                    left: 18vh;
+                    transform: rotate(-90deg);
+                }
+
+                &_2 {
+                    top: 65vh;
+                    left: 64vh;
+                    transform: rotate(-90deg);
+                }
+
+                &_3 {
+                    top: 32vh;
+                    left: 84vh;
+                    transform: rotate(130deg);
+                }
+
+                &_4 {
+                    top: 64.5vh;
+                    left: 105vh;
+                    transform: rotate(-90deg);
+                }
+
+                &_5 {
+                    top: 29vh;
+                    left: 144vh;
+                    transform: rotate(-90deg);
+                }
+
+                &_6 {
+                    top: 46vh;
+                    left: 169vh;
+                    transform: rotate(180deg);
+                }
+
+                &_7 {
+                    top: 74vh;
+                    left: 190vh;
+                    transform: rotate(-45deg);
+                }
+
+                &_8 {
+                    top: 72vh;
+                    left: 238vh;
+                    transform: rotate(225deg);
+                }
+
+                &_9 {
+                    top: 34vh;
+                    left: 255vh;
+                    transform: rotate(0deg);
+                }
+
+                &_10 {
+                    top: 47vh;
+                    left: 283vh;
+                    transform: rotate(270deg);
+                }
+
+                &_11 {
+                    top: 43vh;
+                    left: 311vh;
+                    transform: rotate(180deg);
+                }
+
+                &_12 {
+                    top: 35vh;
+                    left: 353vh;
+                    transform: rotate(145deg);
+                }
+
+                &_13 {
+                    top: 63vh;
+                    left: 367.5vh;
+                    transform: rotate(0deg);
+                }
+
+                &_14 {
+                    top: 73vh;
+                    left: 393vh;
+                    transform: rotate(270deg);
+                }
+
+                &_15 {
+                    top: 32vh;
+                    left: 438vh;
+                    transform: rotate(270deg);
+                }
+            }
+
+            .img_coin {
+                position: absolute;
+                top: 1vh;
+                left: 1vh;
+                max-width: 57px;
+                transform-origin: center;
+                z-index: 2;
+
+                &_1 {
+                    top: 21.3vh;
+                    left: 20.5vh;
+                    border-radius: 999px;
+                    max-width: 70px;
+                }
+
+                &_2 {
+                    top: 65vh;
+                    left: 68vh;
+                    transform: rotate(17deg);
+                    max-width: 45px;
+                }
+
+                &_3 {
+                    top: 30.2vh;
+                    left: 86vh;
+                    max-width: 75px;
+                }
+
+                &_4 {
+                    top: 66.5vh;
+                    left: 109vh;
+                    max-width: 40px;
+                }
+
+                &_5 {
+                    top: 26.2vh;
+                    left: 145.6vh;
+                    max-width: 88px;
+                }
+
+                &_6 {
+                    top: 45.3vh;
+                    left: 171.4vh;
+                    border-radius: 999px;
+                    max-width: 70px;
+                }
+
+                &_7 {
+                    top: 72.2vh;
+                    left: 192.1vh;
+                    max-width: 75px;
+                }
+
+                &_8 {
+                    top: 71.5vh;
+                    left: 240.4vh;
+                    border-radius: 999px;
+                    max-width: 70px;
+                }
+
+                &_9 {
+                    top: 34.6vh;
+                    left: 257.9vh;
+                    border-radius: 9999px;
+                    max-width: unset;
+                    aspect-ratio: 1;
+                    max-height: 60px;
+                    width: auto;
+                    object-fit: cover;
+                }
+
+                &_10 {
+                    top: 43.8vh;
+                    left: 283.5vh;
+                    max-width: 66px;
+                }
+
+                &_11 {
+                    top: 40.5vh;
+                    left: 312.3vh;
+                }
+
+                &_12 {
+                    top: 30.3vh;
+                    left: 354.1vh;
+                    max-width: 52px;
+                }
+
+                &_13 {
+                    top: 63.1vh;
+                    left: 369.8vh;
+                    max-width: 45px;
+                }
+
+                &_14 {
+                    top: 72vh;
+                    left: 388.3vh;
+                    max-width: 122px;
+                    transform: rotate(-12deg);
+                }
+
+                &_15 {
+                    top: 30.7vh;
+                    left: 439.9vh;
+                    max-width: 45px;
+                }
+            }
+
+            .text {
+                position: absolute;
+                top: 1vh;
+                left: 1vh;
+                color: $white;
+                text-align: center;
+                font-weight: normal;
+                line-height: 1.2;
+                font-size: 1.1rem;
+                width: 300px;
+
+                > b {
+                    color: $white;
+                }
+
+                &_1 {
+                    top: 34vh;
+                    left: 8.5vh;
+                }
+
+                &_2 {
+                    top: 76vh;
+                    left: 54vh;
+                }
+
+                &_3 {
+                    top: 29.5vh;
+                    left: 97vh;
+                    text-align: left;
+                    max-width: 250px;
+                }
+
+                &_4 {
+                    top: 76vh;
+                    left: 96vh;
+                }
+
+                &_5 {
+                    top: 41vh;
+                    left: 140vh;
+                    max-width: 184px;
+                }
+
+                &_6 {
+                    top: 39vh;
+                    left: 184vh;
+                    text-align: left;
+                    max-width: 210px;
+                }
+
+                &_7 {
+                    top: 80vh;
+                    left: 171vh;
+                    text-align: left;
+                    max-width: 190px;
+                }
+
+                &_8 {
+                    top: 78.5vh;
+                    left: 250vh;
+                    text-align: left;
+                    max-width: 200px;
+                }
+
+                &_9 {
+                    // top: 34.6vh;
+                    // left: 257.9vh;
+                }
+
+                &_10 {
+                    top: 55vh;
+                    left: 276vh;
+                    max-width: 210px;
+                }
+
+                &_11 {
+                    top: 44.4vh;
+                    left: 320vh;
+                    text-align: left;
+                    max-width: 210px;
+                }
+
+                &_12 {
+                    top: 32.3vh;
+                    left: 362vh;
+                    text-align: left;
+                    max-width: 230px;
+                }
+
+                &_13 {
+                    top: 64.4vh;
+                    left: 347vh;
+                    text-align: left;
+                    max-width: 196px;
+                }
+
+                &_14 {
+                    top: 81vh;
+                    left: 387vh;
+                    max-width: 200px;
+                }
+
+                &_15 {
+                    top: 40vh;
+                    left: 426.2vh;
+                }
+            }
+
+            .publicSale {
+                top: 35vh;
+                left: 242.5vh;
+                width: 100px;
+                position: absolute;
+            }
+        }
+    }
+
     #theTeam {
         display: flex;
         flex-direction: column;
