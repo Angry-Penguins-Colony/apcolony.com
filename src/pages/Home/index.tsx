@@ -128,7 +128,47 @@ const Home = () => {
           </div>
         </div>
         <div className="launchpadWill">
-          {/* TODO: */}
+          <div className="top container-sm">
+            <div className="left">
+              <h2>ANGRY PENGUINS<br />LAUNCHPAD WILL :</h2>
+            </div>
+            <div className="right">
+              <div className="item">
+                <div className="number">
+                  <p>01</p>
+                </div>
+                <div className="content">
+                  <p>Put us as a true player in the <b>development and growth</b> of Elrond</p>
+                </div>
+              </div>
+              <div className="item">
+                <div className="number">
+                  <p>02</p>
+                </div>
+                <div className="content">
+                  <p>Link our collection with <b>innovative quality projects</b></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="bottom container">
+            <div className="card card-white">
+              <h3>BENEFITS FOR ANGRY PENGUINS HOLDERS</h3>
+              <ul>
+                <li>After our screening, they have the final say in selecting quality projects</li>
+                <li>They get early access to these projects</li>
+                <li>Their NFTs will be usable in the incubated games/universes</li>
+              </ul>
+            </div>
+            <div className="card card-blue">
+              <h3>BENEFITS FOR INCUBATED PROJECTS</h3>
+              <ul>
+                <li>Personalized & preferential place in our marketplace</li>
+                <li>Technical help for their development needs on the blockchain</li>
+                <li>Time saving to focus on the development of their games/universe, less on the technical implementation (SC, dapps…)</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 

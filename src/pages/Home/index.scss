@@ -258,7 +258,6 @@
 
             > .frontPenguin {
                 position: relative;
-                // left: 10vw;
                 bottom: -5.3vh;
 
                 > img {
@@ -357,6 +356,89 @@
                 width: 40%;
             }
         }
+
+        > .launchpadWill {
+            > .top {
+                display: flex;
+                gap: 60px;
+                align-items: flex-start;
+                justify-content: center;
+                margin-bottom: 130px;
+
+                > .left {
+                    display: flex;
+                    justify-content: flex-end;
+                    max-width: 350px;
+
+                    > h2 {
+                        font-size: 3rem;
+                        color: $primary;
+                    }
+                }
+
+                > .right {
+                    max-width: 350px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 40px;
+
+                    > .item {
+                        display: flex;
+                        gap: 30px;
+                        align-items: center;
+
+                        > .number {
+                            width: 60px;
+                            min-width: 60px;
+                            height: 60px;
+                            border: 3px solid $primary;
+                            border-radius: 9999px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            > p {
+                                font-family: "CHEDROS", sans-serif;
+                                font-size: 2.5rem;
+                                font-weight: bold;
+                                color: $white;
+                                position: relative;
+                                top: 3px;
+                            }
+                        }
+
+                        > .content {
+                            > p {
+                                color: $white;
+                                line-height: 1.2;
+                            }
+                        }
+                    }
+                }
+            }
+
+            > .bottom {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 60px;
+                margin-bottom: 250px;
+
+                > .card {
+                    flex: 1 1 0px;
+                    height: 100%;
+
+                    > ul {
+                        > li {
+                            font-weight: 500;
+
+                            &:not(:last-child) {
+                                margin-bottom: 2rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     p {
@@ -378,14 +460,31 @@
         // font-weight: bold;
         font-size: 1.25rem;
 
+        &.card-blue {
+            background-color: $primary;
+            color: $white;
+
+            > h3 {
+                color: $white;
+            }
+
+            > ul {
+                > li {
+                    &::before {
+                        background: $white;
+                    }
+                }
+            }
+        }
+
         p:not(:last-child) {
             margin-bottom: 1rem;
         }
 
         > h3 {
             color: $primary;
-            font-size: 1.8rem;
-            font-family: "Montserrat", sans-serif;
+            font-size: 2.5rem;
+            font-family: "CHEDROS", sans-serif;
             font-weight: bold !important;
             margin-bottom: 2.5rem;
             text-align: center;
@@ -405,7 +504,7 @@
 
                 &::before {
                     content: "";
-                    background: #4279e0;
+                    background: $primary;
                     left: -3rem;
                     top: 0.1rem;
                     width: 1.5rem;
