@@ -2,13 +2,14 @@
 
 $caseSize: 200px;
 $gapSize: 13px;
+$nbrItems: 12;
 
 @keyframes scroll {
     0% {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-$caseSize * 10 - $gapSize * 11);
+        transform: translateX(-$caseSize * $nbrItems - $gapSize * ($nbrItems + 1));
     }
 }
 
@@ -17,7 +18,7 @@ $gapSize: 13px;
         transform: translateX(0);
     }
     100% {
-        transform: translateX($caseSize * 10 + $gapSize * 11);
+        transform: translateX($caseSize * $nbrItems + $gapSize * ($nbrItems + 1));
     }
 }
 
@@ -43,7 +44,7 @@ $gapSize: 13px;
         justify-content: flex-start;
         align-items: center;
         gap: $gapSize;
-        width: $caseSize * 20 + $gapSize * 20;
+        width: $caseSize * ($nbrItems * 2) + $gapSize * ($nbrItems * 2);
         overflow: hidden;
 
         > .anItem {
