@@ -1,5 +1,6 @@
 import * as React from 'react';
 import AvantageCard from './AvantageCard';
+import BigTitleSlide from './BigTitleSlide';
 import FaqQuestionAnswer from './FaqQuestionAnswer';
 import './index.scss';
 import ItemsSlider from './ItemsSlider';
@@ -172,8 +173,14 @@ const Home = () => {
         </div>
       </div>
 
-      <div id="ourCommunity">
+      <div id="ourCommunity" className="container-xl">
+        <p className="preTitle">The vision behind the launchpad is based on opening up to other serious Elrond<br /> projects in order to contribute to the development of this blockchain.</p>
+        <h3>QUALITY & INNOVATION ARE OUR MAIN CRITERIAS.</h3>
+        <div className="bigTitle">
+          <BigTitleSlide />
+        </div>
         {/* TODO: */}
+
       </div>
 
       <div id="manyAdvantage" className='container'>
@@ -294,9 +301,6 @@ const Home = () => {
       </div>
 
       {/* TODO: add coral */}
-
-      <div style={{ height: '1600px' }}></div>
-      {/* TODO: remove end padding */}
     </div>
   );
 };
