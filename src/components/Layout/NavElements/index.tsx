@@ -11,6 +11,7 @@ const NavElements = () => {
             <a href="#ourLaunchpad">LAUNCHPAD</a>
             <a href="#globalPenguinSociety">ASSOCIATION</a>
             <a href="#faq">FAQ</a>
+            <a href="/LITE PAPER.pdf">LITEPAPER</a>
         </nav>
     );
 };

@@ -890,6 +890,10 @@
     }
 
     #roadMap {
+        > h2 {
+            text-align: center;
+        }
+
         > .content {
             height: 100vh;
             overflow: auto;
@@ -1142,6 +1146,10 @@
                     color: $white;
                 }
 
+                &.not_pass {
+                    opacity: 0.6;
+                }
+
                 &_1 {
                     top: 34vh;
                     left: 8.5vh;
@@ -1235,6 +1243,53 @@
                 }
             }
 
+            $hr_left_1: 134vh;
+            $hr_left_2: 305vh;
+            $hr_left_3: 410vh;
+
+            hr {
+                position: absolute;
+                height: 80vh;
+                width: 5px;
+                background-color: $primary;
+                top: 5vh;
+                border-radius: 99px;
+
+                &.hr_1 {
+                    left: $hr_left_1;
+                }
+
+                &.hr_2 {
+                    left: $hr_left_2;
+                }
+
+                &.hr_3 {
+                    left: $hr_left_3;
+                }
+            }
+
+            .QY {
+                position: absolute;
+
+                top: 8vh;
+
+                &.Q4_2021 {
+                    left: 58vh;
+                }
+
+                &.Q1_2022 {
+                    left: $hr_left_1 + 5vh;
+                }
+
+                &.Q2_Q3_2022 {
+                    left: $hr_left_2 + 5vh;
+                }
+
+                &.Q4_2022 {
+                    left: $hr_left_3 + 5vh;
+                }
+            }
+
             .publicSale {
                 top: 35vh;
                 left: 242.5vh;
@@ -1263,6 +1318,8 @@
     }
 
     #faq {
+        margin-bottom: 580px;
+
         > h2 {
             text-align: center;
         }

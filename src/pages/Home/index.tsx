@@ -330,14 +330,22 @@ const Home = () => {
           <p className='text text_7'><b>2000 eggs SOLD OUT in less than 5 minutes during presale 2.</b></p>
           <p className='text text_8'><b>First donation made to the Global Penguin Society</b> in order to clean up penguin colonies from plastic waste.</p>
           <p className='text text_9'></p>
-          <p className='text text_10'><b>Birth of the Angry Penguins</b> Hatching of the eggs 1 week after the public sale & launch of the Angry Penguins.</p>
-          <p className='text text_11'><b>Launch of our marketplace</b> allowing the purchase and sale of our penguins, but especially the purchase of attributes to customize them.</p>
-          <p className='text text_12'><b>Surprise drop with the Global Penguin Society.</b></p>
-          <p className='text text_13'><b>Launch of our token:</b><br /> some penguins start to generate a passive income depending on the rarity of their attributes that will be used initially to buy attributes to customize the penguins.</p>
-          <p className='text text_14'><b>Deployment of Angry Penguins’ Launchpad.</b></p>
-          <p className='text text_15'><b>Coming soon…</b></p>
+          <p className='text text_10 not_pass'><b>Birth of the Angry Penguins</b> Hatching of the eggs 1 week after the public sale & launch of the Angry Penguins.</p>
+          <p className='text text_11 not_pass'><b>Launch of our marketplace</b> allowing the purchase and sale of our penguins, but especially the purchase of attributes to customize them.</p>
+          <p className='text text_12 not_pass'><b>Surprise drop with the Global Penguin Society.</b></p>
+          <p className='text text_13 not_pass'><b>Launch of our token:</b><br /> some penguins start to generate a passive income depending on the rarity of their attributes that will be used initially to buy attributes to customize the penguins.</p>
+          <p className='text text_14 not_pass'><b>Deployment of Angry Penguins’ Launchpad.</b></p>
+          <p className='text text_15 not_pass'><b>Coming soon…</b></p>
 
           <img src='/img/roadmap/public_sale.svg' className="publicSale"></img>
+
+          <img src="/img/roadmap/Q4_2021.svg" alt="Q4 2021" className="QY Q4_2021" />
+          <hr className='hr_1' />
+          <img src="/img/roadmap/Q1_2022.svg" alt="Q1 2022" className="QY Q1_2022" />
+          <hr className='hr_2' />
+          <img src="/img/roadmap/Q2_Q3_2022.svg" alt="Q2 Q3 2022" className="QY Q2_Q3_2022" />
+          <hr className='hr_3' />
+          <img src="/img/roadmap/Q4_2022.svg" alt="Q4 2022" className="QY Q4_2022" />
 
         </div>
       </div>
