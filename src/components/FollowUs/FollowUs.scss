@@ -1,0 +1,12 @@
+.followUs {
+    > h3 {
+        font-size: 1.125rem;
+        font-weight: 600 !important;
+        color: #3d3d3d;
+    }
+
+    > .content {
+        display: flex;
+        gap: 5px;
+    }
+}

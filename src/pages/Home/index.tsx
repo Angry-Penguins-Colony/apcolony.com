@@ -287,6 +287,7 @@ const Home = () => {
       </div>
 
       <div id="roadMap">
+        {/* TODO: sliding in scroll */}
         <h2>ROAD MAP</h2>
         <div className="content">
           <img src="/img/roadmap/Blue_line.svg" className='blue_line' />
