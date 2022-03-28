@@ -77,3 +77,62 @@
         }
     }
 }
+
+@media (max-width: 1090px) {
+    .bigTitleSlide {
+        > .text {
+            &.ourCommunity {
+                > h2 {
+                    font-size: 7rem !important;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 770px) {
+    .bigTitleSlide {
+        width: 170% !important;
+
+        > .floor {
+            &.floor_1 {
+                display: none;
+            }
+            &.floor_2 {
+                > .penguin:nth-child(1) {
+                    position: relative;
+                    right: -4%;
+                }
+                > .penguin:nth-child(2) {
+                    position: relative;
+                    left: -4%;
+                }
+            }
+
+            > .gradient {
+                height: 80%;
+            }
+        }
+
+        > .text {
+            > .content {
+                position: relative;
+            }
+
+            &.ourCommunity {
+                > h2 {
+                    font-size: 4rem !important;
+                    position: relative;
+                    top: -16vh;
+                }
+            }
+
+            &.subTitle {
+                > p {
+                    top: -26vh;
+                    font-size: 1.4rem !important;
+                }
+            }
+        }
+    }
+}
