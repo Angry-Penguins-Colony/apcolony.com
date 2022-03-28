@@ -101,6 +101,7 @@ body {
   font-family: "Montserrat", sans-serif;
   background-color: $bg-body;
   background: linear-gradient(180deg, black 0vh, black 700vh /*360vh*/, $bg-body 100%);
+  overflow-x: hidden;
 }
 
 p {

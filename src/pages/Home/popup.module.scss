@@ -1,0 +1,71 @@
+@import "./../../assets/sass/theme.scss";
+
+.popup {
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    background-color: $white;
+    border-radius: 30px;
+    position: fixed;
+    top: 20vh;
+    width: 400px;
+    max-width: calc(100% - 30px);
+    box-shadow: 0 0 15px #00000042;
+    transition: right 0.3s ease-in-out;
+
+    &.isOpen {
+        right: 15px;
+    }
+    &.isClose {
+        right: -430px;
+    }
+
+    > .closePopup {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        cursor: pointer;
+
+        > img {
+            height: 35px;
+        }
+    }
+
+    > img {
+        border-radius: 30px 30px 0 0;
+    }
+
+    > .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        padding: 20px 30px;
+
+        > h3 {
+            font-family: "CHEDROS", sans-serif;
+            font-size: 2rem;
+            font-weight: bold;
+            color: $primary;
+            text-align: center;
+        }
+        > p {
+            text-align: center;
+        }
+        > .button {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            > svg {
+                fill: $white;
+                height: 15px;
+            }
+
+            > .text {
+                white-space: nowrap;
+            }
+        }
+    }
+}
