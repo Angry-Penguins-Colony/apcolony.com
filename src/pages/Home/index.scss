@@ -1229,6 +1229,13 @@
             overflow: auto hidden;
             display: flex;
             position: relative;
+            cursor: grab;
+
+            &:active {
+                cursor: grabbing;
+                cursor: -moz-grabbing;
+                cursor: -webkit-grabbing;
+            }
 
             @include customScrollbar;
 

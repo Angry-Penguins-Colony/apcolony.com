@@ -12,6 +12,7 @@ import ItemsSlider from './ItemsSlider';
 import TeamMember from './TeamMember';
 import Timer from './Timer';
 import VideoPlayer from './VideoPlayer';
+import ScrollContainer from 'react-indiana-drag-scroll';
 
 enum SaleStatus {
   Soon = 0,
@@ -373,7 +374,7 @@ const Home = () => {
 
           <div id="roadMap">
             <h2>ROAD MAP</h2>
-            <div className="content">
+            <ScrollContainer vertical={false} hideScrollbars={false} className="content">
               <img src="/img/roadmap/Blue_line.svg" className='blue_line' />
               <img src="/img/roadmap/White_doted_line.svg" className='white_doted_line' />
               <img src="/img/roadmap/APC_COIN.svg" className='coin coin_1' />
@@ -449,7 +450,7 @@ const Home = () => {
                 <img src="/img/decorations/Coral_3.png" className="decorationImage bottom" id='deco_13' />
                 <img src="/img/decorations/Rock-3.png" className="decorationImage bottom" id='deco_14' />
               </div>
-            </div>
+            </ScrollContainer>
           </div>
 
           <div id="theTeam" className='container'>
@@ -491,7 +492,7 @@ const Home = () => {
           </div>
         </>
       }
-    </div>
+    </div >
   );
 };
 
