@@ -8,7 +8,9 @@ export const routeNames = {
   transaction: '/transaction',
   unlock: '/unlock',
   ledger: '/ledger',
-  walletconnect: '/walletconnect'
+  walletconnect: '/walletconnect',
+  discord: 'https://discord.com/invite/aZ3Fjp8Vna',
+  twitter: 'https://twitter.com/angrypenguins_'
 };
 
 const routes: Array<any> = [

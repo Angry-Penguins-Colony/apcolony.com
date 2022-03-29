@@ -9,7 +9,7 @@ const Footer = () => {
       <div className='container content'>
         <img src="/img/APC_LOGO_BLUE.svg" alt="Angry Penguins Logo" className='logo' />
         <NavElements />
-        <a className="button">CONNECT WALLET</a>
+        {/* <a className="button">CONNECT WALLET</a> */}
         {/* TODO: bind button */}
         <FollowUs />
       </div>
