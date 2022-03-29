@@ -129,10 +129,10 @@ const Home = () => {
               }
             </div>
             <BonusPopup isOpen={bonusIsOpen} />
-            <div className="saleInfos" onClick={openBonusPopup}>
+            {/* <div className="saleInfos" onClick={openBonusPopup}>
               <p>PUBLIC SALE INFOS</p>
               <span className="icon">?</span>
-            </div>
+            </div> */}
           </div>
 
           <div id="welcome">
