@@ -417,6 +417,7 @@ const Home = () => {
 
           <div id="roadMap">
             {/* TODO: sliding in scroll */}
+            {/* TODO: add coral */}
             <h2>ROAD MAP</h2>
             <div className="content">
               <img src="/img/roadmap/Blue_line.svg" className='blue_line' />
@@ -477,10 +478,31 @@ const Home = () => {
               <hr className='hr_3' />
               <img src="/img/roadmap/Q4_2022.svg" alt="Q4 2022" className="QY Q4_2022" />
 
+              <img src="/img/decorations/Mossy_rock.png" className="decorationImage top" id='deco_1' />
+              <img src="/img/decorations/Corail_1.png" className="decorationImage top" id='deco_2' />
+              <img src="/img/decorations/Rock-3.png" className="decorationImage top" id='deco_3' />
+              <img src="/img/decorations/Mossy_rock.png" className="decorationImage top" id='deco_4' />
+              <img src="/img/decorations/Coral_3.png" className="decorationImage top" id='deco_5' />
+              <img src="/img/decorations/Corail_2.png" className="decorationImage top" id='deco_6' />
+
+              <div className='containerDecorationBottom'>
+                <img src="/img/decorations/Corail_1.png" className="decorationImage bottom" id='deco_7' />
+                <img src="/img/decorations/Coral_3.png" className="decorationImage bottom" id='deco_8' />
+                <img src="/img/decorations/Rock-3.png" className="decorationImage bottom" id='deco_9' />
+                <img src="/img/decorations/Mossy_rock.png" className="decorationImage bottom" id='deco_10' />
+                <img src="/img/decorations/Corail_1.png" className="decorationImage bottom" id='deco_11' />
+                <img src="/img/decorations/Corail_2.png" className="decorationImage bottom" id='deco_12' />
+                <img src="/img/decorations/Coral_3.png" className="decorationImage bottom" id='deco_13' />
+                <img src="/img/decorations/Rock-3.png" className="decorationImage bottom" id='deco_14' />
+              </div>
             </div>
           </div>
 
           <div id="theTeam" className='container'>
+
+            <img src="/img/decorations/Coral_3.png" className="decorationImage" id='deco_14' />
+            <img src="/img/decorations/Mossy_rock.png" className="decorationImage" id='deco_15' />
+            <img src="/img/decorations/Corail_1.png" className="decorationImage" id='deco_16' />
             <h2>THE TEAM</h2>
             <div className="content">
               <TeamMember profileImage={'img/team_members/Skipper.png'} name={'SKIPPER'} description={'The mind behind the project. Some say he knows more facts about the blockchain than about his family.'} discordLink='TODO: add link' twitterLink='TODO: add link' />
@@ -509,6 +531,10 @@ const Home = () => {
               </FaqQuestionAnswer>
             </div>
           </div>
+          <div id='deco_footer' >
+            <img src="/img/decorations/Footer-bg.png" className="decorationImage" />
+          </div>
+
 
           {/* TODO: add coral */}
         </>

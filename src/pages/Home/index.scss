@@ -72,7 +72,7 @@
         top: 0;
         left: 0;
         right: 0;
-        z-index: 1;
+        z-index: 80;
         min-height: 100vh;
         background-image: url(/assets/img/mint_background.png);
         background-size: cover;
@@ -1255,13 +1255,15 @@
     }
 
     #roadMap {
+        margin-bottom: 180px;
+
         > h2 {
             text-align: center;
         }
 
         > .content {
             height: 100vh;
-            overflow: auto;
+            overflow: auto hidden;
             display: flex;
             position: relative;
 
@@ -1659,6 +1661,119 @@
                 width: 100px;
                 position: absolute;
             }
+
+            .containerDecorationBottom {
+                position: absolute;
+                bottom: 0;
+                height: 10px;
+                width: 100%;
+            }
+
+            .decorationImage {
+                opacity: 1;
+
+                &.top {
+                    top: -40vh;
+                }
+
+                &.bottom {
+                    bottom: -50vh;
+                }
+
+                &#deco_1 {
+                    transform: rotate(226deg);
+                    left: -34vh;
+                    top: -50vh;
+                }
+                &#deco_2 {
+                    left: 97vh;
+                    width: 80vh;
+                    top: -33vh;
+                    z-index: 1;
+                }
+                &#deco_3 {
+                    left: 153vh;
+                    width: 65vh;
+                    top: -34vh;
+                    z-index: 0;
+                    transform: rotate(228deg);
+                }
+                &#deco_4 {
+                    left: 172vh;
+                    width: 84vh;
+                    top: -30vh;
+                    z-index: 0;
+                    transform: rotate(16deg);
+                }
+                &#deco_5 {
+                    left: 371vh;
+                    width: 55vh;
+                    top: -32vh;
+                    z-index: 0;
+                    transform: rotate(235deg);
+                }
+                &#deco_6 {
+                    display: none;
+                    left: 430vh;
+                    width: 71vh;
+                    top: -26vh;
+                    z-index: 0;
+                    transform: rotate(12deg);
+                }
+                &#deco_7 {
+                    left: -18vh;
+                    width: 71vh;
+                    top: -18vh;
+                    z-index: 0;
+                }
+                &#deco_8 {
+                    left: 30vh;
+                    width: 29vh;
+                    top: -10vh;
+                    z-index: 0;
+                }
+                &#deco_9 {
+                    left: 104vh;
+                    width: 54vh;
+                    top: -23vh;
+                    z-index: 0;
+                    transform: rotate(40deg);
+                }
+                &#deco_10 {
+                    left: 170vh;
+                    width: 81vh;
+                    top: -4vh;
+                    z-index: 0;
+                    transform: rotate(292deg);
+                }
+                &#deco_11 {
+                    left: 262vh;
+                    width: 81vh;
+                    top: -16vh;
+                    z-index: 0;
+                }
+                &#deco_12 {
+                    left: 384vh;
+                    width: 58vh;
+                    top: -9vh;
+                    z-index: 0;
+                    transform: rotate(310deg);
+                }
+                &#deco_13 {
+                    left: 419vh;
+                    width: 35vh;
+                    top: -16vh;
+                    z-index: 0;
+                    transform: rotate(25deg);
+                }
+                &#deco_14 {
+                    display: none;
+                    left: 422vh;
+                    width: 62vh;
+                    top: -39vh;
+                    z-index: -1;
+                }
+            }
         }
     }
 
@@ -1671,6 +1786,27 @@
         gap: 100px;
         margin-bottom: 320px;
         padding: 0;
+        position: relative;
+
+        #deco_14 {
+            width: 273px;
+            top: 92px;
+            left: -341px;
+            transform: rotate(44deg);
+        }
+        #deco_15 {
+            width: 477px;
+            top: 272px;
+            left: -426px;
+            transform: rotate(330deg);
+        }
+        #deco_16 {
+            width: 546px;
+            top: 70px;
+            right: -513px;
+            transform: rotate(270deg);
+            opacity: 1;
+        }
 
         > .content {
             display: flex;
@@ -1695,6 +1831,7 @@
 
         > h2 {
             text-align: center;
+            margin-bottom: 1rem;
         }
 
         > .content {
@@ -1703,6 +1840,20 @@
             gap: 30px;
             max-width: 900px;
             margin: auto;
+        }
+    }
+
+    #deco_footer {
+        height: 0;
+        position: relative;
+        top: 125px;
+
+        > img {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            object-fit: cover;
+            opacity: 1;
         }
     }
 }
@@ -1747,6 +1898,10 @@
 
 @media (max-width: 1090px) {
     #home {
+        .decorationImage {
+            display: none;
+        }
+
         #publicSale {
             > h1 {
                 font-size: 5rem;
@@ -1932,6 +2087,14 @@
 
                 > .moreInfo {
                     padding: 8% 10% 50% 10%;
+                }
+            }
+        }
+
+        #roadMap {
+            > .content {
+                .decorationImage {
+                    display: block;
                 }
             }
         }
