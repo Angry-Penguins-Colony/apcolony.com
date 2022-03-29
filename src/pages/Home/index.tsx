@@ -1,11 +1,13 @@
 import * as React from 'react';
 import DiscordIcon from 'components/Icon/Discord';
 import AvantageCard from './AvantageCard';
+import AwardPopup from './AwardPopup';
 import BigTitleSlide from './BigTitleSlide';
+import BonusPopup from './BonusPopup';
+import BonusTable from './BonusTable';
 import FaqQuestionAnswer from './FaqQuestionAnswer';
 import './index.scss';
 import ItemsSlider from './ItemsSlider';
-import Popup from './Popup';
 import TeamMember from './TeamMember';
 import Timer from './Timer';
 import VideoPlayer from './VideoPlayer';
@@ -44,6 +46,12 @@ const Home = () => {
     setNbEgld((nbEgld > 1) ? nbEgld - 1 : 1);
   };
 
+  // popup with bonus info
+  const [bonusIsOpen, setBonusIsOpen] = React.useState('');
+  const openBonusPopup = () => {
+    setBonusIsOpen(Math.random().toString());
+  };
+
   return (
     <div id='home'>
       {
@@ -67,60 +75,7 @@ const Home = () => {
             <div className="content">
               <h1>PUBLIC SALE</h1>
               <div className="advantages">
-                <table>
-                  <tbody>
-                    <tr>
-                      <td className='price'>FOR 1 EGLD</td>
-                      <td className='arrow'><img src='/img/icons/arrow-right.svg' /></td>
-                      <td className='advantage'>YOU GET 1 EGG</td>
-                    </tr>
-                    <tr>
-                      <td className='price'>FOR 2 EGLD</td>
-                      <td className='arrow'><img src='/img/icons/arrow-right.svg' /></td>
-                      <td className='advantage'>YOU GET 2 EGG</td>
-                    </tr>
-                    <tr>
-                      <td className='price'>FOR 3 EGLD</td>
-                      <td className='arrow'><img src='/img/icons/arrow-right.svg' /></td>
-                      <td className='advantage'>YOU GET 3 EGGS & AN ACCESSORY A</td>
-                    </tr>
-                    <tr>
-                      <td className='price'>FOR 4 EGLD</td>
-                      <td className='arrow'><img src='/img/icons/arrow-right.svg' /></td>
-                      <td className='advantage'>YOU GET 4 EGGS & AN ACCESSORY A</td>
-                    </tr>
-                    <tr>
-                      <td className='price'>FOR 5 EGLD</td>
-                      <td className='arrow'><img src='/img/icons/arrow-right.svg' /></td>
-                      <td className='advantage'>YOU GET 5 EGGS & AN ACCESSORY B*</td>
-                    </tr>
-                    <tr>
-                      <td className='price'>FOR 6 EGLD</td>
-                      <td className='arrow'><img src='/img/icons/arrow-right.svg' /></td>
-                      <td className='advantage'>YOU GET 6 EGGS & AN ACCESSORY B</td>
-                    </tr>
-                    <tr>
-                      <td className='price'>FOR 7 EGLD</td>
-                      <td className='arrow'><img src='/img/icons/arrow-right.svg' /></td>
-                      <td className='advantage'>YOU GET 7 EGGS & AN ACCESSORY B</td>
-                    </tr>
-                    <tr>
-                      <td className='price'>FOR 8 EGLD</td>
-                      <td className='arrow'><img src='/img/icons/arrow-right.svg' /></td>
-                      <td className='advantage'>YOU GET 8 EGGS & 2 ACCESSORIES (A+B)</td>
-                    </tr>
-                    <tr>
-                      <td className='price'>FOR 9 EGLD</td>
-                      <td className='arrow'><img src='/img/icons/arrow-right.svg' /></td>
-                      <td className='advantage'>YOU GET 9 EGGS & 2 ACCESSORIES (A+B)</td>
-                    </tr>
-                    <tr>
-                      <td className='price'>FOR 10 EGLD</td>
-                      <td className='arrow'><img src='/img/icons/arrow-right.svg' /></td>
-                      <td className='advantage'>YOU GET 11 EGGS & 2 ACCESSORIES (A+B)</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <BonusTable />
               </div>
               <div className="mintButton">
                 {/* TODO: bind number and button */}
@@ -137,7 +92,7 @@ const Home = () => {
       {
         !mintIsOpen &&
         <>
-          <Popup />
+          <AwardPopup />
           <div id="icebergHero">
             <img src="/img/Iceberg-hero-Mobile.png" className='mobile' />
             <img src="/img/Iceberg-hero.png" className='desktop' />
@@ -174,7 +129,8 @@ const Home = () => {
                 </div>
               }
             </div>
-            <div className="saleInfos">
+            <BonusPopup isOpen={bonusIsOpen} />
+            <div className="saleInfos" onClick={openBonusPopup}>
               <p>PUBLIC SALE INFOS</p>
               <span className="icon">?</span>
             </div>
