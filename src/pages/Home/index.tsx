@@ -3,6 +3,7 @@ import { BsArrowUpCircleFill as ScrollToTopIcon } from 'react-icons/bs';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import ScrollToTop from 'react-scroll-to-top';
 import DiscordIcon from 'components/Icon/Discord';
+import ScrollDown from 'components/Icon/ScrollDown';
 import { routeNames } from 'routes';
 import AvantageCard from './AvantageCard';
 import AwardPopup from './AwardPopup';
@@ -58,6 +59,7 @@ const Home = () => {
 
   return (
     <div id='home'>
+      <ScrollDown id="scrollDown" />
       <ScrollToTop className="scrollToTop" smooth component={<ScrollToTopIcon />} />
       {
         mintIsOpen &&

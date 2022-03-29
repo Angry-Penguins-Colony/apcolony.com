@@ -29,6 +29,12 @@
 }
 
 #home {
+    #scrollDown {
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+    }
+
     .scrollToTop {
         $size: 40px;
         background: none;
@@ -1856,6 +1862,14 @@
             width: 100%;
             object-fit: cover;
             opacity: 1;
+        }
+    }
+}
+
+@media (max-width: 1300px) {
+    #home {
+        #scrollDown {
+            display: none;
         }
     }
 }
