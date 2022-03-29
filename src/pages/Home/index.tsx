@@ -470,17 +470,20 @@ const Home = () => {
             <div className="content">
               {/* TODO: replace lorem ipsum */}
               {/* TODO: replace fake question by real */}
-              <FaqQuestionAnswer question={'WHAT\'S AN NFT ?'}>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+              <FaqQuestionAnswer question={'What are the Angry Penguins ?'}>
+                Angry Penguins are a committed colony of 10,000 randomly generated and customizable NFTs living on the Elrond blockchain. By owning Angry Penguins, you support the environmental protection that penguins and many other species call home.
               </FaqQuestionAnswer>
-              <FaqQuestionAnswer question={'WHAT\'S AN NFT ?'}>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+              <FaqQuestionAnswer question={'Why are they angry ?'}>
+                The Earth has lost 28,000 billion tons of ice in 23 years. In addition to directly threatening human beings, this phenomenon endangers the survival of species living on the ice pack. We have therefore decided to inspire our entire collection around the protection of this environment and to donate 10% of the sales of each NFT to the Global Penguin Society
               </FaqQuestionAnswer>
-              <FaqQuestionAnswer question={'WHAT\'S AN NFT ?'}>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+              <FaqQuestionAnswer question={'How to buy an Angry Penguin ?'}>
+                Both Presale were SOLD OUT. Public sale will be live April 14th 2022 on our website. Be sharp ! Use Maiar or your Elrond Wallet. After the public sale is over, you will be able to buy Angry Penguins on our marketplace, or on other secondary marketplaces.
               </FaqQuestionAnswer>
-              <FaqQuestionAnswer question={'WHAT\'S AN NFT ?'}>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+              <FaqQuestionAnswer question={'I have purchased an NFT, when will I receive it ?'}>
+                You have received an egg that will hatch 1 week after the public sale.
+              </FaqQuestionAnswer>
+              <FaqQuestionAnswer question={'Why Elrond ?'}>
+                We strongly believe that the Elrond blockchain is revolutionary and in line with the values the team stands for through this project. We put the contribution to the development of Elrond as one of our priorities.
               </FaqQuestionAnswer>
             </div>
           </div>
