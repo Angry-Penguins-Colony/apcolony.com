@@ -2296,7 +2296,25 @@
     }
 }
 
-// @media (max-aspect-ratio: 3/9) {
+@media (min-aspect-ratio: 1689/919) {
+    #home {
+        #icebergHero {
+            img {
+                height: 450vh;
+            }
+        }
+
+        #pinguinOnIceberg {
+            top: 47.2vh;
+            left: calc(50vw - 53vh);
+
+            img {
+                height: 45vh;
+            }
+        }
+    }
+}
+
 @media (max-aspect-ratio: 5/8) {
     #home {
         #icebergHero {

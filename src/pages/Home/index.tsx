@@ -78,7 +78,6 @@ const Home = () => {
                 <BonusTable />
               </div>
               <div className="mintButton">
-                {/* TODO: bind number and button */}
                 <div className="minus" onClick={removeEgld}>-</div>
                 <div className="numberSelect">{nbEgld}</div>
                 <div className="plus" onClick={addEgld}>+</div>
@@ -373,7 +372,6 @@ const Home = () => {
 
           <div id="roadMap">
             {/* TODO: sliding in scroll */}
-            {/* TODO: add coral */}
             <h2>ROAD MAP</h2>
             <div className="content">
               <img src="/img/roadmap/Blue_line.svg" className='blue_line' />
@@ -490,9 +488,6 @@ const Home = () => {
           <div id='deco_footer' >
             <img src="/img/decorations/Footer-bg.png" className="decorationImage" />
           </div>
-
-
-          {/* TODO: add coral */}
         </>
       }
     </div>

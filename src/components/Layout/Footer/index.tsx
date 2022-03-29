@@ -8,7 +8,6 @@ const Footer = () => {
     <footer>
       <div className='container content'>
         <img src="/img/APC_LOGO_BLUE.svg" alt="Angry Penguins Logo" className='logo' />
-        {/* TODO: replace by good logo */}
         <NavElements />
         <a className="button">CONNECT WALLET</a>
         {/* TODO: bind button */}
