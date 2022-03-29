@@ -3,14 +3,26 @@ import withPageTitle from './components/PageTitle';
 import Home from './pages/Home';
 import Transaction from './pages/Transaction';
 
+const discord = 'https://discord.com/invite/aZ3Fjp8Vna';
+const twitter = 'https://twitter.com/angrypenguins_';
+
 export const routeNames = {
   home: '/',
   transaction: '/transaction',
   unlock: '/unlock',
   ledger: '/ledger',
   walletconnect: '/walletconnect',
-  discord: 'https://discord.com/invite/aZ3Fjp8Vna',
-  twitter: 'https://twitter.com/angrypenguins_'
+  discord: discord,
+  twitter: twitter,
+  skipperDiscord: discord,
+  skipperTwitter: 'https://twitter.com/APCSkipper',
+  fargerikDiscord: discord,
+  fargerikTwitter: twitter,
+  seymourDiscord: discord,
+  seymourTwitter: twitter,
+  ricoDiscord: discord,
+  ricoTwitter: twitter
+
 };
 
 const routes: Array<any> = [

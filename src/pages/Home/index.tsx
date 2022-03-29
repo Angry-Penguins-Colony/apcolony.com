@@ -460,10 +460,30 @@ const Home = () => {
             <img src="/img/decorations/Corail_1.png" className="decorationImage" id='deco_16' />
             <h2>THE TEAM</h2>
             <div className="content">
-              <TeamMember profileImage={'img/team_members/Skipper.png'} name={'SKIPPER'} description={'The mind behind the project. Some say he knows more facts about the blockchain than about his family.'} discordLink='TODO: add link' twitterLink='TODO: add link' />
-              <TeamMember profileImage={'img/team_members/Fargerik.png'} name={'FARGERIK'} description={'The developer behind all the smart contracts of the Angry Penguins project and the marketplace as well. He comes from a game developing background.'} discordLink='TODO: add link' twitterLink='TODO: add link' />
-              <TeamMember profileImage={'img/team_members/Seymour.png'} name={'SEYMOUR'} description={'The mind behind the project. Passionate about music and art, Seymour is in charge of the communication and Public relations of the Angry Penguins project.'} discordLink='TODO: add link' twitterLink='TODO: add link' />
-              <TeamMember profileImage={'img/team_members/Rico.png'} name={'RICO'} description={'Passionate about crypto, Rico also has experience in the finance area. He is in charge of managing the partnership and to develop the community.'} discordLink='TODO: add link' twitterLink='TODO: add link' />
+              <TeamMember
+                profileImage={'img/team_members/Skipper.png'}
+                name={'SKIPPER'}
+                description={'The mind behind the project. Some say he knows more facts about the blockchain than about his family.'}
+                discordLink={routeNames.skipperDiscord}
+                twitterLink={routeNames.skipperTwitter} />
+              <TeamMember
+                profileImage={'img/team_members/Fargerik.png'}
+                name={'FARGERIK'}
+                description={'The developer behind all the smart contracts of the Angry Penguins project and the marketplace as well. He comes from a game developing background.'}
+                discordLink={routeNames.fargerikDiscord}
+                twitterLink={routeNames.fargerikTwitter} />
+              <TeamMember
+                profileImage={'img/team_members/Seymour.png'}
+                name={'SEYMOUR'}
+                description={'The mind behind the project. Passionate about music and art, Seymour is in charge of the communication and Public relations of the Angry Penguins project.'}
+                discordLink={routeNames.seymourDiscord}
+                twitterLink={routeNames.seymourTwitter} />
+              <TeamMember
+                profileImage={'img/team_members/Rico.png'}
+                name={'RICO'}
+                description={'Passionate about crypto, Rico also has experience in the finance area. He is in charge of managing the partnership and to develop the community.'}
+                discordLink={routeNames.ricoDiscord}
+                twitterLink={routeNames.ricoTwitter} />
             </div>
           </div>
 
