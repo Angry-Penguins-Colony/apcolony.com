@@ -272,7 +272,7 @@ const Home = () => {
                 <div className="content">Results are made public in the Penguin Agora of our discord.<br /><br /> This place is a way for holders and future holders interested in our project to stay informed about the latest news of the Angry Penguins Colony.</div>
               </div>
               <div className="right">
-                {/* TODO: */}
+                <img src="/img/discord community.png" />
               </div>
             </div>
           </div>
