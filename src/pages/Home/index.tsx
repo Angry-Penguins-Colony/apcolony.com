@@ -135,7 +135,7 @@ const Home = () => {
                 </div>
               }
             </div>
-            <BonusPopup isOpen={bonusIsOpen} />
+            {/* <BonusPopup isOpen={bonusIsOpen} /> */}
             {/* <div className="saleInfos" onClick={openBonusPopup}>
               <p>PUBLIC SALE INFOS</p>
               <span className="icon">?</span>
