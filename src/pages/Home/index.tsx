@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { BsArrowUpCircleFill as ScrollToTopIcon } from 'react-icons/bs';
+import ScrollContainer from 'react-indiana-drag-scroll';
+import ScrollToTop from 'react-scroll-to-top';
 import DiscordIcon from 'components/Icon/Discord';
 import { routeNames } from 'routes';
 import AvantageCard from './AvantageCard';
@@ -12,7 +15,6 @@ import ItemsSlider from './ItemsSlider';
 import TeamMember from './TeamMember';
 import Timer from './Timer';
 import VideoPlayer from './VideoPlayer';
-import ScrollContainer from 'react-indiana-drag-scroll';
 
 enum SaleStatus {
   Soon = 0,
@@ -56,6 +58,7 @@ const Home = () => {
 
   return (
     <div id='home'>
+      <ScrollToTop className="scrollToTop" smooth component={<ScrollToTopIcon />} />
       {
         mintIsOpen &&
         <div id='mint'>
