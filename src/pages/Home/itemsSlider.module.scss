@@ -58,7 +58,7 @@ $nbrItems: 12;
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: scroll 10s linear infinite;
+            // animation: scroll 10s linear infinite;
 
             > img {
                 width: 100%;
@@ -73,7 +73,7 @@ $nbrItems: 12;
             right: 0;
 
             > .anItem {
-                animation: revertScroll 10s linear infinite;
+                // animation: revertScroll 10s linear infinite;
             }
         }
     }
