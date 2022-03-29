@@ -11,7 +11,7 @@ const NavElements = (props: { isOpen?: boolean; }) => {
         }>
             <a href="#roadMap">ROADMAP</a>
             <a href="#theTeam">TEAM</a>
-            <a href="#ourCommunity">COMUNITY</a>
+            <a href="#ourCommunity">COMMUNITY</a>
             <a href="#ourLaunchpad">LAUNCHPAD</a>
             <a href="#globalPenguinSociety">ASSOCIATION</a>
             <a href="#faq">FAQ</a>
