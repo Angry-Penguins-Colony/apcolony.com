@@ -400,14 +400,14 @@ const Home = () => {
                 twitterLink={routeNames.skipperTwitter} />
               <TeamMember
                 profileImage={'img/team_members/Fargerik.png'}
-                name={'FARGERIK'}
+                name={'Kowalski'}
                 description={'The developer behind all the smart contracts of the Angry Penguins project and the marketplace as well. He comes from a game developing background.'}
                 discordLink={routeNames.fargerikDiscord}
                 twitterLink={routeNames.fargerikTwitter} />
               <TeamMember
                 profileImage={'img/team_members/Seymour.png'}
                 name={'SEYMOUR'}
-                description={'The mind behind the project. Passionate about music and art, Seymour is in charge of the communication and Public relations of the Angry Penguins project.'}
+                description={'Passionate about music and art, Seymour is in charge of the communication and Public relations of the Angry Penguins project.'}
                 discordLink={routeNames.seymourDiscord}
                 twitterLink={routeNames.seymourTwitter} />
               <TeamMember
