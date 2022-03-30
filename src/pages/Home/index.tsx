@@ -322,7 +322,7 @@ const Home = () => {
                 <h3>OUR ACHIEVEMENTS</h3>
                 <ul>
                   <li>10% of our benefits directly donated to the Global Penguin Society.</li>
-                  <li>More than 15,000$ (117 EGLD) already donated to the organization.</li>
+                  <li>More than 15,000$ (118 EGLD) already donated to the organization.</li>
                   <li>Our holders voted to fund a first mission: cleaning the house of the penguins by removing plastics spread all over their colonies !</li>
                 </ul>
               </div>
