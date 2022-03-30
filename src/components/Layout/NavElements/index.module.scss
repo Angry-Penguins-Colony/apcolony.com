@@ -1,5 +1,6 @@
-@import "./../../../assets/sass/theme.scss";
-.nav {
+@import "./../../../assets/sass/variables.scss";
+
+.navLinksContainer {
     display: flex;
     align-items: center;
     gap: 25px;
