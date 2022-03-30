@@ -75,17 +75,17 @@ Override Bootstrap variables only above.
 
 @font-face {
   font-family: "CHEDROS";
-  src: local("CHEDROS"), url("./../fonts/CHEDROS.otf") format("opentype");
+  src: local("CHEDROS"), url("/assets/fonts/CHEDROS.otf") format("opentype");
 }
 
 @font-face {
   font-family: "Montserrat";
-  src: url("./../fonts/Montserrat/Montserrat-Regular.ttf") format("true-type");
+  src: url("/assets/fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
   font-weight: 400;
 }
 @font-face {
   font-family: "Montserrat";
-  src: url("./../fonts/Montserrat/Montserrat-Bold.ttf") format("true-type");
+  src: url("/assets/fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
   font-weight: 700;
 }
 
