@@ -104,13 +104,23 @@ header {
                 background-color: $dark;
 
                 > nav {
+                    display: block;
+
                     > .followUs {
                         display: block;
-                        margin-top: auto;
+                        margin-top: 25px;
+
+                        > .content {
+                            align-items: center;
+                            justify-content: center;
+                        }
 
                         > h3 {
                             color: $white;
-                            font-family: "Montserrat", sans-serif;
+                            text-align: center;
+                            margin-top: 5px;
+
+                            // font-family: "Montserrat", sans-serif;
                         }
                     }
                 }

@@ -7,7 +7,7 @@ const NavElements = (props: { isOpen?: boolean; }) => {
     const isOpen = props.isOpen || false;
 
     return (
-        <nav className={'d-flex flex-column' + ' ' + (isOpen ? styles.isOpen : styles.isClose)
+        <nav className={styles.nav + ' ' + (isOpen ? styles.isOpen : styles.isClose)
         }>
             <div className={styles.navLinksContainer}>
 
