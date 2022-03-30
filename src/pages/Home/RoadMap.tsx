@@ -128,7 +128,7 @@ const RoadMap = () => {
                         </g>
                         <g transform="translate(1892.986 515.986)">
                             <circle cx="40" cy="40" r="40" transform="translate(-15.986 -15.986)" fill="#4379e0" />
-                            <text transform="translate(16.014 32.014)" fill="#fafafa" fontSize="24" fontFamily="SegoeUI-Bold, Segoe UI" fontWeight="700">
+                            <text transform="translate(16.014 32.014)" fill="#fafafa" fontSize="24" fontFamily="Chedros" fontWeight="700">
                                 <tspan x="0" y="0">01</tspan>
                             </text>
                         </g>
@@ -164,16 +164,16 @@ const RoadMap = () => {
                             <circle cx="24" cy="24" r="24" transform="translate(0.014 0.014)" fill="#4379e0" />
                             <rect width="217.853" height="113.447" transform="matrix(0.996, -0.087, 0.087, 0.996, -124.007, -38.143)" fill="url(#q)" />
                         </g>
-                        <text transform="translate(709 178)" fill="#fafafa" fontSize="50" fontFamily="SegoeUI, Segoe UI" letterSpacing="0em">
+                        <text transform="translate(709 178)" fill="#fafafa" fontSize="50" fontFamily="Chedros" letterSpacing="0em">
                             <tspan x="0" y="0">Q4 2021</tspan>
                         </text>
-                        <text transform="translate(1587 178)" fill="#fafafa" fontSize="50" fontFamily="SegoeUI, Segoe UI" letterSpacing="0em">
+                        <text transform="translate(1587 178)" fill="#fafafa" fontSize="50" fontFamily="Chedros" letterSpacing="0em">
                             <tspan x="0" y="0">Q1 2022</tspan>
                         </text>
-                        <text transform="translate(3354 178)" fill="#fafafa" fontSize="50" fontFamily="SegoeUI, Segoe UI" letterSpacing="0em">
+                        <text transform="translate(3354 178)" fill="#fafafa" fontSize="50" fontFamily="Chedros" letterSpacing="0em">
                             <tspan x="0" y="0">Q2-Q3 2022</tspan>
                         </text>
-                        <text transform="translate(4413 178)" fill="#fafafa" fontSize="50" fontFamily="SegoeUI, Segoe UI" letterSpacing="0em">
+                        <text transform="translate(4413 178)" fill="#fafafa" fontSize="50" fontFamily="Chedros" letterSpacing="0em">
                             <tspan x="0" y="0">Q4 2022</tspan>
                         </text>
                         <g transform="translate(-14 -39)">
@@ -291,11 +291,11 @@ const RoadMap = () => {
                             </g>
                         </g>
                         <g transform="translate(2305 30)">
-                            <text transform="translate(302 349)" fill="#fafafa" fontSize="30" fontFamily="SegoeUI-Bold, Segoe UI" fontWeight="700">
-                                <tspan x="-43.315" y="32">Public </tspan>
-                                <tspan x="-27.048" y="57">sale</tspan>
+                            <text transform="translate(302 349)" fill="#fafafa" fontSize="30" fontFamily="Chedros" fontWeight="700">
+                                <tspan x="-43.315" y="32">PUBLIC</tspan>
+                                <tspan x="-27.048" y="57">SALE</tspan>
                                 <tspan fontSize="21" fontFamily="Montserrat-Bold, Montserrat">
-                                    <tspan x="-62.903" y="82">MARCH 31</tspan>
+                                    <tspan x="-42.903" y="82">APRIL 14</tspan>
                                     <tspan y="82" fontSize="12.249" baselineShift="6.999300001743786">ST</tspan>
                                 </tspan>
                             </text>
@@ -370,7 +370,7 @@ const RoadMap = () => {
                         <line y2="745.5" transform="translate(4367.5 104.5)" fill="none" stroke="#4379e0" strokeLinecap="round" strokeWidth="5" />
                         <g transform="translate(4674.133 356.986)">
                             <circle cx="24" cy="24" r="24" transform="translate(-0.133 0.014)" fill="#4379e0" />
-                            <text transform="translate(11.867 31.014)" fill="#fafafa" stroke="#000224" strokeMiterlimit="10" strokeWidth="2" fontSize="68" fontFamily="SegoeUI-Bold, Segoe UI" fontWeight="700">
+                            <text transform="translate(11.867 31.014)" fill="#fafafa" stroke="#000224" strokeMiterlimit="10" strokeWidth="2" fontSize="68" fontFamily="Chedros" fontWeight="700">
                                 <tspan x="0" y="0">?</tspan>
                             </text>
                         </g>
