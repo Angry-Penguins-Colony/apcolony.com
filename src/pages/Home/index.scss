@@ -925,7 +925,7 @@
         }
     }
 
-    #manyAdvantage {
+    #theTeam {
         margin-bottom: 270px;
 
         > .preTitle {
@@ -1822,12 +1822,12 @@
         @media (min-width: 1200px) {
             > .content {
                 display: grid;
-                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
                 grid-template-rows: 1fr 1fr;
                 gap: 0px 0px;
                 grid-template-areas:
-                    "skipper skipper seymour seymour rico rico"
-                    "boss boss boss fargerik fargerik fargerik";
+                    "skipper skipper skipper . seymour seymour seymour . rico rico rico"
+                    ". . boss boss boss . fargerik fargerik fargerik . .";
 
                 > * {
                     margin: auto;
@@ -1854,7 +1854,7 @@
         @media (max-width: 1200px) {
             > .content {
                 display: flex;
-                gap: 30px;
+                // gap: 1fr;
                 overflow: auto;
                 max-width: 100%;
 
