@@ -1819,20 +1819,54 @@
             opacity: 1;
         }
 
-        > .content {
-            display: flex;
-            gap: 30px;
-            overflow: auto;
-            max-width: 100%;
+        @media (min-width: 1200px) {
+            > .content {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+                gap: 0px 0px;
+                grid-template-areas:
+                    "skipper skipper seymour seymour rico rico"
+                    "boss boss boss fargerik fargerik fargerik";
 
-            @include customScrollbar;
+                > * {
+                    margin: auto;
+                    max-width: 240px;
+                }
+                .boss {
+                    grid-area: boss;
+                }
+                .fargerik {
+                    grid-area: fargerik;
+                }
+                .skipper {
+                    grid-area: skipper;
+                }
+                .seymour {
+                    grid-area: seymour;
+                }
+                .rico {
+                    grid-area: rico;
+                }
+            }
+        }
 
-            padding-left: 15px;
-            padding-right: 15px;
+        @media (max-width: 1200px) {
+            > .content {
+                display: flex;
+                gap: 30px;
+                overflow: auto;
+                max-width: 100%;
 
-            > div {
-                flex: 1 1 calc(25% - 23px);
-                min-width: 240px;
+                @include customScrollbar;
+
+                padding-left: 15px;
+                padding-right: 15px;
+
+                > div {
+                    flex: 1 1 calc(25% - 23px);
+                    min-width: 240px;
+                }
             }
         }
     }

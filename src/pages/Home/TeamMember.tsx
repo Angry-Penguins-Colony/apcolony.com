@@ -9,6 +9,7 @@ const TeamMember = (props: {
     description: string;
     discordLink?: string;
     twitterLink?: string;
+    className?: string;
 }) => {
     const profileImage = props.profileImage;
     const name = props.name;
@@ -17,7 +18,7 @@ const TeamMember = (props: {
     const twitterLink = props.twitterLink || '';
 
     return (
-        <div className={styles.teamMember}>
+        <div className={styles.teamMember + ' ' + props.className || ''}>
             <img src={profileImage} />
             <h3 className={styles.name}>{name}</h3>
             <p className={styles.description}>{description}</p>

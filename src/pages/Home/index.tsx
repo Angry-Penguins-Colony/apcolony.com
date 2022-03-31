@@ -393,29 +393,41 @@ const Home = () => {
             <h2>THE TEAM</h2>
             <div className="content">
               <TeamMember
+                className="skipper"
                 profileImage={'img/team_members/Skipper.png'}
                 name={'SKIPPER'}
                 description={'The mind behind the project. Some say he knows more facts about the blockchain than about his family.'}
                 discordLink={routeNames.skipperDiscord}
                 twitterLink={routeNames.skipperTwitter} />
               <TeamMember
+                className="fargerik"
                 profileImage={'img/team_members/Fargerik.png'}
-                name={'Kowalski'}
+                name={'Fargerik'}
                 description={'The developer behind all the smart contracts of the Angry Penguins project and the marketplace as well. He comes from a game developing background.'}
                 discordLink={routeNames.fargerikDiscord}
                 twitterLink={routeNames.fargerikTwitter} />
               <TeamMember
+                className="seymour"
                 profileImage={'img/team_members/Seymour.png'}
                 name={'SEYMOUR'}
                 description={'Passionate about music and art, Seymour is in charge of the communication and Public relations of the Angry Penguins project.'}
                 discordLink={routeNames.seymourDiscord}
                 twitterLink={routeNames.seymourTwitter} />
+              {/* <div className="break"></div> */}
               <TeamMember
+                className="rico"
                 profileImage={'img/team_members/Rico.png'}
                 name={'RICO'}
                 description={'Passionate about crypto, Rico also has experience in the finance area. He is in charge of managing the partnership and to develop the community.'}
                 discordLink={routeNames.ricoDiscord}
                 twitterLink={routeNames.ricoTwitter} />
+              <TeamMember
+                className="boss"
+                profileImage={'img/team_members/BossQC.png'}
+                name={'BossQC'}
+                description={'Community relations administrator & full time gangster. Boss is in charge of the moderation of our Discord. He takes care of the activities that keep the community alive.'}
+                discordLink={routeNames.bossQcDiscord}
+                twitterLink={routeNames.bossQcTwitter} />
             </div>
           </div>
 

@@ -21,7 +21,9 @@ export const routeNames = {
   seymourDiscord: discord,
   seymourTwitter: twitter,
   ricoDiscord: discord,
-  ricoTwitter: twitter
+  ricoTwitter: twitter,
+  bossQcDiscord: discord,
+  bossQcTwitter: twitter,
 
 };
 
