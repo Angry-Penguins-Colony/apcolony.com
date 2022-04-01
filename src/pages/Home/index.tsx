@@ -99,7 +99,7 @@ const Home = () => {
       {
         !mintIsOpen &&
         <>
-          {/* <AwardPopup /> */}
+          <AwardPopup />
           <div id="icebergHero">
             <img src="/img/Iceberg-hero-Mobile.png" className='mobile' />
             <img src="/img/Iceberg-hero.png" className='desktop' />
