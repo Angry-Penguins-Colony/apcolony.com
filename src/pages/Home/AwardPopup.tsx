@@ -8,9 +8,16 @@ const AwardPopup = (props: { forceIsOpen?: boolean }) => {
     const [isOpen, setIsOpen] = React.useState(false);
 
     React.useEffect(() => {
+
+        let disabled = false;
+
         setTimeout(() => {
+            if (disabled) return;
+
             setIsOpen(true);
         }, 1000);
+
+        return () => { disabled = true; };
     }, []);
 
     const closePopup = () => {
