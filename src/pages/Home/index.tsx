@@ -5,6 +5,7 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import ScrollToTop from 'react-scroll-to-top';
 import DiscordIcon from 'components/Icon/Discord';
 import ScrollDown from 'components/Icon/ScrollDown';
+import { maxPerWallet } from 'config';
 import { SaleStatus, useGetSaleInfos } from 'hooks/useGetSaleInfos';
 import UnlockPage from 'pages/UnlockPage';
 import { routeNames } from 'routes';
@@ -28,7 +29,7 @@ const Home = () => {
 
   /* mint */
   const [mintIsOpen, setMintIsOpen] = React.useState(false);
-  const [nbEgld, setNbEgld] = React.useState(1);
+  const [nftsAmount, setNftsAmount] = React.useState(1);
 
   const openMint = () => {
     setMintIsOpen(true);
@@ -42,12 +43,16 @@ const Home = () => {
     // TODO: mint NFT
   };
 
-  const addEgld = () => {
-    setNbEgld((nbEgld < 10) ? nbEgld + 1 : 10);
+  const incrementNftsAmount = () => {
+    if (nftsAmount < maxPerWallet) {
+      setNftsAmount(nftsAmount + 1);
+    }
   };
 
-  const removeEgld = () => {
-    setNbEgld((nbEgld > 1) ? nbEgld - 1 : 1);
+  const decrementNftsAmount = () => {
+    if (nftsAmount >= 2) {
+      setNftsAmount(nftsAmount - 1);
+    }
   };
 
   // popup with bonus info
@@ -95,13 +100,14 @@ const Home = () => {
             <div className="content">
               <h1>PUBLIC SALE</h1>
               <div className="advantages">
-                <BonusTable />
+                ⚠️ BONUS TABLE IS DESACTIVATED FOR THE MOMENT ⚠️
+                {/* <BonusTable /> */}
               </div>
               <div className="mintButton">
-                <div className="minus" onClick={removeEgld}>-</div>
-                <div className="numberSelect">{nbEgld}</div>
-                <div className="plus" onClick={addEgld}>+</div>
-                <a className='button' onClick={mint}>MINT NOW ({nbEgld} EGLD)</a>
+                <div className="minus" onClick={decrementNftsAmount}>-</div>
+                <div className="numberSelect">{nftsAmount}</div>
+                <div className="plus" onClick={incrementNftsAmount}>+</div>
+                <a className='button' onClick={mint}>MINT NOW ({nftsAmount} EGLD)</a>
               </div>
             </div>
             <div className="info">*The rarity rank of accessory B is higher than accessory A</div>
