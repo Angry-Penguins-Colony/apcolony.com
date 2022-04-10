@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { publicSaleClose, publicSaleOpen } from 'config';
+import { useState } from 'react';
+import { publicSaleClose, publicSaleOpen, totalSupply } from 'config';
+import { useGetRemainingNfts } from './useGetRemainingNft';
 
 export enum SaleStatus {
     Soon = 0,
@@ -10,16 +11,23 @@ export enum SaleStatus {
 export interface SaleInfos {
     status: SaleStatus,
     date: Date,
-    nftLeft: number
+    boughtNfts: number
 }
 
 export function useGetSaleInfos(): SaleInfos {
 
     const [saleInfo, setSaleInfo] = useState<SaleInfos>(getSaleInfos());
+    const remainingNft = useGetRemainingNfts();
 
-    React.useEffect(() => {
-        // TODO: get value by API call
-    }, []);
+    if (remainingNft) {
+
+        const boughtNfts = totalSupply - remainingNft;
+
+        if (boughtNfts != saleInfo.boughtNfts) {
+            saleInfo.boughtNfts = boughtNfts;
+            setSaleInfo(saleInfo);
+        }
+    }
 
     return saleInfo;
 }
@@ -30,21 +38,21 @@ function getSaleInfos() {
             return {
                 status: SaleStatus.SoldOut,
                 date: new Date(),
-                nftLeft: 200 // TODO: get this value by api call
+                boughtNfts: 200 // TODO: get this value by api call
             };
 
         case SaleStatus.OnSale:
             return {
                 status: SaleStatus.OnSale,
                 date: publicSaleClose,
-                nftLeft: 200 // TODO: get this value by api call
+                boughtNfts: 200 // TODO: get this value by api call
             };
 
         case SaleStatus.Soon:
             return {
                 status: SaleStatus.Soon,
                 date: publicSaleOpen,
-                nftLeft: 0 // TODO: get this value by api call
+                boughtNfts: 0 // TODO: get this value by api call
             };
 
         default:

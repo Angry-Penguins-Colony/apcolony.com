@@ -142,7 +142,7 @@ const Home = () => {
                   <h2>TIME REMAINING</h2>
                   <Timer date={saleInfos.date} />
                   <div className='mint'>
-                    <div className="nftLeft">{saleInfos.nftLeft}/10 000</div>
+                    <div className="nftLeft">{saleInfos.boughtNfts}/10 000</div>
                     <div onClick={openMint} className="button mintNow">MINT NOW</div>
                   </div>
                 </>
