@@ -45,10 +45,10 @@
         left: 0;
         margin: auto;
         transition: top 0.3s ease-in-out;
+        transform: translateY(-50%);
 
         &.isOpen {
             top: 50vh;
-            transform: translateY(-50%);
         }
         &.isClose {
             top: -100vh;
@@ -65,4 +65,15 @@
             height: 35px;
         }
     }
+}
+
+.backdrop {
+    position: fixed;
+    z-index: 70;
+    top: 0;
+    left: 0;    
+    width: 200vh;
+    height: 200vh;
+    
+    background-color: rgba(black, 0.2);
 }

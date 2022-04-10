@@ -109,7 +109,7 @@ const Home = () => {
         !mintIsOpen &&
         <>
           <AwardPopup />
-          <Popup position="center" isOpen={connectWalletOpen} onClose={() => setConnectWalletOpen(false)}>
+          <Popup backdrop position="center" isOpen={connectWalletOpen} onClose={() => setConnectWalletOpen(false)}>
             <UnlockPage />
           </Popup>
 
