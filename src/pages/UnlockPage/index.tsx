@@ -1,5 +1,5 @@
 import React from 'react';
-import { DappUI, useGetLoginInfo } from '@elrondnetwork/dapp-core';
+import { DappUI } from '@elrondnetwork/dapp-core';
 import { routeNames } from 'routes';
 
 export const UnlockRoute: () => JSX.Element = () => {
@@ -9,13 +9,6 @@ export const UnlockRoute: () => JSX.Element = () => {
     LedgerLoginButton,
     WalletConnectLoginButton
   } = DappUI;
-  const { isLoggedIn } = useGetLoginInfo();
-
-  React.useEffect(() => {
-    if (isLoggedIn) {
-      window.location.href = routeNames.home;
-    }
-  }, [isLoggedIn]);
 
   return (
     <div className='home d-flex flex-fill align-items-center'>
@@ -26,9 +19,10 @@ export const UnlockRoute: () => JSX.Element = () => {
             <p className='mb-4'>pick a login method</p>
 
             <div className='d-flex flex-column justify-content-center'>
-              <ExtensionLoginButton
+
+              <WalletConnectLoginButton
                 callbackRoute={routeNames.home}
-                loginButtonText={'Extension'}
+                loginButtonText={'Maiar'}
               />
               <WebWalletLoginButton
                 callbackRoute={routeNames.home}
@@ -39,9 +33,10 @@ export const UnlockRoute: () => JSX.Element = () => {
                 callbackRoute={routeNames.home}
                 className={'test-class_name'}
               />
-              <WalletConnectLoginButton
+
+              <ExtensionLoginButton
                 callbackRoute={routeNames.home}
-                loginButtonText={'Maiar'}
+                loginButtonText={'Extension'}
               />
             </div>
           </div>

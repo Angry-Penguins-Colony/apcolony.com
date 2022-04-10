@@ -20,6 +20,7 @@ import RoadMap from './RoadMap';
 import TeamMember from './TeamMember';
 import Timer from './Timer';
 import VideoPlayer from './VideoPlayer';
+import { logout, useGetLoginInfo } from '@elrondnetwork/dapp-core';
 
 enum SaleStatus {
   Soon = 0,
@@ -67,6 +68,14 @@ const Home = () => {
     setConnectWalletOpen(true);
     setConnectWalletOpenedOnce(true);
   };
+
+  const disconnectWallet = () => {
+    logout();
+  };
+
+
+  const { isLoggedIn } = useGetLoginInfo();
+  console.log('IsLoggedIn', isLoggedIn);
 
   return (
     <div id='home'>
@@ -128,8 +137,10 @@ const Home = () => {
                 saleInfos.status == SaleStatus.Soon &&
                 <>
                   <Timer date={saleInfos.date} />
-                  <div className="button connectWallet" onClick={connectWallet}>CONNECT WALLET</div>
-                  {/* TODO: bind button */}
+                  {isLoggedIn ?
+                    <div className="button connectWallet" onClick={disconnectWallet}>DISCONNECT</div> :
+                    <div className="button connectWallet" onClick={connectWallet}>CONNECT WALLET</div>
+                  }
                 </>
               }
               {
