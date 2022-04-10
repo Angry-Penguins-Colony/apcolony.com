@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { logout, useGetLoginInfo } from '@elrondnetwork/dapp-core';
 import { BsArrowUpCircleFill as ScrollToTopIcon } from 'react-icons/bs';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import { useNavigate } from 'react-router-dom';
 import ScrollToTop from 'react-scroll-to-top';
 import DiscordIcon from 'components/Icon/Discord';
 import ScrollDown from 'components/Icon/ScrollDown';
@@ -10,7 +10,6 @@ import { routeNames } from 'routes';
 import AvantageCard from './AvantageCard';
 import AwardPopup from './AwardPopup';
 import BigTitleSlide from './BigTitleSlide';
-import BonusPopup from './BonusPopup';
 import BonusTable from './BonusTable';
 import FaqQuestionAnswer from './FaqQuestionAnswer';
 import './index.scss';
@@ -20,7 +19,6 @@ import RoadMap from './RoadMap';
 import TeamMember from './TeamMember';
 import Timer from './Timer';
 import VideoPlayer from './VideoPlayer';
-import { logout, useGetLoginInfo } from '@elrondnetwork/dapp-core';
 
 enum SaleStatus {
   Soon = 0,
@@ -57,10 +55,10 @@ const Home = () => {
   };
 
   // popup with bonus info
-  const [bonusIsOpen, setBonusIsOpen] = React.useState('');
-  const openBonusPopup = () => {
-    setBonusIsOpen(Math.random().toString());
-  };
+  // const [bonusIsOpen, setBonusIsOpen] = React.useState('');
+  // const openBonusPopup = () => {
+  //   setBonusIsOpen(Math.random().toString());
+  // };
 
   const [connectWalletOpen, setConnectWalletOpen] = React.useState(false);
   const [connectWalletOpenedOnce, setConnectWalletOpenedOnce] = React.useState(false);
@@ -75,7 +73,6 @@ const Home = () => {
 
 
   const { isLoggedIn } = useGetLoginInfo();
-  console.log('IsLoggedIn', isLoggedIn);
 
   return (
     <div id='home'>
@@ -138,7 +135,7 @@ const Home = () => {
                 <>
                   <Timer date={saleInfos.date} />
                   {isLoggedIn ?
-                    <div className="button connectWallet" onClick={disconnectWallet}>DISCONNECT</div> :
+                    <div className="button connectWallet danger" onClick={disconnectWallet}>DISCONNECT</div> :
                     <div className="button connectWallet" onClick={connectWallet}>CONNECT WALLET</div>
                   }
                 </>

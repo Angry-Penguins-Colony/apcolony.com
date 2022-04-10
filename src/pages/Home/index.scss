@@ -318,6 +318,11 @@
             > .connectWallet {
                 padding-left: 80px;
                 padding-right: 80px;
+                
+                &.danger {
+                    background-color: #c23737;
+
+                }
             }
 
             > h2 {
