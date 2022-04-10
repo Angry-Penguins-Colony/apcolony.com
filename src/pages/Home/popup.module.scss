@@ -39,6 +39,22 @@
         }
     }
 
+    &.center {
+        top: 50vh;
+        right: 0;
+        left: 0;
+        margin: auto;
+        transition: top 0.3s ease-in-out;
+
+        &.isOpen {
+            top: 50vh;
+            transform: translateY(-50%);
+        }
+        &.isClose {
+            top: -100vh;
+        }
+    }    
+
     > .closePopup {
         position: absolute;
         top: -10px;

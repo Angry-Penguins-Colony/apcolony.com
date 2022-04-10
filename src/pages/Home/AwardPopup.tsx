@@ -5,20 +5,20 @@ import styles from './awardpopup.module.scss';
 import Popup from './Popup';
 
 const AwardPopup = () => {
-    const [isOpen, setIsOpen] = React.useState('');
+    const [isOpen, setIsOpen] = React.useState(false);
 
     React.useEffect(() => {
         setTimeout(() => {
-            setIsOpen(Math.random().toString());
+            setIsOpen(true);
         }, 1000);
     }, []);
 
     const closePopup = () => {
-        setIsOpen('');
+        setIsOpen(false);
     };
 
     return (
-        <Popup isOpen={isOpen} position='right'>
+        <Popup isOpen={isOpen} position='right' onClose={closePopup}>
             <div className={styles.main}>
                 <div className={styles.closePopup} onClick={closePopup}>
                     <img src="/img/icons/close.svg" alt="close" />

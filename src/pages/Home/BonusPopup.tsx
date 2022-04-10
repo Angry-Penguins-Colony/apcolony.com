@@ -3,11 +3,9 @@ import styles from './bonuspopup.module.scss';
 import BonusTable from './BonusTable';
 import Popup from './Popup';
 
-const BonusPopup = (props: { isOpen: string; }) => {
-    const isOpen = props.isOpen;
-
+const BonusPopup = (props: any) => {
     return (
-        <Popup isOpen={isOpen} position='bottom'>
+        <Popup position='bottom' {...props}>
             <div className={styles.content}>
                 <h3 className={styles.information}>INFORMATION ABOUT BONUSES</h3>
                 <p className={styles.subTitle}>Starting</p>

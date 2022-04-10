@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { BsArrowUpCircleFill as ScrollToTopIcon } from 'react-icons/bs';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import { useNavigate } from 'react-router-dom';
 import ScrollToTop from 'react-scroll-to-top';
 import DiscordIcon from 'components/Icon/Discord';
 import ScrollDown from 'components/Icon/ScrollDown';
+import UnlockPage from 'pages/UnlockPage';
 import { routeNames } from 'routes';
 import AvantageCard from './AvantageCard';
 import AwardPopup from './AwardPopup';
@@ -13,6 +15,7 @@ import BonusTable from './BonusTable';
 import FaqQuestionAnswer from './FaqQuestionAnswer';
 import './index.scss';
 import ItemsSlider from './ItemsSlider';
+import Popup from './Popup';
 import RoadMap from './RoadMap';
 import TeamMember from './TeamMember';
 import Timer from './Timer';
@@ -58,6 +61,12 @@ const Home = () => {
     setBonusIsOpen(Math.random().toString());
   };
 
+  const [connectWalletOpen, setConnectWalletOpen] = React.useState(false);
+  const connectWallet = () => {
+    setBonusIsOpen('false');
+    setConnectWalletOpen(true);
+  };
+
   return (
     <div id='home'>
       <ScrollDown id="scrollDown" />
@@ -100,6 +109,10 @@ const Home = () => {
         !mintIsOpen &&
         <>
           <AwardPopup />
+          <Popup position="center" isOpen={connectWalletOpen} onClose={() => setConnectWalletOpen(false)}>
+            <UnlockPage />
+          </Popup>
+
           <div id="icebergHero">
             <img src="/img/Iceberg-hero-Mobile.png" className='mobile' />
             <img src="/img/Iceberg-hero.png" className='desktop' />
@@ -114,7 +127,7 @@ const Home = () => {
                 saleInfos.status == SaleStatus.Soon &&
                 <>
                   <Timer date={saleInfos.date} />
-                  {/* <div className="button connectWallet">CONNECT WALLET</div> */}
+                  <div className="button connectWallet" onClick={connectWallet}>CONNECT WALLET</div>
                   {/* TODO: bind button */}
                 </>
               }

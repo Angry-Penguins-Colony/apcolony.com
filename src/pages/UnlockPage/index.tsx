@@ -20,28 +20,30 @@ export const UnlockRoute: () => JSX.Element = () => {
   return (
     <div className='home d-flex flex-fill align-items-center'>
       <div className='m-auto' data-testid='unlockPage'>
-        <div className='card my-4 text-center'>
-          <div className='card-body py-4 px-2 px-sm-2 mx-lg-4'>
+        <div className='my-4 text-center'>
+          <div className='py-4 px-2 px-sm-2 mx-lg-4'>
             <h4 className='mb-4'>Login</h4>
             <p className='mb-4'>pick a login method</p>
 
-            <ExtensionLoginButton
-              callbackRoute={routeNames.home}
-              loginButtonText={'Extension'}
-            />
-            <WebWalletLoginButton
-              callbackRoute={routeNames.home}
-              loginButtonText={'Web wallet'}
-            />
-            <LedgerLoginButton
-              loginButtonText={'Ledger'}
-              callbackRoute={routeNames.home}
-              className={'test-class_name'}
-            />
-            <WalletConnectLoginButton
-              callbackRoute={routeNames.home}
-              loginButtonText={'Maiar'}
-            />
+            <div className='d-flex flex-column justify-content-center'>
+              <ExtensionLoginButton
+                callbackRoute={routeNames.home}
+                loginButtonText={'Extension'}
+              />
+              <WebWalletLoginButton
+                callbackRoute={routeNames.home}
+                loginButtonText={'Web wallet'}
+              />
+              <LedgerLoginButton
+                loginButtonText={'Ledger'}
+                callbackRoute={routeNames.home}
+                className={'test-class_name'}
+              />
+              <WalletConnectLoginButton
+                callbackRoute={routeNames.home}
+                loginButtonText={'Maiar'}
+              />
+            </div>
           </div>
         </div>
       </div>

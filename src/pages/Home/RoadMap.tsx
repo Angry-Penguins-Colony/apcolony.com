@@ -291,12 +291,12 @@ const RoadMap = () => {
                             </g>
                         </g>
                         <g transform="translate(2305 30)">
-                            <text transform="translate(302 349)" fill="#fafafa" fontSize="30" fontFamily="Chedros" fontWeight="700">
-                                <tspan x="-43.315" y="32">PUBLIC</tspan>
-                                <tspan x="-27.048" y="57">SALE</tspan>
+                            <text transform="translate(305 300)" fill="#fafafa" fontSize="30" fontFamily="Chedros" fontWeight="700">
+                                <tspan x="-0" y="32">PUBLIC</tspan>
+                                <tspan x="-0" y="57">SALE</tspan>
                                 <tspan fontSize="21" fontFamily="Montserrat-Bold, Montserrat">
-                                    <tspan x="-42.903" y="82">APRIL 14</tspan>
-                                    <tspan y="82" fontSize="12.249" baselineShift="6.999300001743786">ST</tspan>
+                                    <tspan x="-0" y="82">APRIL 14</tspan>
+                                    <tspan y="82" fontSize="12.249" baselineShift="6.999300001743786">TH</tspan>
                                 </tspan>
                             </text>
                             <g transform="translate(444 367.551)">

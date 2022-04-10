@@ -207,15 +207,17 @@ h2 {
 /* Button
 -------------------------------------------------- */
 button,
+.dapp-core-ui-component .btn,
 .button {
   padding: 0.9375rem 1.1875rem;
   border-radius: 9999px;
+  border-color: transparent;
   background-color: $primary;
   color: $light;
   font-size: 1rem;
   font-weight: 700;
   text-align: center;
-  cursor: pointer;
+  cursor: pointer;  
 
   &.icon {
     padding: 6px;
