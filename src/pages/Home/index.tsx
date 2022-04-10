@@ -5,6 +5,7 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import ScrollToTop from 'react-scroll-to-top';
 import DiscordIcon from 'components/Icon/Discord';
 import ScrollDown from 'components/Icon/ScrollDown';
+import { SaleStatus, useGetSaleInfos } from 'hooks/useGetSaleInfos';
 import UnlockPage from 'pages/UnlockPage';
 import { routeNames } from 'routes';
 import AvantageCard from './AvantageCard';
@@ -20,15 +21,10 @@ import TeamMember from './TeamMember';
 import Timer from './Timer';
 import VideoPlayer from './VideoPlayer';
 
-enum SaleStatus {
-  Soon = 0,
-  OnSale = 1,
-  SoldOut = 2
-}
 
 const Home = () => {
 
-  const saleInfos = getSaleInfos();
+  const saleInfos = useGetSaleInfos();
 
   /* mint */
   const [mintIsOpen, setMintIsOpen] = React.useState(false);
@@ -486,50 +482,3 @@ export default Home;
 
 
 
-interface saleInfos {
-  status: SaleStatus,
-  date: Date,
-  nftLeft: number
-}
-
-function getSaleInfos(): saleInfos {
-  return {
-    status: SaleStatus.Soon,
-    date: new Date('2022-04-14T19:00:00.000Z'), // TODO: get this value by api call
-    nftLeft: 200 // TODO: get this value by api call
-  };
-  // get random status (for dev only) TODO: remove and replace by api call
-  const tmp = Math.floor(Math.random() * 3); // TODO: get this value by api call
-
-  switch (tmp) {
-    case SaleStatus.SoldOut:
-      return {
-        status: SaleStatus.SoldOut,
-        date: new Date(),
-        nftLeft: 200 // TODO: get this value by api call
-      };
-      break;
-    case SaleStatus.OnSale:
-      return {
-        status: SaleStatus.OnSale,
-        date: new Date('2022-04-14T00:00:00.000Z'), // TODO: get this value by api call
-        nftLeft: 200 // TODO: get this value by api call
-      };
-      break;
-    case SaleStatus.Soon:
-      return {
-        status: SaleStatus.Soon,
-        date: new Date('2022-04-14T00:00:00.000Z'), // TODO: get this value by api call
-        nftLeft: 200 // TODO: get this value by api call
-      };
-      break;
-
-    default:
-      // TODO: change default value
-      return {
-        status: SaleStatus.SoldOut,
-        date: new Date(),
-        nftLeft: 200 // TODO: get this value by api call
-      };
-  }
-}
