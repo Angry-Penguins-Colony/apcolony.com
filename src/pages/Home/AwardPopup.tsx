@@ -4,7 +4,7 @@ import { routeNames } from 'routes';
 import styles from './awardpopup.module.scss';
 import Popup from './Popup';
 
-const AwardPopup = () => {
+const AwardPopup = (props: { forceIsOpen?: boolean }) => {
     const [isOpen, setIsOpen] = React.useState(false);
 
     React.useEffect(() => {
@@ -18,7 +18,7 @@ const AwardPopup = () => {
     };
 
     return (
-        <Popup isOpen={isOpen} position='right' onClose={closePopup}>
+        <Popup isOpen={props.forceIsOpen ?? isOpen} position='right' onClose={closePopup}>
             <div className={styles.main}>
                 <div className={styles.closePopup} onClick={closePopup}>
                     <img src="/img/icons/close.svg" alt="close" />

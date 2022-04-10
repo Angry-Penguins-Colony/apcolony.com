@@ -62,9 +62,10 @@ const Home = () => {
   };
 
   const [connectWalletOpen, setConnectWalletOpen] = React.useState(false);
+  const [connectWalletOpenedOnce, setConnectWalletOpenedOnce] = React.useState(false);
   const connectWallet = () => {
-    setBonusIsOpen('false');
     setConnectWalletOpen(true);
+    setConnectWalletOpenedOnce(true);
   };
 
   return (
@@ -108,7 +109,7 @@ const Home = () => {
       {
         !mintIsOpen &&
         <>
-          <AwardPopup />
+          <AwardPopup forceIsOpen={connectWalletOpenedOnce ? false : undefined} />
           <Popup backdrop position="center" isOpen={connectWalletOpen} onClose={() => setConnectWalletOpen(false)}>
             <UnlockPage />
           </Popup>
