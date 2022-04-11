@@ -16,6 +16,7 @@ import BonusTable from './BonusTable';
 import FaqQuestionAnswer from './FaqQuestionAnswer';
 import './index.scss';
 import ItemsSlider from './ItemsSlider';
+import { Mint } from './Mint';
 import Popup from './Popup';
 import RoadMap from './RoadMap';
 import TeamMember from './TeamMember';
@@ -29,7 +30,6 @@ const Home = () => {
 
   /* mint */
   const [mintIsOpen, setMintIsOpen] = React.useState(false);
-  const [nftsAmount, setNftsAmount] = React.useState(1);
 
   const openMint = () => {
     setMintIsOpen(true);
@@ -37,22 +37,6 @@ const Home = () => {
 
   const closeMint = () => {
     setMintIsOpen(false);
-  };
-
-  const mint = () => {
-    // TODO: mint NFT
-  };
-
-  const incrementNftsAmount = () => {
-    if (nftsAmount < maxPerWallet) {
-      setNftsAmount(nftsAmount + 1);
-    }
-  };
-
-  const decrementNftsAmount = () => {
-    if (nftsAmount >= 2) {
-      setNftsAmount(nftsAmount - 1);
-    }
   };
 
   // popup with bonus info
@@ -81,38 +65,7 @@ const Home = () => {
       <ScrollToTop className="scrollToTop" smooth component={<ScrollToTopIcon />} />
       {
         mintIsOpen &&
-        <div id='mint'>
-          <div className="header container">
-            <div className="logo">
-              <img src="/img/APC_LOGO_BLUE_WHITE.svg" />
-            </div>
-            <h1>PUBLIC SALE</h1>
-            <div className="closeIcon">
-              <img src='/img/icons/close.svg' onClick={closeMint} />
-            </div>
-          </div>
-          <div className="left">
-            <div className="emptyPenguin">
-              <img src="/img/penguins/Random_Pinguin.png" />
-            </div>
-          </div>
-          <div className="right">
-            <div className="content">
-              <h1>PUBLIC SALE</h1>
-              <div className="advantages">
-                ⚠️ BONUS TABLE IS DESACTIVATED FOR THE MOMENT ⚠️
-                {/* <BonusTable /> */}
-              </div>
-              <div className="mintButton">
-                <div className="minus" onClick={decrementNftsAmount}>-</div>
-                <div className="numberSelect">{nftsAmount}</div>
-                <div className="plus" onClick={incrementNftsAmount}>+</div>
-                <a className='button' onClick={mint}>MINT NOW ({nftsAmount} EGLD)</a>
-              </div>
-            </div>
-            <div className="info">*The rarity rank of accessory B is higher than accessory A</div>
-          </div>
-        </div>
+        <Mint onClose={closeMint} />
       }
       {
         !mintIsOpen &&
