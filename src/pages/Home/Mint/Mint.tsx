@@ -15,7 +15,7 @@ export const Mint = (props: {
     const priceList = useGetPriceList();
     const maxPerWallet = useGetMaxPerWallet();
     const { boughtNfts } = useGetMyBoughtNfts();
-    const balance = useGetBalance();
+    const weiBalance = useGetBalance();
 
     const price = calculatePriceFromNft(nftsAmount, boughtNfts ?? 0, priceList);
     const saving = nftsAmount - price;
@@ -26,9 +26,15 @@ export const Mint = (props: {
     };
 
     const incrementNftsAmount = () => {
-        if (boughtNfts) {
+        if (boughtNfts != null) {
+
             if (nftsAmount < maxPerWallet - boughtNfts) {
-                setNftsAmount(nftsAmount + 1);
+                const newPrice = calculatePriceFromNft(nftsAmount + 1, boughtNfts, priceList);
+                const egldBalance = weiBalance.valueOf().div(10 ** 18).toNumber();
+
+                if (egldBalance >= newPrice) {
+                    setNftsAmount(nftsAmount + 1);
+                }
             }
         }
     };
@@ -63,7 +69,7 @@ export const Mint = (props: {
                 </div>
                 <p>My eggs: {boughtNfts} / {maxPerWallet}</p>
                 <p>Saving {saving.toFixed(2)} | {savingPercent}%</p>
-                <p>My balance: {humanizeBalance(balance)} eGLD</p>
+                <p>My balance: {humanizeBalance(weiBalance)} eGLD</p>
                 <div className="mintButton">
                     <div className="minus" onClick={decrementNftsAmount}>-</div>
                     <div className="numberSelect">{nftsAmount}</div>
@@ -75,3 +81,4 @@ export const Mint = (props: {
         </div>
     </div>;
 };
+

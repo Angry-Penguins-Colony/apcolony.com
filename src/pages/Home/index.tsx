@@ -14,7 +14,7 @@ import BigTitleSlide from './BigTitleSlide';
 import FaqQuestionAnswer from './FaqQuestionAnswer';
 import './index.scss';
 import ItemsSlider from './ItemsSlider';
-import { Mint } from './Mint';
+import { Mint } from './Mint/Mint';
 import Popup from './Popup';
 import RoadMap from './RoadMap';
 import TeamMember from './TeamMember';
