@@ -1,4 +1,5 @@
 import React from 'react';
+import { transactionServices } from '@elrondnetwork/dapp-core';
 import { useGetMaxPerWallet } from 'hooks/useGetMaxPerWallet';
 import { useGetMyBoughtNfts } from 'hooks/useGetMyBoughtNfts';
 import { useGetPriceList } from 'hooks/useGetPriceList';
@@ -16,10 +17,19 @@ export const Mint = (props: {
     const price = calculatePriceFromNft(nftsAmount, 0, priceList);
     const saving = nftsAmount - price;
     const savingPercent = Math.round(saving / nftsAmount * 100);
+    const [mintSessionId, setMintSessionId] = React.useState<string | null>(null);
 
     const mint = () => {
-        mintEggs(price, nftsAmount);
+        mintEggs(price, nftsAmount)
+            .then(setMintSessionId);
     };
+
+    transactionServices.useTrackTransactionStatus({
+        transactionId: mintSessionId ?? null,
+        onSuccess: () => {
+            console.log('Mint successful, update myBoughtNfts');
+        }
+    });
 
     const incrementNftsAmount = () => {
         if (nftsAmount < maxPerWallet) {

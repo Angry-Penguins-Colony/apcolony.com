@@ -1,6 +1,10 @@
 import { Address } from '@elrondnetwork/erdjs/out';
+import { devModeActivate } from 'config';
+import { GatewayLogger } from './GatewayLogger';
 
 export class GatewayAPI {
+    private readonly logger = new GatewayLogger(devModeActivate);
+
     constructor(public readonly url: string,
         public readonly mintAddress: Address) { }
 
@@ -14,7 +18,7 @@ export class GatewayAPI {
 
     private async queryInt(funcName: string, args = [] as any[]): Promise<number> {
 
-        console.log('Querying', funcName, '.');
+        this.logger.logFetch(`Querying ${funcName}`);
 
         const url = this.url + '/vm-values/int';
         const data = {

@@ -2,11 +2,10 @@ import React from 'react';
 import { DappUI, DappProvider } from '@elrondnetwork/dapp-core';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import Layout from 'components/Layout';
+import { environment } from 'config';
 import PageNotFound from 'pages/PageNotFound';
 import routes from 'routes';
 import '@elrondnetwork/dapp-core/build/index.css';
-
-const environment = 'devnet';
 
 const {
   TransactionsToastList,

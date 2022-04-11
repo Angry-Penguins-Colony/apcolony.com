@@ -20,7 +20,7 @@ export default async function mintEggs(egld: number, eggsCount: number) {
             processingMessage: `Mint ${eggsCount} eggs`,
             errorMessage: 'An error has occured during minting',
             successMessage: `${eggsCount} eggs minted`,
-            transactionDuration: 10000
+            transactionDuration: 50000
         }
     });
 

@@ -1,15 +1,24 @@
 import { Address } from '@elrondnetwork/erdjs/out';
+import colors from 'colors';
 import { GatewayAPI } from 'apiRequests/GatewayAPI';
 
+colors.enable();
+
+export const environment: 'mainnet' | 'devnet' = 'devnet';
 export const dAppName = 'Angry Penguins';
 
+console.log('Environment is ' + colors.green(environment));
+
+export const devModeActivate = process.env.NODE_ENV === 'development';
 export const mintAddress = new Address('erd1qqqqqqqqqqqqqpgqc6045edgy0sde50u7qpmtxjdp32jvulx2c8qkju6vv');
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const mainnetGateway = 'https://api-eu1.tatum.io/v3/egld/node/6cf90622-7c84-4dad-9ced-95d929227e9d_100';
 const devnetGateway = 'https://api-eu1.tatum.io/v3/egld/node/5a64b68c-ef24-4a43-966c-18da2cb1eb02_100';
 
-export const API = new GatewayAPI(devnetGateway, mintAddress);
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+export const API = new GatewayAPI(environment == 'mainnet' ? mainnetGateway : devnetGateway, mintAddress);
 export const totalSupply = 10000;
 
 // GET THEM FROM SC
