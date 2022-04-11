@@ -9,8 +9,7 @@ export class GatewayAPI {
     }
 
     public getMyBoughtNfts(address: Address) {
-        throw new Error('Not implemented');
-        // return this.queryInt('getBoughtAmount', [address.hex()]);
+        return this.queryInt('getBoughtAmount', [address.hex()]);
     }
 
     private async queryInt(funcName: string, args = [] as any[]): Promise<number> {
@@ -33,7 +32,7 @@ export class GatewayAPI {
         });
 
         const json = await response.json();
-        console.log(json);
+
         return parseInt(json.data.data);
     }
 }
