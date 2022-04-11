@@ -1,4 +1,5 @@
 import { dAppName } from 'config';
+import HatchingHome from 'pages/hatching/HatchingHome/HatchingHome';
 import UnlockPage from 'pages/UnlockPage';
 import withPageTitle from './components/PageTitle';
 import Home from './pages/Home';
@@ -25,7 +26,7 @@ export const routeNames = {
   ricoTwitter: twitter,
   bossQcDiscord: discord,
   bossQcTwitter: twitter,
-
+  hatchingHome: '/hatch',
 };
 
 const routes: Array<any> = [
@@ -43,7 +44,12 @@ const routes: Array<any> = [
     path: routeNames.unlock,
     title: 'Connect wallet',
     component: UnlockPage
-  }
+  },
+  {
+    path: routeNames.hatchingHome,
+    title: 'Hatching',
+    component: HatchingHome
+  },
 ];
 
 const mappedRoutes = routes.map((route) => {

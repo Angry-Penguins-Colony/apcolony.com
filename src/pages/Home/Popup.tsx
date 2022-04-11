@@ -7,6 +7,7 @@ const Popup = (props: {
     position?: string;
     children: any;
     backdrop?: boolean;
+    className?: string;
 }) => {
     const position = props.position || 'bottom';
     const children = props.children;
@@ -15,7 +16,7 @@ const Popup = (props: {
         styles.popup,
         (props.isOpen ? styles.isOpen : styles.isClose),
         styles[position],
-
+        props.className
     ];
 
     return <>
