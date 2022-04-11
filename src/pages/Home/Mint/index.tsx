@@ -1,11 +1,15 @@
 import React from 'react';
-import { maxPerWallet } from 'config';
+import { maxPerWallet, priceList } from 'config';
+import { calculatePriceFromNft } from 'utils/priceCalculation';
 
 export const Mint = (props: {
     onClose?: () => void
 }) => {
 
     const [nftsAmount, setNftsAmount] = React.useState(1);
+    const price = calculatePriceFromNft(nftsAmount, 0, priceList);
+    const saving = nftsAmount - price;
+    const savingPercent = Math.round(saving / nftsAmount * 100);
 
     const mint = () => {
         // TODO: mint NFT
@@ -45,11 +49,12 @@ export const Mint = (props: {
                     ⚠️ BONUS TABLE IS DESACTIVATED FOR THE MOMENT ⚠️
                     {/* <BonusTable /> */}
                 </div>
+                <p>Saving {saving.toFixed(2)} | {savingPercent}%</p>
                 <div className="mintButton">
                     <div className="minus" onClick={decrementNftsAmount}>-</div>
                     <div className="numberSelect">{nftsAmount}</div>
                     <div className="plus" onClick={incrementNftsAmount}>+</div>
-                    <a className='button' onClick={mint}>MINT NOW ({nftsAmount} EGLD)</a>
+                    <a className='button' onClick={mint}>MINT NOW ({price.toFixed(2)} EGLD)</a>
                 </div>
             </div>
             {/* <div className="info">*The rarity rank of accessory B is higher than accessory A</div> */}

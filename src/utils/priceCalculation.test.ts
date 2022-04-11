@@ -15,15 +15,15 @@ describe('calculate price', () => {
     });
 
     it('buy two', () => {
-        expect(calculatePriceFromNft(2, 0, priceList)).toBe(10 + 9);
+        expect(calculatePriceFromNft(2, 0, priceList)).toBe(9 * 2);
     });
 
     it('buy two from two', () => {
-        expect(calculatePriceFromNft(2, 2, priceList)).toBe(8 + 7);
+        expect(calculatePriceFromNft(2, 2, priceList)).toBe(7 * 2);
     });
 
     it('buy entire from zero', () => {
-        expect(calculatePriceFromNft(5, 0, priceList)).toBe(10 + 9 + 8 + 7 + 6);
+        expect(calculatePriceFromNft(5, 0, priceList)).toBe(6 * 5);
     });
 
     it('throw error', () => {

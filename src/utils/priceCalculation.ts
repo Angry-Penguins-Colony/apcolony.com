@@ -6,13 +6,5 @@ export function calculatePriceFromNft(nftCount: number, alreadyBought: number, p
         throw new Error(ERR_PRICE_LIST_TOO_SMALL);
     }
 
-    let price = 0;
-
-    for (let i = alreadyBought; i < alreadyBought + nftCount; i++) {
-
-        price += priceList[i];
-
-    }
-
-    return price;
+    return priceList[nftCount + alreadyBought - 1] * nftCount;
 }
