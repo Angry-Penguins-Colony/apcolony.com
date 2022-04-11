@@ -26,8 +26,10 @@ export const Mint = (props: {
     };
 
     const incrementNftsAmount = () => {
-        if (nftsAmount < maxPerWallet) {
-            setNftsAmount(nftsAmount + 1);
+        if (boughtNfts) {
+            if (nftsAmount < maxPerWallet - boughtNfts) {
+                setNftsAmount(nftsAmount + 1);
+            }
         }
     };
 
