@@ -1,5 +1,6 @@
 import React from 'react';
-import { maxPerWallet, priceList } from 'config';
+import { useGetMaxPerWallet } from 'hooks/useGetMaxPerWallet';
+import { useGetPriceList } from 'hooks/useGetPriceList';
 import { calculatePriceFromNft } from 'utils/priceCalculation';
 
 export const Mint = (props: {
@@ -7,6 +8,8 @@ export const Mint = (props: {
 }) => {
 
     const [nftsAmount, setNftsAmount] = React.useState(1);
+    const priceList = useGetPriceList();
+    const maxPerWallet = useGetMaxPerWallet();
     const price = calculatePriceFromNft(nftsAmount, 0, priceList);
     const saving = nftsAmount - price;
     const savingPercent = Math.round(saving / nftsAmount * 100);
