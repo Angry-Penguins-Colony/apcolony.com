@@ -100,7 +100,14 @@ const Home = () => {
                   <Timer date={saleInfos.date} />
                   <div className='mint'>
                     <div className="nftLeft">{saleInfos.boughtNfts}/10 000</div>
-                    <div onClick={openMint} className="button mintNow">MINT NOW</div>
+                    {isLoggedIn ?
+                      <>
+                        <div onClick={openMint} className="button mintNow">MINT NOW</div>
+                        <div className="button connectWallet danger" onClick={disconnectWallet}>DISCONNECT</div>
+                      </> :
+                      <div className="button connectWallet" onClick={connectWallet}>CONNECT WALLET</div>
+                    }
+
                   </div>
                 </>
               }

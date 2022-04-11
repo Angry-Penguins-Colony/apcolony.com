@@ -1,6 +1,7 @@
 import React from 'react';
 import { useGetMaxPerWallet } from 'hooks/useGetMaxPerWallet';
 import { useGetPriceList } from 'hooks/useGetPriceList';
+import mintEggs from 'transactions/mint';
 import { calculatePriceFromNft } from 'utils/priceCalculation';
 
 export const Mint = (props: {
@@ -15,7 +16,7 @@ export const Mint = (props: {
     const savingPercent = Math.round(saving / nftsAmount * 100);
 
     const mint = () => {
-        // TODO: mint NFT
+        mintEggs(price, nftsAmount);
     };
 
     const incrementNftsAmount = () => {
