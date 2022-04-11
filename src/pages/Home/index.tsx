@@ -6,10 +6,10 @@ import ScrollToTop from 'react-scroll-to-top';
 import DiscordIcon from 'components/Icon/Discord';
 import ScrollDown from 'components/Icon/ScrollDown';
 import { SaleStatus, useGetSaleInfos } from 'hooks/useGetSaleInfos';
+import { useOnAnyTransactionSuccess } from 'hooks/useOnAnyTransactionSuccess';
 import UnlockPage from 'pages/UnlockPage';
 import { routeNames } from 'routes';
 import AvantageCard from './AvantageCard';
-import AwardPopup from './AwardPopup';
 import BigTitleSlide from './BigTitleSlide';
 import FaqQuestionAnswer from './FaqQuestionAnswer';
 import './index.scss';
@@ -24,7 +24,11 @@ import VideoPlayer from './VideoPlayer';
 
 const Home = () => {
 
-  const saleInfos = useGetSaleInfos();
+  const { saleInfos, refresh } = useGetSaleInfos();
+  useOnAnyTransactionSuccess(() => {
+    refresh();
+  });
+
 
   /* mint */
   const [mintIsOpen, setMintIsOpen] = React.useState(false);
@@ -44,10 +48,8 @@ const Home = () => {
   // };
 
   const [connectWalletOpen, setConnectWalletOpen] = React.useState(false);
-  const [connectWalletOpenedOnce, setConnectWalletOpenedOnce] = React.useState(false);
   const connectWallet = () => {
     setConnectWalletOpen(true);
-    setConnectWalletOpenedOnce(true);
   };
 
   const disconnectWallet = () => {
@@ -68,7 +70,7 @@ const Home = () => {
       {
         !mintIsOpen &&
         <>
-          <AwardPopup forceIsOpen={connectWalletOpenedOnce ? false : undefined} />
+          {/* <AwardPopup forceIsOpen={connectWalletOpenedOnce ? false : undefined} /> */}
           <Popup backdrop position="center" isOpen={connectWalletOpen} onClose={() => setConnectWalletOpen(false)}>
             <UnlockPage />
           </Popup>

@@ -2,5 +2,9 @@ import { API } from 'config';
 import { useFetch } from './useFetch';
 
 export const useGetRemainingNfts = () => {
-    return useFetch(API.getRemainingNfts());
+    const { output, refresh } = useFetch(API.getRemainingNfts());
+    return {
+        remainingNfts: output,
+        refresh
+    };
 };

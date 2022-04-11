@@ -1,9 +1,10 @@
 import React from 'react';
-import { transactionServices } from '@elrondnetwork/dapp-core';
+import { useGetBalance } from 'hooks/useGetBalance';
 import { useGetMaxPerWallet } from 'hooks/useGetMaxPerWallet';
 import { useGetMyBoughtNfts } from 'hooks/useGetMyBoughtNfts';
 import { useGetPriceList } from 'hooks/useGetPriceList';
 import mintEggs from 'transactions/mint';
+import { humanizeBalance } from 'utils/humanize';
 import { calculatePriceFromNft } from 'utils/priceCalculation';
 
 export const Mint = (props: {
@@ -13,23 +14,16 @@ export const Mint = (props: {
     const [nftsAmount, setNftsAmount] = React.useState(1);
     const priceList = useGetPriceList();
     const maxPerWallet = useGetMaxPerWallet();
-    const boughtNfts = useGetMyBoughtNfts();
-    const price = calculatePriceFromNft(nftsAmount, 0, priceList);
+    const { boughtNfts } = useGetMyBoughtNfts();
+    const balance = useGetBalance();
+
+    const price = calculatePriceFromNft(nftsAmount, boughtNfts ?? 0, priceList);
     const saving = nftsAmount - price;
     const savingPercent = Math.round(saving / nftsAmount * 100);
-    const [mintSessionId, setMintSessionId] = React.useState<string | null>(null);
 
     const mint = () => {
-        mintEggs(price, nftsAmount)
-            .then(setMintSessionId);
+        mintEggs(price, nftsAmount);
     };
-
-    transactionServices.useTrackTransactionStatus({
-        transactionId: mintSessionId ?? null,
-        onSuccess: () => {
-            console.log('Mint successful, update myBoughtNfts');
-        }
-    });
 
     const incrementNftsAmount = () => {
         if (nftsAmount < maxPerWallet) {
@@ -67,6 +61,7 @@ export const Mint = (props: {
                 </div>
                 <p>My eggs: {boughtNfts} / {maxPerWallet}</p>
                 <p>Saving {saving.toFixed(2)} | {savingPercent}%</p>
+                <p>My balance: {humanizeBalance(balance)} eGLD</p>
                 <div className="mintButton">
                     <div className="minus" onClick={decrementNftsAmount}>-</div>
                     <div className="numberSelect">{nftsAmount}</div>

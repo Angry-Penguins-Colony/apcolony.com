@@ -14,22 +14,22 @@ export interface SaleInfos {
     boughtNfts: number
 }
 
-export function useGetSaleInfos(): SaleInfos {
+export function useGetSaleInfos() {
 
-    const [saleInfo, setSaleInfo] = useState<SaleInfos>(getSaleInfos());
-    const remainingNft = useGetRemainingNfts();
+    const [saleInfos, setSaleInfos] = useState<SaleInfos>(getSaleInfos());
+    const { remainingNfts, refresh: forceRefresh } = useGetRemainingNfts();
 
-    if (remainingNft) {
+    if (remainingNfts) {
 
-        const boughtNfts = totalSupply - remainingNft;
+        const boughtNfts = totalSupply - remainingNfts;
 
-        if (boughtNfts != saleInfo.boughtNfts) {
-            saleInfo.boughtNfts = boughtNfts;
-            setSaleInfo(saleInfo);
+        if (boughtNfts != saleInfos.boughtNfts) {
+            saleInfos.boughtNfts = boughtNfts;
+            setSaleInfos(saleInfos);
         }
     }
 
-    return saleInfo;
+    return { saleInfos, refresh: forceRefresh };
 }
 
 function getSaleInfos() {
