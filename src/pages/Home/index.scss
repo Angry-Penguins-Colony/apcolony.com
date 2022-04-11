@@ -323,6 +323,9 @@
                 &.danger {
                     background-color: #c23737;
 
+                    &:hover {
+                        background-color: #611b1b;                        
+                    }
                 }
             }
 
