@@ -1,5 +1,6 @@
 import React from 'react';
 import { useGetMaxPerWallet } from 'hooks/useGetMaxPerWallet';
+import { useGetMyBoughtNfts } from 'hooks/useGetMyBoughtNfts';
 import { useGetPriceList } from 'hooks/useGetPriceList';
 import mintEggs from 'transactions/mint';
 import { calculatePriceFromNft } from 'utils/priceCalculation';
@@ -11,6 +12,7 @@ export const Mint = (props: {
     const [nftsAmount, setNftsAmount] = React.useState(1);
     const priceList = useGetPriceList();
     const maxPerWallet = useGetMaxPerWallet();
+    const boughtNfts = useGetMyBoughtNfts();
     const price = calculatePriceFromNft(nftsAmount, 0, priceList);
     const saving = nftsAmount - price;
     const savingPercent = Math.round(saving / nftsAmount * 100);
@@ -53,6 +55,7 @@ export const Mint = (props: {
                     ⚠️ BONUS TABLE IS DESACTIVATED FOR THE MOMENT ⚠️
                     {/* <BonusTable /> */}
                 </div>
+                <p>My eggs: {boughtNfts} / {maxPerWallet}</p>
                 <p>Saving {saving.toFixed(2)} | {savingPercent}%</p>
                 <div className="mintButton">
                     <div className="minus" onClick={decrementNftsAmount}>-</div>

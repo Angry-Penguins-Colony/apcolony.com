@@ -3,7 +3,7 @@ import { GatewayAPI } from 'apiRequests/GatewayAPI';
 
 export const dAppName = 'Angry Penguins';
 
-export const mintAddress = new Address('erd1qqqqqqqqqqqqqpgqykzdq4xaa5jf0kq3fp76sd5tqgf40xpp2c8qlfr2lh');
+export const mintAddress = new Address('erd1qqqqqqqqqqqqqpgqc6045edgy0sde50u7qpmtxjdp32jvulx2c8qkju6vv');
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const mainnetGateway = 'https://api-eu1.tatum.io/v3/egld/node/6cf90622-7c84-4dad-9ced-95d929227e9d_100';
