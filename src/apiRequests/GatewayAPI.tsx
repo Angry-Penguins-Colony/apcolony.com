@@ -1,24 +1,33 @@
 import { Address } from '@elrondnetwork/erdjs/out';
 import { devModeActivate } from 'config';
+import { GatewayCaching } from './GatewayCaching';
 import { GatewayLogger } from './GatewayLogger';
 
 export class GatewayAPI {
-    private readonly logger = new GatewayLogger(devModeActivate);
+    private readonly logger: GatewayLogger;
+    private readonly cache: GatewayCaching;
 
     constructor(public readonly url: string,
-        public readonly mintAddress: Address) { }
+        public readonly mintAddress: Address) {
+
+        this.logger = new GatewayLogger(devModeActivate);
+        this.cache = new GatewayCaching(this.logger);
+    }
 
     public getRemainingNfts(): Promise<number> {
-        return this.queryInt('getRemainingNft');
+        return this.cache.remainingNft.get(() => this.queryInt('getRemainingNft'));
     }
 
     public getMyBoughtNfts(address: Address) {
-        return this.queryInt('getBoughtAmount', [address.hex()]);
+
+        return this.cache.boughtAmount.get(address,
+            () => this.queryInt('getBoughtAmount', [address.hex()])
+        );
     }
 
     private async queryInt(funcName: string, args = [] as any[]): Promise<number> {
 
-        this.logger.logFetch(`Querying ${funcName}`);
+        this.logger.logFetch(`${funcName}`);
 
         const url = this.url + '/vm-values/int';
         const data = {

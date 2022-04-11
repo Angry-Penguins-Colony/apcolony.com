@@ -6,8 +6,8 @@ export class GatewayLogger {
     constructor(
         public shouldLog: boolean,
     ) {
-        this.cachePrefix = '[+]'.green;
-        this.fetchPrefix = '[~]'.yellow;
+        this.cachePrefix = '[+]'.green + ' Cache hit:';
+        this.fetchPrefix = '[~]'.yellow + ' Fetching:';
     }
 
     public logFetch(message: string) {
