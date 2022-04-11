@@ -1,6 +1,7 @@
 import React from 'react';
 import { DappUI } from '@elrondnetwork/dapp-core';
 import { routeNames } from 'routes';
+import './index.scss';
 
 export const UnlockRoute: () => JSX.Element = () => {
   const {
@@ -18,7 +19,7 @@ export const UnlockRoute: () => JSX.Element = () => {
             <h4 className='mb-4'>Login</h4>
             <p className='mb-4'>pick a login method</p>
 
-            <div className='d-flex flex-column justify-content-center'>
+            <div className='d-flex flex-column justify-content-center unlock-page'>
 
               <WalletConnectLoginButton
                 callbackRoute={routeNames.home}

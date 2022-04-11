@@ -1,0 +1,17 @@
+.unlock-page {
+
+    .extension-login_noExtensionButtonWrapper.btn.btn-unlock.d-inline-block {
+        background-color: grey;
+
+        .extension-login_noExtensionButtonContent  {
+            justify-content: center !important;
+        }
+    }
+    
+    .dapp-core-ui-component .btn {
+        width: 100%;
+
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
