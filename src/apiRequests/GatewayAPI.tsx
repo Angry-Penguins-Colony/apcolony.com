@@ -14,13 +14,18 @@ export class GatewayAPI {
         this.cache = new GatewayCaching(this.logger);
     }
 
+    public clearCache(): void {
+        console.log('Cache cleared');
+        this.cache.clear();
+    }
+
     public getRemainingNfts(): Promise<number> {
         return this.cache.remainingNft.get(() => this.queryInt('getRemainingNft'));
     }
 
     public getMyBoughtNfts(address: Address) {
 
-        return this.cache.boughtAmount.get(address,
+        return this.cache.boughtAmount.get(address.bech32(),
             () => this.queryInt('getBoughtAmount', [address.hex()])
         );
     }

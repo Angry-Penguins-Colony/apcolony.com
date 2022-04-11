@@ -24,9 +24,10 @@ import VideoPlayer from './VideoPlayer';
 
 const Home = () => {
 
-  const { saleInfos, refresh } = useGetSaleInfos();
-  useOnAnyTransactionSuccess(() => {
-    refresh();
+  const { saleInfos, refresh: refreshSaleInfos } = useGetSaleInfos();
+  useOnAnyTransactionSuccess((sessionId) => {
+    console.log('Refresh sales infos after', sessionId);
+    refreshSaleInfos();
   });
 
 
