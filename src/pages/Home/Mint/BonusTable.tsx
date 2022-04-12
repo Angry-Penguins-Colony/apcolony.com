@@ -32,7 +32,7 @@ const BonusTable = (props: {
                 {price}
                 <span style={{ float: 'right' }}>eGLD</span>
             </td >
-            <td>{discountPercent} %</td>
+            <td>{discountPercent > 0 ? (discountPercent + '%') : ''}</td>
             <td>⚠️</td>
         </tr >;
     });
@@ -46,7 +46,7 @@ const BonusTable = (props: {
             <thead>
                 <tr>
                     <th scope="col">Eggs</th>
-                    <th scope="col">Price Per Eggs</th>
+                    <th scope="col">Price Per Egg</th>
                     <th scope="col">Discount</th>
                     <th scope="col">Item</th>
                 </tr>

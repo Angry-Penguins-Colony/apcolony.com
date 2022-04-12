@@ -79,15 +79,18 @@ export const Mint = (props: {
             <div className="content">
                 <h1>PUBLIC SALE</h1>
 
-                <div className="mintButton">
-                    <div className="minus" onClick={decrementNftsAmount}>-</div>
-                    <div className="numberSelect">{nftsAmount}</div>
-                    <div className="plus" onClick={incrementNftsAmount}>+</div>
-                    <a className='button' onClick={mint}>MINT NOW ({price.toFixed(2)} EGLD)</a>
-                </div>
-                <div className="advantages pb-0">
-                    {/* <p>My balance: {humanizeBalance(weiBalance)} eGLD</p> */}
-                    <BonusTable setRef={setBonusTableRef} className="compactBonusTable mt-0 mb-0 pb-0" highlightRowIndex={nftsAmount - 1} />
+                <div>
+
+                    <div className="mintButton">
+                        <div className="minus" onClick={decrementNftsAmount}>-</div>
+                        <div className="numberSelect">{nftsAmount}</div>
+                        <div className="plus" onClick={incrementNftsAmount}>+</div>
+                        <a className='button' onClick={mint}>MINT NOW ({price.toFixed(2)} EGLD)</a>
+                    </div>
+                    <div className="advantages pb-0">
+                        {/* <p>My balance: {humanizeBalance(weiBalance)} eGLD</p> */}
+                        <BonusTable setRef={setBonusTableRef} className="compactBonusTable mt-0 mb-0 pb-0" highlightRowIndex={nftsAmount - 1} />
+                    </div>
                 </div>
             </div>
         </div>
