@@ -5,7 +5,7 @@ import Layout from 'components/Layout';
 import { environment } from 'config';
 import PageNotFound from 'pages/PageNotFound';
 import routes from 'routes';
-import '@elrondnetwork/dapp-core/build/index.css';
+import '@elrondnetwork/dapp-core/dist/index.css';
 
 const {
   TransactionsToastList,
@@ -19,7 +19,7 @@ const App = () => {
       <DappProvider
         environment={environment}
         customNetworkConfig={{ name: 'customConfig', apiTimeout: 6000 }}
-        completedTransactionsDelay={200}
+        completedTransactionsDelay={1000}
       >
         <Layout>
           <TransactionsToastList />
