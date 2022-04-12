@@ -86,8 +86,8 @@ export const Mint = (props: {
                 <h1>PUBLIC SALE</h1>
 
                 <div>
-                    {getWarningComponent()}
                     <p className="mb-3 text-muted balance">My balance: {humanizeBalance(weiBalance)} eGLD</p>
+                    {getWarningComponent()}
 
                     <div className="mintButton">
                         <div className="minus" onClick={decrementNftsAmount}>-</div>
@@ -113,12 +113,13 @@ export const Mint = (props: {
             </Alert>;
         }
         else {
-            return <Alert
-                variant="warning"
-                style={{ opacity: '0' }
-                }>
-                <br />
-            </Alert >;
+            return <></>;
+            // return <Alert
+            //     variant="warning"
+            //     style={{ opacity: '0' }
+            //     }>
+            //     <br />
+            // </Alert >;
         }
     }
 };
