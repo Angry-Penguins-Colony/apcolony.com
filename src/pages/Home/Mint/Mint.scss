@@ -2,9 +2,11 @@
 
 @mixin customScrollbar {
     padding-bottom: 10px;
+    padding-right: 5px;
 
     &::-webkit-scrollbar {
         height: 6px;
+        width: 6px;
     }
 
     /* Track */
@@ -124,6 +126,7 @@
                 margin-bottom: 25px;
                 margin-top: 25px;
                 height: 30vh;
+                border-radius: 6px !important;
 
                 @include customScrollbar;
             }
