@@ -9,9 +9,15 @@ const HatchingHome = () => {
 
     return (
         <div id="hatchingHome">
+            <div id="hatchingHero">
+                <img src="/img/Penguins_hatch_hero.png" />
+            </div>
             <div id="topPage" className='container'>
                 <div className="reveal">
-                    <h1>REVEAL THE ANGRY PENGUINS IN YOUR EGGS</h1>
+                    <h1>REVEAL THE ANGRY<br /> PENGUINS IN YOUR EGGS</h1>
+                    <div className='eggSurprise'>
+                        <img src="/img/opened_egg_surprise.png" />
+                    </div>
                     <div className="button button-outline">HATCH THEM NOW</div>
                     {/* TODO: bind button */}
                 </div>

@@ -1,0 +1,64 @@
+@import "./../../assets/sass/variables.scss";
+
+.howTo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    >hr {
+        width: 100%;
+        // border: $white dashed 1px;
+        background-image: linear-gradient(to right, white 50%, rgba(255, 255, 255, 0) 0%);
+        background-position: right;
+        background-size: 10px 2px;
+        background-repeat: repeat-x;
+        border: none;
+        height: 2px;
+    }
+
+    >.instruction {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        grid-gap: 15px;
+        gap: 15px;
+        max-width: 400px;
+        min-width: 345px;
+
+        >.number {
+            border-radius: 999px;
+            border: 3px solid $white;
+            $size: 50px;
+            height: $size;
+            width: $size;
+            min-width: $size;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            >span {
+                font-family: 'CHEDROS', sans-serif;
+                font-weight: bold;
+                font-size: 2rem;
+                text-align: center;
+                color: $white;
+                position: relative;
+                top: 2px;
+            }
+        }
+
+        >.content {
+            >p {
+                font-family: 'Montserrat', sans-serif;
+                color: $white;
+
+                >b {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

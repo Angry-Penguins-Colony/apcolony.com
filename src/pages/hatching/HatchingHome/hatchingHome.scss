@@ -1,6 +1,25 @@
 @import "./../../../assets/sass/variables.scss";
 
+body {
+    background: #6d92c5 !important;
+}
+
 #hatchingHome {
+    #hatchingHero {
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+
+        img {
+            width: 100vw;
+        }
+    }
+
     #topPage {
         display: flex;
         flex-direction: column;
@@ -10,21 +29,64 @@
         padding-top: 1vh;
         margin-bottom: 200px;
 
+        >.reveal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            >h1 {
+                font-family: 'CHEDROS', sans-serif;
+                font-size: 115px;
+                font-weight: bold;
+                color: $white;
+                text-align: center;
+                line-height: 0.9;
+                // z-index: 1;
+            }
+
+            >.eggSurprise {
+                height: 20vh;
+                position: relative;
+                z-index: -1;
+
+                img {
+                    position: relative;
+                    top: -24vh;
+                    height: 80vh;
+                    left: 2.3vh;
+                }
+            }
+
+            >.button {
+                padding-left: 70px;
+                padding-right: 70px;
+            }
+        }
+
+        >.howTo {
+            position: absolute;
+            bottom: 70px;
+        }
+
         >.rarityInfos {
             cursor: pointer;
             position: absolute;
-            bottom: 60px;
+            bottom: 20px;
 
             z-index: 1;
             border-radius: 9999px;
             display: flex;
             gap: 14px;
-            background-color: #ffffff80;
+            background-color: #FAFAFA;
             backdrop-filter: blur(10px);
+
+            &:hover {
+                background-color: #EFEFEF;
+            }
 
             >p {
                 padding: 12px 24px 12px 0;
-                color: white;
+                color: $primary;
                 font-weight: 600;
                 display: flex;
                 align-items: center;
@@ -36,8 +98,6 @@
                 padding: 0.3rem 0 0 0;
                 border-radius: 50%;
                 border: 3px solid $primary;
-                background-color: $white;
-                background: $white;
                 font-family: "CHEDROS", sans-serif;
                 height: 44px;
                 width: 44px;
