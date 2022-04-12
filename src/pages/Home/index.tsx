@@ -56,15 +56,14 @@ const Home = () => {
     logout();
   };
 
+  console.log(connectWalletOpen);
 
   const { isLoggedIn } = useGetLoginInfo();
 
   return (
     <div id='home'>
-      <ScrollDown id="scrollDown" />
-      {!connectWalletOpen &&
-        <ScrollToTop className="scrollToTop" smooth component={<ScrollToTopIcon />} />
-      }
+
+
       {
         mintIsOpen &&
         <Mint onClose={closeMint} />
@@ -72,6 +71,8 @@ const Home = () => {
       {
         !mintIsOpen &&
         <>
+          <ScrollDown id="scrollDown" />
+          <ScrollToTop className="scrollToTop" smooth component={<ScrollToTopIcon />} />
           {/* <AwardPopup forceIsOpen={connectWalletOpenedOnce ? false : undefined} /> */}
           <Popup backdrop position="center" isOpen={connectWalletOpen} onClose={() => setConnectWalletOpen(false)}>
             <UnlockPage />
