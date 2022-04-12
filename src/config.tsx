@@ -10,7 +10,7 @@ export const dAppName = 'Angry Penguins';
 console.log('Environment is ' + colors.green(environment));
 
 export const devModeActivate = process.env.NODE_ENV === 'development';
-export const mintAddress = new Address('erd1qqqqqqqqqqqqqpgqc6045edgy0sde50u7qpmtxjdp32jvulx2c8qkju6vv');
+export const mintAddress = new Address('erd1qqqqqqqqqqqqqpgqqlda8fa4707zqmjz5e9feeg2ncttz6j82c8q26fwzp');
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const mainnetGateway = 'https://api-eu1.tatum.io/v3/egld/node/6cf90622-7c84-4dad-9ced-95d929227e9d_100';
@@ -22,8 +22,8 @@ export const API = new GatewayAPI(environment == 'mainnet' ? mainnetGateway : de
 export const totalSupply = 10000;
 
 // GET THEM FROM SC
-export const publicSaleOpen = new Date('10 April 2022 16:00:00 UTC');
-export const publicSaleClose = new Date('13 April 2022 16:00:00 UTC');
+export const publicSaleOpen = new Date('11 April 2022 17:00:00 UTC');
+export const publicSaleClose = new Date(publicSaleOpen.getTime() + 60 * 60 * 24 * 3 * 1000);
 export const maxPerWallet = 20;
 export const priceList = [
     1,

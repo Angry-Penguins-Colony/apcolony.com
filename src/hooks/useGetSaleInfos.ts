@@ -61,17 +61,15 @@ function getSaleInfos() {
 }
 
 function getSaleStatus(): SaleStatus {
-
-
-
     const now = new Date();
 
     if (now < publicSaleOpen) {
         return SaleStatus.Soon;
     }
-    else {
+    else if (now < publicSaleClose) {
         return SaleStatus.OnSale;
     }
-    // TODO: add soldout
-    // TODO: add sold over
+    else {
+        return SaleStatus.SoldOut;
+    }
 }

@@ -6,7 +6,3 @@ import App from './App';
 import './assets/sass/theme.scss';
 
 ReactDOM.render(<App />, document.getElementById('root'));
-
-// window.addEventListener('unload', function () {
-//     logout();
-// });
