@@ -1,4 +1,5 @@
 import * as React from 'react';
+import ScrollContainer from 'react-indiana-drag-scroll';
 import Popup from 'pages/Home/Popup';
 import './hatchingHome.scss';
 import HowToHatch from '../HowTo';
@@ -48,32 +49,63 @@ const HatchingHome = () => {
 
             <div id="penguinNest">
                 <h2>PENGUIN NEST</h2>
-                <div className="hatchingCard">
+                <div className="hatchingCard container">
                     <div className="yourInventory">
                         <h3>YOUR INVENTORY</h3>
-                        <div className="items">
-                            <div className="egg">
-                                {/* TODO: get good inventory */}
-                                <img src="" alt="" />
+
+                        <ScrollContainer horizontal={false} hideScrollbars={false} className="items">
+                            {/* TODO: get good inventory */}
+                            <div className="egg selected">
+                                <img src="/img/eggs/Silver_egg.png" />
                             </div>
                             <div className="egg">
-                                <img src="" alt="" />
+                                <img src="/img/eggs/Silver_egg.png" />
                             </div>
                             <div className="egg">
-                                <img src="" alt="" />
+                                <img src="/img/eggs/Silver_egg.png" />
+                            </div>
+                            <div className="egg">
+                                <img src="/img/eggs/Gold_egg.png" />
+                            </div>
+                            <div className="egg">
+                                <img src="/img/eggs/Gold_egg.png" />
+                            </div>
+                            <div className="egg">
+                                <img src="/img/eggs/Diamond_egg.png" />
+                            </div>
+                            <div className="egg">
+                                <img src="/img/eggs/Diamond_egg.png" />
+                            </div>
+                            <div className="egg">
+                                <img src="/img/eggs/Diamond_egg.png" />
                             </div>
                             <div className="penguin">
-                                <img src="" alt="" />
+                                <img src="/img/penguins/Untitled design-2.png" />
                             </div>
                             <div className="penguin">
-                                <img src="" alt="" />
+                                <img src="/img/penguins/Untitled design-3.png" />
                             </div>
-                        </div>
+                            <div className="penguin">
+                                <img src="/img/penguins/Untitled design-4.png" />
+                            </div>
+                            <div className="penguin">
+                                <img src="/img/penguins/Untitled design-5.png" />
+                            </div>
+                            <div className="penguin">
+                                <img src="/img/penguins/Untitled design-6.png" />
+                            </div>
+                            <div className="penguin">
+                                <img src="/img/penguins/Untitled design-7.png" />
+                            </div>
+                            <div className="penguin">
+                                <img src="/img/penguins/Untitled design-8.png" />
+                            </div>
+                        </ScrollContainer>
                     </div>
                     <div className="infos">
                         <h3>INFOS</h3>
                         <div className="content">
-                            <img src="" alt="" className="egg" />
+                            <img src="/img/eggs/Silver_egg.png" className="egg" />
                             <h4>TIER 1 EGG</h4>
                             <p>This is a tier 1 egg, you can see it by is bronze halo on it</p>
                             <div className="button">HATCH THIS EGG</div>
