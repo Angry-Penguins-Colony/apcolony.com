@@ -87,6 +87,7 @@ export const Mint = (props: {
 
                 <div>
                     {getWarningComponent()}
+                    <p className="mb-3 text-muted balance">My balance: {humanizeBalance(weiBalance)} eGLD</p>
 
                     <div className="mintButton">
                         <div className="minus" onClick={decrementNftsAmount}>-</div>
@@ -94,8 +95,9 @@ export const Mint = (props: {
                         <div className="plus" onClick={incrementNftsAmount}>+</div>
                         <a className='button' onClick={mint}>MINT NOW ({price.toFixed(2)} EGLD)</a>
                     </div>
+
+
                     <div className="advantages pb-0">
-                        {/* <p>My balance: {humanizeBalance(weiBalance)} eGLD</p> */}
                         <BonusTable setRef={setBonusTableRef} className="compactBonusTable mt-0 mb-0 pb-0" highlightRowIndex={nftsAmount - 1} />
                     </div>
                 </div>

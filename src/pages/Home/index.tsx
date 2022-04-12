@@ -55,9 +55,6 @@ const Home = () => {
   const disconnectWallet = () => {
     logout();
   };
-
-  console.log(connectWalletOpen);
-
   const { isLoggedIn } = useGetLoginInfo();
 
   return (
