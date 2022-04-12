@@ -23,8 +23,6 @@ export const Mint = (props: {
 
     const [bonusTableRef, setBonusTableRef] = React.useState<HTMLTableElement | null>(null);
 
-    console.log(bonusTableRef);
-
     const mint = () => {
         mintEggs(price, nftsAmount);
     };
