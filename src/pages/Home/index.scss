@@ -106,151 +106,6 @@
         }
     }
 
-    #mint {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 80;
-        min-height: 100vh;
-        background-image: url(/assets/img/mint_background.png);
-        background-size: cover;
-
-        display: grid;
-        grid-template-columns: 6fr 5fr;
-
-        > .header {
-            z-index: 2;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            > .logo {
-                > img {
-                    height: 2.75rem;
-                    margin: 30px 0;
-                }
-            }
-
-            > h1 {
-                display: none;
-            }
-
-            > .closeIcon {
-                > img {
-                    width: 35px;
-                    cursor: pointer;
-                }
-            }
-        }
-
-        > .left {
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-
-            > .emptyPenguin {
-                position: relative;
-
-                &::after {
-                    content: "";
-                    position: absolute;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    height: 100%;
-                    background: linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0.6) 26%, rgba(0, 0, 0, 0) 80%);
-                }
-
-                > img {
-                    max-width: 100%;
-                }
-            }
-        }
-
-        > .right {
-            background-color: #0000003b;
-            backdrop-filter: blur(24px) contrast(1.4);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            padding: 120px 70px 30px 70px;
-            color: $white;
-
-            > .content {
-                display: grid;
-                grid-template-areas: "title" "advantages" "mint";
-                justify-items: start;
-                align-items: center;
-                max-width: 700px;
-                margin: 0 auto;
-
-                > h1 {
-                    grid-area: title;
-                    font-family: "CHEDROS", sans-serif;
-                    font-size: 6.25rem;
-                    font-weight: bold;
-                }
-
-                > .advantages {
-                    grid-area: advantages;
-                    margin-bottom: 50px;
-                }
-
-                > .mintButton {
-                    grid-area: mint;
-                    display: flex;
-                    align-items: center;
-                    padding-left: 2rem;
-                    gap: 2rem;
-                    border-radius: 9999px;
-                    background-color: $white;
-                    color: $dark;
-                    font-weight: 700;
-
-                    > .minus {
-                        user-select: none;
-                        font-family: "CHEDROS", sans-serif;
-                        font-size: 2rem;
-                        color: $primary;
-                        position: relative;
-                        top: 2px;
-                        cursor: pointer;
-                    }
-
-                    > .numberSelect {
-                        font-family: "CHEDROS", sans-serif;
-                        font-size: 2rem;
-                        position: relative;
-                        top: 2px;
-                    }
-
-                    > .plus {
-                        user-select: none;
-                        font-family: "CHEDROS", sans-serif;
-                        font-size: 2rem;
-                        color: $primary;
-                        position: relative;
-                        top: 2px;
-                        cursor: pointer;
-                    }
-                }
-            }
-
-            > .info {
-                font-family: "Montserrat", sans-serif;
-                font-style: italic;
-                text-align: center;
-                margin-top: auto;
-                width: 100%;
-            }
-        }
-    }
-
     #publicSale {
         display: flex;
         flex-direction: column;
@@ -1946,43 +1801,6 @@
     }
 }
 
-@media (max-width: 1140px) {
-    #home {
-        #mint {
-            display: grid;
-            grid-template-columns: 1fr;
-
-            > .header {
-                > h1 {
-                    display: block;
-                    font-family: "CHEDROS", sans-serif;
-                    font-size: 5rem;
-                    font-weight: bold;
-                    color: $white;
-                    position: absolute;
-                    top: 100px;
-                    left: 0;
-                    right: 0;
-                    text-align: center;
-                }
-            }
-
-            .right {
-                > .content {
-                    grid-template-areas: "mint" "advantages";
-
-                    > h1 {
-                        display: none;
-                    }
-
-                    > .mintButton {
-                        margin: 0 auto 30px auto;
-                    }
-                }
-            }
-        }
-    }
-}
 
 @media (max-width: 1090px) {
     #home {
@@ -2193,12 +2011,6 @@
     #home {
         h2 {
             font-size: 3rem;
-        }
-        #mint {
-            > .right {
-                padding: 15px;
-                backdrop-filter: none;
-            }
         }
 
         #publicSale > .content > .semiBanner {

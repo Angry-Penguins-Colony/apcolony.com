@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styles from './bonuspopup.module.scss';
-import BonusTable from './BonusTable';
+import BonusTable from './Mint/BonusTable';
 import Popup from './Popup';
 
 const BonusPopup = (props: any) => {
