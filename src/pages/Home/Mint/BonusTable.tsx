@@ -9,6 +9,7 @@ export const CLASS_HIGHLIGHTED = styles.highlighted;
 const BonusTable = (props: {
     className?: string,
     highlightRowIndex?: number,
+    boughtNfts?: number
     setRef?: (ref: HTMLTableElement | null) => void
 }) => {
 
@@ -24,9 +25,23 @@ const BonusTable = (props: {
         const nftAmount = index + 1;
         const discount = nftAmount - (price * nftAmount);
         const discountPercent = Math.round(discount / nftAmount * 100);
-        const isHighlighted = props.highlightRowIndex == index;
 
-        return <tr key={index} className={isHighlighted ? CLASS_HIGHLIGHTED : ''}>
+
+        const getClass = () => {
+
+            if (props.highlightRowIndex == index) {
+                return CLASS_HIGHLIGHTED;
+            }
+            else if (props.boughtNfts && props.boughtNfts >= nftAmount) {
+                return styles.bought;
+            }
+            else {
+
+                return '';
+            }
+        };
+
+        return <tr key={index} className={getClass()}>
             <td>{nftAmount}</td>
             <td>
                 {price}

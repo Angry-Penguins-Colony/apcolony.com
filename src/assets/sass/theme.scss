@@ -239,7 +239,12 @@ button,
     }
   }
 
-  &:hover {
+  &.disabled {
+    cursor: default;
+    background-color: grey;
+  }
+
+  &:hover:not(.disabled) {
     background-color: $hover;
     color: $light;
     text-decoration: none;

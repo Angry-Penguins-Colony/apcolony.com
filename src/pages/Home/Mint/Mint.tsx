@@ -4,6 +4,7 @@ import { useGetBalance } from 'hooks/useGetBalance';
 import { useGetMaxPerWallet } from 'hooks/useGetMaxPerWallet';
 import { useGetMyBoughtNfts } from 'hooks/useGetMyBoughtNfts';
 import { useGetPriceList } from 'hooks/useGetPriceList';
+import { useOnAnyTransactionSuccess } from 'hooks/useOnAnyTransactionSuccess';
 import mintEggs from 'transactions/mint';
 import { humanizeBalance } from 'utils/humanize';
 import { calculatePriceFromNft } from 'utils/priceCalculation';
@@ -17,8 +18,12 @@ export const Mint = (props: {
     const [nftsAmount, setNftsAmount] = React.useState(1);
     const priceList = useGetPriceList();
     const maxPerWallet = useGetMaxPerWallet();
-    const { boughtNfts } = useGetMyBoughtNfts();
+    const { boughtNfts, refresh: refreshNfts } = useGetMyBoughtNfts();
     const weiBalance = useGetBalance();
+
+    useOnAnyTransactionSuccess(() => {
+        refreshNfts();
+    });
 
     const price = calculatePriceFromNft(nftsAmount, boughtNfts ?? 0, priceList);
 
@@ -38,6 +43,15 @@ export const Mint = (props: {
                 return egldBalance >= newPrice;
             }
         }
+        return false;
+    };
+
+    const canBuy = () => {
+        if (boughtNfts != null) {
+            const egldBalance = weiBalance.valueOf().div(10 ** 18).toNumber();
+            return egldBalance >= price;
+        }
+
         return false;
     };
 
@@ -93,12 +107,19 @@ export const Mint = (props: {
                         <div className="minus" onClick={decrementNftsAmount}>-</div>
                         <div className="numberSelect">{nftsAmount}</div>
                         <div className="plus" onClick={incrementNftsAmount}>+</div>
-                        <a className='button' onClick={mint}>MINT NOW ({price.toFixed(2)} EGLD)</a>
+                        <button className={'button' + ' ' + (canBuy() ? '' : 'disabled')} disabled={canBuy() == false} onClick={mint}>
+                            MINT NOW ({price.toFixed(2)} eGLD)
+                        </button>
                     </div>
 
 
                     <div className="advantages pb-0">
-                        <BonusTable setRef={setBonusTableRef} className="compactBonusTable mt-0 mb-0 pb-0" highlightRowIndex={nftsAmount - 1} />
+                        <BonusTable
+                            setRef={setBonusTableRef}
+                            className="compactBonusTable mt-0 mb-0 pb-0"
+                            highlightRowIndex={(boughtNfts ?? 0) + nftsAmount - 1}
+                            boughtNfts={boughtNfts}
+                        />
                     </div>
                 </div>
             </div>
@@ -107,9 +128,14 @@ export const Mint = (props: {
 
     function getWarningComponent() {
 
-        if (canIncrement() == false) {
+        if (canBuy() == false) {
+            return <Alert variant="danger">
+                You don&apos;t have enough eGLD to buy any.
+            </Alert>;
+        }
+        else if (canIncrement() == false) {
             return <Alert variant="warning">
-                You don&apos;t have enough EGLD to buy more.
+                You don&apos;t have enough eGLD to buy more.
             </Alert>;
         }
         else {
