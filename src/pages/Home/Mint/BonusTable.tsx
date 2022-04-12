@@ -2,7 +2,15 @@ import * as React from 'react';
 import { useGetPriceList } from 'hooks/useGetPriceList';
 import styles from './bonustable.module.scss';
 
-const BonusTable = (props: { className?: string, highlightRowIndex?: number }) => {
+
+export const CLASS_HIGHLIGHTED = styles.highlighted;
+
+
+const BonusTable = (props: {
+    className?: string,
+    highlightRowIndex?: number,
+    setRef?: (ref: HTMLTableElement | null) => void
+}) => {
 
     const rootClassName = [
         styles.bonusTable,
@@ -18,7 +26,7 @@ const BonusTable = (props: { className?: string, highlightRowIndex?: number }) =
         const discountPercent = Math.round(discount / nftAmount * 100);
         const isHighlighted = props.highlightRowIndex == index;
 
-        return <tr key={index} className={isHighlighted ? styles.highlighted : ''}>
+        return <tr key={index} className={isHighlighted ? CLASS_HIGHLIGHTED : ''}>
             <td>{nftAmount}</td>
             <td>
                 {price}
@@ -30,7 +38,11 @@ const BonusTable = (props: { className?: string, highlightRowIndex?: number }) =
     });
 
     return (
-        <table className={rootClassName} >
+        <table ref={ref => {
+            if (props.setRef) {
+                props.setRef(ref);
+            }
+        }} className={rootClassName} >
             <thead>
                 <tr>
                     <th scope="col">Eggs</th>
@@ -42,7 +54,7 @@ const BonusTable = (props: { className?: string, highlightRowIndex?: number }) =
             <tbody>
                 {components}
             </tbody>
-        </table>
+        </table >
     );
 };
 
