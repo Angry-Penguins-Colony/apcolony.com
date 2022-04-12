@@ -1,4 +1,5 @@
 import React from 'react';
+import { Alert } from 'react-bootstrap';
 import { useGetBalance } from 'hooks/useGetBalance';
 import { useGetMaxPerWallet } from 'hooks/useGetMaxPerWallet';
 import { useGetMyBoughtNfts } from 'hooks/useGetMyBoughtNfts';
@@ -27,18 +28,23 @@ export const Mint = (props: {
         mintEggs(price, nftsAmount);
     };
 
-    const incrementNftsAmount = () => {
+    const canIncrement = (): boolean => {
         if (boughtNfts != null) {
 
             if (nftsAmount < maxPerWallet - boughtNfts) {
                 const newPrice = calculatePriceFromNft(nftsAmount + 1, boughtNfts, priceList);
                 const egldBalance = weiBalance.valueOf().div(10 ** 18).toNumber();
 
-                if (egldBalance >= newPrice) {
-                    setNftsAmount(nftsAmount + 1);
-                    scrollToHighlitedTabe();
-                }
+                return egldBalance >= newPrice;
             }
+        }
+        return false;
+    };
+
+    const incrementNftsAmount = () => {
+        if (canIncrement()) {
+            setNftsAmount(nftsAmount + 1);
+            scrollToHighlitedTabe();
         }
     };
 
@@ -80,6 +86,7 @@ export const Mint = (props: {
                 <h1>PUBLIC SALE</h1>
 
                 <div>
+                    {getWarningComponent()}
 
                     <div className="mintButton">
                         <div className="minus" onClick={decrementNftsAmount}>-</div>
@@ -95,5 +102,21 @@ export const Mint = (props: {
             </div>
         </div>
     </div>;
-};
 
+    function getWarningComponent() {
+
+        if (canIncrement() == false) {
+            return <Alert variant="warning">
+                You don&apos;t have enough EGLD to buy more.
+            </Alert>;
+        }
+        else {
+            return <Alert
+                variant="warning"
+                style={{ opacity: '0' }
+                }>
+                <br />
+            </Alert >;
+        }
+    }
+};
