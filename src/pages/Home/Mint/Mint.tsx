@@ -111,9 +111,11 @@ export const Mint = (props: {
                     {getWarningComponent()}
 
                     <div className="mintButton">
-                        <div className="minus" onClick={decrementNftsAmount}>-</div>
-                        <div className="numberSelect">{nftsAmount}</div>
-                        <div className="plus" onClick={incrementNftsAmount}>+</div>
+                        <div className="numberSelector">
+                            <div className="minus" onClick={decrementNftsAmount}>-</div>
+                            <div className="numberSelect">{nftsAmount}</div>
+                            <div className="plus" onClick={incrementNftsAmount}>+</div>
+                        </div>
                         <button className={'button' + ' ' + (canBuy() ? '' : 'disabled')} disabled={canBuy() == false} onClick={mint}>
                             MINT NOW ({price ? weiToEgld(price).toFixed(2) : '--'} eGLD)
                         </button>

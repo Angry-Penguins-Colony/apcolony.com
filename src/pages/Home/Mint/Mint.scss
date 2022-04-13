@@ -111,18 +111,32 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            width: 100%;
                         
             justify-content: space-between !important; 
             align-items: center !important;
             max-width: 700px;
             margin: 0 auto;
-
+            
             > h1 {
                 grid-area: title;
                 font-family: "CHEDROS", sans-serif;
                 font-size: 6.25rem;
                 font-weight: bold;
             }
+
+            >div {
+
+                width: 100%;
+                
+                
+                .alert {
+                    width: 100%;
+                    flex-grow: 0;
+                    flex-shrink: 1;
+                    overflow-wrap: break-word;
+                    align-self: flex-start;
+                }
 
             .advantages {
                 grid-area: advantages;
@@ -136,7 +150,7 @@
                 border-radius: 0px !important;   
                 overflow: hidden;             
                 width: 100%;
-
+                
                 > table {
                     @include customScrollbar;      
                     
@@ -145,45 +159,64 @@
                     }
                 }
             }
-
+            
             .mintButton {
                 grid-area: mint;
                 display: flex;
                 align-items: center;
+                justify-content: space-between;
                 padding-left: 2rem;
                 gap: 2rem;
                 border-radius: 9999px;
                 background-color: $white;
                 color: $dark;
+                width: 100%;
+            
                 font-weight: 700;
 
-                > .minus {
-                    user-select: none;
-                    font-family: "CHEDROS", sans-serif;
-                    font-size: 2rem;
-                    color: $primary;
-                    position: relative;
-                    top: 2px;
-                    cursor: pointer;
-                }
+                > .numberSelector{    
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 2rem;
+                    border-radius: 9999px;
+                    background-color: $white;
+                    color: $dark;
+                    width: 100%;
 
-                > .numberSelect {
-                    font-family: "CHEDROS", sans-serif;
-                    font-size: 2rem;
-                    position: relative;
-                    top: 2px;
+                    > .minus {
+                        user-select: none;
+                        font-family: "CHEDROS", sans-serif;
+                        font-size: 2rem;
+                        color: $primary;
+                        position: relative;
+                        top: 2px;
+                        cursor: pointer;
+                    }
+                    
+                    > .numberSelect {
+                        font-family: "CHEDROS", sans-serif;
+                        font-size: 2rem;
+                        position: relative;
+                        top: 2px;
+                    }
+                    
+                    > .plus {
+                        user-select: none;
+                        font-family: "CHEDROS", sans-serif;
+                        font-size: 2rem;
+                        color: $primary;
+                        position: relative;
+                        top: 2px;
+                        cursor: pointer;
+                    }
                 }
-
-                > .plus {
-                    user-select: none;
-                    font-family: "CHEDROS", sans-serif;
-                    font-size: 2rem;
-                    color: $primary;
-                    position: relative;
-                    top: 2px;
-                    cursor: pointer;
+                    
+                > .button {
+                    flex-basis: 100%;
                 }
             }
+        }
         }
 
         > .info {
