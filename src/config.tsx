@@ -23,4 +23,25 @@ const getGateway = () => {
     }
 };
 
+export const getImagesFor = (n: number) => {
+    if (n == 1) {
+        return undefined;
+    }
+    else if (n == 2 || n == 3) {
+        return 'A-hat-cap-egld-black.png';
+    }
+    else if (n == 4 || n == 5) {
+        return 'B-chain-apc-silver.png';
+    }
+    else if (n == 6 || n == 7) {
+        return 'C-weapon-fishing-rod.png';
+    }
+    else if (n == 8 || n == 9 || n == 10) {
+        return 'D-skin-reversed.png';
+    }
+    else {
+        return 'E-chain-egld-gold.png';
+    }
+};
+
 export const API = new GatewayAPI(getGateway(), mintConfig.contractAddress);

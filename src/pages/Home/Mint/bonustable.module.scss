@@ -6,18 +6,22 @@ table.bonusTable {
 
     width: 100%;
     height: 100%;
+    margin-top:  20px;
+    display: inline-block; 
+    overflow: auto; 
 
-    &  { 
-        margin-top:  20px;
-         display: inline-block; 
-         overflow: auto; 
+    th div { 
+        margin-top: -20px; 
+        position: fixed; 
+    }
 
-        th div { 
-            margin-top: -20px; 
-            position: fixed; 
+    td {
+        img {
+            width: 75px;
+            height: 75px;
         }
     }
-    
+
 
     .highlighted {
         background-color: rgba($primary, 0.3) !important;

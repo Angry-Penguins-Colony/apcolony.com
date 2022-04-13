@@ -2,13 +2,13 @@ import { Address } from '@elrondnetwork/erdjs/out';
 import { BigNumber } from 'bignumber.js';
 import { MintConfig } from 'structs/MintConfig';
 
-const publicSaleOpen = new Date('Wed, 13 Apr 2022 18:18:07 GMT');
+const publicSaleOpen = new Date(' Wed, 13 Apr 2022 19:09:30 GMT');
 const threeDays = 60 * 60 * 24 * 3;
-const thirtyMinutes = 60 * 10;
+const thirtyMinutes = 60 * 30;
 
 
 export const devnetConfig: MintConfig = {
-    contractAddress: new Address('erd1qqqqqqqqqqqqqpgqgdvnzduxylk6nyrja8llptf52lxs0yvp2c8qld82qx'),
+    contractAddress: new Address('erd1qqqqqqqqqqqqqpgqsfs0c7367z7t2pkxda8qn87s50cg0gxd2c8qg98348'),
     publicSaleOpen: publicSaleOpen,
     publicSaleClose: new Date(publicSaleOpen.getTime() + threeDays * 1000),
     whitelistedOpen: new Date(publicSaleOpen.getTime() - thirtyMinutes * 1000),

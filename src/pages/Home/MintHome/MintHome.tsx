@@ -36,9 +36,16 @@ export const MintHome = (props: {
     if (saleSoonForUser) {
         return <>
             <Timer date={mintConfig.publicSaleOpen} />
+            {saleInfos.status == SaleStatus.WhitelistOpen &&
+                <div className='mint mb-5 mt-1'>
+                    <div className="nftLeft">{humanizeNumber(saleInfos.boughtNfts)}/10 000</div>
+                </div>
+            }
+
             {isLoggedIn ?
                 <DisconnectWalletButton /> : <ConnectWalletButton />
             }
+
         </>;
     }
     else if (saleOpenForUser) {

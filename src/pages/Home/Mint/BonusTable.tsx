@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { faCircleQuestion as bonusIcon } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BigNumber } from 'bignumber.js';
-import { mintConfig } from 'config';
+import { getImagesFor, mintConfig } from 'config';
 import { useGetPriceList } from 'hooks/useGetPriceList';
 import { weiToEgld } from 'utils/convert';
 import styles from './bonustable.module.scss';
@@ -37,7 +39,10 @@ const BonusTable = (props: {
                     <th scope="col">Eggs</th>
                     <th scope="col">Price Per Egg</th>
                     <th scope="col">Discount</th>
-                    <th scope="col">Item</th>
+                    <th scope="col" data-toggle="tooltip" data-placement="top" title="You will receive the item after the public sale is soldout.">
+                        {/* Bonus <i style={{ color: 'black' }} className="fa-regular fa-circle-question" role="button"></i> */}
+                        Bonus <FontAwesomeIcon icon={bonusIcon} role="button" />
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -82,7 +87,11 @@ function buildTable(priceList: BigNumber[] | undefined, props: { className?: str
                 <span style={{ float: 'right' }}>eGLD</span>
             </td>
             <td>{discountPercent > 0 ? (discountPercent + '%') : ''}</td>
-            <td>⚠️</td>
+            <td className={styles.item}>
+                {getImagesFor(nftAmount) &&
+                    <img src={'img/items-bonus/' + getImagesFor(nftAmount)} />
+                }
+            </td>
         </tr>;
     });
 }
