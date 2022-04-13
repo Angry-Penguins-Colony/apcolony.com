@@ -57,7 +57,7 @@ function buildTable(priceList: BigNumber[] | undefined, props: { className?: str
         const nftAmount = index + 1;
         const egldPrice = weiToEgld(price);
         const notReducedPricePerEgg = weiToEgld(mintConfig.fullPriceList[0]);
-        const discount = notReducedPricePerEgg - (egldPrice * nftAmount);
+        const discount = (notReducedPricePerEgg - egldPrice) * nftAmount;
         const discountPercent = Math.round(discount / nftAmount * 100);
 
 
