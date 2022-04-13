@@ -1,12 +1,12 @@
-import { useGetAccountInfo } from '@elrondnetwork/dapp-core';
-import { Address } from '@elrondnetwork/erdjs/out';
 import { API } from 'config';
-import { useFetch } from './useFetch';
+import { useFetchWithAddress } from './useFetchWithAddress';
 
 export const useGetMyBoughtNfts = () => {
-    const { address } = useGetAccountInfo();
+    const o = useFetchWithAddress<number>(
+        (address) => API.getMyBoughtNfts(address),
+        Promise.resolve(0)
+    );
 
-    const o = useFetch(API.getMyBoughtNfts(Address.fromBech32(address)));
     return {
         boughtNfts: o.output,
         refresh: o.refresh

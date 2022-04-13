@@ -4,6 +4,7 @@ import { ConnectWalletButton } from 'components/ConnectWallet/ConnectWalletButto
 import { DisconnectWalletButton } from 'components/DisconnectWallet/DisconnectWalletButton';
 import { mintConfig } from 'config';
 import { SaleStatus, useGetSaleInfos } from 'hooks/useGetSaleInfos';
+import { useIsWhitelisted } from 'hooks/useIsWhitelisted';
 import { useOnAnyTransactionSuccess } from 'hooks/useOnAnyTransactionSuccess';
 import Timer from '../Timer';
 
@@ -13,6 +14,7 @@ export const MintHome = (props: {
 }) => {
 
     const { isLoggedIn } = useGetLoginInfo();
+    const { isWhitelisted } = useIsWhitelisted();
 
     const { saleInfos, refresh: refreshSaleInfos } = useGetSaleInfos();
     useOnAnyTransactionSuccess(() => {
@@ -37,9 +39,8 @@ export const MintHome = (props: {
         case SaleStatus.WhitelistOpen:
         case SaleStatus.OnSale:
 
-            // const canMint = saleInfos.status == SaleStatus.OnSale || (saleInfos.status == SaleStatus.WhitelistOpen && );
-            // TODO: 
-            const canMint = true;
+            const canMint = saleInfos.status == SaleStatus.OnSale
+                || (saleInfos.status == SaleStatus.WhitelistOpen && isWhitelisted);
 
             return <>
                 <h2>TIME REMAINING</h2>

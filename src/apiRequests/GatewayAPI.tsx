@@ -26,6 +26,19 @@ export class GatewayAPI {
             () => this.queryBoolean('check_contains_second', [address.hex()]));
     }
 
+    public isWhitelisted(address: Address): Promise<boolean> {
+        return this.cache.whitelisted.get(address.bech32(),
+            () => get(this));
+
+        async function get(_this: GatewayAPI): Promise<boolean> {
+            const result = await _this.queryBoolean('check_contains_second', [address.hex()]);
+
+            if (result == true) return result;
+
+            return _this.queryBoolean('check_contains_first', [address.hex()]);
+        }
+    }
+
     public getRemainingNfts(): Promise<number> {
         return this.cache.remainingNft.get(() => this.queryInt('getRemainingNft'));
     }

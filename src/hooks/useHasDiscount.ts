@@ -1,22 +1,12 @@
-import { useGetAccountInfo } from '@elrondnetwork/dapp-core';
-import { Address } from '@elrondnetwork/erdjs/out';
 import { API } from 'config';
-import { useFetch } from './useFetch';
+import { useFetchWithAddress } from './useFetchWithAddress';
 
 export const useHasDiscount = () => {
 
-    const { address } = useGetAccountInfo();
-
-    const fetchDiscount = async (): Promise<boolean> => {
-        if (address) {
-            return API.hasDiscount(Address.fromBech32(address));
-        }
-        else {
-            console.warn('Cannot refresh hasDiscount because address is undefined');
-            return false;
-        }
-    };
-    const fetchObject = useFetch<boolean>(fetchDiscount());
+    const fetchObject = useFetchWithAddress<boolean>(
+        (addr) => API.hasDiscount(addr),
+        Promise.resolve(false)
+    );
 
     return {
         hasDiscount: fetchObject.output,
