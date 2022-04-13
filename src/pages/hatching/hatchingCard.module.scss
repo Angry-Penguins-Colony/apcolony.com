@@ -1,0 +1,198 @@
+@import "./../../assets/sass/variables.scss";
+
+/* scrollbar css */
+@mixin customScrollbarVertical {
+    padding-right: 10px;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: transparent;
+        margin: 20px 0;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: $primary;
+        border-radius: 3px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: $hover;
+    }
+}
+
+.hatchingCard {
+    background-color: $white;
+    border-radius: 30px;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: 100%;
+    min-height: 600px;
+    max-height: 60vh;
+    overflow: hidden;
+
+    >.yourInventory {
+        position: relative;
+        border-right: 3px $primary solid;
+        padding: 20px 25px 0 25px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -20px;
+            right: 0;
+            height: 80px;
+            background: transparent linear-gradient(180deg, #000B2700 0%, #000b2717 30%, #000b2773 100%) 0% 0% no-repeat padding-box;
+        }
+
+        >h3 {
+            font-family: 'CHEDROS', sans-serif;
+            font-size: 2rem;
+            font-weight: bold;
+            color: $primary;
+            text-align: left;
+        }
+
+        >.items {
+            @include customScrollbarVertical;
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+            overflow: auto;
+            max-height: calc(100% - 2rem - 20px);
+
+            >div {
+                border-radius: 12px;
+                cursor: pointer;
+                margin: 3px;
+
+                &:hover {
+                    background-color: #EBEBEB;
+                }
+
+                &.selected {
+                    outline: 3px solid $primary;
+                }
+
+                >img {
+                    max-width: 100%;
+                }
+            }
+
+            padding-bottom: 20px;
+        }
+    }
+
+    >.infos {
+        padding: 20px 25px;
+        position: relative;
+
+        >h3 {
+            font-family: 'CHEDROS', sans-serif;
+            font-size: 2rem;
+            font-weight: bold;
+            color: $primary;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        >.content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            max-height: calc(100% - 2rem - 20px);
+            gap: 1rem;
+
+            >img {
+                width: 50%;
+            }
+
+            >h4 {
+                font-family: 'CHEDROS', sans-serif;
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: $dark;
+            }
+
+            >p {
+                font-family: 'Montserrat', sans-serif;
+                font-size: 1.2rem;
+                max-width: 70%;
+                text-align: center;
+            }
+
+            >.selectedEggs {
+                @include customScrollbarVertical;
+                margin-top: 1rem;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 10px;
+                overflow: auto;
+                max-height: calc(100% - 2rem - 20px);
+
+                >div {
+                    border-radius: 12px;
+                    margin: 3px;
+
+                    >img {
+                        max-width: 100%;
+                    }
+                }
+
+                padding-bottom: 20px;
+            }
+        }
+
+        >.actions {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            height: 80px;
+
+            &::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: -20px;
+                height: 100%;
+                background: transparent linear-gradient(180deg, #000B2700 0%, #000b2717 30%, #000b2773 100%) 0% 0% no-repeat padding-box;
+                z-index: 0;
+            }
+
+            >.button {
+                z-index: 0;
+                min-width: 30%;
+            }
+
+        }
+    }
+
+    &.bySelection {
+        >.yourInventory {
+            >.subTitle {
+                font-family: 'Montserrat', sans-serif;
+                font-size: 1.2rem;
+                color: $dark;
+            }
+
+            >.items {
+                max-height: calc(100% - 4rem - 8px);
+            }
+        }
+    }
+}

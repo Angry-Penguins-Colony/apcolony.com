@@ -4,7 +4,7 @@ import styles from './howTo.module.scss';
 const HowToHatch = () => {
 
     return (
-        <div className={'howTo ' + styles.howTo}>
+        <div className={'howTo container ' + styles.howTo}>
             <div className={styles.instruction}>
                 <div className={styles.number}>
                     <span>01</span>
