@@ -8,10 +8,10 @@ export class GatewayCaching {
     public readonly whitelisted: CacheMap<string, boolean>;
 
     constructor(readonly logger: GatewayLogger) {
-        this.boughtAmount = new CacheMap<string, number>(15_000, logger, 'getBoughtAmount');
-        this.remainingNft = new CacheValue<number>(5_000, logger, 'getRemainingNft');
-        this.hasDiscount = new CacheMap<string, boolean>(Infinity, logger, 'hasDiscount');
-        this.whitelisted = new CacheMap<string, boolean>(Infinity, logger, 'isWhitelisted');
+        this.boughtAmount = new CacheMap<string, number>(15_000);
+        this.remainingNft = new CacheValue<number>(5_000);
+        this.hasDiscount = new CacheMap<string, boolean>(Infinity);
+        this.whitelisted = new CacheMap<string, boolean>(Infinity);
     }
 
     public clear(): void {
@@ -28,19 +28,21 @@ export class CacheValue<T> {
     private expireTimestamp: number | undefined;
 
     constructor(
-        private readonly msTTL: number,
-        private readonly logger: GatewayLogger,
-        private readonly logContent: string
-    ) { }
+        private readonly msTTL: number
+    ) {
+        // TODO: retrieve from sessionStoage
+    }
 
     public get(getter: () => Promise<T>): Promise<T> {
         if (this.cachedValue && this.isCacheValid()) {
-            this.logger.logCache(this.logContent);
             return this.cachedValue;
         }
         else {
             this.cachedValue = getter();
             this.expireTimestamp = Date.now() + this.msTTL;
+
+            // TODO: save from sessionStorage
+
             return this.cachedValue;
         }
     }
@@ -66,8 +68,6 @@ export class CacheMap<K, V> {
 
     constructor(
         private readonly msTTL: number,
-        private readonly logger: GatewayLogger,
-        private readonly logContent: string
     ) { }
 
     public async get(key: K, fallback: () => Promise<V>): Promise<V> {
@@ -82,7 +82,7 @@ export class CacheMap<K, V> {
             return cached;
         }
         else {
-            const value = new CacheValue<V>(this.msTTL, this.logger, this.logContent);
+            const value = new CacheValue<V>(this.msTTL);
             this.map.set(key, value);
 
             return value;
