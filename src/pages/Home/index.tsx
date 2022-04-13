@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { logout, useGetAccountInfo, useGetLoginInfo } from '@elrondnetwork/dapp-core';
+import { useGetLoginInfo } from '@elrondnetwork/dapp-core';
 import { BsArrowUpCircleFill as ScrollToTopIcon } from 'react-icons/bs';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import ScrollToTop from 'react-scroll-to-top';
+import { DisconnectWalletButton } from 'components/DisconnectWallet/DisconnectWalletButton';
 import DiscordIcon from 'components/Icon/Discord';
 import ScrollDown from 'components/Icon/ScrollDown';
 import { SaleStatus, useGetSaleInfos } from 'hooks/useGetSaleInfos';
@@ -26,7 +27,7 @@ import 'lodash';
 
 const Home = () => {
 
-  const { address } = useGetAccountInfo();
+
   const { saleInfos, refresh: refreshSaleInfos } = useGetSaleInfos();
   useOnAnyTransactionSuccess(() => {
     refreshSaleInfos();
@@ -55,9 +56,7 @@ const Home = () => {
     setConnectWalletOpen(true);
   };
 
-  const disconnectWallet = () => {
-    logout();
-  };
+
   const { isLoggedIn } = useGetLoginInfo();
 
   return (
@@ -96,7 +95,7 @@ const Home = () => {
                     <>
                       <Timer date={saleInfos.date} />
                       {isLoggedIn ?
-                        <div className="button connectWallet danger" onClick={disconnectWallet}>DISCONNECT<br /> {address}</div> :
+                        <DisconnectWalletButton /> :
                         <div className="button connectWallet" onClick={connectWallet}>CONNECT WALLET</div>
                       }
                     </>
@@ -111,7 +110,7 @@ const Home = () => {
                         {isLoggedIn ?
                           <>
                             <div onClick={openMint} className="button mintNow">MINT NOW</div>
-                            <div className="button connectWallet danger" onClick={disconnectWallet}>DISCONNECT<br />{address.truncate(10)}</div>
+                            <DisconnectWalletButton />
                           </> :
                           <div className="button connectWallet" onClick={connectWallet}>CONNECT WALLET</div>
                         }
