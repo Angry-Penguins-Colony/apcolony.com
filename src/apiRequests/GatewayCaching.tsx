@@ -10,8 +10,8 @@ export class GatewayCaching {
     constructor(readonly logger: GatewayLogger) {
         this.remainingNft = new CacheValue<number>(5_000, 'remainingNfts');
         this.boughtAmount = new CacheMap<string, number>(15_000, 'boughtAmount');
-        this.hasDiscount = new CacheMap<string, boolean>(3_600_000, 'hasDiscount');
-        this.whitelisted = new CacheMap<string, boolean>(3_600_000, 'isWhitelisted');
+        this.hasDiscount = new CacheMap<string, boolean>(1_800_000, 'hasDiscount');
+        this.whitelisted = new CacheMap<string, boolean>(1_800_000, 'isWhitelisted');
     }
 }
 
