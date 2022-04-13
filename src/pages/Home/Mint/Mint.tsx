@@ -37,19 +37,29 @@ export const Mint = (props: {
     };
 
     const canIncrement = (): boolean => {
+
+        return !hasMaxPerWallet() && canBuyNext();
+    };
+
+    const canBuy = () => {
+        return price != null && weiBalance.valueOf().comparedTo(price) >= 0;
+    };
+
+    const canBuyNext = () => {
         if (boughtNfts != null && priceList != null) {
 
-            if (nftsAmount < maxPerWallet - boughtNfts) {
+            if (hasMaxPerWallet() == false) {
                 const newPrice = calculatePriceFromNft(nftsAmount + 1, boughtNfts, priceList);
 
                 return weiBalance.valueOf().comparedTo(newPrice) >= 0;
             }
         }
+
         return false;
     };
 
-    const canBuy = () => {
-        return price != null && weiBalance.valueOf().comparedTo(price) >= 0;
+    const hasMaxPerWallet = () => {
+        return boughtNfts != null && nftsAmount + boughtNfts >= (maxPerWallet);
     };
 
     const incrementNftsAmount = () => {
@@ -130,7 +140,12 @@ export const Mint = (props: {
                 You don&apos;t have enough eGLD to buy any.
             </Alert>;
         }
-        else if (canIncrement() == false) {
+        else if (hasMaxPerWallet() == true) {
+            return <Alert variant="warning">
+                You have reached the maximum amount of NFTs you can buy on this wallet.
+            </Alert>;
+        }
+        else if (canBuyNext() == false) {
             return <Alert variant="warning">
                 You don&apos;t have enough eGLD to buy more.
             </Alert>;
