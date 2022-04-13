@@ -1,8 +1,6 @@
 @import "./../../../assets/sass/variables.scss";
 
-@mixin customScrollbar {
-    padding-bottom: 10px;
-    padding-right: 5px;
+@mixin customScrollbar {            
 
     &::-webkit-scrollbar {
         height: 6px;
@@ -135,9 +133,17 @@
                 margin-bottom: 25px;
                 margin-top: 25px;
                 height: 30vh;
-                border-radius: 6px !important;                
+                border-radius: 0px !important;   
+                overflow: hidden;             
+                width: 100%;
 
-                @include customScrollbar;
+                > table {
+                    @include customScrollbar;      
+                    
+                    tr td {
+                        width: 50%;
+                    }
+                }
             }
 
             .mintButton {
