@@ -4,11 +4,15 @@ const Timer = (props: { date: any; }) => {
     const [timeLeft, setTimeLeft] = React.useState(props.date);
 
     React.useEffect(() => {
-        const interval = setInterval(() => {
-            setTimeLeft(props.date - new Date().getTime());
-        }, 1000);
+        updateTime();
+
+        const interval = setInterval(updateTime, 1000);
         return () => clearInterval(interval);
     }, [props.date]);
+
+    function updateTime() {
+        setTimeLeft(props.date - new Date().getTime());
+    }
 
     const padString = (num: number, size: number) => {
         let s = num + '';
