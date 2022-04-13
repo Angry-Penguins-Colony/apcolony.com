@@ -8,17 +8,10 @@ export class GatewayCaching {
     public readonly whitelisted: CacheMap<string, boolean>;
 
     constructor(readonly logger: GatewayLogger) {
-        this.boughtAmount = new CacheMap<string, number>(15_000);
-        this.remainingNft = new CacheValue<number>(5_000);
-        this.hasDiscount = new CacheMap<string, boolean>(Infinity);
-        this.whitelisted = new CacheMap<string, boolean>(Infinity);
-    }
-
-    public clear(): void {
-        this.boughtAmount.clear();
-        this.remainingNft.clear();
-        this.hasDiscount.clear();
-        this.whitelisted.clear();
+        this.remainingNft = new CacheValue<number>(5_000, 'remainingNfts');
+        this.boughtAmount = new CacheMap<string, number>(15_000, 'boughtAmount');
+        this.hasDiscount = new CacheMap<string, boolean>(3_600_000, 'hasDiscount');
+        this.whitelisted = new CacheMap<string, boolean>(3_600_000, 'isWhitelisted');
     }
 }
 
@@ -26,22 +19,44 @@ export class CacheValue<T> {
 
     private cachedValue: Promise<T> | undefined;
     private expireTimestamp: number | undefined;
+    private readonly key: string;
 
     constructor(
-        private readonly msTTL: number
+        private readonly msTTL: number,
+        key: string
     ) {
-        // TODO: retrieve from sessionStoage
+        const PREFIX = 'apc-cache:';
+        this.key = PREFIX + key;
+
+        this.loadFromStorage();
+    }
+
+    private async saveToStorage() {
+        window.sessionStorage.setItem(this.key, JSON.stringify({
+            value: await this.cachedValue,
+            expireAt: this.expireTimestamp
+        }));
+    }
+
+    private loadFromStorage() {
+        const value = window.sessionStorage.getItem(this.key);
+
+        if (value) {
+            const parsed = JSON.parse(value);
+            this.cachedValue = Promise.resolve(parsed.value as T);
+            this.expireTimestamp = parsed.expireAt;
+        }
     }
 
     public get(getter: () => Promise<T>): Promise<T> {
-        if (this.cachedValue && this.isCacheValid()) {
+        if (this.cachedValue != null && this.isCacheValid()) {
             return this.cachedValue;
         }
         else {
             this.cachedValue = getter();
             this.expireTimestamp = Date.now() + this.msTTL;
 
-            // TODO: save from sessionStorage
+            this.saveToStorage();
 
             return this.cachedValue;
         }
@@ -50,6 +65,8 @@ export class CacheValue<T> {
     public clear(): void {
         this.expireTimestamp = undefined;
         this.cachedValue = undefined;
+
+        window.sessionStorage.removeItem(this.key);
     }
 
     private isCacheValid(): boolean {
@@ -68,6 +85,7 @@ export class CacheMap<K, V> {
 
     constructor(
         private readonly msTTL: number,
+        private readonly keyPrefix: string
     ) { }
 
     public async get(key: K, fallback: () => Promise<V>): Promise<V> {
@@ -82,7 +100,7 @@ export class CacheMap<K, V> {
             return cached;
         }
         else {
-            const value = new CacheValue<V>(this.msTTL);
+            const value = new CacheValue<V>(this.msTTL, this.keyPrefix + '#' + key);
             this.map.set(key, value);
 
             return value;

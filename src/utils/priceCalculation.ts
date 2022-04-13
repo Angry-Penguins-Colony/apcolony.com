@@ -10,5 +10,11 @@ export function calculatePriceFromNft(nftCount: number, alreadyBought: number, p
 
     const index = nftCount + alreadyBought - 1;
 
-    return priceList[index].multipliedBy(nftCount);
+    const price = priceList[index];
+
+    if (price == undefined) {
+        throw new Error(`Price list index ${index} is undefined.`);
+    }
+
+    return price.multipliedBy(nftCount);
 }
