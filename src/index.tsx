@@ -10,3 +10,5 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 colors.enable();
 console.log('Environment is ' + colors.green(environment));
+
+console.log('%cHey you!\nWelcome to my world. 👀\nPlease, make yourself at home 🐧', 'background-color: pink; color: black');
