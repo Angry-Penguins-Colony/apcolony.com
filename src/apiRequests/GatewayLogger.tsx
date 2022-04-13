@@ -19,6 +19,7 @@ export class GatewayLogger {
     }
 
     public logCache(message: string) {
+        return;
         this.log(this.cachePrefix + ' ' + message);
     }
 

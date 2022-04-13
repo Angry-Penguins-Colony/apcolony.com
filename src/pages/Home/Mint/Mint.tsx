@@ -26,17 +26,18 @@ export const Mint = (props: {
         refreshNfts();
     });
 
-    const price = calculatePriceFromNft(nftsAmount, boughtNfts ?? 0, priceList);
-    const egldPrice = weiToEgld(price);
+    const price = priceList ? calculatePriceFromNft(nftsAmount, boughtNfts ?? 0, priceList) : undefined;
 
     const [bonusTableRef, setBonusTableRef] = React.useState<HTMLTableElement | null>(null);
 
     const mint = () => {
+        if (!price) return;
+
         mintEggs(price, nftsAmount);
     };
 
     const canIncrement = (): boolean => {
-        if (boughtNfts != null) {
+        if (boughtNfts != null && priceList != null) {
 
             if (nftsAmount < maxPerWallet - boughtNfts) {
                 const newPrice = calculatePriceFromNft(nftsAmount + 1, boughtNfts, priceList);
@@ -48,7 +49,7 @@ export const Mint = (props: {
     };
 
     const canBuy = () => {
-        return weiBalance.valueOf().comparedTo(price) >= 0;
+        return price != null && weiBalance.valueOf().comparedTo(price) >= 0;
     };
 
     const incrementNftsAmount = () => {
@@ -104,7 +105,7 @@ export const Mint = (props: {
                         <div className="numberSelect">{nftsAmount}</div>
                         <div className="plus" onClick={incrementNftsAmount}>+</div>
                         <button className={'button' + ' ' + (canBuy() ? '' : 'disabled')} disabled={canBuy() == false} onClick={mint}>
-                            MINT NOW ({egldPrice.toFixed(2)} eGLD)
+                            MINT NOW ({price ? weiToEgld(price).toFixed(2) : '--'} eGLD)
                         </button>
                     </div>
 
@@ -136,12 +137,6 @@ export const Mint = (props: {
         }
         else {
             return <></>;
-            // return <Alert
-            //     variant="warning"
-            //     style={{ opacity: '0' }
-            //     }>
-            //     <br />
-            // </Alert >;
         }
     }
 };

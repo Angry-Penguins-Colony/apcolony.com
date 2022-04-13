@@ -16,7 +16,14 @@ export class GatewayAPI {
 
     public clearCache(): void {
         console.log('Cache cleared');
-        this.cache.clear();
+
+        this.cache.boughtAmount.clear();
+        this.cache.remainingNft.clear();
+    }
+
+    public hasDiscount(address: Address): Promise<boolean> {
+        return this.cache.hasDiscount.get(address.bech32(),
+            () => this.queryBoolean('check_contains_second', [address.hex()]));
     }
 
     public getRemainingNfts(): Promise<number> {
@@ -28,6 +35,12 @@ export class GatewayAPI {
         return this.cache.boughtAmount.get(address.bech32(),
             () => this.queryInt('getBoughtAmount', [address.hex()])
         );
+    }
+
+    private async queryBoolean(funcName: string, args = [] as any[]): Promise<boolean> {
+        const value = await this.queryInt(funcName, args);
+
+        return value == 1;
     }
 
     private async queryInt(funcName: string, args = [] as any[]): Promise<number> {
@@ -54,5 +67,3 @@ export class GatewayAPI {
         return parseInt(json.data.data);
     }
 }
-
-// getBoughtAmount

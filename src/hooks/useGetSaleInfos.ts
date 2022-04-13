@@ -33,7 +33,6 @@ export function useGetSaleInfos() {
         };
 
         if (!saleInfos || equals(saleInfos, newInfos) == false) {
-            console.log('update');
             setSaleInfos(newInfos);
         }
     }

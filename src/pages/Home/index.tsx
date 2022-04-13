@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { logout, useGetLoginInfo } from '@elrondnetwork/dapp-core';
+import { logout, useGetAccountInfo, useGetLoginInfo } from '@elrondnetwork/dapp-core';
 import { BsArrowUpCircleFill as ScrollToTopIcon } from 'react-icons/bs';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import ScrollToTop from 'react-scroll-to-top';
@@ -21,10 +21,12 @@ import RoadMap from './RoadMap';
 import TeamMember from './TeamMember';
 import Timer from './Timer';
 import VideoPlayer from './VideoPlayer';
+import 'lodash';
 
 
 const Home = () => {
 
+  const { address } = useGetAccountInfo();
   const { saleInfos, refresh: refreshSaleInfos } = useGetSaleInfos();
   useOnAnyTransactionSuccess(() => {
     refreshSaleInfos();
@@ -94,7 +96,7 @@ const Home = () => {
                     <>
                       <Timer date={saleInfos.date} />
                       {isLoggedIn ?
-                        <div className="button connectWallet danger" onClick={disconnectWallet}>DISCONNECT</div> :
+                        <div className="button connectWallet danger" onClick={disconnectWallet}>DISCONNECT<br /> {address}</div> :
                         <div className="button connectWallet" onClick={connectWallet}>CONNECT WALLET</div>
                       }
                     </>
@@ -109,7 +111,7 @@ const Home = () => {
                         {isLoggedIn ?
                           <>
                             <div onClick={openMint} className="button mintNow">MINT NOW</div>
-                            <div className="button connectWallet danger" onClick={disconnectWallet}>DISCONNECT</div>
+                            <div className="button connectWallet danger" onClick={disconnectWallet}>DISCONNECT<br />{address.truncate(10)}</div>
                           </> :
                           <div className="button connectWallet" onClick={connectWallet}>CONNECT WALLET</div>
                         }

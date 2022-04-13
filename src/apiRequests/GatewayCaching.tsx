@@ -4,15 +4,18 @@ export class GatewayCaching {
 
     public readonly boughtAmount: CacheMap<string, number>;
     public readonly remainingNft: CacheValue<number>;
+    public readonly hasDiscount: CacheMap<string, boolean>;
 
     constructor(readonly logger: GatewayLogger) {
-        this.boughtAmount = new CacheMap<string, number>(15000, logger, 'getBoughtAmount');
-        this.remainingNft = new CacheValue<number>(5000, logger, 'getRemainingNft');
+        this.boughtAmount = new CacheMap<string, number>(15_000, logger, 'getBoughtAmount');
+        this.remainingNft = new CacheValue<number>(5_000, logger, 'getRemainingNft');
+        this.hasDiscount = new CacheMap<string, boolean>(Infinity, logger, 'hasDiscount');
     }
 
     public clear(): void {
         this.boughtAmount.clear();
         this.remainingNft.clear();
+        this.hasDiscount.clear();
     }
 }
 

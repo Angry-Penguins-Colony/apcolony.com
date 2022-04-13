@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { BigNumber } from 'bignumber.js';
 import { mintConfig } from 'config';
 import { useGetPriceList } from 'hooks/useGetPriceList';
 import { weiToEgld } from 'utils/convert';
@@ -23,7 +24,36 @@ const BonusTable = (props: {
 
     const priceList = useGetPriceList();
 
-    const components = priceList.map((price, index) => {
+    const components = buildTable(priceList, props);
+
+    return (
+        <table ref={ref => {
+            if (props.setRef) {
+                props.setRef(ref);
+            }
+        }} className={rootClassName} >
+            <thead>
+                <tr>
+                    <th scope="col">Eggs</th>
+                    <th scope="col">Price Per Egg</th>
+                    <th scope="col">Discount</th>
+                    <th scope="col">Item</th>
+                </tr>
+            </thead>
+            <tbody>
+                {components}
+            </tbody>
+        </table >
+    );
+};
+
+export default BonusTable;
+
+function buildTable(priceList: BigNumber[] | undefined, props: { className?: string | undefined; highlightRowIndex?: number | undefined; boughtNfts?: number | undefined; setRef?: ((ref: HTMLTableElement | null) => void) | undefined; }) {
+
+    if (!priceList) return [];
+
+    return priceList.map((price, index) => {
         const nftAmount = index + 1;
         const egldPrice = weiToEgld(price);
         const notReducedPricePerEgg = weiToEgld(mintConfig.fullPriceList[0]);
@@ -50,31 +80,9 @@ const BonusTable = (props: {
             <td>
                 {egldPrice}
                 <span style={{ float: 'right' }}>eGLD</span>
-            </td >
+            </td>
             <td>{discountPercent > 0 ? (discountPercent + '%') : ''}</td>
             <td>⚠️</td>
-        </tr >;
+        </tr>;
     });
-
-    return (
-        <table ref={ref => {
-            if (props.setRef) {
-                props.setRef(ref);
-            }
-        }} className={rootClassName} >
-            <thead>
-                <tr>
-                    <th scope="col">Eggs</th>
-                    <th scope="col">Price Per Egg</th>
-                    <th scope="col">Discount</th>
-                    <th scope="col">Item</th>
-                </tr>
-            </thead>
-            <tbody>
-                {components}
-            </tbody>
-        </table >
-    );
-};
-
-export default BonusTable;
+}
