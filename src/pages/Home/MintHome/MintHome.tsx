@@ -21,7 +21,9 @@ export const MintHome = (props: {
         refreshSaleInfos();
     });
 
-    if (!saleInfos) {
+    console.log(saleInfos);
+
+    if (saleInfos == undefined) {
         return <p>
             Loading...
         </p>;
@@ -63,9 +65,14 @@ export const MintHome = (props: {
         </>;
     }
     else if (saleInfos.status == SaleStatus.SoldOut) {
-        return <div className="semiBanner">
-            <p>SOLD OUT</p>
-        </div>;
+        return <>
+            <div className="semiBanner">
+                <p>SOLD OUT</p>
+            </div>;
+            <div className='mint'>
+                <div className="nftLeft">10 000/10 000</div>
+            </div>
+        </>;
 
     }
     else {

@@ -22,14 +22,12 @@ export function useGetSaleInfos() {
     if (remainingNfts) {
 
 
-        const status = getSaleStatus();
+        const status = getSaleStatus(remainingNfts);
         const boughtNfts = totalSupply - remainingNfts + startingSupply;
-
-        console.log('status', status);
 
         const newInfos = {
             status,
-            boughtNfts
+            boughtNfts: boughtNfts
         };
 
         if (!saleInfos || equals(saleInfos, newInfos) == false) {
@@ -44,7 +42,12 @@ function equals(a: SaleInfos, b: SaleInfos) {
     return a.status === b.status && a.boughtNfts === b.boughtNfts;
 }
 
-function getSaleStatus(): SaleStatus {
+function getSaleStatus(remainingNfts: number): SaleStatus {
+
+    if (remainingNfts == 0) {
+        return SaleStatus.SoldOut;
+    }
+
     const now = new Date();
 
     if (now < mintConfig.whitelistedOpen) {
