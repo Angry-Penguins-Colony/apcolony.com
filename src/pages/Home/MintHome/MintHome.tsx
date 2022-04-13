@@ -6,6 +6,7 @@ import { mintConfig } from 'config';
 import { SaleStatus, useGetSaleInfos } from 'hooks/useGetSaleInfos';
 import { useIsWhitelisted } from 'hooks/useIsWhitelisted';
 import { useOnAnyTransactionSuccess } from 'hooks/useOnAnyTransactionSuccess';
+import { humanizeNumber } from 'utils/humanize';
 import Timer from '../Timer';
 
 export const MintHome = (props: {
@@ -20,8 +21,6 @@ export const MintHome = (props: {
     useOnAnyTransactionSuccess(() => {
         refreshSaleInfos();
     });
-
-    console.log(saleInfos);
 
     if (saleInfos == undefined) {
         return <p>
@@ -48,7 +47,7 @@ export const MintHome = (props: {
             <h2>TIME REMAINING</h2>
             <Timer date={mintConfig.publicSaleClose} />
             <div className='mint'>
-                <div className="nftLeft">{saleInfos.boughtNfts}/10 000</div>
+                <div className="nftLeft">{humanizeNumber(saleInfos.boughtNfts)}/10 000</div>
                 {isLoggedIn ?
                     <>
                         <button

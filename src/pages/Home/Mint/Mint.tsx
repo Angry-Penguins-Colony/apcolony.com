@@ -1,5 +1,6 @@
 import React from 'react';
 import { useGetAccountInfo, useGetNetworkConfig } from '@elrondnetwork/dapp-core';
+import { BigNumber } from 'bignumber.js';
 import { Alert } from 'react-bootstrap';
 import { useGetBalance } from 'hooks/useGetBalance';
 import { useGetMaxPerWallet } from 'hooks/useGetMaxPerWallet';
@@ -31,6 +32,7 @@ export const Mint = (props: {
     });
 
     const price = calculatePrice();
+    console.log('price', price);
 
     const explorerUrl = network.explorerAddress;
     const accountExplorer = explorerUrl + '/accounts/' + address;
@@ -71,7 +73,7 @@ export const Mint = (props: {
                             <div className="plus" onClick={incrementNftsAmount}>+</div>
                         </div>
                         <button className={'button' + ' ' + (canMint() ? '' : 'disabled')} disabled={canBuy() == false} onClick={mint}>
-                            MINT NOW ({price ? weiToEgld(price).toFixed(2) : '--'} eGLD)
+                            MINT NOW ({price != null ? weiToEgld(price).toFixed(2) : '--'} eGLD)
                         </button>
                     </div>
 
@@ -89,15 +91,15 @@ export const Mint = (props: {
         </div>
     </div>;
 
-    function calculatePrice() {
+    function calculatePrice(): BigNumber | undefined {
 
-        if (priceList && boughtNfts) {
+        if (priceList != null && boughtNfts != null) {
 
             if (nftsAmount + boughtNfts <= maxPerWallet) {
                 return calculatePriceFromNft(nftsAmount, boughtNfts ?? 0, priceList);
             }
             else {
-                return 0;
+                return new BigNumber(0);
             }
         }
         else {
