@@ -6,10 +6,12 @@ import { useGetMyBoughtNfts } from 'hooks/useGetMyBoughtNfts';
 import { useGetPriceList } from 'hooks/useGetPriceList';
 import { useOnAnyTransactionSuccess } from 'hooks/useOnAnyTransactionSuccess';
 import mintEggs from 'transactions/mint';
+import { weiToEgld } from 'utils/convert';
 import { humanizeBalance } from 'utils/humanize';
 import { calculatePriceFromNft } from 'utils/priceCalculation';
 import BonusTable, { CLASS_HIGHLIGHTED } from './BonusTable';
 import './Mint.scss';
+import { DappUI } from '@elrondnetwork/dapp-core';
 
 export const Mint = (props: {
     onClose?: () => void
@@ -26,6 +28,7 @@ export const Mint = (props: {
     });
 
     const price = calculatePriceFromNft(nftsAmount, boughtNfts ?? 0, priceList);
+    const egldPrice = weiToEgld(price);
 
     const [bonusTableRef, setBonusTableRef] = React.useState<HTMLTableElement | null>(null);
 
@@ -38,21 +41,15 @@ export const Mint = (props: {
 
             if (nftsAmount < maxPerWallet - boughtNfts) {
                 const newPrice = calculatePriceFromNft(nftsAmount + 1, boughtNfts, priceList);
-                const egldBalance = weiBalance.valueOf().div(10 ** 18).toNumber();
 
-                return egldBalance >= newPrice;
+                return weiBalance.valueOf().comparedTo(newPrice) >= 0;
             }
         }
         return false;
     };
 
     const canBuy = () => {
-        if (boughtNfts != null) {
-            const egldBalance = weiBalance.valueOf().div(10 ** 18).toNumber();
-            return egldBalance >= price;
-        }
-
-        return false;
+        return weiBalance.valueOf().comparedTo(price) >= 0;
     };
 
     const incrementNftsAmount = () => {
@@ -108,7 +105,7 @@ export const Mint = (props: {
                         <div className="numberSelect">{nftsAmount}</div>
                         <div className="plus" onClick={incrementNftsAmount}>+</div>
                         <button className={'button' + ' ' + (canBuy() ? '' : 'disabled')} disabled={canBuy() == false} onClick={mint}>
-                            MINT NOW ({price.toFixed(2)} eGLD)
+                            MINT NOW ({egldPrice.toFixed(2)} eGLD)
                         </button>
                     </div>
 

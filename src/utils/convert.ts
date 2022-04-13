@@ -17,3 +17,10 @@ export function egldToWei(egld: number) {
 
     return wei;
 }
+
+export function weiToEgld(wei: BigNumber): number {
+    const egld = new BigNumber(wei)
+        .dividedBy(new BigNumber(10).pow(18)).toNumber();
+
+    return egld;
+}

@@ -1,5 +1,8 @@
 import * as React from 'react';
+import { DappUI } from '@elrondnetwork/dapp-core';
+import { fullPriceList } from 'config';
 import { useGetPriceList } from 'hooks/useGetPriceList';
+import { weiToEgld } from 'utils/convert';
 import styles from './bonustable.module.scss';
 
 
@@ -23,7 +26,9 @@ const BonusTable = (props: {
 
     const components = priceList.map((price, index) => {
         const nftAmount = index + 1;
-        const discount = nftAmount - (price * nftAmount);
+        const egldPrice = weiToEgld(price);
+        const notReducedPricePerEgg = weiToEgld(fullPriceList[0]);
+        const discount = notReducedPricePerEgg - (egldPrice * nftAmount);
         const discountPercent = Math.round(discount / nftAmount * 100);
 
 
@@ -44,7 +49,7 @@ const BonusTable = (props: {
         return <tr key={index} className={getClass()}>
             <td>{nftAmount}</td>
             <td>
-                {price}
+                {egldPrice}
                 <span style={{ float: 'right' }}>eGLD</span>
             </td >
             <td>{discountPercent > 0 ? (discountPercent + '%') : ''}</td>

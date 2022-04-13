@@ -5,7 +5,6 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import ScrollToTop from 'react-scroll-to-top';
 import DiscordIcon from 'components/Icon/Discord';
 import ScrollDown from 'components/Icon/ScrollDown';
-import useForceUpdate from 'hooks/useForceUpdate';
 import { SaleStatus, useGetSaleInfos } from 'hooks/useGetSaleInfos';
 import { useOnAnyTransactionSuccess } from 'hooks/useOnAnyTransactionSuccess';
 import UnlockPage from 'pages/UnlockPage';

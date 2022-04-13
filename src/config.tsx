@@ -1,4 +1,5 @@
 import { Address } from '@elrondnetwork/erdjs/out';
+import { BigNumber } from 'bignumber.js';
 import colors from 'colors';
 import { GatewayAPI } from 'apiRequests/GatewayAPI';
 
@@ -25,28 +26,29 @@ export const totalSupply = 10000;
 export const publicSaleOpen = new Date('11 April 2022 17:00:00 UTC');
 export const publicSaleClose = new Date(publicSaleOpen.getTime() + 60 * 60 * 24 * 3 * 1000);
 export const maxPerWallet = 20;
-export const priceList = [
-    1,
-    1,
-    0.95,
-    0.95,
-    0.92,
-    0.92,
-    0.9,
-    0.9,
-    0.875,
-    0.85,
-    0.85,
-    0.85,
-    0.85,
-    0.85,
-    0.85,
-    0.85,
-    0.85,
-    0.85,
-    0.85,
-    0.8
-];
+export const fullPriceList: BigNumber[] = [
+    100 + '0'.repeat(16),
+    100 + '0'.repeat(16),
+    950 + '0'.repeat(15),
+    950 + '0'.repeat(15),
+    920 + '0'.repeat(15),
+    920 + '0'.repeat(15),
+    900 + '0'.repeat(15),
+    900 + '0'.repeat(15),
+    875 + '0'.repeat(15),
+    850 + '0'.repeat(15),
+    850 + '0'.repeat(15),
+    850 + '0'.repeat(15),
+    850 + '0'.repeat(15),
+    850 + '0'.repeat(15),
+    850 + '0'.repeat(15),
+    850 + '0'.repeat(15),
+    850 + '0'.repeat(15),
+    850 + '0'.repeat(15),
+    850 + '0'.repeat(15),
+    800 + '0'.repeat(15),
+
+].map(n => new BigNumber(n));
 
 export const reducedPriceList = [
     0.9,
@@ -69,4 +71,4 @@ export const reducedPriceList = [
     0.8,
     0.8,
     0.75
-];
+].map(n => new BigNumber(n));
