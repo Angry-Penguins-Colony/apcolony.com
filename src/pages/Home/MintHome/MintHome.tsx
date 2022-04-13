@@ -51,8 +51,8 @@ export const MintHome = (props: {
                         <>
                             <button
                                 onClick={props.openMint}
-                                className="button mintNow"
-                                disabled={canMint}
+                                className={'button mintNow' + ' ' + (canMint ? '' : 'disabled')}
+                                disabled={!canMint}
                             >
                                 MINT NOW
                             </button>
