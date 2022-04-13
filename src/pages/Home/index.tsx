@@ -87,39 +87,46 @@ const Home = () => {
           <div id="publicSale">
             <h1>PUBLIC SALE</h1>
             <div className="content">
-              {
-                saleInfos.status == SaleStatus.Soon &&
+              {saleInfos &&
                 <>
-                  <Timer date={saleInfos.date} />
-                  {isLoggedIn ?
-                    <div className="button connectWallet danger" onClick={disconnectWallet}>DISCONNECT</div> :
-                    <div className="button connectWallet" onClick={connectWallet}>CONNECT WALLET</div>
+                  {
+                    saleInfos.status == SaleStatus.Soon &&
+                    <>
+                      <Timer date={saleInfos.date} />
+                      {isLoggedIn ?
+                        <div className="button connectWallet danger" onClick={disconnectWallet}>DISCONNECT</div> :
+                        <div className="button connectWallet" onClick={connectWallet}>CONNECT WALLET</div>
+                      }
+                    </>
+                  }
+                  {
+                    saleInfos.status == SaleStatus.OnSale &&
+                    <>
+                      <h2>TIME REMAINING</h2>
+                      <Timer date={saleInfos.date} />
+                      <div className='mint'>
+                        <div className="nftLeft">{saleInfos.boughtNfts}/10 000</div>
+                        {isLoggedIn ?
+                          <>
+                            <div onClick={openMint} className="button mintNow">MINT NOW</div>
+                            <div className="button connectWallet danger" onClick={disconnectWallet}>DISCONNECT</div>
+                          </> :
+                          <div className="button connectWallet" onClick={connectWallet}>CONNECT WALLET</div>
+                        }
+
+                      </div>
+                    </>
+                  }
+                  {
+                    saleInfos.status == SaleStatus.SoldOut &&
+                    <div className="semiBanner">
+                      <p>SOLD OUT</p>
+                    </div>
                   }
                 </>
               }
-              {
-                saleInfos.status == SaleStatus.OnSale &&
-                <>
-                  <h2>TIME REMAINING</h2>
-                  <Timer date={saleInfos.date} />
-                  <div className='mint'>
-                    <div className="nftLeft">{saleInfos.boughtNfts}/10 000</div>
-                    {isLoggedIn ?
-                      <>
-                        <div onClick={openMint} className="button mintNow">MINT NOW</div>
-                        <div className="button connectWallet danger" onClick={disconnectWallet}>DISCONNECT</div>
-                      </> :
-                      <div className="button connectWallet" onClick={connectWallet}>CONNECT WALLET</div>
-                    }
-
-                  </div>
-                </>
-              }
-              {
-                saleInfos.status == SaleStatus.SoldOut &&
-                <div className="semiBanner">
-                  <p>SOLD OUT</p>
-                </div>
+              {!saleInfos &&
+                <p>Loading...</p>
               }
             </div>
             {/* <BonusPopup isOpen={bonusIsOpen} /> */}

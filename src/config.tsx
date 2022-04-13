@@ -7,6 +7,7 @@ export const dAppName = 'Angry Penguins';
 
 export const devModeActivate = process.env.NODE_ENV === 'development';
 export const totalSupply = 10000;
+export const startingSupply = 3000;
 export const mintConfig = getMintConfig();
 
 const getGateway = () => {

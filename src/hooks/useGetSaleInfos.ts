@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { mintConfig, totalSupply } from 'config';
+import { mintConfig, startingSupply, totalSupply } from 'config';
 import { useGetRemainingNfts } from './useGetRemainingNft';
 
 export enum SaleStatus {
@@ -16,51 +16,38 @@ export interface SaleInfos {
 
 export function useGetSaleInfos() {
 
-    const [saleInfos, setSaleInfos] = useState<SaleInfos>(getSaleInfos());
+    const [saleInfos, setSaleInfos] = useState<SaleInfos | undefined>(undefined);
     const { remainingNfts, refresh: forceRefresh } = useGetRemainingNfts();
 
     if (remainingNfts) {
 
-        const boughtNfts = totalSupply - remainingNfts;
 
-        if (boughtNfts != saleInfos.boughtNfts) {
-            saleInfos.boughtNfts = boughtNfts;
-            setSaleInfos(saleInfos);
+        const status = getSaleStatus();
+        const date = getDate(status);
+        const boughtNfts = totalSupply - remainingNfts + startingSupply;
+
+        const newInfos = {
+            status,
+            date,
+            boughtNfts
+        };
+
+        if (!saleInfos || equals(saleInfos, newInfos) == false) {
+            console.log('update');
+            setSaleInfos(newInfos);
         }
     }
 
     return { saleInfos, refresh: forceRefresh };
 }
 
-function getSaleInfos() {
-    switch (getSaleStatus()) {
-        case SaleStatus.SoldOut:
-            return {
-                status: SaleStatus.SoldOut,
-                date: new Date(),
-                boughtNfts: 200 // TODO: get this value by api call
-            };
-
-        case SaleStatus.OnSale:
-            return {
-                status: SaleStatus.OnSale,
-                date: mintConfig.publicSaleClose,
-                boughtNfts: 200 // TODO: get this value by api call
-            };
-
-        case SaleStatus.Soon:
-            return {
-                status: SaleStatus.Soon,
-                date: mintConfig.publicSaleOpen,
-                boughtNfts: 0 // TODO: get this value by api call
-            };
-
-        default:
-            throw new Error('Unknow Sale Status');
-    }
+function equals(a: SaleInfos, b: SaleInfos) {
+    return a.status === b.status && a.date.getTime() === b.date.getTime() && a.boughtNfts === b.boughtNfts;
 }
 
 function getSaleStatus(): SaleStatus {
+
+
     const now = new Date();
 
     if (now < mintConfig.publicSaleOpen) {
@@ -71,5 +58,21 @@ function getSaleStatus(): SaleStatus {
     }
     else {
         return SaleStatus.SoldOut;
+    }
+}
+
+function getDate(status: SaleStatus): Date {
+    switch (status) {
+        case SaleStatus.SoldOut:
+            return new Date();
+
+        case SaleStatus.OnSale:
+            return mintConfig.publicSaleClose;
+
+        case SaleStatus.Soon:
+            return mintConfig.publicSaleOpen;
+
+        default:
+            throw new Error('Unknow Sale Status');
     }
 }
