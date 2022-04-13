@@ -6,9 +6,7 @@ import DiscordIcon from 'components/Icon/Discord';
 import ScrollDown from 'components/Icon/ScrollDown';
 import { routeNames } from 'routes';
 import AvantageCard from './AvantageCard';
-import AwardPopup from './AwardPopup';
 import BigTitleSlide from './BigTitleSlide';
-import BonusPopup from './BonusPopup';
 import BonusTable from './BonusTable';
 import FaqQuestionAnswer from './FaqQuestionAnswer';
 import './index.scss';
@@ -52,12 +50,6 @@ const Home = () => {
     setNbEgld((nbEgld > 1) ? nbEgld - 1 : 1);
   };
 
-  // popup with bonus info
-  const [bonusIsOpen, setBonusIsOpen] = React.useState('');
-  const openBonusPopup = () => {
-    setBonusIsOpen(Math.random().toString());
-  };
-
   return (
     <div id='home'>
       <ScrollDown id="scrollDown" />
@@ -99,7 +91,7 @@ const Home = () => {
       {
         !mintIsOpen &&
         <>
-          <AwardPopup />
+          {/* <AwardPopup /> */}
           <div id="icebergHero">
             <img src="/img/Iceberg-hero-Mobile.png" className='mobile' />
             <img src="/img/Iceberg-hero.png" className='desktop' />
