@@ -11,6 +11,7 @@ import UnlockPage from 'pages/UnlockPage';
 import { routeNames } from 'routes';
 import AvantageCard from './AvantageCard';
 import BigTitleSlide from './BigTitleSlide';
+import BonusTable from './BonusTable';
 import FaqQuestionAnswer from './FaqQuestionAnswer';
 import './index.scss';
 import ItemsSlider from './ItemsSlider';
@@ -75,6 +76,7 @@ const Home = () => {
             <UnlockPage />
           </Popup>
 
+          {/* <AwardPopup /> */}
           <div id="icebergHero">
             <img src="/img/Iceberg-hero-Mobile.png" className='mobile' />
             <img src="/img/Iceberg-hero.png" className='desktop' />
@@ -418,6 +420,7 @@ const Home = () => {
           <div id="faq" className='container'>
             <h2>FAQ</h2>
             <div className="content">
+              <h3>About project</h3>
               <FaqQuestionAnswer question={'What are the Angry Penguins ?'}>
                 Angry Penguins are a committed colony of 10,000 randomly generated and customizable NFTs living on the Elrond blockchain. By owning Angry Penguins, you support the environmental protection that penguins and many other species call home.
               </FaqQuestionAnswer>
@@ -433,6 +436,65 @@ const Home = () => {
               <FaqQuestionAnswer question={'Why Elrond ?'}>
                 We strongly believe that the Elrond blockchain is revolutionary and in line with the values the team stands for through this project. We put the contribution to the development of Elrond as one of our priorities.
               </FaqQuestionAnswer>
+              <FaqQuestionAnswer question="How to get your Emperor role in the discord ?">
+                Go to the #join channel and thanks to your erd address, our bot will check if you have eggs in your wallet. If you have eggs, you will then have access to some channels that only Emperors can see (the voting station, the chat for emperors and others)
+
+                <div className='mt-5 d-flex justify-content-center align-items-center flex-column'>
+
+                  <a href={routeNames.discord} target="_blank" rel="noopener noreferrer" className='button button-outline icon' >
+                    <DiscordIcon />
+                  </a>
+                </div>
+              </FaqQuestionAnswer>
+            </div>
+            <div className="content mt-5">
+              <h3>About public sale</h3>
+
+              <FaqQuestionAnswer id="public-sale-details" answerClassName="public-sale-details_answer" question="What are all the important informations about the public sale ?">
+                <img className="details" src="/img/faq/public-sale-details.jpg" />
+                <img className="discount" src="/img/faq/discount.jpg" />
+              </FaqQuestionAnswer>
+
+              <FaqQuestionAnswer question="What will be the interest of buying an egg during our Public Sale ?">
+                Every person who participates in the Public Sale will have a chance to receive special airdrops. Here is the list of rewards :<br />
+                <br />
+                - 200,000 JEX Token<br />
+                - 2 x 1,000 Itheum token<br />
+                - Aquaverse accessories (Gold Sponge skin, Silver Trident, Bronze Tiara)<br />
+                - Subcarpati accessories (Gold, Silver and Bronze masks)<br />
+                - WWWINE accessories (Gold Barrel, Silver Belt, Bronze corkscrew)<br />
+                <br />
+                If you want to have a chance to receive one of these, make sure to buy at least one egg on Thursday.<br />
+                <br />
+                After these airdrops, other rewards will come :<br />
+                - Passive income with the rarest accessories<br />
+                - Privileged access to the projects we will incubate<br />
+                - Right to vote for the big decisions of the project<br />
+              </FaqQuestionAnswer>
+              <FaqQuestionAnswer question="How to participate in the Public Sale ? And who will be able to mint ?">
+                Our Public Sale will take place on the 14th of April on our website : <a href="https://angrypenguinscolony.com/">https://angrypenguinscolony.com/</a><br />
+                <br />
+                Everyone will be able to mint, but not at the same time. <br />
+                6:30 pm : Emperors (our owners) will be the first to have access to the mint.<br />
+                <br />
+                6:30 pm : Whitelisted people will have access to the mint<br />
+                <br />
+                7 pm : Everyone will be able to mint the remaining supply<br />
+              </FaqQuestionAnswer>
+              <FaqQuestionAnswer question="How do I know if I am whitelisted ?">
+                You just have to connect at 6:30 pm and check if you have access to mint. If you can indeed mint, then congratulations you are whitelisted. If not, you will have to wait 7 pm.
+              </FaqQuestionAnswer>
+              <FaqQuestionAnswer question="What will the mint price be ?">
+                The opening price of the mint will be 1 EGLD.
+                <BonusTable />
+              </FaqQuestionAnswer>
+              <FaqQuestionAnswer question="What will the percentage of royalties be ?">
+                The percentage of royalties for the Angry Penguins will be 5% and only 2.5% for the accessories.<br />
+                On the eggs, the royalties had been fixed at 25% by holders (12.5% for the holders, 6.25% for the association and 6.25% for the project). As the percentage is divided by 5, this will no longer apply.
+              </FaqQuestionAnswer>
+
+
+
             </div>
           </div>
           <div id='deco_footer' >

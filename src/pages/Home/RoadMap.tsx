@@ -196,7 +196,7 @@ const RoadMap = () => {
                                 <tspan x="-109.74" y="19">Announcing the first </tspan>
                                 <tspan x="-140.58" y="43">customizable collection</tspan>
                                 <tspan y="43" fontFamily="Montserrat-Regular, Montserrat" fontWeight="400"></tspan>
-                                <tspan y="43">on </tspan>
+                                <tspan y="43"> on </tspan>
                                 <tspan x="-141.77" y="67">Elrond</tspan>
                                 <tspan y="67" xmlSpace="preserve" fontFamily="Montserrat-Regular, Montserrat" fontWeight="400"> via the purchase and </tspan>
                                 <tspan x="-148.38" y="91" fontFamily="Montserrat-Regular, Montserrat" fontWeight="400">resale of penguin accessories, </tspan>
