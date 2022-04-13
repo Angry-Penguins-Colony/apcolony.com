@@ -7,7 +7,17 @@ export const useHasDiscount = () => {
 
     const { address } = useGetAccountInfo();
 
-    const fetchObject = useFetch(API.hasDiscount(Address.fromBech32(address)));
+    const fetchDiscount = async (): Promise<boolean> => {
+        if (address) {
+            return API.hasDiscount(Address.fromBech32(address));
+        }
+        else {
+            console.warn('Cannot refresh hasDiscount because address is undefined');
+            return false;
+        }
+    };
+    const fetchObject = useFetch<boolean>(fetchDiscount());
+
     return {
         hasDiscount: fetchObject.output,
         refresh: fetchObject.refresh
