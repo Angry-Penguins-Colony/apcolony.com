@@ -25,6 +25,8 @@ export function useGetSaleInfos() {
         const status = getSaleStatus();
         const boughtNfts = totalSupply - remainingNfts + startingSupply;
 
+        console.log('status', status);
+
         const newInfos = {
             status,
             boughtNfts

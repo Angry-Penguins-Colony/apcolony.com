@@ -27,49 +27,48 @@ export const MintHome = (props: {
         </p>;
     }
 
-    switch (saleInfos.status) {
-        case SaleStatus.Soon:
-            return <>
-                <Timer date={mintConfig.publicSaleOpen} />
+    const saleSoonForUser = saleInfos.status == SaleStatus.Soon
+        || (saleInfos.status == SaleStatus.WhitelistOpen && !isWhitelisted);
+    const saleOpenForUser = saleInfos.status == SaleStatus.OnSale
+        || (saleInfos.status == SaleStatus.WhitelistOpen && isWhitelisted);
+
+    if (saleSoonForUser) {
+        return <>
+            <Timer date={mintConfig.publicSaleOpen} />
+            {isLoggedIn ?
+                <DisconnectWalletButton /> : <ConnectWalletButton />
+            }
+        </>;
+    }
+    else if (saleOpenForUser) {
+
+        return <>
+            <h2>TIME REMAINING</h2>
+            <Timer date={mintConfig.publicSaleClose} />
+            <div className='mint'>
+                <div className="nftLeft">{saleInfos.boughtNfts}/10 000</div>
                 {isLoggedIn ?
-                    <DisconnectWalletButton /> : <ConnectWalletButton />
+                    <>
+                        <button
+                            onClick={props.openMint}
+                            className='button mintNow'>
+                            MINT NOW
+                        </button>
+                        <DisconnectWalletButton />
+                    </> :
+                    <ConnectWalletButton />
                 }
-            </>;
 
-        case SaleStatus.WhitelistOpen:
-        case SaleStatus.OnSale:
+            </div>
+        </>;
+    }
+    else if (saleInfos.status == SaleStatus.SoldOut) {
+        return <div className="semiBanner">
+            <p>SOLD OUT</p>
+        </div>;
 
-            const canMint = saleInfos.status == SaleStatus.OnSale
-                || (saleInfos.status == SaleStatus.WhitelistOpen && isWhitelisted);
-
-            return <>
-                <h2>TIME REMAINING</h2>
-                <Timer date={mintConfig.publicSaleClose} />
-                <div className='mint'>
-                    <div className="nftLeft">{saleInfos.boughtNfts}/10 000</div>
-                    {isLoggedIn ?
-                        <>
-                            <button
-                                onClick={props.openMint}
-                                className={'button mintNow' + ' ' + (canMint ? '' : 'disabled')}
-                                disabled={!canMint}
-                            >
-                                MINT NOW
-                            </button>
-                            <DisconnectWalletButton />
-                        </> :
-                        <ConnectWalletButton />
-                    }
-
-                </div>
-            </>;
-
-        case SaleStatus.SoldOut:
-            return <div className="semiBanner">
-                <p>SOLD OUT</p>
-            </div>;
-
-        default:
-            throw new Error('Unknown sale status');
+    }
+    else {
+        throw new Error('Unknown sale status');
     }
 };
