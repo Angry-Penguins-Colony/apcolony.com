@@ -1,6 +1,6 @@
 import { refreshAccount, transactionServices } from '@elrondnetwork/dapp-core';
 import { BigNumber } from 'bignumber.js';
-import { mintAddress } from 'config';
+import { mintConfig } from 'config';
 import { numberToHex } from 'utils/convert';
 
 export default async function mintEggs(wei: BigNumber, eggsCount: number) {
@@ -8,7 +8,7 @@ export default async function mintEggs(wei: BigNumber, eggsCount: number) {
     const customizeTransaction = {
         value: wei,
         data: 'buy@' + numberToHex(eggsCount),
-        receiver: mintAddress.bech32(),
+        receiver: mintConfig.contractAddress.bech32(),
         gasLimit: 20_000_000
     };
 

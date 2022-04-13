@@ -460,9 +460,7 @@ const Home = () => {
                 <br />
                 - 200,000 JEX Token<br />
                 - 2 x 1,000 Itheum token<br />
-                - Aquaverse accessories (Gold Sponge skin, Silver Trident, Bronze Tiara)<br />
-                - Subcarpati accessories (Gold, Silver and Bronze masks)<br />
-                - WWWINE accessories (Gold Barrel, Silver Belt, Bronze corkscrew)<br />
+                - Exclusive accessories from our partner collections (will it be Aquaverse accessories ? WWWINE ? Jexchange ?) you&apos;ll see after the Public Sale...<br />
                 <br />
                 If you want to have a chance to receive one of these, make sure to buy at least one egg on Thursday.<br />
                 <br />

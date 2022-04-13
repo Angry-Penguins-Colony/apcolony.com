@@ -1,6 +1,6 @@
-import { fullPriceList } from 'config';
+import { mintConfig } from 'config';
 
 export const useGetPriceList = () => {
     // TODO: return reduced price if whitelisted
-    return fullPriceList;
+    return mintConfig.fullPriceList;
 };

@@ -1757,16 +1757,14 @@
 
             #public-sale-details {
             
-                .public-sale-details_answer {
-                    // box-sizing: border-box;
-                    // width: 100%;                
+                .public-sale-details_answer {  
                     padding-right: 25px !important;                    
                     
 
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     grid-template-rows: 1fr;
-                    gap: 0px 30px;
+                    gap: 30px 30px;
                     grid-auto-flow: row;
                     grid-template-areas: "details discount";
                 
@@ -1778,6 +1776,17 @@
                         object-fit: cover;
                         width: 100%;
                         max-height: 100%;                        
+                    }
+
+                    @media (max-width: 850px) {
+                        & {
+                            grid-template-columns: 1fr;
+                            grid-template-rows: 1fr  1fr;
+
+                            grid-template-areas: 
+                            "details"
+                            "discount"; 
+                        }
                     }
                 }
             }

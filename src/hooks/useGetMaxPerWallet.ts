@@ -1,5 +1,5 @@
-import { maxPerWallet } from 'config';
+import { mintConfig } from 'config';
 
 export const useGetMaxPerWallet = () => {
-    return maxPerWallet;
+    return mintConfig.maxPerWallet;
 };

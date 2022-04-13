@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { publicSaleClose, publicSaleOpen, totalSupply } from 'config';
+import { mintConfig, totalSupply } from 'config';
 import { useGetRemainingNfts } from './useGetRemainingNft';
 
 export enum SaleStatus {
@@ -44,14 +44,14 @@ function getSaleInfos() {
         case SaleStatus.OnSale:
             return {
                 status: SaleStatus.OnSale,
-                date: publicSaleClose,
+                date: mintConfig.publicSaleClose,
                 boughtNfts: 200 // TODO: get this value by api call
             };
 
         case SaleStatus.Soon:
             return {
                 status: SaleStatus.Soon,
-                date: publicSaleOpen,
+                date: mintConfig.publicSaleOpen,
                 boughtNfts: 0 // TODO: get this value by api call
             };
 
@@ -63,10 +63,10 @@ function getSaleInfos() {
 function getSaleStatus(): SaleStatus {
     const now = new Date();
 
-    if (now < publicSaleOpen) {
+    if (now < mintConfig.publicSaleOpen) {
         return SaleStatus.Soon;
     }
-    else if (now < publicSaleClose) {
+    else if (now < mintConfig.publicSaleClose) {
         return SaleStatus.OnSale;
     }
     else {
