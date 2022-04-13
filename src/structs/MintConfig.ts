@@ -8,6 +8,7 @@ export interface MintConfig {
     contractAddress: Address;
     publicSaleOpen: Date;
     publicSaleClose: Date;
+    whitelistedOpen: Date;
     maxPerWallet: number;
     fullPriceList: BigNumber[];
     reducedPriceList: BigNumber[];

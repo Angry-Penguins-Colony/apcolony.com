@@ -8,6 +8,7 @@ export const mainnetConfig: MintConfig = {
     contractAddress: new Address(''),
     publicSaleOpen: publicSaleOpen,
     publicSaleClose: new Date(publicSaleOpen.getTime() + 60 * 60 * 24 * 3 * 1000),
+    whitelistedOpen: new Date(publicSaleOpen.getTime() + 60 * 30),
     maxPerWallet: 20,
     fullPriceList: [
         1000 + '0'.repeat(15),

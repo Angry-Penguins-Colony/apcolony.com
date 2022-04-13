@@ -5,12 +5,12 @@ import { useGetRemainingNfts } from './useGetRemainingNft';
 export enum SaleStatus {
     Soon = 0,
     OnSale = 1,
-    SoldOut = 2
+    SoldOut = 2,
+    WhitelistOpen = 3
 }
 
 export interface SaleInfos {
     status: SaleStatus,
-    date: Date,
     boughtNfts: number
 }
 
@@ -23,12 +23,10 @@ export function useGetSaleInfos() {
 
 
         const status = getSaleStatus();
-        const date = getDate(status);
         const boughtNfts = totalSupply - remainingNfts + startingSupply;
 
         const newInfos = {
             status,
-            date,
             boughtNfts
         };
 
@@ -41,37 +39,22 @@ export function useGetSaleInfos() {
 }
 
 function equals(a: SaleInfos, b: SaleInfos) {
-    return a.status === b.status && a.date.getTime() === b.date.getTime() && a.boughtNfts === b.boughtNfts;
+    return a.status === b.status && a.boughtNfts === b.boughtNfts;
 }
 
 function getSaleStatus(): SaleStatus {
-
-
     const now = new Date();
 
-    if (now < mintConfig.publicSaleOpen) {
+    if (now < mintConfig.whitelistedOpen) {
         return SaleStatus.Soon;
+    }
+    else if (now < mintConfig.publicSaleOpen) {
+        return SaleStatus.WhitelistOpen;
     }
     else if (now < mintConfig.publicSaleClose) {
         return SaleStatus.OnSale;
     }
     else {
         return SaleStatus.SoldOut;
-    }
-}
-
-function getDate(status: SaleStatus): Date {
-    switch (status) {
-        case SaleStatus.SoldOut:
-            return new Date();
-
-        case SaleStatus.OnSale:
-            return mintConfig.publicSaleClose;
-
-        case SaleStatus.Soon:
-            return mintConfig.publicSaleOpen;
-
-        default:
-            throw new Error('Unknow Sale Status');
     }
 }

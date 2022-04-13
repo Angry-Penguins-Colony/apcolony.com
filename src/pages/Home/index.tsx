@@ -1,14 +1,9 @@
 import * as React from 'react';
-import { useGetLoginInfo } from '@elrondnetwork/dapp-core';
 import { BsArrowUpCircleFill as ScrollToTopIcon } from 'react-icons/bs';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import ScrollToTop from 'react-scroll-to-top';
-import { DisconnectWalletButton } from 'components/DisconnectWallet/DisconnectWalletButton';
 import DiscordIcon from 'components/Icon/Discord';
 import ScrollDown from 'components/Icon/ScrollDown';
-import { SaleStatus, useGetSaleInfos } from 'hooks/useGetSaleInfos';
-import { useOnAnyTransactionSuccess } from 'hooks/useOnAnyTransactionSuccess';
-import UnlockPage from 'pages/UnlockPage';
 import { routeNames } from 'routes';
 import AvantageCard from './AvantageCard';
 import BigTitleSlide from './BigTitleSlide';
@@ -17,51 +12,22 @@ import './index.scss';
 import ItemsSlider from './ItemsSlider';
 import BonusTable from './Mint/BonusTable';
 import { Mint } from './Mint/Mint';
-import Popup from './Popup';
+import { MintHome } from './MintHome/MintHome';
 import RoadMap from './RoadMap';
 import TeamMember from './TeamMember';
-import Timer from './Timer';
 import VideoPlayer from './VideoPlayer';
 import 'lodash';
 
 
 const Home = () => {
 
-
-  const { saleInfos, refresh: refreshSaleInfos } = useGetSaleInfos();
-  useOnAnyTransactionSuccess(() => {
-    refreshSaleInfos();
-  });
-
-
   /* mint */
   const [mintIsOpen, setMintIsOpen] = React.useState(false);
-
-  const openMint = () => {
-    setMintIsOpen(true);
-  };
-
-  const closeMint = () => {
-    setMintIsOpen(false);
-  };
-
-  // popup with bonus info
-  // const [bonusIsOpen, setBonusIsOpen] = React.useState('');
-  // const openBonusPopup = () => {
-  //   setBonusIsOpen(Math.random().toString());
-  // };
-
-  const [connectWalletOpen, setConnectWalletOpen] = React.useState(false);
-  const connectWallet = () => {
-    setConnectWalletOpen(true);
-  };
-
-
-  const { isLoggedIn } = useGetLoginInfo();
+  const openMint = () => setMintIsOpen(true);
+  const closeMint = () => setMintIsOpen(false);
 
   return (
     <div id='home'>
-
 
       {
         mintIsOpen &&
@@ -72,12 +38,7 @@ const Home = () => {
         <>
           <ScrollDown id="scrollDown" />
           <ScrollToTop className="scrollToTop" smooth component={<ScrollToTopIcon />} />
-          {/* <AwardPopup forceIsOpen={connectWalletOpenedOnce ? false : undefined} /> */}
-          <Popup backdrop position="center" isOpen={connectWalletOpen} onClose={() => setConnectWalletOpen(false)}>
-            <UnlockPage />
-          </Popup>
 
-          {/* <AwardPopup /> */}
           <div id="icebergHero">
             <img src="/img/Iceberg-hero-Mobile.png" className='mobile' />
             <img src="/img/Iceberg-hero.png" className='desktop' />
@@ -88,53 +49,8 @@ const Home = () => {
           <div id="publicSale">
             <h1>PUBLIC SALE</h1>
             <div className="content">
-              {saleInfos &&
-                <>
-                  {
-                    saleInfos.status == SaleStatus.Soon &&
-                    <>
-                      <Timer date={saleInfos.date} />
-                      {isLoggedIn ?
-                        <DisconnectWalletButton /> :
-                        <div className="button connectWallet" onClick={connectWallet}>CONNECT WALLET</div>
-                      }
-                    </>
-                  }
-                  {
-                    saleInfos.status == SaleStatus.OnSale &&
-                    <>
-                      <h2>TIME REMAINING</h2>
-                      <Timer date={saleInfos.date} />
-                      <div className='mint'>
-                        <div className="nftLeft">{saleInfos.boughtNfts}/10 000</div>
-                        {isLoggedIn ?
-                          <>
-                            <div onClick={openMint} className="button mintNow">MINT NOW</div>
-                            <DisconnectWalletButton />
-                          </> :
-                          <div className="button connectWallet" onClick={connectWallet}>CONNECT WALLET</div>
-                        }
-
-                      </div>
-                    </>
-                  }
-                  {
-                    saleInfos.status == SaleStatus.SoldOut &&
-                    <div className="semiBanner">
-                      <p>SOLD OUT</p>
-                    </div>
-                  }
-                </>
-              }
-              {!saleInfos &&
-                <p>Loading...</p>
-              }
+              <MintHome openMint={openMint} closeMint={closeMint} />
             </div>
-            {/* <BonusPopup isOpen={bonusIsOpen} /> */}
-            {/* <div className="saleInfos" onClick={openBonusPopup}>
-              <p>PUBLIC SALE INFOS</p>
-              <span className="icon">?</span>
-            </div> */}
           </div>
 
           <div id="welcome">
