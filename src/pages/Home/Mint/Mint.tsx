@@ -11,7 +11,6 @@ import { humanizeBalance } from 'utils/humanize';
 import { calculatePriceFromNft } from 'utils/priceCalculation';
 import BonusTable, { CLASS_HIGHLIGHTED } from './BonusTable';
 import './Mint.scss';
-import { DappUI } from '@elrondnetwork/dapp-core';
 
 export const Mint = (props: {
     onClose?: () => void

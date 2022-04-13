@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { DappUI } from '@elrondnetwork/dapp-core';
 import { fullPriceList } from 'config';
 import { useGetPriceList } from 'hooks/useGetPriceList';
 import { weiToEgld } from 'utils/convert';
