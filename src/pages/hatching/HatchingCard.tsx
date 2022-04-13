@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import styles from './hatchingCard.module.scss';
 
@@ -61,6 +63,34 @@ const HatchingCard = (props: {
             }
         }
     };
+
+    const [confirmSelection, setConfirmSelection] = React.useState<boolean>(false);
+    const handleConfirmSelection = () => {
+        setConfirmSelection(!confirmSelection);
+    };
+
+    const refVideoEgglight = React.useRef<HTMLVideoElement>(null);
+    const [videoIsDisplay, setVideoIsDisplay] = React.useState<boolean>(false);
+    const [videoIsEnded, setVideoIsEnded] = React.useState<boolean>(false);
+    const [eggsIsHatch, setEggsIsHatch] = React.useState<boolean>(false);
+
+    const startHatching = () => {
+        console.log('start hatching');
+
+        // display video and auto play
+        setVideoIsDisplay(true);
+
+        // TODO: hatch egg
+        setTimeout(() => {
+            setEggsIsHatch(true);
+        }, 3500);
+    };
+
+    // display hatching result
+    if (videoIsEnded && eggsIsHatch) {
+        // TODO: display result
+        console.log('display result');
+    }
 
     // get all item card by API
     React.useEffect(() => {
@@ -251,7 +281,6 @@ const HatchingCard = (props: {
         if (sameSlectedItem) {
             isSelected = true;
         }
-        console.log('isSelected', isSelected);
 
         itemCards.push(
             <ItemCard itemId={item.id.toString()} key={item.id.toString()} item={item} changeSelection={changeSelection} isSelected={isSelected} />
@@ -297,8 +326,7 @@ const HatchingCard = (props: {
                                     <h4>{selectedItems[0].title}</h4>
                                     <p>This is a tier {selectedItems[0].tier} egg, you can see it by is bronze halo on it</p>
                                     {/* TODO: add good description */}
-                                    <div className='button'>HATCH THIS EGG</div>
-                                    {/* TODO: bind button */}
+                                    <div className='button' onClick={startHatching}>HATCH THIS EGG</div>
                                 </>
                                 :
                                 <>
@@ -323,18 +351,39 @@ const HatchingCard = (props: {
                                     </div>
                                 </>
                     }
+                    {
+                        confirmSelection &&
+                        <div className={styles.confirmSelection}>
+                            <p>{'YOU\'RE ABOUT '}<br />{'TO HATCH ' + selectedItems.length + ' EGGS !'}</p>
+                            <div className={styles.actions}>
+                                <div className={'button ' + styles.button} onClick={startHatching}>HATCH NOW</div>
+                                <div className={'button button-cancel ' + styles.button} onClick={handleConfirmSelection}>CANCEL</div>
+                            </div>
+                        </div>
+                    }
                 </div>
                 {
                     (selectedItems.length > 1) &&
                     <div className={styles.actions}>
-                        <div className={styles.button + ' button'}>CONFIRM SELECTION</div>
-                        {/* TODO: bind button */}
-                        <div className={styles.button + ' button button-cancel'}>CANCEL</div>
-                        {/* TODO: bind button */}
+                        <div className={styles.button + ' button'} onClick={handleConfirmSelection}>CONFIRM SELECTION</div>
+                        <div className={styles.button + ' button button-cancel'} onClick={() => { setSelectedItems([]); }}>CANCEL</div>
                     </div>
                 }
             </div>
-        </div>
+            {
+                videoIsDisplay &&
+                <div className={styles.video}>
+                    <div className={styles.content}>
+                        {
+                            videoIsEnded ?
+                                <FontAwesomeIcon icon={faCircleNotch} spin size='3x' className={styles.loader} />
+                                :
+                                <video src="/video/Eggs lumière excès.mp4" ref={refVideoEgglight} autoPlay onEnded={() => { setVideoIsEnded(true); }}></video>
+                        }
+                    </div>
+                </div>
+            }
+        </div >
     );
 };
 
