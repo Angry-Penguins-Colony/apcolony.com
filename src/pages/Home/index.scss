@@ -32,7 +32,7 @@
     #scrollDown {
         position: absolute;
         bottom: 50px;
-        left: 50%;
+        left: calc(50px + 33px); // 33px = height of mouse
         transform: translateX(-50%);
     }
 
@@ -1834,7 +1834,7 @@
     }
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 900px){
     #home {
         #scrollDown {
             display: none;

@@ -32,7 +32,6 @@ export const Mint = (props: {
     });
 
     const price = calculatePrice();
-    console.log('price', price);
 
     const explorerUrl = network.explorerAddress;
     const accountExplorer = explorerUrl + '/accounts/' + address;
