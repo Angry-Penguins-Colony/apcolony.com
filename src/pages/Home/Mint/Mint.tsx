@@ -1,4 +1,5 @@
 import React from 'react';
+import { useGetAccountInfo, useGetNetworkConfig } from '@elrondnetwork/dapp-core';
 import { Alert } from 'react-bootstrap';
 import { useGetBalance } from 'hooks/useGetBalance';
 import { useGetMaxPerWallet } from 'hooks/useGetMaxPerWallet';
@@ -16,7 +17,10 @@ export const Mint = (props: {
     onClose?: () => void
 }) => {
 
+    const [bonusTableRef, setBonusTableRef] = React.useState<HTMLTableElement | null>(null);
     const [nftsAmount, setNftsAmount] = React.useState(1);
+    const { address } = useGetAccountInfo();
+    const { network } = useGetNetworkConfig();
     const priceList = useGetPriceList();
     const maxPerWallet = useGetMaxPerWallet();
     const { boughtNfts, refresh: refreshNfts } = useGetMyBoughtNfts();
@@ -26,66 +30,12 @@ export const Mint = (props: {
         refreshNfts();
     });
 
-    const price = priceList ? calculatePriceFromNft(nftsAmount, boughtNfts ?? 0, priceList) : undefined;
+    const price = calculatePrice();
 
-    const [bonusTableRef, setBonusTableRef] = React.useState<HTMLTableElement | null>(null);
+    const explorerUrl = network.explorerAddress;
+    const accountExplorer = explorerUrl + '/accounts/' + address;
 
-    const mint = () => {
-        if (!price) return;
 
-        mintEggs(price, nftsAmount);
-    };
-
-    const canIncrement = (): boolean => {
-
-        return !hasMaxPerWallet() && canBuyNext();
-    };
-
-    const canBuy = () => {
-        return price != null && weiBalance.valueOf().comparedTo(price) >= 0;
-    };
-
-    const canBuyNext = () => {
-        if (boughtNfts != null && priceList != null) {
-
-            if (hasMaxPerWallet() == false) {
-                const newPrice = calculatePriceFromNft(nftsAmount + 1, boughtNfts, priceList);
-
-                return weiBalance.valueOf().comparedTo(newPrice) >= 0;
-            }
-        }
-
-        return false;
-    };
-
-    const hasMaxPerWallet = () => {
-        return boughtNfts != null && nftsAmount + boughtNfts >= (maxPerWallet);
-    };
-
-    const incrementNftsAmount = () => {
-        if (canIncrement()) {
-            setNftsAmount(nftsAmount + 1);
-            scrollToHighlitedTabe();
-        }
-    };
-
-    const decrementNftsAmount = () => {
-        if (nftsAmount >= 2) {
-            setNftsAmount(nftsAmount - 1);
-            scrollToHighlitedTabe();
-        }
-    };
-
-    const scrollToHighlitedTabe = () => {
-
-        if (bonusTableRef) {
-            const highlighted = bonusTableRef.getElementsByClassName(CLASS_HIGHLIGHTED);
-
-            if (highlighted.length > 0) {
-                highlighted[0].scrollIntoView({ block: 'center' });
-            }
-        }
-    };
 
     return <div id='mint'>
         <div className="header container">
@@ -107,7 +57,11 @@ export const Mint = (props: {
                 <h1>PUBLIC SALE</h1>
 
                 <div>
-                    <p className="mb-3 text-muted balance">My balance: {humanizeBalance(weiBalance)} eGLD</p>
+                    <p className="mb-3 text-muted balance">
+                        <a href={accountExplorer} target="_blank" rel="noopener noreferrer">
+                            My balance: {humanizeBalance(weiBalance)} eGLD
+                        </a>
+                    </p>
                     {getWarningComponent()}
 
                     <div className="mintButton">
@@ -116,7 +70,7 @@ export const Mint = (props: {
                             <div className="numberSelect">{nftsAmount}</div>
                             <div className="plus" onClick={incrementNftsAmount}>+</div>
                         </div>
-                        <button className={'button' + ' ' + (canBuy() ? '' : 'disabled')} disabled={canBuy() == false} onClick={mint}>
+                        <button className={'button' + ' ' + (canMint() ? '' : 'disabled')} disabled={canBuy() == false} onClick={mint}>
                             MINT NOW ({price ? weiToEgld(price).toFixed(2) : '--'} eGLD)
                         </button>
                     </div>
@@ -134,6 +88,83 @@ export const Mint = (props: {
             </div>
         </div>
     </div>;
+
+    function calculatePrice() {
+
+        if (priceList && boughtNfts) {
+
+            if (nftsAmount + boughtNfts <= maxPerWallet) {
+                return calculatePriceFromNft(nftsAmount, boughtNfts ?? 0, priceList);
+            }
+            else {
+                return 0;
+            }
+        }
+        else {
+            return undefined;
+        }
+    }
+
+    function mint() {
+        if (!price) return;
+
+        mintEggs(price, nftsAmount);
+    }
+
+    function canIncrement(): boolean {
+
+        return !hasMaxPerWallet() && canBuyNext();
+    }
+
+    function canMint(): boolean {
+        return canBuy() && !hasMaxPerWallet();
+    }
+
+    function canBuy(): boolean {
+        return price != null && weiBalance.valueOf().comparedTo(price) >= 0;
+    }
+
+    function canBuyNext() {
+        if (boughtNfts != null && priceList != null) {
+
+            if (hasMaxPerWallet() == false) {
+                const newPrice = calculatePriceFromNft(nftsAmount + 1, boughtNfts, priceList);
+
+                return weiBalance.valueOf().comparedTo(newPrice) >= 0;
+            }
+        }
+
+        return false;
+    }
+
+    function hasMaxPerWallet() {
+        return boughtNfts != null && nftsAmount + boughtNfts >= (maxPerWallet);
+    }
+
+    function incrementNftsAmount() {
+        if (canIncrement()) {
+            setNftsAmount(nftsAmount + 1);
+            scrollToHighlightedTable();
+        }
+    }
+
+    function decrementNftsAmount() {
+        if (nftsAmount >= 2) {
+            setNftsAmount(nftsAmount - 1);
+            scrollToHighlightedTable();
+        }
+    }
+
+    function scrollToHighlightedTable() {
+
+        if (bonusTableRef) {
+            const highlighted = bonusTableRef.getElementsByClassName(CLASS_HIGHLIGHTED);
+
+            if (highlighted.length > 0) {
+                highlighted[0].scrollIntoView({ block: 'center' });
+            }
+        }
+    }
 
     function getWarningComponent() {
 
