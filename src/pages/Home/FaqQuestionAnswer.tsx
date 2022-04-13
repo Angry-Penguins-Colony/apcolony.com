@@ -4,6 +4,8 @@ import styles from './faqQuestionAnswer.module.scss';
 const FaqQuestionAnswer = (props: {
     question: string;
     children: React.ReactNode;
+    id?: string;
+    answerClassName?: string;
 }) => {
     const question = props.question;
     const children = props.children;
@@ -15,7 +17,7 @@ const FaqQuestionAnswer = (props: {
     };
 
     return (
-        <div className={styles.faqQuestionAnswer + (isOpen ? ' ' + styles.isOpen : '')}>
+        <div id={props.id || ''} className={styles.faqQuestionAnswer + (isOpen ? ' ' + styles.isOpen : '')}>
             <div className={styles.head} onClick={toggleOpen}>
                 <div className={styles.question}>{question}</div>
                 <div className={styles.icon + ' button icon'}>
@@ -23,7 +25,7 @@ const FaqQuestionAnswer = (props: {
                     <img src="/img/icons/minus.svg" alt="Reduce" className={styles.reduce} />
                 </div>
             </div>
-            <div className={styles.answer}>
+            <div className={styles.answer + ' ' + (props.answerClassName || '')}>
                 {children}
             </div>
         </div >
