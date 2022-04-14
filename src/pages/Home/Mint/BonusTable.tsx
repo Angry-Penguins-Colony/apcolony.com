@@ -119,12 +119,30 @@ const BonusTable = (props: {
                 }
             };
 
+            const getImagePath = () => {
+                if (index == 0) {
+                    return 'img/table_eggs/eggs_1.png';
+                }
+                else if (index == 1) {
+                    return 'img/table_eggs/eggs_2.png';
+                }
+                else {
+                    return 'img/table_eggs/eggs_3.png';
+                }
+            };
+
             return <tr key={index} className={getClass()} onClick={() => {
                 if (props.onRowClick) {
                     props.onRowClick(index);
                 }
             }}>
-                <td>{nftAmount}</td>
+                <td className={styles.eggs}>
+                    <img src={getImagePath()} alt={`${nftAmount} eggs`} />
+                    <p className={styles.nftsAmount}>
+                        <span className={styles.prefix}>x</span>
+                        <span className={styles.amount}>{nftAmount}</span>
+                    </p>
+                </td>
                 <td>
                     {egldPrice}
                     <span style={{ float: 'right' }}>eGLD</span>

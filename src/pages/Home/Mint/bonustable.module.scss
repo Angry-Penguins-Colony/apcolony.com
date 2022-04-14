@@ -15,10 +15,46 @@ table.bonusTable {
         position: fixed;
     }
 
-    td {
+    td.item {
         img {
             width: 75px;
             height: 75px;
+
+            border-radius: 8px;
+        }
+    }
+
+    td.eggs {
+        text-align: center;
+        vertical-align: middle;
+        position: relative;
+
+        $height: 75px;
+
+        img {
+            // width: 75px;
+            height: $height;
+        }
+
+        .nftsAmount {
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            line-height: 100%;
+
+            transform: translate(-50%, -50%);
+
+            padding-bottom: 7.5px; // $height * (20% / 2)
+            font-weight: normal;
+
+            .prefix {
+                font-size: 1rem;
+            }
+
+            .amount {
+                font-size: 2rem;
+            }
         }
     }
 
