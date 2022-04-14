@@ -70,13 +70,13 @@ export const Mint = (props: {
                     <div className="mintButton">
                         <div className="numberSelector">
                             <div className="minus centerText" onClick={decrementNftsAmount}>
-                                <FontAwesomeIcon icon={minusIcon} size="sm" />
+                                <FontAwesomeIcon icon={minusIcon} />
                             </div>
                             <div className="numberSelect centerText">
                                 {nftsAmount}
                             </div>
                             <div className="plus centerText" onClick={incrementNftsAmount}>
-                                <FontAwesomeIcon icon={plusIcon} size="sm" />
+                                <FontAwesomeIcon icon={plusIcon} />
                             </div>
                         </div>
                         <button className={'button mintNow' + ' ' + (canMint() ? '' : 'disabled')} disabled={canBuy() == false} onClick={mint}>

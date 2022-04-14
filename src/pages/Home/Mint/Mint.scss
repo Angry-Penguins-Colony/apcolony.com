@@ -190,7 +190,7 @@
                         height: 100%;
                         padding: 0;
                         margin: 0;
-                        margin-right: -20px;
+                        // margin-right: -20px;
 
                         > .numberSelect {
                             position: absolute;
@@ -209,8 +209,7 @@
                         > .plus,
                         > .minus {
                             user-select: none;
-                            font-family: "CHEDROS", sans-serif;
-                            font-size: 2rem;
+                            font-size: 1.5rem;
                             color: $primary;
                             position: relative;
                             cursor: pointer;
@@ -228,10 +227,6 @@
                             align-items: center;
                             justify-content: center;
                             text-align: center;
-                        }
-
-                        > .plus {
-                            padding-right: 20px;
                         }
                     }
 
