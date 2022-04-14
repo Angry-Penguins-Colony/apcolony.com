@@ -41,8 +41,6 @@ export const API = new GatewayAPI(totalConfig.gateway, mintConfig.contractAddres
 
 export const getImagesFor = (n: number) => {
 
-    return 'photo_2022-04-14_10-34-40.jpg';
-
     if (n == 1) {
         return undefined;
     }
@@ -50,16 +48,16 @@ export const getImagesFor = (n: number) => {
         return 'cap-egld-bonus.png';
     }
     else if (n == 4 || n == 5) {
-        return 'chain-apc-bonus.png';
+        return 'chain-apc-silver.png';
     }
     else if (n == 6 || n == 7) {
-        return 'fishing-rod-bonus.png';
+        return 'fishingrod-bonus.png';
     }
     else if (n == 8 || n == 9 || n == 10) {
         return 'skin-reversed-bonus.png';
     }
     else {
-        return 'chain-egld-bonus.png';
+        return 'chain-gold-bonus.png';
     }
 };
 
