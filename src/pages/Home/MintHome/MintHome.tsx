@@ -38,7 +38,7 @@ export const MintHome = (props: {
             <Timer date={mintConfig.publicSaleOpen} />
             {saleInfos.status == SaleStatus.WhitelistOpen &&
                 <div className='mint mb-5 mt-1'>
-                    <div className="nftLeft">{humanizeNumber(saleInfos.boughtNfts)}/10 000</div>
+                    <div className="nftLeft">{humanizeNumber(saleInfos.boughtNfts)} / 10 000</div>
                 </div>
             }
 
@@ -54,7 +54,7 @@ export const MintHome = (props: {
             <h2>TIME REMAINING</h2>
             <Timer date={mintConfig.publicSaleClose} />
             <div className='mint'>
-                <div className="nftLeft">{humanizeNumber(saleInfos.boughtNfts)}/10 000</div>
+                <div className="nftLeft">{humanizeNumber(saleInfos.boughtNfts)} / 10 000</div>
                 {isLoggedIn ?
                     <>
                         <button
