@@ -35,7 +35,6 @@ export const MintHome = (props: {
 
     if (saleSoonForUser) {
 
-        console.log(isLoggedIn, '&&', isWhitelisted);
         const displayTimer = (isLoggedIn && isWhitelisted) ? mintConfig.whitelistedOpen : mintConfig.publicSaleOpen;
 
         return <>
