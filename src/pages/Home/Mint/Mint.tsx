@@ -91,6 +91,16 @@ export const Mint = (props: {
                             className="compactBonusTable mt-0 mb-0 pb-0"
                             highlightRowIndex={(boughtNfts ?? 0) + nftsAmount - 1}
                             boughtNfts={boughtNfts}
+                            onRowClick={(index) => {
+
+                                if (boughtNfts == undefined) return;
+
+                                const selectedAmount = index + 1 - boughtNfts;
+
+                                if (selectedAmount > 0) {
+                                    setNftsAmount(selectedAmount);
+                                }
+                            }}
                         />
                     </div>
                 </div>

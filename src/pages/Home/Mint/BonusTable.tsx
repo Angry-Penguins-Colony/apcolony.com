@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { faCircleQuestion as bonusIcon } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { BigNumber } from 'bignumber.js';
 import { getImagesFor, mintConfig } from 'config';
 import { useGetPriceList } from 'hooks/useGetPriceList';
 import { weiToEgld } from 'utils/convert';
@@ -14,8 +13,10 @@ export const CLASS_HIGHLIGHTED = styles.highlighted;
 const BonusTable = (props: {
     className?: string,
     highlightRowIndex?: number,
-    boughtNfts?: number
-    setRef?: (ref: HTMLTableElement | null) => void
+    boughtNfts?: number,
+    setRef?: (ref: HTMLTableElement | null) => void,
+    onRowClick?: (nftAmount: number) => void
+
 }) => {
 
     const rootClassName = [
@@ -26,7 +27,7 @@ const BonusTable = (props: {
 
     const priceList = useGetPriceList();
 
-    const components = buildTable(priceList, props);
+    const components = buildTable();
 
     return (
         <table ref={ref => {
@@ -50,48 +51,60 @@ const BonusTable = (props: {
             </tbody>
         </table >
     );
+
+    function buildTable() {
+
+        if (!priceList) return [];
+
+        return priceList.map((price, index) => {
+            const nftAmount = index + 1;
+            const egldPrice = weiToEgld(price);
+            const notReducedPricePerEgg = weiToEgld(mintConfig.fullPriceList[0]);
+            const discount = (notReducedPricePerEgg - egldPrice) * nftAmount;
+            const discountPercent = Math.round(discount / nftAmount * 100);
+
+
+            const getClass = () => {
+
+                if (props.boughtNfts && props.boughtNfts >= nftAmount) {
+                    return styles.bought;
+                }
+                else {
+                    let className = '';
+
+                    if (props.highlightRowIndex == index) {
+                        className += CLASS_HIGHLIGHTED + ' ';
+                    }
+
+                    if (props.onRowClick != undefined) {
+                        className += styles.clickable;
+                    }
+
+                    return className;
+                }
+            };
+
+            return <tr key={index} className={getClass()} onClick={() => {
+                if (props.onRowClick) {
+                    props.onRowClick(index);
+                }
+            }}>
+                <td>{nftAmount}</td>
+                <td>
+                    {egldPrice}
+                    <span style={{ float: 'right' }}>eGLD</span>
+                </td>
+                <td>{discountPercent > 0 ? (discountPercent + '%') : ''}</td>
+                <td className={styles.item}>
+                    {getImagesFor(nftAmount) &&
+                        <img src={'img/items-bonus/' + getImagesFor(nftAmount)} />
+                    }
+                </td>
+            </tr>;
+        });
+    }
+
 };
 
 export default BonusTable;
 
-function buildTable(priceList: BigNumber[] | undefined, props: { className?: string | undefined; highlightRowIndex?: number | undefined; boughtNfts?: number | undefined; setRef?: ((ref: HTMLTableElement | null) => void) | undefined; }) {
-
-    if (!priceList) return [];
-
-    return priceList.map((price, index) => {
-        const nftAmount = index + 1;
-        const egldPrice = weiToEgld(price);
-        const notReducedPricePerEgg = weiToEgld(mintConfig.fullPriceList[0]);
-        const discount = (notReducedPricePerEgg - egldPrice) * nftAmount;
-        const discountPercent = Math.round(discount / nftAmount * 100);
-
-
-        const getClass = () => {
-
-            if (props.highlightRowIndex == index) {
-                return CLASS_HIGHLIGHTED;
-            }
-            else if (props.boughtNfts && props.boughtNfts >= nftAmount) {
-                return styles.bought;
-            }
-            else {
-
-                return '';
-            }
-        };
-
-        return <tr key={index} className={getClass()}>
-            <td>{nftAmount}</td>
-            <td>
-                {egldPrice}
-                <span style={{ float: 'right' }}>eGLD</span>
-            </td>
-            <td>{discountPercent > 0 ? (discountPercent + '%') : ''}</td>
-            <td className={styles.item}>
-                {getImagesFor(nftAmount) &&
-                    <img src={'img/items-bonus/' + getImagesFor(nftAmount)} />
-                }
-            </td>
-        </tr>;
-    });
-}
