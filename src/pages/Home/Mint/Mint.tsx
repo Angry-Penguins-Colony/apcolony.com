@@ -69,7 +69,7 @@ export const Mint = (props: {
 
                     <div className="mintButton">
                         <div className="numberSelector">
-                            <div className="minus centerText" onClick={decrementNftsAmount}>
+                            <div className={'minus centerText' + ' ' + (canDecrement() ? '' : 'disabled')} onClick={decrementNftsAmount}>
                                 <FontAwesomeIcon icon={minusIcon} />
                             </div>
                             <div className="numberSelect centerText">
@@ -134,6 +134,10 @@ export const Mint = (props: {
     function canIncrement(): boolean {
 
         return !hasMaxPerWallet() && canBuyNext();
+    }
+
+    function canDecrement(): boolean {
+        return nftsAmount > 1;
     }
 
     function canMint(): boolean {
