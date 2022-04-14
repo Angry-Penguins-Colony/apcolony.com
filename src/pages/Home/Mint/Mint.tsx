@@ -126,7 +126,11 @@ export const Mint = (props: {
     }
 
     function canMint(): boolean {
-        return canBuy() && !hasMaxPerWallet();
+        return canBuy() && !hasBuyAllNfts();
+    }
+
+    function hasBuyAllNfts(): boolean {
+        return boughtNfts != null && boughtNfts >= (maxPerWallet);
     }
 
     function canBuy(): boolean {
