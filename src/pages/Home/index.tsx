@@ -397,14 +397,14 @@ const Home = () => {
                 Our Public Sale will take place on the 14th of April on our website : <a href="https://angrypenguinscolony.com/">https://angrypenguinscolony.com/</a><br />
                 <br />
                 Everyone will be able to mint, but not at the same time. <br />
-                6:30 pm : Emperors (our owners) will be the first to have access to the mint.<br />
+                6:30 pm UTC : Emperors (our owners) will be the first to have access to the mint.<br />
                 <br />
-                6:30 pm : Whitelisted people will have access to the mint<br />
+                6:30 pm UTC : Whitelisted people will have access to the mint<br />
                 <br />
-                7 pm : Everyone will be able to mint the remaining supply<br />
+                7 pm UTC : Everyone will be able to mint the remaining supply<br />
               </FaqQuestionAnswer>
               <FaqQuestionAnswer question="How do I know if I am whitelisted ?">
-                You just have to connect at 6:30 pm and check if you have access to mint. If you can indeed mint, then congratulations you are whitelisted. If not, you will have to wait 7 pm.
+                You just have to connect at 6:30 pm UTC and check if you have access to mint. If you can indeed mint, then congratulations you are whitelisted. If not, you will have to wait 7 pm UTC.
               </FaqQuestionAnswer>
               <FaqQuestionAnswer question="What will the mint price be ?">
                 The opening price of the mint will be 1 EGLD.
