@@ -39,8 +39,12 @@ export class GatewayAPI {
         }
     }
 
-    public getRemainingNfts(): Promise<number> {
-        return this.cache.remainingNft.get(() => this.queryInt('getRemainingNft'));
+    public async getRemainingNfts(): Promise<number> {
+        const result = await this.cache.remainingNft.get(() => this.queryInt('getRemainingNft'));
+
+        console.log(result);
+
+        return result;
     }
 
     public getMyBoughtNfts(address: Address) {
@@ -66,6 +70,8 @@ export class GatewayAPI {
             'funcName': funcName,
             'args': args
         };
+
+        console.log('fetch');
 
         const response = await fetch(url, {
             method: 'POST',

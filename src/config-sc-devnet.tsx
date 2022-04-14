@@ -3,10 +3,10 @@ import { BigNumber } from 'bignumber.js';
 import { MintConfig } from 'structs/MintConfig';
 
 export const devnetConfig: MintConfig = {
-    contractAddress: new Address('erd1qqqqqqqqqqqqqpgqkf2aaf4jng0h72g4dcw0tnxuc0hg6twc2c8qgwa4ph'),
-    publicSaleOpen: new Date('14 April 2022 19:00:00 UTC'),
-    publicSaleClose: new Date('17 April 2022 19:00:00 UTC'),
-    whitelistedOpen: new Date('14 April 2022 18:30:00 UTC'),
+    contractAddress: new Address('erd1qqqqqqqqqqqqqpgqd8cz8uhsezxzpgqlrasag05g45xyuxnx2c8q2e9u4j'),
+    publicSaleOpen: new Date('Thu, 14 Apr 2022 16:28:27 GMT'),
+    whitelistedOpen: new Date('Thu, 14 Apr 2022 15:58:27 GMT'),
+    publicSaleClose: new Date('Sun, 17 Apr 2022 16:28:27 GMT'),
     maxPerWallet: 20,
     fullPriceList: [
         '1e18',

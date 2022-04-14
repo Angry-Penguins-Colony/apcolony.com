@@ -19,9 +19,7 @@ export function useGetSaleInfos() {
     const [saleInfos, setSaleInfos] = useState<SaleInfos | undefined>(undefined);
     const { remainingNfts, refresh: forceRefresh } = useGetRemainingNfts();
 
-    if (remainingNfts) {
-
-
+    if (remainingNfts != null) {
         const status = getSaleStatus(remainingNfts);
         const boughtNfts = totalSupply - remainingNfts + startingSupply;
 
