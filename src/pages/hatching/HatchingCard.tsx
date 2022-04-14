@@ -72,7 +72,12 @@ const HatchingCard = (props: {
     const refVideoEgglight = React.useRef<HTMLVideoElement>(null);
     const [videoIsDisplay, setVideoIsDisplay] = React.useState<boolean>(false);
     const [videoIsEnded, setVideoIsEnded] = React.useState<boolean>(false);
-    const [eggsIsHatch, setEggsIsHatch] = React.useState<boolean>(false);
+    const [eggsHatch, setEggsHatch] = React.useState<{
+        id: string,
+        type: string,
+        title: string,
+        thumbail: string
+    }[]>([]);
 
     const startHatching = () => {
         console.log('start hatching');
@@ -82,15 +87,34 @@ const HatchingCard = (props: {
 
         // TODO: hatch egg
         setTimeout(() => {
-            setEggsIsHatch(true);
+            setEggsHatch([
+                {
+                    id: '1',
+                    type: 'penguin',
+                    title: 'Angry Pinguin #0550',
+                    thumbail: '/img/penguins/Untitled design-2.png',
+                },
+                {
+                    id: '2',
+                    type: 'penguin',
+                    title: 'Angry Pinguin #8745',
+                    thumbail: '/img/penguins/Untitled design-3.png',
+                },
+                {
+                    id: '3',
+                    type: 'penguin',
+                    title: 'Angry Pinguin #8272',
+                    thumbail: '/img/penguins/Untitled design-5.png',
+                },
+                {
+                    id: '4',
+                    type: 'penguin',
+                    title: 'Angry Pinguin #2887',
+                    thumbail: '/img/penguins/Untitled design-7.png',
+                }
+            ]);
         }, 3500);
     };
-
-    // display hatching result
-    if (videoIsEnded && eggsIsHatch) {
-        // TODO: display result
-        console.log('display result');
-    }
 
     // get all item card by API
     React.useEffect(() => {
@@ -383,7 +407,41 @@ const HatchingCard = (props: {
                     </div>
                 </div>
             }
-        </div >
+            {
+                // display result of hatch
+                videoIsEnded && eggsHatch.length > 0 &&
+                <div className={styles.hatchResult}>
+                    <header className='container'>
+                        <a href="/" className='logo'>
+                            <img src="/img/APC_LOGO_BLUE_WHITE.svg" alt="Angry Penguins Logo" />
+                        </a>
+                        <div className={styles.info}>
+                            <div className="button" onClick={() => { location.reload(); }}>RETURN TO SITE</div>
+                            <div className="numberOfEgg">
+                                {/* TODO: add comonent (same to nav bar) */}
+                            </div>
+                        </div>
+                    </header>
+                    <div className={styles.content + ' ' + styles.container}>
+                        <h1>HATCHING SUCCESSFUL !</h1>
+                        <p className={styles.subTtile}>Discover your Angry Penguin(s)<br /> in the Penguin Nest below!</p>
+                        <div className={styles.result}>
+                            {
+                                eggsHatch.map((eggResult, index) => {
+                                    return (
+                                        <div key={index} className={styles.eggResult}>
+                                            <img src={eggResult.thumbail} />
+                                            <p className={styles.title} >{eggResult.title}</p>
+                                        </div>
+                                    );
+                                })
+                            }
+                        </div>
+                        <div className={'button ' + styles.button} onClick={() => { location.reload(); }}>RETURN TO SITE</div>
+                    </div>
+                </div>
+            }
+        </div>
     );
 };
 

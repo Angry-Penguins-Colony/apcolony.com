@@ -36,7 +36,7 @@
     max-height: 60vh;
     overflow: hidden;
 
-    >.yourInventory {
+    > .yourInventory {
         position: relative;
         border-right: 3px $primary solid;
         padding: 20px 25px 0 25px;
@@ -51,7 +51,7 @@
             background: transparent linear-gradient(180deg, #000B2700 0%, #000b2717 30%, #000b2773 100%) 0% 0% no-repeat padding-box;
         }
 
-        >h3 {
+        > h3 {
             font-family: 'CHEDROS', sans-serif;
             font-size: 2rem;
             font-weight: bold;
@@ -59,7 +59,7 @@
             text-align: left;
         }
 
-        >.items {
+        > .items {
             @include customScrollbarVertical;
             margin-top: 1rem;
             display: grid;
@@ -68,7 +68,7 @@
             overflow: auto;
             max-height: calc(100% - 2rem - 20px);
 
-            >div {
+            > div {
                 border-radius: 12px;
                 cursor: pointer;
                 margin: 3px;
@@ -81,7 +81,7 @@
                     outline: 3px solid $primary;
                 }
 
-                >img {
+                > img {
                     max-width: 100%;
                 }
             }
@@ -90,11 +90,11 @@
         }
     }
 
-    >.infos {
+    > .infos {
         padding: 20px 25px;
         position: relative;
 
-        >h3 {
+        > h3 {
             font-family: 'CHEDROS', sans-serif;
             font-size: 2rem;
             font-weight: bold;
@@ -103,7 +103,7 @@
             margin-bottom: 1rem;
         }
 
-        >.content {
+        > .content {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -112,25 +112,25 @@
             max-height: calc(100% - 2rem - 20px);
             gap: 1rem;
 
-            >img {
+            > img {
                 width: 50%;
             }
 
-            >h4 {
+            > h4 {
                 font-family: 'CHEDROS', sans-serif;
                 font-size: 1.5rem;
                 font-weight: bold;
                 color: $dark;
             }
 
-            >p {
+            > p {
                 font-family: 'Montserrat', sans-serif;
                 font-size: 1.2rem;
                 max-width: 70%;
                 text-align: center;
             }
 
-            >.selectedEggs {
+            > .selectedEggs {
                 @include customScrollbarVertical;
                 margin-top: 1rem;
                 display: grid;
@@ -139,11 +139,11 @@
                 overflow: auto;
                 max-height: calc(100% - 2rem - 20px);
 
-                >div {
+                > div {
                     border-radius: 12px;
                     margin: 3px;
 
-                    >img {
+                    > img {
                         max-width: 100%;
                     }
                 }
@@ -151,7 +151,7 @@
                 padding-bottom: 20px;
             }
 
-            >.confirmSelection {
+            > .confirmSelection {
                 z-index: 1;
                 position: absolute;
                 inset: 0;
@@ -162,7 +162,7 @@
                 justify-content: center;
                 gap: 36px;
 
-                >p {
+                > p {
                     font-family: 'CHEDROS', sans-serif;
                     font-size: 70px;
                     font-weight: bold;
@@ -170,20 +170,20 @@
                     text-align: center;
                 }
 
-                >.actions {
+                > .actions {
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     gap: 30px;
 
-                    >.button {
+                    > .button {
                         min-width: 30%;
                     }
                 }
             }
         }
 
-        >.actions {
+        > .actions {
             position: absolute;
             bottom: 0;
             right: 0;
@@ -205,7 +205,7 @@
                 z-index: 0;
             }
 
-            >.button {
+            > .button {
                 z-index: 0;
                 min-width: 30%;
             }
@@ -214,20 +214,20 @@
     }
 
     &.bySelection {
-        >.yourInventory {
-            >.subTitle {
+        > .yourInventory {
+            > .subTitle {
                 font-family: 'Montserrat', sans-serif;
                 font-size: 1.2rem;
                 color: $dark;
             }
 
-            >.items {
+            > .items {
                 max-height: calc(100% - 4rem - 8px);
             }
         }
     }
 
-    >.video {
+    > .video {
         z-index: 80;
         position: fixed;
         inset: 0;
@@ -236,7 +236,7 @@
         align-items: center;
         justify-content: center;
 
-        >.content {
+        > .content {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -253,11 +253,82 @@
             border-radius: 20px;
             overflow: hidden;
 
-            >video {
+            > video {
                 width: 100%;
             }
 
-            >.loader {}
+            > .loader {}
         }
+    }
+
+    > .hatchResult {
+        position: fixed;
+        inset: 0;
+        z-index: 81;
+        background-image: url(/assets/img/BG_Eclosion.png);
+        background-color: #000000;
+        background-size: cover;
+        background-position: center;
+
+        > header {}
+
+        > .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+
+            > h1 {
+                font-family: 'CHEDROS', sans-serif;
+                font-size: 4rem;
+                color: $white;
+                text-align: center;
+            }
+
+            > .subTtile {
+                font-family: 'Montserrat', sans-serif;
+                font-size: 1.2rem;
+                color: $white;
+                text-align: center;
+            }
+
+            > .result {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 60px;
+                margin-top: 3rem;
+                margin-bottom: 3rem;
+
+
+                .eggResult {
+                    width: 250px;
+
+                    background-color: #030519;
+
+                    // TODO: add rarity background color
+                    &.rarity-1 {
+                        background-color: #681216;
+                    }
+
+                    > img {
+                        max-width: 100%;
+                    }
+
+                    > .title {
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 0.8rem;
+                        font-weight: bold;
+                        color: #fafafa;
+                        margin: 20px auto;
+                        text-align: center;
+                        letter-spacing: 0.5px;
+                    }
+                }
+            }
+        }
+
+        > .button {}
     }
 }
