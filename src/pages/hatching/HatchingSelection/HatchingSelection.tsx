@@ -1,6 +1,7 @@
 import * as React from 'react';
 import HatchingCard from '../HatchingCard';
 import HowTo from '../HowTo';
+import RarityInfos from '../RarityInfos';
 import './hatchingSelection.scss';
 
 const HatchingSelection = () => {
@@ -10,7 +11,7 @@ const HatchingSelection = () => {
         <div id="hatchingSelection">
             <HatchingCard bySelection={true} />
             <HowTo />
-            {/* TODO: add egg rarity popup + button */}
+            <RarityInfos />
         </div>
     );
 };

@@ -76,12 +76,12 @@
         padding-top: 1vh;
         margin-bottom: 200px;
 
-        >.reveal {
+        > .reveal {
             display: flex;
             flex-direction: column;
             align-items: center;
 
-            >h1 {
+            > h1 {
                 font-family: 'CHEDROS', sans-serif;
                 font-size: 115px;
                 font-weight: bold;
@@ -91,7 +91,7 @@
                 // z-index: 1;
             }
 
-            >.eggSurprise {
+            > .eggSurprise {
                 height: 20vh;
                 position: relative;
                 z-index: -1;
@@ -104,85 +104,22 @@
                 }
             }
 
-            >.button {
+            > .button {
                 padding-left: 70px;
                 padding-right: 70px;
             }
         }
 
-        >.howTo {
+        > .howTo {
             position: absolute;
             bottom: 70px;
-        }
-
-        >.rarityInfos {
-            cursor: pointer;
-            position: absolute;
-            bottom: 20px;
-
-            z-index: 1;
-            border-radius: 9999px;
-            display: flex;
-            gap: 14px;
-            background-color: #FAFAFA;
-            backdrop-filter: blur(10px);
-
-            &:hover {
-                background-color: #EFEFEF;
-            }
-
-            >p {
-                padding: 12px 24px 12px 0;
-                color: $primary;
-                font-weight: 600;
-                display: flex;
-                align-items: center;
-            }
-
-            >.icon {
-                color: $primary;
-                font-size: 2rem;
-                padding: 0.3rem 0 0 0;
-                border-radius: 50%;
-                border: 3px solid $primary;
-                font-family: "CHEDROS", sans-serif;
-                height: 44px;
-                width: 44px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-weight: bold;
-            }
-        }
-
-        >.rarityPopup>.content {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            gap: 25px;
-            padding: 20px 25px 15px 25px;
-
-            >.egg {
-                >img {
-                    max-height: 100px;
-                }
-
-                >p {
-                    font-family: 'CHEDROS', sans-serif;
-                    font-weight: bold;
-                    font-size: 1.2rem;
-                    text-align: center;
-                    margin: 0.5rem 0;
-                }
-            }
         }
     }
 
     #penguinNest {
         margin-bottom: 100px;
 
-        >h2 {
+        > h2 {
             font-family: 'CHEDROS', sans-serif;
             font-size: 3rem;
             font-weight: bold;
