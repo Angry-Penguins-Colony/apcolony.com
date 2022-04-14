@@ -1,5 +1,7 @@
 import React from 'react';
 import { useGetAccountInfo, useGetNetworkConfig } from '@elrondnetwork/dapp-core';
+import { faPlus as plusIcon, faMinus as minusIcon } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BigNumber } from 'bignumber.js';
 import { Alert } from 'react-bootstrap';
 import { useGetBalance } from 'hooks/useGetBalance';
@@ -68,10 +70,14 @@ export const Mint = (props: {
                     <div className="mintButton">
                         <div className="numberSelector">
                             <div className="minus centerText" onClick={decrementNftsAmount}>
-                                -
+                                <FontAwesomeIcon icon={minusIcon} size="sm" />
                             </div>
-                            <div className="numberSelect centerText">{nftsAmount}</div>
-                            <div className="plus centerText" onClick={incrementNftsAmount}>+</div>
+                            <div className="numberSelect centerText">
+                                {nftsAmount}
+                            </div>
+                            <div className="plus centerText" onClick={incrementNftsAmount}>
+                                <FontAwesomeIcon icon={plusIcon} size="sm" />
+                            </div>
                         </div>
                         <button className={'button mintNow' + ' ' + (canMint() ? '' : 'disabled')} disabled={canBuy() == false} onClick={mint}>
                             MINT NOW ({price != null ? weiToEgld(price).toFixed(2) : '--'} eGLD)
