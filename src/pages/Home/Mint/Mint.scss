@@ -195,6 +195,7 @@
                         > .numberSelect {
                             position: absolute;
                             font-family: "CHEDROS", sans-serif;
+                            padding-top: 5px; // the baseline of Chedros is weird, so we change padding to align
                             font-size: 2rem;
                             z-index: 5;
 
