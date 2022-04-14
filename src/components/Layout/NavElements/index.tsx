@@ -1,5 +1,6 @@
 import React from 'react';
 import FollowUs from 'components/FollowUs/FollowUs';
+import { routeNames } from 'routes';
 import styles from './index.module.scss';
 
 
@@ -18,6 +19,8 @@ const NavElements = (props: { isOpen?: boolean; }) => {
                 <a href="/#globalPenguinSociety">ASSOCIATION</a>
                 <a href="/#faq">FAQ</a>
                 <a href="/LITE PAPER.pdf">LITEPAPER</a>
+                {/* TODO: add litepaper link */}
+                <a href={routeNames.hatchingHome}>HATCH NOW</a>
             </div>
             <FollowUs />
         </nav >
