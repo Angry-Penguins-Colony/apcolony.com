@@ -406,7 +406,7 @@ const Home = () => {
               <FaqQuestionAnswer question="How do I know if I am whitelisted ?">
                 You just have to connect at 6:30 pm UTC and check if you have access to mint. If you can indeed mint, then congratulations you are whitelisted. If not, you will have to wait 7 pm UTC.
               </FaqQuestionAnswer>
-              <FaqQuestionAnswer question="What will the mint price be ?">
+              <FaqQuestionAnswer answerClassName="px-5" question="What will the mint price be ?">
                 The opening price of the mint will be 1 EGLD.
                 <BonusTable />
               </FaqQuestionAnswer>

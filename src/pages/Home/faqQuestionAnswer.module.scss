@@ -17,7 +17,7 @@
         align-items: center;
         padding: 15px 15px 15px 25px;
         cursor: pointer;
-        
+
         > .question {
             font-family: "Montserrat", sans-serif;
             font-size: 1rem;
@@ -51,6 +51,14 @@
         max-height: 0px;
         padding-bottom: 0;
         transition: max-height 0.3s ease-in-out, padding-bottom 0.3s ease-in-out;
+
+        table {
+            width: 100%;
+
+            tr td {
+                width: 33%;
+            }
+        }
     }
 
     &.isOpen {
