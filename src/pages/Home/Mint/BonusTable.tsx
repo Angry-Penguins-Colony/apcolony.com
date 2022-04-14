@@ -161,7 +161,7 @@ const BonusTable = (props: {
 
 const renderTooltip = (props: any) => (
     <Tooltip rootClose id="button-tooltip" className="overflow-hidden" {...props}>
-        You will receive the item after the public sale is soldout.
+        You will receive the item after the public sale is finished.
     </Tooltip>
 );
 
