@@ -222,8 +222,12 @@
                             height: 100%;
                             text-align: center;
 
-                            &:hover {
+                            &:hover:not(.disabled) {
                                 background-color: #c6d7f6;
+                            }
+
+                            &.disabled {
+                                color: grey;
                             }
                         }
 

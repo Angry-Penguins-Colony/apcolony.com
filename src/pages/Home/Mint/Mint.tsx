@@ -65,7 +65,7 @@ export const Mint = (props: {
                             My balance: {humanizeBalance(weiBalance)} eGLD
                         </a>
                     </p>
-                    {getWarningComponent()}
+
 
                     <div className="mintButton">
                         <div className="numberSelector">
@@ -75,7 +75,7 @@ export const Mint = (props: {
                             <div className="numberSelect centerText">
                                 {nftsAmount}
                             </div>
-                            <div className="plus centerText" onClick={incrementNftsAmount}>
+                            <div className={'plus centerText' + ' ' + (canIncrement() ? '' : 'disabled')} onClick={incrementNftsAmount} >
                                 <FontAwesomeIcon icon={plusIcon} />
                             </div>
                         </div>
@@ -84,6 +84,7 @@ export const Mint = (props: {
                         </button>
                     </div>
 
+                    {getWarningComponent()}
 
                     <div className="advantages pb-0">
                         <BonusTable
@@ -192,17 +193,17 @@ export const Mint = (props: {
     function getWarningComponent() {
 
         if (canBuy() == false) {
-            return <Alert variant="danger">
+            return <Alert variant="danger" className='mt-5'>
                 You don&apos;t have enough eGLD to buy any.
             </Alert>;
         }
         else if (hasMaxPerWallet() == true) {
-            return <Alert variant="warning">
+            return <Alert variant="warning" className='mt-5'>
                 You have reached the maximum amount of NFTs you can buy on this wallet.
             </Alert>;
         }
         else if (canBuyNext() == false) {
-            return <Alert variant="warning">
+            return <Alert variant="warning" className='mt-5'>
                 You don&apos;t have enough eGLD to buy more.
             </Alert>;
         }
