@@ -411,7 +411,7 @@ const Home = () => {
                 <BonusTable />
               </FaqQuestionAnswer>
               <FaqQuestionAnswer question="What will the percentage of royalties be ?">
-                The percentage of royalties for the Angry Penguins will be 5% and only 2.5% for the accessories.<br />
+                The percentage of royalties for the Angry Penguins will be 5% and only 2.5% for the accessories.<br /><br />
                 On the eggs, the royalties had been fixed at 25% by holders (12.5% for the holders, 6.25% for the association and 6.25% for the project). As the percentage is divided by 5, this will no longer apply.
               </FaqQuestionAnswer>
 
