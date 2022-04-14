@@ -80,7 +80,7 @@ export const MintHome = (props: {
                 <p>SOLD OUT</p>
             </div>;
             <div className='mint'>
-                <div className="nftLeft">10 000 / 10 000</div>
+                <div className="nftLeft">{humanizeNumber(saleInfos.boughtNfts)} / 10 000</div>
             </div>
         </>;
 
