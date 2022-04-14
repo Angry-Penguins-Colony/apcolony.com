@@ -41,7 +41,7 @@ export const Mint = (props: {
 
 
     return <div id='mint'>
-        <div className="header container">
+        <div className="header">
             <div className="logo">
                 <img src="/img/APC_LOGO_BLUE_WHITE.svg" />
             </div>

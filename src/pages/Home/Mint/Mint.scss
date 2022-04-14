@@ -52,6 +52,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding-right: 70px;
+        padding-left: 70px;
 
         > .logo {
             > img {
@@ -66,6 +68,7 @@
 
         > .closeIcon {
             > img {
+                // transform: translateX(-50%);
                 width: 35px;
                 cursor: pointer;
             }
