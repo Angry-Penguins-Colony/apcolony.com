@@ -34,8 +34,12 @@ export const MintHome = (props: {
         || (saleInfos.status == SaleStatus.WhitelistOpen && isWhitelisted);
 
     if (saleSoonForUser) {
+
+        console.log(isLoggedIn, '&&', isWhitelisted);
+        const displayTimer = (isLoggedIn && isWhitelisted) ? mintConfig.whitelistedOpen : mintConfig.publicSaleOpen;
+
         return <>
-            <Timer date={mintConfig.publicSaleOpen} />
+            <Timer date={displayTimer} />
             {saleInfos.status == SaleStatus.WhitelistOpen &&
                 <div className='mint mb-5 mt-1'>
                     <div className="nftLeft">{humanizeNumber(saleInfos.boughtNfts)} / 10 000</div>
@@ -76,7 +80,7 @@ export const MintHome = (props: {
                 <p>SOLD OUT</p>
             </div>;
             <div className='mint'>
-                <div className="nftLeft">10 000/10 000</div>
+                <div className="nftLeft">10 000 / 10 000</div>
             </div>
         </>;
 
