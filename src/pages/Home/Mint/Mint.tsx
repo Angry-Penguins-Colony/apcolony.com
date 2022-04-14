@@ -67,11 +67,13 @@ export const Mint = (props: {
 
                     <div className="mintButton">
                         <div className="numberSelector">
-                            <div className="minus" onClick={decrementNftsAmount}>-</div>
-                            <div className="numberSelect">{nftsAmount}</div>
-                            <div className="plus" onClick={incrementNftsAmount}>+</div>
+                            <div className="minus centerText" onClick={decrementNftsAmount}>
+                                -
+                            </div>
+                            <div className="numberSelect centerText">{nftsAmount}</div>
+                            <div className="plus centerText" onClick={incrementNftsAmount}>+</div>
                         </div>
-                        <button className={'button' + ' ' + (canMint() ? '' : 'disabled')} disabled={canBuy() == false} onClick={mint}>
+                        <button className={'button mintNow' + ' ' + (canMint() ? '' : 'disabled')} disabled={canBuy() == false} onClick={mint}>
                             MINT NOW ({price != null ? weiToEgld(price).toFixed(2) : '--'} eGLD)
                         </button>
                     </div>
