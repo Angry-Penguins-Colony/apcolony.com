@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { faCircleQuestion as bonusIcon } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { getImagesFor, mintConfig } from 'config';
 import { useGetPriceList } from 'hooks/useGetPriceList';
 import { weiToEgld } from 'utils/convert';
@@ -19,38 +20,72 @@ const BonusTable = (props: {
 
 }) => {
 
-    const rootClassName = [
-        styles.bonusTable,
-        props.className,
-        'table table-striped table-bordered'
-    ].join(' ');
-
     const priceList = useGetPriceList();
 
-    const components = buildTable();
+    const [bonusTableRef, setBonusTableRef] = React.useState<HTMLTableElement | null>(null);
+    const [forceClose, setForceClose] = React.useState<false | undefined>(undefined);
+    const handleNavigation = () => {
+        if (forceClose == undefined) {
+            setForceClose(false);
+        }
+    };
+
+    // when forceClose is set to false, we change the boolean flag
+    // without this hook, the popup cannot be open
+    React.useEffect(() => {
+        setForceClose(undefined);
+    }, [forceClose]);
+
+    React.useEffect(() => {
+        if (!bonusTableRef) return;
+
+        bonusTableRef.addEventListener('scroll', handleNavigation);
+
+        return () => {
+            bonusTableRef.removeEventListener('scroll', handleNavigation);
+        };
+    }, [bonusTableRef]);
 
     return (
         <table ref={ref => {
+
+            setBonusTableRef(ref);
+
             if (props.setRef) {
                 props.setRef(ref);
             }
-        }} className={rootClassName} >
+        }} className={buildRootClassName()} >
             <thead>
                 <tr>
                     <th scope="col">Eggs</th>
                     <th scope="col">Price Per Egg</th>
                     <th scope="col">Discount</th>
-                    <th scope="col" data-toggle="tooltip" data-placement="top" title="You will receive the item after the public sale is soldout.">
-                        {/* Bonus <i style={{ color: 'black' }} className="fa-regular fa-circle-question" role="button"></i> */}
-                        Bonus <FontAwesomeIcon icon={bonusIcon} role="button" />
-                    </th>
+                    <OverlayTrigger
+                        placement="left"
+                        trigger={['click']}
+                        onEnter={() => setForceClose(undefined)}
+                        show={forceClose}
+                        overlay={renderTooltip}>
+
+                        <th scope="col" role="button">
+                            Bonus <FontAwesomeIcon icon={bonusIcon} />
+                        </th>
+                    </OverlayTrigger>
                 </tr>
             </thead>
             <tbody>
-                {components}
+                {buildTable()}
             </tbody>
         </table >
     );
+
+    function buildRootClassName() {
+        return [
+            styles.bonusTable,
+            props.className,
+            'table table-striped table-bordered'
+        ].join(' ');
+    }
 
     function buildTable() {
 
@@ -105,6 +140,12 @@ const BonusTable = (props: {
     }
 
 };
+
+const renderTooltip = (props: any) => (
+    <Tooltip rootClose id="button-tooltip" className="overflow-hidden" {...props}>
+        You will receive the item after the public sale is soldout.
+    </Tooltip>
+);
 
 export default BonusTable;
 

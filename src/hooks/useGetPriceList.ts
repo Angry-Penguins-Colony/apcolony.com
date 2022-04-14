@@ -8,11 +8,9 @@ export const useGetPriceList = (): BigNumber[] | undefined => {
 
     if (hasDiscount != undefined) {
         if (hasDiscount) {
-            console.log('Using discount price list');
             return mintConfig.reducedPriceList;
         }
         else {
-            console.log('Using normal price list');
             return mintConfig.fullPriceList;
         }
     }
