@@ -43,7 +43,7 @@ export const Mint = (props: {
     return <div id='mint'>
         <div className="header">
             <div className="logo">
-                <img src="/img/APC_LOGO_BLUE_WHITE.svg" />
+                <img src="/img/APC_LOGO_BLUE_WHITE.svg" role="button" onClick={props.onClose} />
             </div>
             <h1>PUBLIC SALE</h1>
             <div className="closeIcon">
