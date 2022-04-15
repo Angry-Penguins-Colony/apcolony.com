@@ -1,7 +1,18 @@
-import { humanizeNumber } from './humanize';
+import { BigNumber } from 'bignumber.js';
+import { humanizeBalance, humanizeNumber } from './humanize';
 
 
+describe('humanizeBalance', () => {
+    it('should', () => {
+        expect(humanizeBalance(new BigNumber('1e18'), 3)).toBe('1');
+        expect(humanizeBalance(new BigNumber('1.18e18'), 3)).toBe('1.18');
+    });
 
+    it('should space between thousand', () => {
+        expect(humanizeBalance(new BigNumber('1500000e18'), 2)).toBe('1 500 000');
+        expect(humanizeBalance(new BigNumber('1.5e+24'), 3)).toBe('1 500 000');
+    });
+});
 
 
 

@@ -52,7 +52,7 @@ export const Mint = (props: {
         }
     };
 
-
+    console.log('myablance', userBalance?.toString());
 
     return <div id='mint'>
         <div className="header">

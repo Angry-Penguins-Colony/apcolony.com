@@ -68,6 +68,7 @@ export class GatewayAPI {
 
     public async getLkmexBalance(address: Address): Promise<BigNumber> {
         const lkmexTokens = await this.getLkmexTokens(address);
+        console.log('lkmexTokens', lkmexTokens);
 
         const sum = new BigNumber(0);
 
@@ -82,6 +83,7 @@ export class GatewayAPI {
 
     private async getNftsByTicker(address: Address, ticker: string): Promise<Nft[]> {
         const nfts = await this.getNfts(address);
+        console.log('nfts', nfts);
 
         return nfts.filter(nft => nft.id == ticker);
     }
@@ -97,6 +99,7 @@ export class GatewayAPI {
 
 
         const esdts = json.data.esdts;
+        console.log('esdts', esdts);
 
         const nfts: Nft[] = [];
 

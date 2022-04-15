@@ -3,7 +3,7 @@ import { faPlus as plusIcon, faMinus as minusIcon } from '@fortawesome/free-soli
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BigNumber } from 'bignumber.js';
 import { Alert } from 'react-bootstrap';
-import { weiToEgld } from 'utils/convert';
+import { humanizeBalance } from 'utils/humanize';
 import { calculatePriceFromNft } from 'utils/priceCalculation';
 
 const MintButton = (props: {
@@ -42,7 +42,7 @@ const MintButton = (props: {
                 </div>
             </div>
             <button className={'button mintNow' + ' ' + (canMint() ? '' : 'disabled')} disabled={canBuy() == false} onClick={mint}>
-                MINT NOW ({price != null ? weiToEgld(price).toFixed(2) : '--'} {props.currencyDenomation})
+                MINT NOW ({price != null ? humanizeBalance(price) : '--'} {props.currencyDenomation})
             </button>
         </div>
 
@@ -126,7 +126,7 @@ const MintButton = (props: {
 
         if (canBuy() == false) {
             return <Alert variant="danger" className='mt-5'>
-                You don&apos;t have enough eGLD to buy any.
+                You don&apos;t have enough {props.currencyDenomation} to buy any.
             </Alert>;
         }
         else if (hasMaxPerWallet() == true) {
@@ -136,7 +136,7 @@ const MintButton = (props: {
         }
         else if (canBuyNext() == false) {
             return <Alert variant="warning" className='mt-5'>
-                You don&apos;t have enough eGLD to buy more.
+                You don&apos;t have enough {props.currencyDenomation} to buy more.
             </Alert>;
         }
         else {

@@ -3,15 +3,21 @@ import { BigNumber } from 'bignumber.js';
 
 export function humanizeBalance(balance: Balance | BigNumber, precision = 3): string {
 
-    const bigNumber = balance instanceof Balance ? balance.valueOf() : balance;
+    const weiNumber = balance instanceof Balance ? balance.valueOf() : balance;
+    const denom = weiNumber.div(10 ** 18);
 
-    return bigNumber
-        .div(10 ** 18)
+    const str = denom
         .precision(precision)
         .toString();
+
+    return addSpaceEachThousand(str);
 }
 
 export function humanizeNumber(n: number): string {
-    return n.toString()
-        .replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    return addSpaceEachThousand(n.toString());
+
+}
+
+function addSpaceEachThousand(str: string): string {
+    return str.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
