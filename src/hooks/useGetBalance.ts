@@ -1,13 +1,28 @@
 import { useGetAccountInfo } from '@elrondnetwork/dapp-core';
-import { Balance } from '@elrondnetwork/erdjs/out';
 import { BigNumber } from 'bignumber.js';
+import { API } from 'config';
+import { MintCurrency } from 'pages/Home/Mint/MintCurrency';
+import { useFetchWithAddress } from './useFetchWithAddress';
 
-export const useGetBalance = (): Balance => {
+export const useGetBalance = (mintCurrency: MintCurrency): BigNumber | undefined => {
     const { account } = useGetAccountInfo();
-    const weiBalance: string = account.balance;
+    const { output: lkMexBalance } = useFetchWithAddress<BigNumber>(
+        async (addr) => API.getLkmexBalance(addr),
+        Promise.resolve(new BigNumber(0))
+    );
 
-    const egldBalanceNumber = new BigNumber(weiBalance).div(10 ** 18);
-    const balance = Balance.egld(egldBalanceNumber);
+    switch (mintCurrency) {
+        case MintCurrency.eGLD:
+            const weiBalance: string = account.balance;
 
-    return balance;
+            const egldBalanceNumber = new BigNumber(weiBalance);
+
+            return egldBalanceNumber;
+
+        case MintCurrency.LKMex:
+            return lkMexBalance;
+
+        default:
+            throw new Error('Unknown mint currency');
+    }
 };

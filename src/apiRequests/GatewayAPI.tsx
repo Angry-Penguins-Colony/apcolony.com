@@ -1,8 +1,14 @@
 import { Address } from '@elrondnetwork/erdjs/out';
-import { devModeActivate } from 'config';
+import { BigNumber } from 'bignumber.js';
+import { devModeActivate, lkMexTicker as lkMexTicker } from 'config';
 import { MintCurrency } from 'pages/Home/Mint/MintCurrency';
 import { GatewayCaching } from './GatewayCaching';
 import { GatewayLogger } from './GatewayLogger';
+
+interface Nft {
+    id: string;
+    balance: BigNumber;
+}
 
 export class GatewayAPI {
     private readonly logger: GatewayLogger;
@@ -58,6 +64,52 @@ export class GatewayAPI {
         return this.cache.boughtAmount.get(address.bech32(),
             () => this.queryInt('getBoughtAmount', [address.hex()])
         );
+    }
+
+    public async getLkmexBalance(address: Address): Promise<BigNumber> {
+        const lkmexTokens = await this.getLkmexTokens(address);
+
+        const sum = new BigNumber(0);
+
+        lkmexTokens.forEach(a => sum.plus(a.balance));
+
+        return sum;
+    }
+
+    public getLkmexTokens(address: Address): Promise<Nft[]> {
+        return this.getNftsByTicker(address, lkMexTicker);
+    }
+
+    private async getNftsByTicker(address: Address, ticker: string): Promise<Nft[]> {
+        const nfts = await this.getNfts(address);
+
+        return nfts.filter(nft => nft.id == ticker);
+    }
+
+    private async getNfts(address: Address): Promise<Nft[]> {
+
+        this.logger.logFetch('getNfts');
+
+        const url = this.url + '/address/' + address.bech32() + '/esdt';
+
+        const response = await fetch(url);
+        const json = await response.json();
+
+
+        const esdts = json.data.esdts;
+
+        const nfts: Nft[] = [];
+
+        for (const esdt in esdts) {
+            const nft = esdts[esdt];
+
+            nfts.push({
+                id: esdt,
+                balance: new BigNumber(nft.balance)
+            });
+        }
+
+        return nfts;
     }
 
     private async queryBoolean(funcName: string, args = [] as any[]): Promise<boolean> {

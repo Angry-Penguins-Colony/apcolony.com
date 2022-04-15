@@ -31,6 +31,7 @@ const totalConfig = getTotalConfig();
 
 
 export const dAppName = 'Angry Penguins';
+export const lkMexTicker = 'LKMEX-aab910';
 
 export const devModeActivate = process.env.NODE_ENV === 'development';
 export const totalSupply = 10000;

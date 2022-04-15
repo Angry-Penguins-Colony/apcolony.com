@@ -1,3 +1,4 @@
+import { BigNumber } from 'bignumber.js';
 import { GatewayLogger } from './GatewayLogger';
 
 export class GatewayCaching {
@@ -6,12 +7,14 @@ export class GatewayCaching {
     public readonly remainingNft: CacheValue<number>;
     public readonly hasDiscount: CacheMap<string, boolean>;
     public readonly whitelisted: CacheMap<string, boolean>;
+    public readonly lkmexBalance: CacheMap<string, BigNumber>;
 
     constructor(readonly logger: GatewayLogger) {
         this.remainingNft = new CacheValue<number>(5_000, 'remainingNfts');
         this.boughtAmount = new CacheMap<string, number>(15_000, 'boughtAmount');
         this.hasDiscount = new CacheMap<string, boolean>(1_800_000, 'hasDiscount');
         this.whitelisted = new CacheMap<string, boolean>(1_800_000, 'isWhitelisted');
+        this.lkmexBalance = new CacheMap<string, BigNumber>(15_000, 'lkmexBalance');
     }
 }
 

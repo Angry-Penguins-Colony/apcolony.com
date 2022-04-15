@@ -1,5 +1,4 @@
 import React from 'react';
-import { Balance } from '@elrondnetwork/erdjs/out';
 import { faPlus as plusIcon, faMinus as minusIcon } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BigNumber } from 'bignumber.js';
@@ -11,7 +10,7 @@ const MintButton = (props: {
     mint: (valueToSend: BigNumber, amount: number) => void,
     priceList: BigNumber[] | undefined,
     boughtNfts: number | undefined,
-    userBalance: Balance,
+    userBalance: BigNumber | undefined,
     maxPerWallet: number,
     nftsAmount: number,
     onNftsAmountChanged: (amount: number) => void,
@@ -90,16 +89,16 @@ const MintButton = (props: {
     }
 
     function canBuy(): boolean {
-        return price != null && userBalance.valueOf().comparedTo(price) >= 0;
+        return price != null && userBalance != undefined && userBalance.comparedTo(price) >= 0;
     }
 
     function canBuyNext() {
-        if (boughtNfts != null && priceList != null) {
+        if (boughtNfts != null && priceList != null && userBalance != null) {
 
             if (hasMaxPerWallet() == false) {
                 const newPrice = calculatePriceFromNft(nftsAmount + 1, boughtNfts, priceList);
 
-                return userBalance.valueOf().comparedTo(newPrice) >= 0;
+                return userBalance.comparedTo(newPrice) >= 0;
             }
         }
 

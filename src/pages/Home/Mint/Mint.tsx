@@ -83,7 +83,7 @@ export const Mint = (props: {
 
                         <p className="mb-3 text-muted balance">
                             <a href={accountExplorer} target="_blank" rel="noopener noreferrer">
-                                My balance: {humanizeBalance(userBalance)} {currencyUsed.toString()}
+                                My balance: {userBalance != null ? humanizeBalance(userBalance) : '--'} {currencyUsed.toString()}
                             </a>
                         </p>
                     </div>
