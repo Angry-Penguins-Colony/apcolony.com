@@ -6,9 +6,19 @@ const RarityInfos = () => {
 
     const [rarityInfosOpen, setRarityInfosOpen] = React.useState(false);
 
+    const [styleRarityInfo, setStyleRarityInfo] = React.useState({ 'bottom': 20 - window.scrollY * 2 + 'px' });
+
+    React.useEffect(() => {
+        const onScroll = () => setStyleRarityInfo({ 'bottom': 20 - window.scrollY * 2 + 'px' });
+
+        window.removeEventListener('scroll', onScroll);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+
     return (
         <>
-            <div className={styles.rarityInfos} onClick={() => setRarityInfosOpen(true)}>
+            <div className={'rarityInfos ' + styles.rarityInfos} onClick={() => setRarityInfosOpen(true)} style={styleRarityInfo}>
                 <div className={styles.content}>
                     <span className={styles.icon}>!</span>
                     <p>EGGS RARITY RANK INFOS</p>

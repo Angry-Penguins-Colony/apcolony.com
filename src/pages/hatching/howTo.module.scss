@@ -7,9 +7,8 @@
     justify-content: space-between;
     gap: 15px;
 
-    >hr {
+    > hr {
         width: 100%;
-        // border: $white dashed 1px;
         background-image: linear-gradient(to right, white 50%, rgba(255, 255, 255, 0) 0%);
         background-position: right;
         background-size: 10px 2px;
@@ -18,7 +17,7 @@
         height: 2px;
     }
 
-    >.instruction {
+    > .instruction {
         display: flex;
         flex-direction: row;
         align-items: flex-start;
@@ -28,7 +27,7 @@
         max-width: 400px;
         min-width: 345px;
 
-        >.number {
+        > .number {
             border-radius: 999px;
             border: 3px solid $white;
             $size: 50px;
@@ -39,7 +38,7 @@
             align-items: center;
             justify-content: center;
 
-            >span {
+            > span {
                 font-family: 'CHEDROS', sans-serif;
                 font-weight: bold;
                 font-size: 2rem;
@@ -50,15 +49,38 @@
             }
         }
 
-        >.content {
-            >p {
+        > .content {
+            > p {
                 font-family: 'Montserrat', sans-serif;
                 color: $white;
 
-                >b {
+                > b {
                     font-weight: bold;
                 }
             }
+        }
+    }
+}
+
+
+@media (max-width: 1200px) {
+    .howTo {
+        flex-direction: column;
+
+        > hr {
+            height: 50px;
+            width: 2px;
+            background-image: linear-gradient(to bottom, white 50%, rgba(255, 255, 255, 0) 0%);
+            background-size: 2px 10px;
+            background-repeat: repeat-y;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .howTo {
+        > .instruction {
+            min-width: 100%;
         }
     }
 }

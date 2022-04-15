@@ -26,26 +26,52 @@
     }
 }
 
+@mixin customScrollbarHorizontal {
+    padding-bottom: 10px;
+
+    &::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: transparent;
+        margin: 0 20px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: $primary;
+        border-radius: 3px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: $hover;
+    }
+}
+
 .hatchingCard {
     background-color: $white;
     border-radius: 30px;
     display: grid;
     grid-template-columns: 3fr 2fr;
     grid-template-rows: 100%;
-    min-height: 600px;
-    max-height: 60vh;
     overflow: hidden;
 
     > .yourInventory {
         position: relative;
         border-right: 3px $primary solid;
         padding: 20px 25px 0 25px;
+        min-height: 600px;
+        max-height: 60vh;
 
         &::after {
             content: '';
+            pointer-events: none;
             position: absolute;
             bottom: 0;
-            left: -20px;
+            left: -15px;
             right: 0;
             height: 80px;
             background: transparent linear-gradient(180deg, #000B2700 0%, #000b2717 30%, #000b2773 100%) 0% 0% no-repeat padding-box;
@@ -91,8 +117,10 @@
     }
 
     > .infos {
+        max-height: 60vh;
         padding: 20px 25px;
         position: relative;
+        min-height: 100%;
 
         > h3 {
             font-family: 'CHEDROS', sans-serif;
@@ -150,35 +178,35 @@
 
                 padding-bottom: 20px;
             }
+        }
 
-            > .confirmSelection {
-                z-index: 1;
-                position: absolute;
-                inset: 0;
-                right: -15px;
-                background-color: #242424DE;
+        > .confirmSelection {
+            z-index: 1;
+            position: absolute;
+            inset: 0;
+            right: -15px;
+            background-color: #242424DE;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 36px;
+
+            > p {
+                font-family: 'CHEDROS', sans-serif;
+                font-size: 70px;
+                font-weight: bold;
+                color: $white;
+                text-align: center;
+            }
+
+            > .actions {
                 display: flex;
-                flex-direction: column;
+                align-items: center;
                 justify-content: center;
-                gap: 36px;
+                gap: 30px;
 
-                > p {
-                    font-family: 'CHEDROS', sans-serif;
-                    font-size: 70px;
-                    font-weight: bold;
-                    color: $white;
-                    text-align: center;
-                }
-
-                > .actions {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 30px;
-
-                    > .button {
-                        min-width: 30%;
-                    }
+                > .button {
+                    min-width: 30%;
                 }
             }
         }
@@ -269,6 +297,8 @@
         background-color: #000000;
         background-size: cover;
         background-position: center;
+        overflow-x: hidden;
+        overflow-y: auto;
 
         > header {}
 
@@ -300,10 +330,18 @@
                 gap: 60px;
                 margin-top: 3rem;
                 margin-bottom: 3rem;
+                max-width: 100vw;
+                overflow: auto;
+                justify-content: flex-start;
+                padding-right: 20px;
+                padding-left: 20px;
+
+                @include customScrollbarHorizontal;
 
 
                 .eggResult {
                     width: 250px;
+                    min-width: 250px;
 
                     background-color: #030519;
 
@@ -329,6 +367,110 @@
             }
         }
 
-        > .button {}
+        > .button {
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .hatchingCard {
+        margin-bottom: 100px;
+        grid-template-columns: 1fr;
+        overflow: visible;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+        grid-template-rows: auto;
+
+        > .yourInventory {
+            border-right: none;
+            border-radius: 30px;
+            overflow: hidden;
+            min-height: 60vh;
+
+            &::after {
+                right: 0;
+                left: 0;
+            }
+
+            > .items {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            &.confirmSelection {
+                border-radius: 0;
+            }
+        }
+
+        > .infos {
+            padding: 0;
+
+            > h3 {
+                display: none;
+            }
+
+            > .content {
+                display: none;
+            }
+
+            > .confirmSelection {
+                position: relative;
+                background-color: $white;
+                padding: 25px 20px 30px 20px;
+                border-radius: 0 0 30px 30px;
+
+                > p {
+                    color: $primary;
+                    font-size: 2.5rem;
+                }
+
+                > .actions {
+                    flex-direction: column;
+
+                    > .button:first-of-type {
+                        min-width: 50%;
+                    }
+                }
+            }
+
+            > .actions {
+                top: 0;
+                bottom: auto;
+
+                &::before {
+                    content: none;
+                }
+            }
+        }
+
+        &.haveInfos {
+            > .yourInventory {
+                border-radius: 0;
+            }
+
+            > .infos {
+                padding: 24px 25px 20px 25px;
+
+                > .content {
+                    display: flex;
+                }
+            }
+        }
+    }
+}
+
+@media (max-height: 725px) {
+    .hatchingCard {
+        > .hatchResult {
+            > .content {
+                > h1 {
+                    display: none;
+                }
+
+                > .subTtile {
+                    display: none;
+                }
+            }
+        }
     }
 }

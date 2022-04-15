@@ -7,7 +7,7 @@ import styles from './hatchingCard.module.scss';
 const HatchingCard = (props: {
     bySelection?: boolean,
 }) => {
-    const bySelection = props.bySelection || false;
+    const bySelection = props.bySelection || true;
 
     const [itemData, setItemData] = React.useState<({
         type: string;
@@ -52,13 +52,20 @@ const HatchingCard = (props: {
             if (!bySelection) {
                 setSelectedItems([item]);
             } else {
-                // if item is not in selected items
-                if (!selectedItems.find(aItem => aItem.id === itemId)) {
-                    // add item to selected items
-                    setSelectedItems([...selectedItems, item]);
+                if (item.type === 'penguin') {
+                    setSelectedItems([item]);
                 } else {
-                    // remove item from selected items
-                    setSelectedItems(selectedItems.filter(aItem => aItem.id !== itemId));
+                    // remove selected penguin
+                    const newSelectedItems = selectedItems.filter(aItem => aItem.type !== 'penguin');
+
+                    // if item is not in selected items
+                    if (!newSelectedItems.find(aItem => aItem.id === itemId)) {
+                        // add item to selected items
+                        setSelectedItems([...newSelectedItems, item]);
+                    } else {
+                        // remove item from selected items
+                        setSelectedItems(newSelectedItems.filter(aItem => aItem.id !== itemId));
+                    }
                 }
             }
         }
@@ -177,6 +184,41 @@ const HatchingCard = (props: {
                         thumbail: '/img/eggs/Diamond_egg.png',
                         tier: 1,
                         id: '8741',
+                    },
+                    {
+                        type: 'penguin',
+                        thumbail: '/img/penguins/Untitled design-2.png',
+                        id: '17',
+                    },
+                    {
+                        type: 'penguin',
+                        thumbail: '/img/penguins/Untitled design-3.png',
+                        id: '57',
+                    },
+                    {
+                        type: 'penguin',
+                        thumbail: '/img/penguins/Untitled design-4.png',
+                        id: '872',
+                    },
+                    {
+                        type: 'penguin',
+                        thumbail: '/img/penguins/Untitled design-5.png',
+                        id: '8767825734',
+                    },
+                    {
+                        type: 'penguin',
+                        thumbail: '/img/penguins/Untitled design-6.png',
+                        id: '387',
+                    },
+                    {
+                        type: 'penguin',
+                        thumbail: '/img/penguins/Untitled design-7.png',
+                        id: '8753',
+                    },
+                    {
+                        type: 'penguin',
+                        thumbail: '/img/penguins/Untitled design-8.png',
+                        id: '558758785',
                     }
                 ]; // TODO: this is a temp data they will be replace by API call
 
@@ -322,8 +364,8 @@ const HatchingCard = (props: {
     // TODO: add selection option
 
     return (
-        <div className={'hatchingCard container ' + styles.hatchingCard + (bySelection ? ' ' + styles.bySelection : '')}>
-            <div className={styles.yourInventory}>
+        <div className={'hatchingCard container ' + styles.hatchingCard + (bySelection ? ' ' + styles.bySelection : '') + (selectedItems.length == 1 ? ' ' + styles.haveInfos : '')}>
+            <div className={styles.yourInventory + (confirmSelection ? ' ' + styles.confirmSelection : '')}>
                 <h3>YOUR INVENTORY</h3>
                 {
                     bySelection &&
@@ -370,26 +412,26 @@ const HatchingCard = (props: {
                                 </>
                                 :
                                 <>
-                                    <div className={styles.selectedEggs}>
+                                    <ScrollContainer horizontal={false} hideScrollbars={false} className={styles.selectedEggs}>
                                         {itemSelectionCards}
-                                    </div>
+                                    </ScrollContainer>
                                 </>
-                    }
-                    {
-                        confirmSelection &&
-                        <div className={styles.confirmSelection}>
-                            <p>{'YOU\'RE ABOUT '}<br />{'TO HATCH ' + selectedItems.length + ' EGGS !'}</p>
-                            <div className={styles.actions}>
-                                <div className={'button ' + styles.button} onClick={startHatching}>HATCH NOW</div>
-                                <div className={'button button-cancel ' + styles.button} onClick={handleConfirmSelection}>CANCEL</div>
-                            </div>
-                        </div>
                     }
                 </div>
                 {
+                    confirmSelection &&
+                    <div className={styles.confirmSelection}>
+                        <p>{'YOU\'RE ABOUT '}<br />{'TO HATCH ' + selectedItems.length + ' EGGS !'}</p>
+                        <div className={styles.actions}>
+                            <div className={'button ' + styles.button} onClick={startHatching}>HATCH NOW</div>
+                            <div className={'button button-cancel ' + styles.button} onClick={handleConfirmSelection}>CANCEL</div>
+                        </div>
+                    </div>
+                }
+                {
                     (selectedItems.length > 1) &&
                     <div className={styles.actions}>
-                        <div className={styles.button + ' button'} onClick={handleConfirmSelection}>CONFIRM SELECTION</div>
+                        <div className={styles.button + ' button'} onClick={handleConfirmSelection}>CONFIRM HATCH</div>
                         <div className={styles.button + ' button button-cancel'} onClick={() => { setSelectedItems([]); }}>CANCEL</div>
                     </div>
                 }
@@ -425,7 +467,7 @@ const HatchingCard = (props: {
                     <div className={styles.content + ' ' + styles.container}>
                         <h1>HATCHING SUCCESSFUL !</h1>
                         <p className={styles.subTtile}>Discover your Angry Penguin(s)<br /> in the Penguin Nest below!</p>
-                        <div className={styles.result}>
+                        <ScrollContainer vertical={false} hideScrollbars={false} className={styles.result}>
                             {
                                 eggsHatch.map((eggResult, index) => {
                                     return (
@@ -436,7 +478,7 @@ const HatchingCard = (props: {
                                     );
                                 })
                             }
-                        </div>
+                        </ScrollContainer>
                         <div className={'button ' + styles.button} onClick={() => { location.reload(); }}>RETURN TO SITE</div>
                     </div>
                 </div>
@@ -456,10 +498,7 @@ const ItemCard = (props: {
     const data = props.item;
 
     const isSelected = props.isSelected;
-    // const [isSelected, setIsSelected] = React.useState(props.isSelected || false);
-
     const handleClick = () => {
-        // setIsSelected(!isSelected);
         props.changeSelection(props.itemId);
     };
 
