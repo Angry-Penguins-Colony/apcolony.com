@@ -1,5 +1,6 @@
 import React from 'react';
 import { useGetAccountInfo, useGetNetworkConfig } from '@elrondnetwork/dapp-core';
+import { ToggleButton } from 'react-bootstrap';
 import { useGetBalance } from 'hooks/useGetBalance';
 import { useGetMaxPerWallet } from 'hooks/useGetMaxPerWallet';
 import { useGetMyBoughtNfts } from 'hooks/useGetMyBoughtNfts';
@@ -8,8 +9,13 @@ import { useOnAnyTransactionSuccess } from 'hooks/useOnAnyTransactionSuccess';
 import mintEggs from 'transactions/mint';
 import { humanizeBalance } from 'utils/humanize';
 import BonusTable, { CLASS_HIGHLIGHTED } from './BonusTable';
-import MintButton from './MintButton';
+import MintButton from './ButtonMint';
 import './Mint.scss';
+
+export enum MintCurrency {
+    eGLD = 'eGLD',
+    LKMex = 'LKMex'
+}
 
 export const Mint = (props: {
     onClose?: () => void
@@ -24,6 +30,7 @@ export const Mint = (props: {
     const maxPerWallet = useGetMaxPerWallet();
     const { boughtNfts, refresh: refreshNfts } = useGetMyBoughtNfts();
     const weiBalance = useGetBalance();
+    const [currencyUsed, setCurrencyUsed] = React.useState<MintCurrency>(MintCurrency.eGLD);
 
     useOnAnyTransactionSuccess(() => {
         refreshNfts();
@@ -38,6 +45,22 @@ export const Mint = (props: {
 
     const explorerUrl = network.explorerAddress;
     const accountExplorer = explorerUrl + '/accounts/' + address;
+
+    const toggleUsedToken = () => {
+
+        switch (currencyUsed) {
+            case MintCurrency.eGLD:
+                setCurrencyUsed(MintCurrency.LKMex);
+                break;
+
+            case MintCurrency.LKMex:
+                setCurrencyUsed(MintCurrency.eGLD);
+                break;
+
+            default:
+                throw new Error('Unknown currency');
+        }
+    };
 
 
 
@@ -61,11 +84,19 @@ export const Mint = (props: {
                 <h1>PUBLIC SALE</h1>
 
                 <div>
-                    <p className="mb-3 text-muted balance">
-                        <a href={accountExplorer} target="_blank" rel="noopener noreferrer">
-                            My balance: {humanizeBalance(weiBalance)} eGLD
-                        </a>
-                    </p>
+
+                    <div className='d-flex justify-content-between'>
+                        <div className="custom-control custom-switch">
+                            <input type="checkbox" className="custom-control-input" id="customSwitch1" onChange={() => toggleUsedToken()} />
+                            <label className="custom-control-label" htmlFor="customSwitch1">Use LKMex</label>
+                        </div>
+
+                        <p className="mb-3 text-muted balance">
+                            <a href={accountExplorer} target="_blank" rel="noopener noreferrer">
+                                My balance: {humanizeBalance(weiBalance)} {currencyUsed.toString()}
+                            </a>
+                        </p>
+                    </div>
 
                     <MintButton
                         priceList={priceList}
@@ -75,26 +106,32 @@ export const Mint = (props: {
                         nftsAmount={nftsAmount}
                         onNftsAmountChanged={setNftsAmount}
                         mint={mintEggs}
+                        currencyDenomation={currencyUsed.toString()}
                     />
 
 
                     <div className="advantages pb-0">
-                        <BonusTable
-                            setRef={setBonusTableRef}
-                            className="compactBonusTable mt-0 mb-0 pb-0"
-                            highlightRowIndex={(boughtNfts ?? 0) + nftsAmount - 1}
-                            boughtNfts={boughtNfts}
-                            onRowClick={(index) => {
+                        {currencyUsed == MintCurrency.eGLD &&
+                            <BonusTable
+                                setRef={setBonusTableRef}
+                                className="compactBonusTable mt-0 mb-0 pb-0"
+                                highlightRowIndex={(boughtNfts ?? 0) + nftsAmount - 1}
+                                boughtNfts={boughtNfts}
+                                onRowClick={(index) => {
 
-                                if (boughtNfts == undefined) return;
+                                    if (boughtNfts == undefined) return;
 
-                                const selectedAmount = index + 1 - boughtNfts;
+                                    const selectedAmount = index + 1 - boughtNfts;
 
-                                if (selectedAmount > 0) {
-                                    setNftsAmount(selectedAmount);
-                                }
-                            }}
-                        />
+                                    if (selectedAmount > 0) {
+                                        setNftsAmount(selectedAmount);
+                                    }
+                                }}
+                            />}
+
+                        {currencyUsed == MintCurrency.LKMex &&
+                            <p className="discount-disabled">Sorry, discounts are disabled when paying in LKMex.</p>
+                        }
                     </div>
                 </div>
             </div>

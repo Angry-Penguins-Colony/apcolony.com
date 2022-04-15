@@ -15,6 +15,7 @@ const MintButton = (props: {
     maxPerWallet: number,
     nftsAmount: number,
     onNftsAmountChanged: (amount: number) => void,
+    currencyDenomation: string
 }) => {
 
     const priceList = props.priceList;
@@ -42,7 +43,7 @@ const MintButton = (props: {
                 </div>
             </div>
             <button className={'button mintNow' + ' ' + (canMint() ? '' : 'disabled')} disabled={canBuy() == false} onClick={mint}>
-                MINT NOW ({price != null ? weiToEgld(price).toFixed(2) : '--'} eGLD)
+                MINT NOW ({price != null ? weiToEgld(price).toFixed(2) : '--'} {props.currencyDenomation})
             </button>
         </div>
 
