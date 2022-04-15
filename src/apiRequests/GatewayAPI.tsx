@@ -1,5 +1,6 @@
 import { Address } from '@elrondnetwork/erdjs/out';
 import { devModeActivate } from 'config';
+import { MintCurrency } from 'pages/Home/Mint/MintCurrency';
 import { GatewayCaching } from './GatewayCaching';
 import { GatewayLogger } from './GatewayLogger';
 
@@ -47,7 +48,12 @@ export class GatewayAPI {
         return result;
     }
 
-    public getMyBoughtNfts(address: Address) {
+    public getMyBoughtNfts(address: Address, mintCurrency = MintCurrency.eGLD) {
+
+        if (mintCurrency == MintCurrency.LKMex) {
+            // TODO:
+            throw new Error('LKMex is not supported');
+        }
 
         return this.cache.boughtAmount.get(address.bech32(),
             () => this.queryInt('getBoughtAmount', [address.hex()])

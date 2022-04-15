@@ -7,14 +7,17 @@ import { useGetPriceList } from './useGetPriceList';
 export const useGetMintInfo = (mintCurrency: MintCurrency) => {
 
 
+
+
+    const priceList = useGetPriceList(mintCurrency);
+    const { boughtNfts, refresh } = useGetMyBoughtNfts(mintCurrency);
+    const maxPerWallet = useGetMaxPerWallet(mintCurrency);
+    const balance = useGetBalance();
+
     if (mintCurrency == MintCurrency.LKMex) {
-        throw new Error('Not implemented');
+        throw new Error('Not implemented for balance');
     }
 
-    const priceList = useGetPriceList();
-    const { boughtNfts, refresh } = useGetMyBoughtNfts();
-    const maxPerWallet = useGetMaxPerWallet();
-    const balance = useGetBalance();
 
     return {
         priceList: priceList,

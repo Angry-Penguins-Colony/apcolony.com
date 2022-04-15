@@ -7,6 +7,8 @@ export interface MintConfig {
     publicSaleClose: Date;
     whitelistedOpen: Date;
     maxPerWallet: number;
+    lkMexPriceList: BigNumber[];
+    lkMexMaxPerWallet: number;
     fullPriceList: BigNumber[];
     reducedPriceList: BigNumber[];
 }
