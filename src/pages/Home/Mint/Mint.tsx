@@ -1,6 +1,5 @@
 import React from 'react';
 import { useGetAccountInfo, useGetNetworkConfig } from '@elrondnetwork/dapp-core';
-import { ToggleButton } from 'react-bootstrap';
 import { useGetBalance } from 'hooks/useGetBalance';
 import { useGetMaxPerWallet } from 'hooks/useGetMaxPerWallet';
 import { useGetMyBoughtNfts } from 'hooks/useGetMyBoughtNfts';
@@ -86,7 +85,7 @@ export const Mint = (props: {
                 <div>
 
                     <div className='d-flex justify-content-between'>
-                        <div className="custom-control custom-switch">
+                        <div className="custom-control custom-switch" >
                             <input type="checkbox" className="custom-control-input" id="customSwitch1" onChange={() => toggleUsedToken()} />
                             <label className="custom-control-label" htmlFor="customSwitch1">Use LKMex</label>
                         </div>
@@ -98,16 +97,7 @@ export const Mint = (props: {
                         </p>
                     </div>
 
-                    <MintButton
-                        priceList={priceList}
-                        boughtNfts={boughtNfts}
-                        maxPerWallet={maxPerWallet}
-                        userBalance={weiBalance}
-                        nftsAmount={nftsAmount}
-                        onNftsAmountChanged={setNftsAmount}
-                        mint={mintEggs}
-                        currencyDenomation={currencyUsed.toString()}
-                    />
+                    {getButton()}
 
 
                     <div className="advantages pb-0">
@@ -138,6 +128,24 @@ export const Mint = (props: {
         </div>
     </div>;
 
+
+    function getButton() {
+
+        const commonProps = {
+            nftsAmount: nftsAmount,
+            onNftsAmountChanged: setNftsAmount,
+            mint: mintEggs,
+        };
+
+        return <MintButton
+            priceList={priceList}
+            boughtNfts={boughtNfts}
+            maxPerWallet={maxPerWallet}
+            userBalance={weiBalance}
+            currencyDenomation={currencyUsed.toString()}
+            {...commonProps}
+        />;
+    }
 
     function scrollToHighlightedTable() {
 

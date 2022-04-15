@@ -105,6 +105,10 @@
         font-weight: normal;
     }
 
+    #customSwitch1 {
+        cursor: pointer;
+    }
+
     > .right {
         background-color: #00000063;
         backdrop-filter: blur(24px) contrast(1.4);
