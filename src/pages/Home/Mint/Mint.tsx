@@ -1,20 +1,13 @@
 import React from 'react';
 import { useGetAccountInfo, useGetNetworkConfig } from '@elrondnetwork/dapp-core';
-import { useGetBalance } from 'hooks/useGetBalance';
-import { useGetMaxPerWallet } from 'hooks/useGetMaxPerWallet';
-import { useGetMyBoughtNfts } from 'hooks/useGetMyBoughtNfts';
-import { useGetPriceList } from 'hooks/useGetPriceList';
+import { useGetMintInfo } from 'hooks/useGetMintInfo';
 import { useOnAnyTransactionSuccess } from 'hooks/useOnAnyTransactionSuccess';
 import mintEggs from 'transactions/mint';
 import { humanizeBalance } from 'utils/humanize';
 import BonusTable, { CLASS_HIGHLIGHTED } from './BonusTable';
 import MintButton from './ButtonMint';
 import './Mint.scss';
-
-export enum MintCurrency {
-    eGLD = 'eGLD',
-    LKMex = 'LKMex'
-}
+import { MintCurrency } from './MintCurrency';
 
 export const Mint = (props: {
     onClose?: () => void
@@ -25,14 +18,12 @@ export const Mint = (props: {
     const [nftsAmount, _setNftsAmount] = React.useState(1);
     const { address } = useGetAccountInfo();
     const { network } = useGetNetworkConfig();
-    const priceList = useGetPriceList();
-    const maxPerWallet = useGetMaxPerWallet();
-    const { boughtNfts, refresh: refreshNfts } = useGetMyBoughtNfts();
-    const weiBalance = useGetBalance();
+
     const [currencyUsed, setCurrencyUsed] = React.useState<MintCurrency>(MintCurrency.eGLD);
+    const { priceList, maxPerWallet, boughtNfts, userBalance, refreshInfo } = useGetMintInfo(currencyUsed);
 
     useOnAnyTransactionSuccess(() => {
-        refreshNfts();
+        refreshInfo();
     });
 
 
@@ -92,12 +83,21 @@ export const Mint = (props: {
 
                         <p className="mb-3 text-muted balance">
                             <a href={accountExplorer} target="_blank" rel="noopener noreferrer">
-                                My balance: {humanizeBalance(weiBalance)} {currencyUsed.toString()}
+                                My balance: {humanizeBalance(userBalance)} {currencyUsed.toString()}
                             </a>
                         </p>
                     </div>
 
-                    {getButton()}
+                    <MintButton
+                        priceList={priceList}
+                        boughtNfts={boughtNfts}
+                        maxPerWallet={maxPerWallet}
+                        userBalance={userBalance}
+                        nftsAmount={nftsAmount}
+                        onNftsAmountChanged={setNftsAmount}
+                        mint={mintEggs}
+                        currencyDenomation={currencyUsed.toString()}
+                    />
 
 
                     <div className="advantages pb-0">
@@ -127,25 +127,6 @@ export const Mint = (props: {
             </div>
         </div>
     </div>;
-
-
-    function getButton() {
-
-        const commonProps = {
-            nftsAmount: nftsAmount,
-            onNftsAmountChanged: setNftsAmount,
-            mint: mintEggs,
-        };
-
-        return <MintButton
-            priceList={priceList}
-            boughtNfts={boughtNfts}
-            maxPerWallet={maxPerWallet}
-            userBalance={weiBalance}
-            currencyDenomation={currencyUsed.toString()}
-            {...commonProps}
-        />;
-    }
 
     function scrollToHighlightedTable() {
 

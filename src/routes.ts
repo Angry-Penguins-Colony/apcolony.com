@@ -1,5 +1,4 @@
 import { dAppName } from 'config';
-import MintLkMax from 'pages/MintWithLkMex/MintWithLkMex';
 import UnlockPage from 'pages/UnlockPage';
 import withPageTitle from './components/PageTitle';
 import Home from './pages/Home';
@@ -26,7 +25,6 @@ export const routeNames = {
   ricoTwitter: twitter,
   bossQcDiscord: discord,
   bossQcTwitter: twitter,
-  mintWithLkMex: '/mint-with-lkmex',
 };
 
 const routes: Array<any> = [
@@ -34,11 +32,6 @@ const routes: Array<any> = [
     path: routeNames.home,
     title: 'Home',
     component: Home
-  },
-  {
-    path: routeNames.mintWithLkMex,
-    title: 'Mint with LKMex',
-    component: MintLkMax
   },
   {
     path: routeNames.transaction,
