@@ -3,11 +3,11 @@ import { useGetLoginInfo } from '@elrondnetwork/dapp-core';
 import { ConnectWalletButton } from 'components/ConnectWallet/ConnectWalletButton';
 import { DisconnectWalletButton } from 'components/DisconnectWallet/DisconnectWalletButton';
 import { mintConfig } from 'config';
-import { SaleStatus, useGetSaleInfos } from 'hooks/useGetSaleInfos';
+import { SaleStatus, useGetSaleStatus } from 'hooks/useGetSaleStatus';
 import { useIsWhitelisted } from 'hooks/useIsWhitelisted';
 import { useOnAnyTransactionSuccess } from 'hooks/useOnAnyTransactionSuccess';
-import { humanizeNumber } from 'utils/humanize';
 import Timer from '../Timer';
+import { NftsLeft } from './NftsLeft';
 
 export const MintHome = (props: {
     openMint: () => void;
@@ -17,21 +17,25 @@ export const MintHome = (props: {
     const { isLoggedIn } = useGetLoginInfo();
     const { isWhitelisted } = useIsWhitelisted();
 
-    const { saleInfos, refresh: refreshSaleInfos } = useGetSaleInfos();
+    const { saleStatus, forceRefresh } = useGetSaleStatus();
+
+
     useOnAnyTransactionSuccess(() => {
-        refreshSaleInfos();
+        forceRefresh();
     });
 
-    if (saleInfos == undefined) {
+    if (saleStatus == undefined) {
         return <p>
             Loading...
         </p>;
     }
 
-    const saleSoonForUser = saleInfos.status == SaleStatus.Soon
-        || (saleInfos.status == SaleStatus.WhitelistOpen && !isWhitelisted);
-    const saleOpenForUser = saleInfos.status == SaleStatus.OnSale
-        || (saleInfos.status == SaleStatus.WhitelistOpen && isWhitelisted);
+
+
+    const saleSoonForUser = saleStatus == SaleStatus.Soon
+        || (saleStatus == SaleStatus.WhitelistOpen && !isWhitelisted);
+    const saleOpenForUser = saleStatus == SaleStatus.OnSale
+        || (saleStatus == SaleStatus.WhitelistOpen && isWhitelisted);
 
     if (saleSoonForUser) {
 
@@ -39,9 +43,9 @@ export const MintHome = (props: {
 
         return <>
             <Timer date={displayTimer} />
-            {saleInfos.status == SaleStatus.WhitelistOpen &&
+            {saleStatus == SaleStatus.WhitelistOpen &&
                 <div className='mint mb-5 mt-1'>
-                    <div className="nftLeft">{humanizeNumber(saleInfos.boughtNfts)} / 10 000</div>
+                    <NftsLeft />
                 </div>
             }
 
@@ -57,7 +61,7 @@ export const MintHome = (props: {
             <h2>TIME REMAINING</h2>
             <Timer date={mintConfig.publicSaleClose} />
             <div className='mint'>
-                <div className="nftLeft">{humanizeNumber(saleInfos.boughtNfts)} / 10 000</div>
+                <NftsLeft />
                 {isLoggedIn ?
                     <>
                         <button
@@ -73,13 +77,13 @@ export const MintHome = (props: {
             </div>
         </>;
     }
-    else if (saleInfos.status == SaleStatus.SoldOut) {
+    else if (saleStatus == SaleStatus.SoldOut) {
         return <>
             <div className="semiBanner">
                 <p>SOLD OUT</p>
             </div>;
             <div className='mint'>
-                <div className="nftLeft">{humanizeNumber(saleInfos.boughtNfts)} / 10 000</div>
+                <NftsLeft />
             </div>
         </>;
 
