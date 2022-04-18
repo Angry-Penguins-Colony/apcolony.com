@@ -80,8 +80,8 @@ export const MintHome = (props: {
     else if (saleStatus == SaleStatus.SoldOut) {
         return <>
             <div className="semiBanner">
-                <p>SOLD OUT</p>
-            </div>;
+                <p>THE SALE IS OVER</p>
+            </div>
             <div className='mint'>
                 <NftsLeft />
             </div>
