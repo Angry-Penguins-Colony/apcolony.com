@@ -4,6 +4,7 @@
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
+
   .container,
   .container-sm,
   .container-md,
@@ -15,6 +16,7 @@
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
+
   .container,
   .container-sm,
   .container-md,
@@ -26,6 +28,7 @@
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
+
   .container,
   .container-sm,
   .container-md,
@@ -37,6 +40,7 @@
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
+
   .container,
   .container-sm,
   .container-md,
@@ -72,6 +76,7 @@ Override Bootstrap variables only above.
   src: url("/assets/fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
   font-weight: 400;
 }
+
 @font-face {
   font-family: "Montserrat";
   src: url("/assets/fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
@@ -89,7 +94,9 @@ body {
   line-height: 1;
   font-family: "Montserrat", sans-serif;
   background-color: $bg-body;
-  background: linear-gradient(180deg, black 0vh, black 700vh /*360vh*/, $bg-body 100%);
+  background: linear-gradient(180deg, black 0vh, black 700vh
+      /*360vh*/
+      , $bg-body 100%);
   overflow-x: hidden;
 }
 
@@ -131,8 +138,7 @@ h6 {
   }
 }
 
-h2 {
-}
+h2 {}
 
 /* Actions
 -------------------------------------------------- */
@@ -150,6 +156,7 @@ h2 {
     width: 64px;
     height: 64px;
   }
+
   .lds-ellipsis div {
     position: absolute;
     top: 27px;
@@ -159,45 +166,56 @@ h2 {
     background: rgba(0, 0, 0, 0.1);
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
   }
+
   .bg-blue .lds-ellipsis div {
     background: rgba(255, 255, 255, 0.4);
   }
+
   .lds-ellipsis div:nth-child(1) {
     left: 6px;
     animation: lds-ellipsis1 0.6s infinite;
   }
+
   .lds-ellipsis div:nth-child(2) {
     left: 6px;
     animation: lds-ellipsis2 0.6s infinite;
   }
+
   .lds-ellipsis div:nth-child(3) {
     left: 26px;
     animation: lds-ellipsis2 0.6s infinite;
   }
+
   .lds-ellipsis div:nth-child(4) {
     left: 45px;
     animation: lds-ellipsis3 0.6s infinite;
   }
+
   @keyframes lds-ellipsis1 {
     0% {
       transform: scale(0);
     }
+
     100% {
       transform: scale(1);
     }
   }
+
   @keyframes lds-ellipsis3 {
     0% {
       transform: scale(1);
     }
+
     100% {
       transform: scale(0);
     }
   }
+
   @keyframes lds-ellipsis2 {
     0% {
       transform: translate(0, 0);
     }
+
     100% {
       transform: translate(19px, 0);
     }
@@ -217,7 +235,7 @@ button,
   font-size: 1rem;
   font-weight: 700;
   text-align: center;
-  cursor: pointer;  
+  cursor: pointer;
 
   &.icon {
     padding: 6px;
@@ -262,7 +280,27 @@ button,
       color: $hover;
     }
   }
+
+  &-cancel {
+    background-color: $white;
+    padding: 0.75rem 0.8125rem;
+    border: 0.1875rem solid $red;
+    color: $red;
+
+    &:hover {
+      background-color: $red;
+      border-color: $red;
+      color: $white;
+    }
+
+    &:active {
+      background-color: $red-hover;
+      border-color: $red-hover;
+      color: $white;
+    }
+  }
 }
+
 .button.icon.twitter {
   padding: 7px;
 }

@@ -1,0 +1,30 @@
+@import "./../../../assets/sass/variables.scss";
+
+#hatchingSelection {
+    padding-right: 15px;
+    padding-left: 15px;
+
+    > .hatchingCard {
+        margin-bottom: 60px;
+    }
+
+    > .howTo {
+        margin-bottom: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    #hatchingSelection {
+        > .hatchingCard {
+            margin-bottom: 120px;
+        }
+
+        > .howTo {
+            display: none;
+        }
+
+        > .rarityInfos {
+            display: none;
+        }
+    }
+}
