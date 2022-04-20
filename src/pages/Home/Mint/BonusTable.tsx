@@ -3,7 +3,7 @@ import { faCircleQuestion as bonusIcon } from '@fortawesome/free-regular-svg-ico
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { getImagesFor, mintConfig } from 'config';
-import { useGetPriceList } from 'hooks/useGetPriceList';
+import { useGetPriceList } from 'hooks/api/sale/useGetPriceList';
 import { weiToEgld } from 'utils/convert';
 import styles from './bonustable.module.scss';
 

@@ -1,5 +1,5 @@
 import { API } from 'config';
-import { useFetchWithAddress } from './useFetchWithAddress';
+import { useFetchWithAddress } from '../common/useFetchWithAddress';
 
 export const useGetMyBoughtNfts = () => {
     const o = useFetchWithAddress<number>(

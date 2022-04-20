@@ -1,5 +1,5 @@
 import { API } from 'config';
-import { useFetchWithAddress } from './useFetchWithAddress';
+import { useFetchWithAddress } from '../common/useFetchWithAddress';
 
 export const useIsWhitelisted = () => {
     const data = useFetchWithAddress(

@@ -3,9 +3,9 @@ import { useGetLoginInfo } from '@elrondnetwork/dapp-core';
 import { ConnectWalletButton } from 'components/ConnectWallet/ConnectWalletButton';
 import { DisconnectWalletButton } from 'components/DisconnectWallet/DisconnectWalletButton';
 import { mintConfig } from 'config';
-import { SaleStatus, useGetSaleStatus } from 'hooks/useGetSaleStatus';
-import { useIsWhitelisted } from 'hooks/useIsWhitelisted';
-import { useOnAnyTransactionSuccess } from 'hooks/useOnAnyTransactionSuccess';
+import { useOnAnyTransactionSuccess } from 'hooks/api/common/useOnAnyTransactionSuccess';
+import { useGetSaleStatus, SaleStatus } from 'hooks/api/sale/useGetSaleStatus';
+import { useIsWhitelisted } from 'hooks/api/sale/useIsWhitelisted';
 import Timer from '../Timer';
 import { NftsLeft } from './NftsLeft';
 

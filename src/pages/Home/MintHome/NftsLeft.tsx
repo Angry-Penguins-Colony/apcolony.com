@@ -1,6 +1,6 @@
 import React from 'react';
 import { totalSupply } from 'config';
-import { useGetRemainingNfts } from 'hooks/useGetRemainingNft';
+import { useGetRemainingNfts } from 'hooks/api/sale/useGetRemainingNft';
 import { humanizeNumber } from 'utils/humanize';
 
 export const NftsLeft = () => {

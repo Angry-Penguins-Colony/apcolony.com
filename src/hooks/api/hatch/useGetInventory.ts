@@ -1,7 +1,7 @@
 import React from 'react';
+import { useStateValidate } from 'hooks/common/useStateValidate';
 import { ItemData } from 'structs/ItemData';
 import { getEggDescription, getPenguinDescription } from 'texts';
-import { useStateValidate } from './useStateValidate';
 
 const useGetInventory = () => {
 

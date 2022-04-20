@@ -2,8 +2,8 @@ import * as React from 'react';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import useGetInventory from 'hooks/useGetInventory';
-import { useGetLastedHatch } from 'hooks/useGetLastedHatch';
+import useGetInventory from 'hooks/api/hatch/useGetInventory';
+import { useGetLastedHatch } from 'hooks/api/hatch/useGetLastedHatch';
 import { ItemData } from '../../structs/ItemData';
 import styles from './HatchingInventory.module.scss';
 

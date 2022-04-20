@@ -1,5 +1,5 @@
 import { API } from 'config';
-import { useFetch } from './useFetch';
+import { useFetch } from 'hooks/common/useFetch';
 
 export const useGetRemainingNfts = () => {
 

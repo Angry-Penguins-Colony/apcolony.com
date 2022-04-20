@@ -1,15 +1,15 @@
 import React from 'react';
 import { useGetAccountInfo, useGetNetworkConfig } from '@elrondnetwork/dapp-core';
-import { useGetBalance } from 'hooks/useGetBalance';
-import { useGetMaxPerWallet } from 'hooks/useGetMaxPerWallet';
-import { useGetMyBoughtNfts } from 'hooks/useGetMyBoughtNfts';
-import { useGetPriceList } from 'hooks/useGetPriceList';
-import { useOnAnyTransactionSuccess } from 'hooks/useOnAnyTransactionSuccess';
+import './Mint.scss';
+import { useGetBalance } from 'hooks/api/common/useGetBalance';
+import { useOnAnyTransactionSuccess } from 'hooks/api/common/useOnAnyTransactionSuccess';
+import { useGetMaxPerWallet } from 'hooks/api/sale/useGetMaxPerWallet';
+import { useGetMyBoughtNfts } from 'hooks/api/sale/useGetMyBoughtNfts';
+import { useGetPriceList } from 'hooks/api/sale/useGetPriceList';
 import mintEggs from 'transactions/mint';
 import { humanizeBalance } from 'utils/humanize';
 import BonusTable, { CLASS_HIGHLIGHTED } from './BonusTable';
 import MintButton from './MintButton';
-import './Mint.scss';
 
 export const Mint = (props: {
     onClose?: () => void
