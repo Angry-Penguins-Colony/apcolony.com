@@ -17,6 +17,10 @@ const HatchingInventory = (props: {
     // function when selection is change
     const [selectedItems, setSelectedItems] = React.useState<ItemData[]>([]);
 
+    const isSelected = (itemId: string) => {
+        return selectedItems.find((item) => item.id.toString() === itemId);
+    };
+
     const changeSelection = (itemId: string) => {
         const item = items.find(aItem => aItem.id === itemId);
 
@@ -25,7 +29,12 @@ const HatchingInventory = (props: {
                 setSelectedItems([item]);
             } else {
                 if (item.type === 'penguin') {
-                    setSelectedItems([item]);
+                    if (isSelected(itemId)) {
+                        setSelectedItems([]);
+                    }
+                    else {
+                        setSelectedItems([item]);
+                    }
                 } else {
                     // remove selected penguin
                     const newSelectedItems = selectedItems.filter(aItem => aItem.type !== 'penguin');
@@ -54,7 +63,6 @@ const HatchingInventory = (props: {
     const [eggsHatch, setEggsHatch] = React.useState<ItemData[]>([]);
 
     const startHatching = () => {
-        console.log('start hatching');
 
         // display video and auto play
         setVideoIsDisplay(true);
