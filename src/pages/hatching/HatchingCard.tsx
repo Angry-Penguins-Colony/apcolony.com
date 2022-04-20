@@ -2,38 +2,25 @@ import * as React from 'react';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import useGetInventory from 'hooks/useGetInventory';
+import { ItemData } from '../../structs/ItemData';
 import styles from './hatchingCard.module.scss';
 
-interface ItemData {
-    type: string;
-    thumbail: string;
-    id: string;
-    title?: string;
-    tier?: number;
-}
-
 const HatchingCard = (props: {
-    bySelection?: boolean,
+    canMultiSelect?: boolean,
 }) => {
-    const bySelection = props.bySelection || true;
+    const canMultiSelect = props.canMultiSelect || true;
 
-    const [itemData, setItemData] = React.useState<ItemData[]>([]);
+    const { items } = useGetInventory();
 
     // function when selection is change
     const [selectedItems, setSelectedItems] = React.useState<ItemData[]>([]);
 
     const changeSelection = (itemId: string) => {
-        console.log('change selection');
-        console.log(itemId);
-        // get item in all items
-        console.log(itemData);
-
-        const item = itemData.find(aItem => aItem.id === itemId);
-        console.log('item', item);
-
+        const item = items.find(aItem => aItem.id === itemId);
 
         if (item) {
-            if (!bySelection) {
+            if (!canMultiSelect) {
                 setSelectedItems([item]);
             } else {
                 if (item.type === 'penguin') {
@@ -102,225 +89,11 @@ const HatchingCard = (props: {
         }, 3500);
     };
 
-    // get all item card by API
-    React.useEffect(() => {
-        if (bySelection) { // get just egg
-            setTimeout(() => {
-                // marketplaceAPI.getMyItem(10).then(data => { // TODO: all item card (change setTimout by good API call)
-                const data = [
-                    {
-                        type: 'egg',
-                        title: 'Tier 1 Egg',
-                        thumbail: '/img/eggs/Silver_egg.png',
-                        tier: 1,
-                        id: '8745',
-                    },
-                    {
-                        type: 'egg',
-                        title: 'Tier 1 Egg',
-                        thumbail: '/img/eggs/Silver_egg.png',
-                        tier: 1,
-                        id: '2783',
-                    },
-                    {
-                        type: 'egg',
-                        title: 'Tier 1 Egg',
-                        thumbail: '/img/eggs/Silver_egg.png',
-                        tier: 1,
-                        id: '387451',
-                    },
-                    {
-                        type: 'egg',
-                        title: 'Tier 2 Egg',
-                        thumbail: '/img/eggs/Gold_egg.png',
-                        tier: 2,
-                        id: '7',
-                    },
-                    {
-                        type: 'egg',
-                        title: 'Tier 2 Egg',
-                        thumbail: '/img/eggs/Gold_egg.png',
-                        tier: 2,
-                        id: '8754245',
-                    },
-                    {
-                        type: 'egg',
-                        title: 'Tier 3 Egg',
-                        thumbail: '/img/eggs/Diamond_egg.png',
-                        tier: 3,
-                        id: '574',
-                    },
-                    {
-                        type: 'egg',
-                        title: 'Tier 3 Egg',
-                        thumbail: '/img/eggs/Diamond_egg.png',
-                        tier: 3,
-                        id: '7461',
-                    },
-                    {
-                        type: 'egg',
-                        title: 'Tier 3 Egg',
-                        thumbail: '/img/eggs/Diamond_egg.png',
-                        tier: 3,
-                        id: '8741',
-                    },
-                    {
-                        type: 'penguin',
-                        thumbail: '/img/penguins/Untitled design-2.png',
-                        id: '17',
-                    },
-                    {
-                        type: 'penguin',
-                        thumbail: '/img/penguins/Untitled design-3.png',
-                        id: '57',
-                    },
-                    {
-                        type: 'penguin',
-                        thumbail: '/img/penguins/Untitled design-4.png',
-                        id: '872',
-                    },
-                    {
-                        type: 'penguin',
-                        thumbail: '/img/penguins/Untitled design-5.png',
-                        id: '8767825734',
-                    },
-                    {
-                        type: 'penguin',
-                        thumbail: '/img/penguins/Untitled design-6.png',
-                        id: '387',
-                    },
-                    {
-                        type: 'penguin',
-                        thumbail: '/img/penguins/Untitled design-7.png',
-                        id: '8753',
-                    },
-                    {
-                        type: 'penguin',
-                        thumbail: '/img/penguins/Untitled design-8.png',
-                        id: '558758785',
-                    }
-                ]; // TODO: this is a temp data they will be replace by API call
-
-                setItemData(data);
-
-                if (!bySelection) {
-                    setSelectedItems([data[0]]);
-                }
-
-                // });
-            }, 1);
-        } else { // get egg and penguin (maybe item too ?)
-            // marketplaceAPI.getMyItem(10).then(data => { // TODO: all item card (change setTimout by good API call)
-            setTimeout(() => {
-                const data = [
-                    {
-                        type: 'egg',
-                        title: 'Tier 1 Egg',
-                        thumbail: '/img/eggs/Silver_egg.png',
-                        tier: 1,
-                        id: '8745',
-                    },
-                    {
-                        type: 'egg',
-                        title: 'Tier 1 Egg',
-                        thumbail: '/img/eggs/Silver_egg.png',
-                        tier: 1,
-                        id: '2783',
-                    },
-                    {
-                        type: 'egg',
-                        title: 'Tier 1 Egg',
-                        thumbail: '/img/eggs/Silver_egg.png',
-                        tier: 1,
-                        id: '387451',
-                    },
-                    {
-                        type: 'egg',
-                        title: 'Tier 2 Egg',
-                        thumbail: '/img/eggs/Gold_egg.png',
-                        tier: 2,
-                        id: '7',
-                    },
-                    {
-                        type: 'egg',
-                        title: 'Tier 2 Egg',
-                        thumbail: '/img/eggs/Gold_egg.png',
-                        tier: 2,
-                        id: '8754245',
-                    },
-                    {
-                        type: 'egg',
-                        title: 'Tier 3 Egg',
-                        thumbail: '/img/eggs/Diamond_egg.png',
-                        tier: 3,
-                        id: '574',
-                    },
-                    {
-                        type: 'egg',
-                        title: 'Tier 3 Egg',
-                        thumbail: '/img/eggs/Diamond_egg.png',
-                        tier: 3,
-                        id: '7461',
-                    },
-                    {
-                        type: 'egg',
-                        title: 'Tier 3 Egg',
-                        thumbail: '/img/eggs/Diamond_egg.png',
-                        tier: 3,
-                        id: '8741',
-                    },
-                    {
-                        type: 'penguin',
-                        thumbail: '/img/penguins/Untitled design-2.png',
-                        id: '17',
-                    },
-                    {
-                        type: 'penguin',
-                        thumbail: '/img/penguins/Untitled design-3.png',
-                        id: '57',
-                    },
-                    {
-                        type: 'penguin',
-                        thumbail: '/img/penguins/Untitled design-4.png',
-                        id: '872',
-                    },
-                    {
-                        type: 'penguin',
-                        thumbail: '/img/penguins/Untitled design-5.png',
-                        id: '8767825734',
-                    },
-                    {
-                        type: 'penguin',
-                        thumbail: '/img/penguins/Untitled design-6.png',
-                        id: '387',
-                    },
-                    {
-                        type: 'penguin',
-                        thumbail: '/img/penguins/Untitled design-7.png',
-                        id: '8753',
-                    },
-                    {
-                        type: 'penguin',
-                        thumbail: '/img/penguins/Untitled design-8.png',
-                        id: '558758785',
-                    }
-                ]; // TODO: this is a temp data they will be replace by API call
-
-                setItemData(data);
-
-                if (!bySelection) {
-                    setSelectedItems([data[0]]);
-                }
-
-                // });
-            }, 1);
-        }
-    }, []);
 
 
     // create item cards
     const itemCards: JSX.Element[] = [];
-    for (const item of itemData) {
+    for (const item of items) {
         let isSelected = false;
         const sameSlectedItem = selectedItems.find(aItem => aItem.id === item.id);
         if (sameSlectedItem) {
@@ -343,11 +116,11 @@ const HatchingCard = (props: {
     // TODO: add selection option
 
     return (
-        <div className={'hatchingCard container ' + styles.hatchingCard + (bySelection ? ' ' + styles.bySelection : '') + (selectedItems.length == 1 ? ' ' + styles.haveInfos : '')}>
+        <div className={'hatchingCard container ' + styles.hatchingCard + (canMultiSelect ? ' ' + styles.bySelection : '') + (selectedItems.length == 1 ? ' ' + styles.haveInfos : '')}>
             <div className={styles.yourInventory + (confirmSelection ? ' ' + styles.confirmSelection : '')}>
                 <h3>YOUR INVENTORY</h3>
                 {
-                    bySelection &&
+                    canMultiSelect &&
                     <p className={styles.subTitle}>Select 1 or more eggs hatch</p>
                 }
 
@@ -357,7 +130,7 @@ const HatchingCard = (props: {
             </div>
             <div className={styles.infos}>
                 {
-                    (selectedItems.length == 1 || !bySelection) ?
+                    (selectedItems.length == 1 || !canMultiSelect) ?
                         <h3>INFOS</h3>
                         :
                         <h3>SELECTED EGGS</h3>

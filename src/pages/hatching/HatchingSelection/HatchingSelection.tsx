@@ -9,7 +9,7 @@ const HatchingSelection = () => {
 
     return (
         <div id="hatchingSelection">
-            <HatchingCard bySelection={true} />
+            <HatchingCard canMultiSelect={true} />
             <HowTo />
             <RarityInfos />
         </div>
