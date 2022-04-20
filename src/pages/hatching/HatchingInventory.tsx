@@ -3,6 +3,7 @@ import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import useGetInventory from 'hooks/useGetInventory';
+import { useGetLastedHatch } from 'hooks/useGetLastedHatch';
 import { ItemData } from '../../structs/ItemData';
 import styles from './HatchingInventory.module.scss';
 
@@ -60,42 +61,12 @@ const HatchingInventory = (props: {
     const refVideoEgglight = React.useRef<HTMLVideoElement>(null);
     const [videoIsDisplay, setVideoIsDisplay] = React.useState<boolean>(false);
     const [videoIsEnded, setVideoIsEnded] = React.useState<boolean>(false);
-    const [eggsHatch, setEggsHatch] = React.useState<ItemData[]>([]);
+    const eggsHatch = useGetLastedHatch();
 
     const startHatching = () => {
-
-        // display video and auto play
         setVideoIsDisplay(true);
 
-        // TODO: hatch egg
-        setTimeout(() => {
-            setEggsHatch([
-                {
-                    id: '1',
-                    type: 'penguin',
-                    title: 'Angry Pinguin #0550',
-                    thumbail: '/img/penguins/Untitled design-2.png',
-                },
-                {
-                    id: '2',
-                    type: 'penguin',
-                    title: 'Angry Pinguin #8745',
-                    thumbail: '/img/penguins/Untitled design-3.png',
-                },
-                {
-                    id: '3',
-                    type: 'penguin',
-                    title: 'Angry Pinguin #8272',
-                    thumbail: '/img/penguins/Untitled design-5.png',
-                },
-                {
-                    id: '4',
-                    type: 'penguin',
-                    title: 'Angry Pinguin #2887',
-                    thumbail: '/img/penguins/Untitled design-7.png',
-                }
-            ]);
-        }, 3500);
+        // TODO: send transaction
     };
 
     return (
@@ -210,7 +181,7 @@ const HatchingInventory = (props: {
                         <img src={selectedItems[0].thumbail} className={styles.egg} />
                         <h4>Penguin</h4>
                         {/* TODO: add good NFT name */}
-                        <p>This is a Angry Penguin NFT</p>
+                        <p>{selectedItems[0].description}</p>
                         {/* TODO: add good NFT description */}
                         <div className='button'>SEE THIS NFT</div>
                         {/* TODO: bind button */}
