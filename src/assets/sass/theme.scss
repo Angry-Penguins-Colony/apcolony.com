@@ -278,6 +278,7 @@ button,
 
     &.danger {
       border-color: $danger;
+      color: $danger;
 
       &:hover {
         background-color: $danger;

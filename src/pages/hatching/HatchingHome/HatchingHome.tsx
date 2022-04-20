@@ -28,7 +28,7 @@ const HatchingHome = () => {
                     </div>
                     {isLoggedIn ?
                         <div className="d-flex flex-column">
-                            <a href={routeNames.hatchingSelection} className="button button-outline px-5">HATCH THEM NOW</a>
+                            <a href="#penguinNest" className="button button-outline px-5">HATCH THEM NOW</a>
                             <DisconnectWalletButton className="button-outline mt-3" showAddress={false} />
                         </div> :
                         <ConnectWalletButton className="button-outline" />
