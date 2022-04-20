@@ -112,12 +112,9 @@ const HatchingInventory = (props: {
                 </ScrollContainer>
             </div>
             <div className={styles.infos}>
-                {
-                    (selectedItems.length == 1 || !canMultiSelect) ?
-                        <h3>INFOS</h3>
-                        :
-                        <h3>SELECTED EGGS</h3>
-                }
+
+                <h3>INFOS</h3>
+
                 <div className={styles.content}>
                     {
                         (selectedItems.length == 1) ?
@@ -142,8 +139,7 @@ const HatchingInventory = (props: {
                             :
                             (selectedItems.length == 0) ?
                                 <>
-                                    <p>No eggs selected</p>
-                                    {/* TODO: */}
+                                    <p>Select an egg to hatch it</p>
                                 </>
                                 :
                                 <>
