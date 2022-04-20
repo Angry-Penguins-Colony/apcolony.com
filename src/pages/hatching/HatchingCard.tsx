@@ -8,8 +8,8 @@ interface ItemData {
     type: string;
     thumbail: string;
     id: string;
-    title?: number;
-    tier?: string;
+    title?: string;
+    tier?: number;
 }
 
 const HatchingCard = (props: {
@@ -17,34 +17,10 @@ const HatchingCard = (props: {
 }) => {
     const bySelection = props.bySelection || true;
 
-    const [itemData, setItemData] = React.useState<({
-        type: string;
-        title: string;
-        thumbail: string;
-        tier: number;
-        id: string;
-    } | {
-        type: string;
-        thumbail: string;
-        id: string;
-        title?: undefined;
-        tier?: undefined;
-    })[]>([]);
+    const [itemData, setItemData] = React.useState<ItemData[]>([]);
 
     // function when selection is change
-    const [selectedItems, setSelectedItems] = React.useState<({
-        type: string;
-        title: string;
-        thumbail: string;
-        tier: number;
-        id: string;
-    } | {
-        type: string;
-        thumbail: string;
-        id: string;
-        title?: undefined;
-        tier?: undefined;
-    })[]>([]);
+    const [selectedItems, setSelectedItems] = React.useState<ItemData[]>([]);
 
     const changeSelection = (itemId: string) => {
         console.log('change selection');
@@ -162,35 +138,35 @@ const HatchingCard = (props: {
                         type: 'egg',
                         title: 'Tier 2 Egg',
                         thumbail: '/img/eggs/Gold_egg.png',
-                        tier: 1,
+                        tier: 2,
                         id: '7',
                     },
                     {
                         type: 'egg',
                         title: 'Tier 2 Egg',
                         thumbail: '/img/eggs/Gold_egg.png',
-                        tier: 1,
+                        tier: 2,
                         id: '8754245',
                     },
                     {
                         type: 'egg',
                         title: 'Tier 3 Egg',
                         thumbail: '/img/eggs/Diamond_egg.png',
-                        tier: 1,
+                        tier: 3,
                         id: '574',
                     },
                     {
                         type: 'egg',
                         title: 'Tier 3 Egg',
                         thumbail: '/img/eggs/Diamond_egg.png',
-                        tier: 1,
+                        tier: 3,
                         id: '7461',
                     },
                     {
                         type: 'egg',
                         title: 'Tier 3 Egg',
                         thumbail: '/img/eggs/Diamond_egg.png',
-                        tier: 1,
+                        tier: 3,
                         id: '8741',
                     },
                     {
@@ -267,35 +243,35 @@ const HatchingCard = (props: {
                         type: 'egg',
                         title: 'Tier 2 Egg',
                         thumbail: '/img/eggs/Gold_egg.png',
-                        tier: 1,
+                        tier: 2,
                         id: '7',
                     },
                     {
                         type: 'egg',
                         title: 'Tier 2 Egg',
                         thumbail: '/img/eggs/Gold_egg.png',
-                        tier: 1,
+                        tier: 2,
                         id: '8754245',
                     },
                     {
                         type: 'egg',
                         title: 'Tier 3 Egg',
                         thumbail: '/img/eggs/Diamond_egg.png',
-                        tier: 1,
+                        tier: 3,
                         id: '574',
                     },
                     {
                         type: 'egg',
                         title: 'Tier 3 Egg',
                         thumbail: '/img/eggs/Diamond_egg.png',
-                        tier: 1,
+                        tier: 3,
                         id: '7461',
                     },
                     {
                         type: 'egg',
                         title: 'Tier 3 Egg',
                         thumbail: '/img/eggs/Diamond_egg.png',
-                        tier: 1,
+                        tier: 3,
                         id: '8741',
                     },
                     {
