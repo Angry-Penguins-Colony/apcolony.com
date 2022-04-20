@@ -116,38 +116,7 @@ const HatchingInventory = (props: {
                 <h3>INFOS</h3>
 
                 <div className={styles.content}>
-                    {
-                        (selectedItems.length == 1) ?
-                            (selectedItems[0].type == 'egg') ?
-                                <>
-                                    <img src={selectedItems[0].thumbail} className={styles.egg} />
-                                    <h4>{selectedItems[0].title}</h4>
-                                    <p>This is a tier {selectedItems[0].tier} egg, you can see it by is bronze halo on it</p>
-                                    {/* TODO: add good description */}
-                                    <div className='button' onClick={startHatching}>HATCH THIS EGG</div>
-                                </>
-                                :
-                                <>
-                                    <img src={selectedItems[0].thumbail} className={styles.egg} />
-                                    <h4>Penguin</h4>
-                                    {/* TODO: add good NFT name */}
-                                    <p>This is a Angry Penguin NFT</p>
-                                    {/* TODO: add good NFT description */}
-                                    <div className='button'>SEE THIS NFT</div>
-                                    {/* TODO: bind button */}
-                                </>
-                            :
-                            (selectedItems.length == 0) ?
-                                <>
-                                    <p>Select an egg to hatch it</p>
-                                </>
-                                :
-                                <>
-                                    <ScrollContainer horizontal={false} hideScrollbars={false} className={styles.selectedEggs}>
-                                        {getSelectionCards()}
-                                    </ScrollContainer>
-                                </>
-                    }
+                    {getInfo()}
                 </div>
                 {
                     confirmSelection &&
@@ -217,6 +186,48 @@ const HatchingInventory = (props: {
             }
         </div >
     );
+
+    function getInfo(): JSX.Element {
+
+        if (selectedItems.length == 0) {
+            return <>
+                <p>Select an egg to hatch it</p>
+            </>;
+        }
+        else if (selectedItems.length == 1) {
+            switch (selectedItems[0].type) {
+                case 'egg':
+                    return <>
+                        <img src={selectedItems[0].thumbail} className={styles.egg} />
+                        <h4>{selectedItems[0].title}</h4>
+                        <p>This is a tier {selectedItems[0].tier} egg, you can see it by is bronze halo on it</p>
+                        {/* TODO: add good description */}
+                        <div className='button' onClick={startHatching}>HATCH THIS EGG</div>
+                    </>;
+
+                case 'penguin':
+                    return <>
+                        <img src={selectedItems[0].thumbail} className={styles.egg} />
+                        <h4>Penguin</h4>
+                        {/* TODO: add good NFT name */}
+                        <p>This is a Angry Penguin NFT</p>
+                        {/* TODO: add good NFT description */}
+                        <div className='button'>SEE THIS NFT</div>
+                        {/* TODO: bind button */}
+                    </>;
+
+                default:
+                    throw new Error('Unknown type');
+            }
+        }
+        else {
+            return <>
+                <ScrollContainer horizontal={false} hideScrollbars={false} className={styles.selectedEggs}>
+                    {getSelectionCards()}
+                </ScrollContainer>
+            </>;
+        }
+    }
 
     function getItemsCards(): JSX.Element[] {
         const itemsCards: JSX.Element[] = [];
