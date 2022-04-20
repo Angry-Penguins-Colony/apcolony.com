@@ -4,7 +4,15 @@ import { Address } from '@elrondnetwork/erdjs/out';
 import { truncateAddress } from 'utils/string';
 import styles from './index.module.scss';
 
-export const DisconnectWalletButton = () => {
+export const DisconnectWalletButton = (props: {
+    className?: string,
+    showAddress?: boolean
+}) => {
+
+    const showAddress = props.showAddress ?? true;
+
+    console.log('showAddress', showAddress);
+    console.log('props.showAddress', props.showAddress);
 
     const { address } = useGetAccountInfo();
 
@@ -13,11 +21,14 @@ export const DisconnectWalletButton = () => {
     };
 
     return <div
-        className="button connectWallet danger"
+        className={'button connectWallet danger' + ' ' + props.className}
         onClick={disconnectWallet}>
         DISCONNECT<br />
-        <span className={styles.addressLabel}>
-            {truncateAddress(Address.fromBech32(address), 10)}
-        </span>
+
+        {showAddress &&
+            <span className={styles.addressLabel}>
+                {truncateAddress(Address.fromBech32(address), 10)}
+            </span>
+        }
     </div>;
 };

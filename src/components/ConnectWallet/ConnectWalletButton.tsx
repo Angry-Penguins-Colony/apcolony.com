@@ -2,7 +2,9 @@ import React from 'react';
 import Popup from 'pages/Home/Popup';
 import UnlockPage from 'pages/UnlockPage';
 
-export const ConnectWalletButton = () => {
+export const ConnectWalletButton = (props: {
+    className?: string
+}) => {
 
     const [connectWalletOpen, setConnectWalletOpen] = React.useState(false);
     const connectWallet = () => {
@@ -14,6 +16,6 @@ export const ConnectWalletButton = () => {
             <UnlockPage />
         </Popup>
 
-        <div className="button connectWallet" onClick={connectWallet}>CONNECT WALLET</div>
+        <div className={'button connectWallet' + ' ' + props.className || ''} onClick={connectWallet}>CONNECT WALLET</div>
     </>;
 };

@@ -1,11 +1,16 @@
 import * as React from 'react';
 import './hatchingHome.scss';
+import { useGetLoginInfo } from '@elrondnetwork/dapp-core';
+import { ConnectWalletButton } from 'components/ConnectWallet/ConnectWalletButton';
+import { DisconnectWalletButton } from 'components/DisconnectWallet/DisconnectWalletButton';
 import { routeNames } from 'routes';
 import HatchingCard from '../HatchingCard';
 import HowToHatch from '../HowTo';
 import RarityInfos from '../RarityInfos';
 
 const HatchingHome = () => {
+
+    const { isLoggedIn } = useGetLoginInfo();
 
     document.body.style.background = '#6d92c5';
 
@@ -21,7 +26,13 @@ const HatchingHome = () => {
                     <div className='eggSurprise'>
                         <img src="/img/opened_egg_surprise.png" />
                     </div>
-                    <a href={routeNames.hatchingSelection} className="button button-outline">HATCH THEM NOW</a>
+                    {isLoggedIn ?
+                        <>
+                            <a href={routeNames.hatchingSelection} className="button button-outline">HATCH THEM NOW</a>
+                            <DisconnectWalletButton className="button-outline mt-5" showAddress={false} />
+                        </> :
+                        <ConnectWalletButton className="button-outline" />
+                    }
                 </div>
 
                 <HowToHatch />

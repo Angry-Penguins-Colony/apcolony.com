@@ -4,7 +4,6 @@
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
-
   .container,
   .container-sm,
   .container-md,
@@ -16,7 +15,6 @@
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-
   .container,
   .container-sm,
   .container-md,
@@ -28,7 +26,6 @@
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-
   .container,
   .container-sm,
   .container-md,
@@ -40,7 +37,6 @@
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
-
   .container,
   .container-sm,
   .container-md,
@@ -94,9 +90,7 @@ body {
   line-height: 1;
   font-family: "Montserrat", sans-serif;
   background-color: $bg-body;
-  background: linear-gradient(180deg, black 0vh, black 700vh
-      /*360vh*/
-      , $bg-body 100%);
+  background: linear-gradient(180deg, black 0vh, black 700vh /*360vh*/, $bg-body 100%);
   overflow-x: hidden;
 }
 
@@ -138,7 +132,8 @@ h6 {
   }
 }
 
-h2 {}
+h2 {
+}
 
 /* Actions
 -------------------------------------------------- */
@@ -272,12 +267,21 @@ button,
     background-color: $white;
     padding: 0.75rem 0.8125rem;
     border: 0.1875rem solid $primary;
+
     color: $primary;
 
     &:hover {
       background-color: $white;
       border-color: $hover;
       color: $hover;
+    }
+
+    &.danger {
+      border-color: $danger;
+
+      &:hover {
+        background-color: $danger;
+      }
     }
   }
 
