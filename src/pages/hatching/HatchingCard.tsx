@@ -4,6 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import styles from './hatchingCard.module.scss';
 
+interface ItemData {
+    type: string;
+    thumbail: string;
+    id: string;
+    title?: number;
+    tier?: string;
+}
+
 const HatchingCard = (props: {
     bySelection?: boolean,
 }) => {
@@ -446,6 +454,7 @@ const HatchingCard = (props: {
                                 :
                                 <video src="/video/Eggs lumière excès.mp4" ref={refVideoEgglight} autoPlay onEnded={() => { setVideoIsEnded(true); }}></video>
                         }
+                        <p className={styles.skipVideo} role="button" onClick={() => setVideoIsEnded(true)}>Skip video</p>
                     </div>
                 </div>
             }
@@ -483,7 +492,7 @@ const HatchingCard = (props: {
                     </div>
                 </div>
             }
-        </div>
+        </div >
     );
 };
 
