@@ -63,12 +63,7 @@ const HatchingCard = (props: {
     const refVideoEgglight = React.useRef<HTMLVideoElement>(null);
     const [videoIsDisplay, setVideoIsDisplay] = React.useState<boolean>(false);
     const [videoIsEnded, setVideoIsEnded] = React.useState<boolean>(false);
-    const [eggsHatch, setEggsHatch] = React.useState<{
-        id: string,
-        type: string,
-        title: string,
-        thumbail: string
-    }[]>([]);
+    const [eggsHatch, setEggsHatch] = React.useState<ItemData[]>([]);
 
     const startHatching = () => {
         console.log('start hatching');
