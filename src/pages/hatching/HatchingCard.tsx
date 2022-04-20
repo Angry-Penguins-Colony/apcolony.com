@@ -89,32 +89,6 @@ const HatchingCard = (props: {
         }, 3500);
     };
 
-
-
-    // create item cards
-    const itemCards: JSX.Element[] = [];
-    for (const item of items) {
-        let isSelected = false;
-        const sameSlectedItem = selectedItems.find(aItem => aItem.id === item.id);
-        if (sameSlectedItem) {
-            isSelected = true;
-        }
-
-        itemCards.push(
-            <ItemCard itemId={item.id.toString()} key={item.id.toString()} item={item} changeSelection={changeSelection} isSelected={isSelected} />
-        );
-    }
-
-    // create item selection cards
-    const itemSelectionCards: JSX.Element[] = [];
-    for (const item of selectedItems) {
-        itemSelectionCards.push(
-            <ItemSelectedCard itemId={item.id.toString()} key={item.id.toString()} item={item} />
-        );
-    }
-
-    // TODO: add selection option
-
     return (
         <div className={'hatchingCard container ' + styles.hatchingCard + (canMultiSelect ? ' ' + styles.bySelection : '') + (selectedItems.length == 1 ? ' ' + styles.haveInfos : '')}>
             <div className={styles.yourInventory + (confirmSelection ? ' ' + styles.confirmSelection : '')}>
@@ -125,7 +99,7 @@ const HatchingCard = (props: {
                 }
 
                 <ScrollContainer horizontal={false} hideScrollbars={false} className={styles.items}>
-                    {itemCards}
+                    {getItemsCards()}
                 </ScrollContainer>
             </div>
             <div className={styles.infos}>
@@ -165,7 +139,7 @@ const HatchingCard = (props: {
                                 :
                                 <>
                                     <ScrollContainer horizontal={false} hideScrollbars={false} className={styles.selectedEggs}>
-                                        {itemSelectionCards}
+                                        {getSelectionCards()}
                                     </ScrollContainer>
                                 </>
                     }
@@ -238,6 +212,35 @@ const HatchingCard = (props: {
             }
         </div >
     );
+
+    function getItemsCards(): JSX.Element[] {
+        const itemsCards: JSX.Element[] = [];
+        for (const item of items) {
+            let isSelected = false;
+            const sameSlectedItem = selectedItems.find(aItem => aItem.id === item.id);
+            if (sameSlectedItem) {
+                isSelected = true;
+            }
+
+            itemsCards.push(
+                <ItemCard itemId={item.id.toString()} key={item.id.toString()} item={item} changeSelection={changeSelection} isSelected={isSelected} />
+            );
+        }
+
+        return itemsCards;
+    }
+
+    function getSelectionCards(): JSX.Element[] {
+        const itemSelectionCards: JSX.Element[] = [];
+
+        for (const item of selectedItems) {
+            itemSelectionCards.push(
+                <ItemSelectedCard itemId={item.id.toString()} key={item.id.toString()} item={item} />
+            );
+        }
+
+        return itemSelectionCards;
+    }
 };
 
 export default HatchingCard;
