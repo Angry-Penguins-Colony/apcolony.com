@@ -27,10 +27,10 @@ const HatchingHome = () => {
                         <img src="/img/opened_egg_surprise.png" />
                     </div>
                     {isLoggedIn ?
-                        <>
-                            <a href={routeNames.hatchingSelection} className="button button-outline">HATCH THEM NOW</a>
-                            <DisconnectWalletButton className="button-outline mt-5" showAddress={false} />
-                        </> :
+                        <div className="d-flex flex-column">
+                            <a href={routeNames.hatchingSelection} className="button button-outline px-5">HATCH THEM NOW</a>
+                            <DisconnectWalletButton className="button-outline mt-3" showAddress={false} />
+                        </div> :
                         <ConnectWalletButton className="button-outline" />
                     }
                 </div>
