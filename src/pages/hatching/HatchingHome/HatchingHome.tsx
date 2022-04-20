@@ -3,7 +3,7 @@ import './hatchingHome.scss';
 import { useGetLoginInfo } from '@elrondnetwork/dapp-core';
 import { ConnectWalletButton } from 'components/ConnectWallet/ConnectWalletButton';
 import { DisconnectWalletButton } from 'components/DisconnectWallet/DisconnectWalletButton';
-import HatchingCard from '../HatchingCard';
+import HatchingCard from '../HatchingInventory';
 import HowToHatch from '../HowTo';
 import RarityInfos from '../RarityInfos';
 

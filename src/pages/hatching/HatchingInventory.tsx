@@ -4,9 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import useGetInventory from 'hooks/useGetInventory';
 import { ItemData } from '../../structs/ItemData';
-import styles from './hatchingCard.module.scss';
+import styles from './HatchingInventory.module.scss';
 
-const HatchingCard = (props: {
+
+const HatchingInventory = (props: {
     canMultiSelect?: boolean,
 }) => {
     const canMultiSelect = props.canMultiSelect || true;
@@ -243,7 +244,7 @@ const HatchingCard = (props: {
     }
 };
 
-export default HatchingCard;
+export default HatchingInventory;
 
 const ItemCard = (props: {
     item: any,

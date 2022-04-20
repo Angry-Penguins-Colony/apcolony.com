@@ -1,5 +1,5 @@
 import * as React from 'react';
-import HatchingCard from '../HatchingCard';
+import HatchingInventory from '../HatchingInventory';
 import HowTo from '../HowTo';
 import RarityInfos from '../RarityInfos';
 import './hatchingSelection.scss';
@@ -9,7 +9,7 @@ const HatchingSelection = () => {
 
     return (
         <div id="hatchingSelection">
-            <HatchingCard canMultiSelect={true} />
+            <HatchingInventory canMultiSelect={true} />
             <HowTo />
             <RarityInfos />
         </div>
