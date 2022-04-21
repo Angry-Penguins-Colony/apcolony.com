@@ -1,8 +1,17 @@
 import { Address } from '@elrondnetwork/erdjs/out';
 import { BigNumber } from 'bignumber.js';
+import { HatchConfig } from 'structs/HatchConfig';
 import { MintConfig } from 'structs/MintConfig';
 
-export const mainnetConfig: MintConfig = {
+
+export const mainnetHatchConfig: HatchConfig = {
+    hatchAddresses: [],
+    eggsIdentifier: 'EGGS-502867',
+    penguinsIdentifier: ''
+};
+
+
+export const mainnetMintConfig: MintConfig = {
     contractAddress: new Address('erd1qqqqqqqqqqqqqpgqe3qs6n7y5dkwsrydj82azdzxxdv66pkqv86q7782da'),
     publicSaleOpen: new Date('14 April 2022 19:00:00 UTC'),
     publicSaleClose: new Date('17 April 2022 19:00:00 UTC'),

@@ -1,6 +1,6 @@
 import { GatewayAPI } from 'apiRequests/GatewayAPI';
-import { devnetConfig } from 'config-sc-devnet';
-import { mainnetConfig } from 'config-sc-mainnet';
+import { devnetHatchConfig, devnetMintConfig } from 'config-sc-devnet';
+import { mainnetHatchConfig, mainnetMintConfig } from 'config-sc-mainnet';
 import { assertValid } from 'structs/MintConfig';
 import 'dotenv/config';
 
@@ -9,16 +9,18 @@ export const environment = process.env.REACT_APP_NET?.trim() ?? '';
 const getTotalConfig = () => {
     switch (environment) {
         case 'mainnet':
-            assertValid(mainnetConfig);
+            assertValid(mainnetMintConfig);
             return {
-                config: mainnetConfig,
+                mintConfig: mainnetMintConfig,
+                hatchConfig: mainnetHatchConfig,
                 gateway: 'https://api-eu1.tatum.io/v3/egld/node/6cf90622-7c84-4dad-9ced-95d929227e9d_100',
             };
 
         case 'devnet':
-            assertValid(devnetConfig);
+            assertValid(devnetMintConfig);
             return {
-                config: devnetConfig,
+                mintConfig: devnetMintConfig,
+                hatchConfig: devnetHatchConfig,
                 gateway: 'https://api-eu1.tatum.io/v3/egld/node/5a64b68c-ef24-4a43-966c-18da2cb1eb02_100',
             };
 
@@ -36,7 +38,8 @@ export const devModeActivate = process.env.NODE_ENV === 'development';
 export const totalSupply = 10000;
 export const startingSupply = 3000;
 
-export const mintConfig = totalConfig.config;
+export const hatchConfig = totalConfig.hatchConfig;
+export const mintConfig = totalConfig.mintConfig;
 export const API = new GatewayAPI(totalConfig.gateway, mintConfig.contractAddress);
 
 export const getImagesFor = (n: number) => {

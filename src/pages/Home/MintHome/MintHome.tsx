@@ -82,9 +82,6 @@ export const MintHome = (props: {
             <div className="semiBanner">
                 <p>THE SALE IS OVER</p>
             </div>
-            <div className='mint'>
-                <NftsLeft />
-            </div>
         </>;
 
     }
