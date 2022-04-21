@@ -11,9 +11,6 @@ export const DisconnectWalletButton = (props: {
 
     const showAddress = props.showAddress ?? true;
 
-    console.log('showAddress', showAddress);
-    console.log('props.showAddress', props.showAddress);
-
     const { address } = useGetAccountInfo();
 
     const disconnectWallet = () => {

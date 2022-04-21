@@ -1,3 +1,4 @@
+import { NFT } from 'structs/NFT';
 import { GatewayLogger } from './GatewayLogger';
 
 export class GatewayCaching {
@@ -6,12 +7,14 @@ export class GatewayCaching {
     public readonly remainingNft: CacheValue<number>;
     public readonly hasDiscount: CacheMap<string, boolean>;
     public readonly whitelisted: CacheMap<string, boolean>;
+    public readonly nfts: CacheMap<string, NFT[]>
 
     constructor(readonly logger: GatewayLogger) {
         this.remainingNft = new CacheValue<number>(5_000, 'remainingNfts');
         this.boughtAmount = new CacheMap<string, number>(15_000, 'boughtAmount');
         this.hasDiscount = new CacheMap<string, boolean>(1_800_000, 'hasDiscount');
         this.whitelisted = new CacheMap<string, boolean>(1_800_000, 'isWhitelisted');
+        this.nfts = new CacheMap<string, NFT[]>(1_800_000, 'nfts');
     }
 }
 

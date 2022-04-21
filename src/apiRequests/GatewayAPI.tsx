@@ -1,6 +1,7 @@
 import { Address } from '@elrondnetwork/erdjs/out';
 import { devModeActivate } from 'config';
 import { NFT } from 'structs/NFT';
+import { cut_nonce } from 'utils/string';
 import { GatewayCaching } from './GatewayCaching';
 import { GatewayLogger } from './GatewayLogger';
 
@@ -8,7 +9,7 @@ export class GatewayAPI {
     private readonly logger: GatewayLogger;
     private readonly cache: GatewayCaching;
 
-    constructor(public readonly url: string,
+    constructor(public readonly baseURL: string,
         public readonly mintAddress: Address) {
 
         this.logger = new GatewayLogger(devModeActivate);
@@ -22,8 +23,42 @@ export class GatewayAPI {
         this.cache.remainingNft.clear();
     }
 
-    public getNfts(address: Address, identifiers = [] as string[]): Promise<NFT[]> {
-        throw new Error('Method not implemented.');
+    public async getNfts(address: Address, ...identifier: string[]): Promise<NFT[]> {
+
+        if (identifier.includes('')) {
+            throw new Error('An identifier is empty in ' + identifier);
+        }
+
+        const nfts = await this.cache.nfts
+            .get(address.bech32(), async () => {
+                const response = await this.get('/address/' + address.bech32() + '/esdt/');
+
+                console.log(response);
+                const esdts = response.data.esdts;
+                const output = [] as NFT[];
+
+                for (const id in esdts) {
+
+                    const esdt = esdts[id];
+
+                    // skip tokens
+                    if (esdt.nonce == undefined) continue;
+
+                    const nft = {
+                        name: esdt.name,
+                        identifier: cut_nonce(esdt.tokenIdentifier),
+                        nonce: parseInt(esdt.nonce),
+                        uri: esdt.uris
+                    };
+
+                    output.push(nft);
+                }
+
+                return output;
+            });
+
+        return nfts
+            .filter(nft => identifier.includes(nft.identifier));
     }
 
     public hasDiscount(address: Address): Promise<boolean> {
@@ -69,7 +104,7 @@ export class GatewayAPI {
 
         this.logger.logFetch(`${funcName}`);
 
-        const url = this.url + '/vm-values/int';
+        const url = this.baseURL + '/vm-values/int';
         const data = {
             'scAddress': this.mintAddress.bech32(),
             'funcName': funcName,
@@ -89,5 +124,19 @@ export class GatewayAPI {
         const json = await response.json();
 
         return parseInt(json.data.data);
+    }
+
+    public async get(url: string) {
+        this.logger.logFetch(`${url}`);
+
+        const response = await fetch(this.baseURL + url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        });
+        const json = await response.json();
+
+        return json;
     }
 }

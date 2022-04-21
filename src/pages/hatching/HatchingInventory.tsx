@@ -19,7 +19,7 @@ const HatchingInventory = (props: {
     const [selectedItems, setSelectedItems] = React.useState<ItemData[]>([]);
 
     const isSelected = (itemId: string) => {
-        return selectedItems.find((item) => item.id.toString() === itemId);
+        return selectedItems.find((item) => item.id.toString() === itemId) != undefined;
     };
 
     const changeSelection = (itemId: string) => {
@@ -78,14 +78,8 @@ const HatchingInventory = (props: {
         <div className={'hatchingCard container ' + styles.hatchingCard + (canMultiSelect ? ' ' + styles.bySelection : '') + (selectedItems.length == 1 ? ' ' + styles.haveInfos : '')}>
             <div className={styles.yourInventory + (confirmSelection ? ' ' + styles.confirmSelection : '')}>
                 <h3>YOUR INVENTORY</h3>
-                {
-                    canMultiSelect &&
-                    <p className={styles.subTitle}>Select 1 or more eggs hatch</p>
-                }
+                {getItemsCards()}
 
-                <ScrollContainer horizontal={false} hideScrollbars={false} className={styles.items}>
-                    {getItemsCards()}
-                </ScrollContainer>
             </div>
             <div className={styles.infos}>
 
@@ -208,23 +202,34 @@ const HatchingInventory = (props: {
     function getItemsCards(): JSX.Element | JSX.Element[] {
 
         if (items == undefined) {
-            return <p>Loading</p>;
+            return <p className={styles.centeredInfo}>Loading</p>;
         }
+        else if (items.length == 0) {
+            return <p className={styles.centeredInfo}>You don&apos;t own a penguin or an egg.</p>;
+        }
+        else {
 
-        const itemsCards: JSX.Element[] = [];
-        for (const item of items) {
-            let isSelected = false;
-            const sameSlectedItem = selectedItems.find(aItem => aItem.id === item.id);
-            if (sameSlectedItem) {
-                isSelected = true;
+            const itemsCards: JSX.Element[] = [];
+
+            for (const item of items) {
+                itemsCards.push(
+                    <ItemCard
+                        itemId={item.id.toString()}
+                        key={item.id.toString()}
+                        item={item}
+                        changeSelection={changeSelection}
+                        isSelected={isSelected(item.id)}
+                    />
+                );
             }
 
-            itemsCards.push(
-                <ItemCard itemId={item.id.toString()} key={item.id.toString()} item={item} changeSelection={changeSelection} isSelected={isSelected} />
-            );
+            return <>
+                <p className={styles.subTitle}>Select 1 or more eggs hatch</p>
+                <ScrollContainer horizontal={false} hideScrollbars={false} className={styles.items}>
+                    {itemsCards}
+                </ScrollContainer>
+            </>;
         }
-
-        return itemsCards;
     }
 
     function getSelectionCards(): JSX.Element[] {
@@ -243,7 +248,7 @@ const HatchingInventory = (props: {
 export default HatchingInventory;
 
 const ItemCard = (props: {
-    item: any,
+    item: ItemData,
     itemId: string,
     isSelected?: boolean,
     changeSelection: (itemId: string) => void,
@@ -258,7 +263,7 @@ const ItemCard = (props: {
     return (
         <>
             <div className={styles[data.type] + (isSelected ? ' ' + styles.selected : '')} onClick={handleClick}>
-                <img src={data.thumbail} />
+                <img src={data.thumbnail} />
             </div>
         </>
     );
@@ -266,7 +271,7 @@ const ItemCard = (props: {
 
 
 const ItemSelectedCard = (props: {
-    item: any,
+    item: ItemData,
     itemId: string,
 }) => {
     const data = props.item;
@@ -274,7 +279,7 @@ const ItemSelectedCard = (props: {
     return (
         <>
             <div className={styles[data.type]}>
-                <img src={data.thumbail} />
+                <img src={data.thumbnail} />
             </div>
         </>
     );

@@ -39,7 +39,7 @@ export function fromNft(nft: NFT): ItemData {
         case hatchConfig.penguinsIdentifier:
             return {
                 type: ItemType.Penguin,
-                thumbnail: nft.uri,
+                thumbnail: nft.uri[0],
                 id: uuidv4(),
                 description: getPenguinDescription()
             };

@@ -20,3 +20,19 @@ export function truncateAddress(address: Address, displayCharCount: number) {
         return bech32;
     }
 }
+
+export function cut_nonce(str: string) {
+    const split = str.split('-').length;
+
+    if (split == 2) {
+        // no nonce to cut
+        return str;
+    }
+    else if (split == 3) {
+        return str.substring(0, str.lastIndexOf('-'));
+    }
+    else {
+        if (!str) throw Error('str is empty');
+        throw Error('unhandled case for ' + str);
+    }
+}
