@@ -1,5 +1,6 @@
 import { Address } from '@elrondnetwork/erdjs/out';
 import { devModeActivate } from 'config';
+import { NFT } from 'structs/NFT';
 import { GatewayCaching } from './GatewayCaching';
 import { GatewayLogger } from './GatewayLogger';
 
@@ -19,6 +20,10 @@ export class GatewayAPI {
 
         this.cache.boughtAmount.clear();
         this.cache.remainingNft.clear();
+    }
+
+    public getNfts(address: Address, identifiers = [] as string[]): Promise<NFT[]> {
+        throw new Error('Method not implemented.');
     }
 
     public hasDiscount(address: Address): Promise<boolean> {

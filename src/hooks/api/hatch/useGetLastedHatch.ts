@@ -1,5 +1,5 @@
 import React from 'react';
-import { ItemData } from 'structs/ItemData';
+import { ItemData, ItemType } from 'structs/ItemData';
 import { getPenguinDescription } from 'texts';
 
 export const useGetLastedHatch = () => {
@@ -12,30 +12,30 @@ export const useGetLastedHatch = () => {
             setEggsHatch([
                 {
                     id: '1',
-                    type: 'penguin',
+                    type: ItemType.Penguin,
                     title: 'Angry Pinguin #0550',
-                    thumbail: '/img/penguins/Untitled design-2.png',
+                    thumbnail: '/img/penguins/Untitled design-2.png',
                     description: getPenguinDescription()
                 },
                 {
                     id: '2',
-                    type: 'penguin',
+                    type: ItemType.Penguin,
                     title: 'Angry Pinguin #8745',
-                    thumbail: '/img/penguins/Untitled design-3.png',
+                    thumbnail: '/img/penguins/Untitled design-3.png',
                     description: getPenguinDescription()
                 },
                 {
                     id: '3',
-                    type: 'penguin',
+                    type: ItemType.Penguin,
                     title: 'Angry Pinguin #8272',
-                    thumbail: '/img/penguins/Untitled design-5.png',
+                    thumbnail: '/img/penguins/Untitled design-5.png',
                     description: getPenguinDescription()
                 },
                 {
                     id: '4',
-                    type: 'penguin',
+                    type: ItemType.Penguin,
                     title: 'Angry Pinguin #2887',
-                    thumbail: '/img/penguins/Untitled design-7.png',
+                    thumbnail: '/img/penguins/Untitled design-7.png',
                     description: getPenguinDescription()
                 }
             ]);

@@ -1,18 +1,20 @@
 import React from 'react';
+import { API, hatchConfig } from 'config';
 import { useStateValidate } from 'hooks/common/useStateValidate';
-import { ItemData } from 'structs/ItemData';
+import { fromNft, ItemData, ItemType } from 'structs/ItemData';
+import { NFT } from 'structs/NFT';
 import { getEggDescription, getPenguinDescription } from 'texts';
+import { useFetchWithAddress } from '../common/useFetchWithAddress';
 
 const useGetInventory = () => {
 
-    const [items, setItems] = useStateValidate([], sortItems);
+    const { output: nfts } = useFetchWithAddress(
+        (addr) => API.getNfts(addr, [hatchConfig.eggsIdentifier, hatchConfig.penguinsIdentifier]),
+        Promise.resolve([] as NFT[])
+    );
 
-    // TODO: replace mockup by a real API call
-    React.useEffect(() => {
-        setTimeout(() => {
-            setItems(mockupData);
-        }, 1000);
-    }, []);
+    const items = nfts != undefined ? sortItems(nfts?.map(fromNft)) : undefined;
+
 
     return { items };
 };
@@ -21,9 +23,9 @@ export default useGetInventory;
 
 function sortItems(items: ItemData[]) {
     return items.sort((a, b) => {
-        if (a.type === 'penguin') {
+        if (a.type === ItemType.Penguin) {
             return -1;
-        } else if (b.type === 'penguin') {
+        } else if (b.type === ItemType.Egg) {
             return 1;
         } else {
             return 0;

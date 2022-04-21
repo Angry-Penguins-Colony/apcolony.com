@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import useGetInventory from 'hooks/api/hatch/useGetInventory';
 import { useGetLastedHatch } from 'hooks/api/hatch/useGetLastedHatch';
-import { ItemData } from '../../structs/ItemData';
+import { ItemData, ItemType } from '../../structs/ItemData';
 import styles from './HatchingInventory.module.scss';
 
 
@@ -23,13 +23,18 @@ const HatchingInventory = (props: {
     };
 
     const changeSelection = (itemId: string) => {
+
+        if (items == undefined) {
+            throw new Error('Cannot change selection. The items are not laoded.');
+        }
+
         const item = items.find(aItem => aItem.id === itemId);
 
         if (item) {
             if (!canMultiSelect) {
                 setSelectedItems([item]);
             } else {
-                if (item.type === 'penguin') {
+                if (item.type === ItemType.Penguin) {
                     if (isSelected(itemId)) {
                         setSelectedItems([]);
                     }
@@ -38,7 +43,7 @@ const HatchingInventory = (props: {
                     }
                 } else {
                     // remove selected penguin
-                    const newSelectedItems = selectedItems.filter(aItem => aItem.type !== 'penguin');
+                    const newSelectedItems = selectedItems.filter(aItem => aItem.type !== ItemType.Penguin);
 
                     // if item is not in selected items
                     if (!newSelectedItems.find(aItem => aItem.id === itemId)) {
@@ -144,7 +149,7 @@ const HatchingInventory = (props: {
                                 eggsHatch.map((eggResult, index) => {
                                     return (
                                         <div key={index} className={styles.eggResult}>
-                                            <img src={eggResult.thumbail} />
+                                            <img src={eggResult.thumbnail} />
                                             <p className={styles.title} >{eggResult.title}</p>
                                         </div>
                                     );
@@ -167,18 +172,18 @@ const HatchingInventory = (props: {
         }
         else if (selectedItems.length == 1) {
             switch (selectedItems[0].type) {
-                case 'egg':
+                case ItemType.Egg:
                     return <>
-                        <img src={selectedItems[0].thumbail} className={styles.egg} />
+                        <img src={selectedItems[0].thumbnail} className={styles.egg} />
                         <h4>{selectedItems[0].title}</h4>
                         <p>This is a tier {selectedItems[0].tier} egg, you can see it by is bronze halo on it</p>
                         {/* TODO: add good description */}
                         <div className='button' onClick={startHatching}>HATCH THIS EGG</div>
                     </>;
 
-                case 'penguin':
+                case ItemType.Penguin:
                     return <>
-                        <img src={selectedItems[0].thumbail} className={styles.egg} />
+                        <img src={selectedItems[0].thumbnail} className={styles.egg} />
                         <h4>Penguin</h4>
                         {/* TODO: add good NFT name */}
                         <p>{selectedItems[0].description}</p>
@@ -200,7 +205,12 @@ const HatchingInventory = (props: {
         }
     }
 
-    function getItemsCards(): JSX.Element[] {
+    function getItemsCards(): JSX.Element | JSX.Element[] {
+
+        if (items == undefined) {
+            return <p>Loading</p>;
+        }
+
         const itemsCards: JSX.Element[] = [];
         for (const item of items) {
             let isSelected = false;
