@@ -19,10 +19,18 @@ const HatchingInventory = (props: {
     const [selectedItems, setSelectedItems] = React.useState<ItemData[]>([]);
 
     const isSelected = (itemId: string) => {
-        return selectedItems.find((item) => item.id.toString() === itemId) != undefined;
+
+        console.log('Selected:' + itemId);
+        console.log(selectedItems != undefined ? selectedItems.map(i => i.id) : '');
+
+
+        return selectedItems
+            .find((item) => item.id == itemId) != undefined;
     };
 
     const changeSelection = (itemId: string) => {
+
+
 
         if (items == undefined) {
             throw new Error('Cannot change selection. The items are not laoded.');
@@ -212,10 +220,11 @@ const HatchingInventory = (props: {
             const itemsCards: JSX.Element[] = [];
 
             for (const item of items) {
+
                 itemsCards.push(
                     <ItemCard
-                        itemId={item.id.toString()}
-                        key={item.id.toString()}
+                        itemId={item.id}
+                        key={item.id}
                         item={item}
                         changeSelection={changeSelection}
                         isSelected={isSelected(item.id)}
