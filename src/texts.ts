@@ -1,7 +1,7 @@
 import { EggTier } from 'structs/EggTier';
 
 export function getPenguinDescription() {
-    return 'This is a Angry Penguin NFT';
+    return 'This is your penguin! Soon, you will be able to customize him.';
 }
 
 export function getEggDescription(tier: EggTier) {
