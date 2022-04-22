@@ -41,8 +41,6 @@ export function useGetHatchStatus(props?: {
         }
     }
 
-    return HatchStatus.Hatched;
-
     console.log('Current hatchStatus: ' + hatchStatus);
     return hatchStatus;
 } 

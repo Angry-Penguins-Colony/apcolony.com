@@ -3,10 +3,10 @@ import { BigNumber } from 'bignumber.js';
 import { HatchConfig } from 'structs/HatchConfig';
 import { MintConfig } from 'structs/MintConfig';
 
-const hatchInfos = { 'hatchAddresses': ['erd1qqqqqqqqqqqqqpgq89fge6p8rffmkzz3c4hpqnh9t05t7jkvgn2q6taupc', 'erd1qqqqqqqqqqqqqpgqk8qtsgfthheq2jjwdhujsnapja0v6vp5gn2qlpvcus', 'erd1qqqqqqqqqqqqqpgqjsjzvd6sdm75xc624e9atyfef4425swfgn2q6ac597'], 'eggsIdentifier': 'EGGS-69bc74', 'penguinsIdentifier': 'APC-325cf5' };
+const hatchInfos = { 'hatchAddress': { 'bech32': 'erd1qqqqqqqqqqqqqpgq96lxp832n0cjn5k98jk4cdg4jj7ux9jggn2qra7rww', 'pubkey': '000000000000000005002ebe609e2a9bf129d2c53cad5c351594bdc3164844d4' }, 'eggsIdentifier': 'EGGS-e99bbc', 'penguinsIdentifier': 'APC-eeb01c' };
 
 export const devnetHatchConfig: HatchConfig = {
-    hatchAddress: new Address(hatchInfos.hatchAddresses[0]),
+    hatchAddress: new Address(hatchInfos.hatchAddress.bech32),
     eggsIdentifier: hatchInfos['eggsIdentifier'],
     penguinsIdentifier: hatchInfos['penguinsIdentifier']
 };
