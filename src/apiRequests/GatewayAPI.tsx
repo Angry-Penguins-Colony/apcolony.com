@@ -47,7 +47,7 @@ export class GatewayAPI {
                         name: esdt.name,
                         identifier: cut_nonce(esdt.tokenIdentifier),
                         nonce: parseInt(esdt.nonce),
-                        uri: esdt.uris,
+                        uri: esdt.uris.map((uri: string) => Buffer.from(uri, 'base64').toString()),
                         balance: parseInt(esdt.balance)
                     };
 
