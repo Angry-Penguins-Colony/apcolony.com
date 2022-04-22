@@ -5,7 +5,7 @@ import { useFetchWithAddress } from '../common/useFetchWithAddress';
 
 const useGetHatchInventory = () => {
 
-    const { output: nfts } = useFetchWithAddress(
+    const { output: nfts, refresh } = useFetchWithAddress(
         (addr) => API.getNfts(addr, hatchConfig.eggsIdentifier, hatchConfig.penguinsIdentifier),
         Promise.resolve([] as NFT[])
     );
@@ -13,7 +13,12 @@ const useGetHatchInventory = () => {
     const items = nfts != undefined ? sortItems(nfts?.flatMap(fromNft)) : undefined;
 
 
-    return { items };
+    return {
+        items, refreshInventory: () => {
+            API.clearCache();
+            refresh();
+        }
+    };
 };
 
 export default useGetHatchInventory;

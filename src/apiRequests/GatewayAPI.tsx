@@ -19,8 +19,7 @@ export class GatewayAPI {
     public clearCache(): void {
         console.log('Cache cleared');
 
-        this.cache.boughtAmount.clear();
-        this.cache.remainingNft.clear();
+        this.cache.clear();
     }
 
     public async getNfts(address: Address, ...identifier: string[]): Promise<NFT[]> {

@@ -16,6 +16,14 @@ export class GatewayCaching {
         this.whitelisted = new CacheMap<string, boolean>(1_800_000, 'isWhitelisted');
         this.nfts = new CacheMap<string, NFT[]>(15_000, 'nfts');
     }
+
+    public clear() {
+        this.remainingNft.clear();
+        this.boughtAmount.clear();
+        this.hasDiscount.clear();
+        this.whitelisted.clear();
+        this.nfts.clear();
+    }
 }
 
 export class CacheValue<T> {

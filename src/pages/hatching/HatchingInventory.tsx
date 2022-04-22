@@ -1,7 +1,9 @@
+import { isNull } from 'util';
 import * as React from 'react';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import { useOnAnyTransactionSuccess } from 'hooks/api/common/useOnAnyTransactionSuccess';
 import useGetHatchInventory from 'hooks/api/hatch/useGetHatchInventory';
 import { useGetLastedHatch } from 'hooks/api/hatch/useGetLastedHatch';
 import { EggTier } from 'structs/EggTier';
@@ -15,7 +17,7 @@ const HatchingInventory = (props: {
 }) => {
     const canMultiSelect = props.canMultiSelect || true;
 
-    const { items } = useGetHatchInventory();
+    const { items, refreshInventory } = useGetHatchInventory();
 
     // function when selection is change
     const [selectedItems, setSelectedItems] = React.useState<ItemData[]>([]);
@@ -73,6 +75,10 @@ const HatchingInventory = (props: {
     const [videoIsDisplay, setVideoIsDisplay] = React.useState<boolean>(false);
     const [videoIsEnded, setVideoIsEnded] = React.useState<boolean>(false);
     const eggsHatch = useGetLastedHatch();
+
+    useOnAnyTransactionSuccess(() => {
+        refreshInventory();
+    });
 
     const startHatching = () => {
 
