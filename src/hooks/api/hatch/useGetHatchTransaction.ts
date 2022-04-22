@@ -1,8 +1,8 @@
-import { SignedTransactionsType, SignedTransactionType, transactionServices, useGetAccountInfo, useGetSignedTransactions } from '@elrondnetwork/dapp-core';
+import { SignedTransactionType, transactionServices, useGetAccountInfo, useGetSignedTransactions } from '@elrondnetwork/dapp-core';
 import { Address } from '@elrondnetwork/erdjs/out';
 import toHex from 'to-hex';
 
-export default function useGetHatchTransaction(): string | null {
+export default function useGetHatchTransaction() {
     const { address: bech32 } = useGetAccountInfo();
     const address = new Address(bech32);
 
@@ -15,7 +15,7 @@ export default function useGetHatchTransaction(): string | null {
         const { transactions } = signedTransactions[sessionId];
 
         if (isHatchTransaction(transactions, address)) {
-            return sessionId;
+            return { sessionId, hash: transactions[0].hash };
         }
     }
 
@@ -24,11 +24,14 @@ export default function useGetHatchTransaction(): string | null {
         const { transactions } = signedTransactions[sessionId];
 
         if (isHatchTransaction(transactions, address)) {
-            return sessionId;
+            return { sessionId, hash: transactions[0].hash };
         }
     }
 
-    return null;
+    return {
+        sessionId: null,
+        hash: null
+    };
 }
 
 function isHatchTransaction(transactions: SignedTransactionType[], address: Address) {

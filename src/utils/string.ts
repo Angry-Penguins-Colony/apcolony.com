@@ -36,3 +36,12 @@ export function cut_nonce(str: string) {
         throw Error('unhandled case for ' + str);
     }
 }
+
+export function getNonceFromData(data: string) {
+
+    if (data.startsWith('ESDTNFTTransfer') == false) {
+        throw new Error('Data provided is not a transfer');
+    }
+
+    return parseInt(data.split('@')[2], 16);
+}

@@ -13,9 +13,12 @@ export const useFetchWithAddress = <T>(
         return address ? hasAddress(Address.fromBech32(address)) : noAddress;
     };
 
-    const refresh = () => {
-        selectPromise()
-            .then(setOutput);
+    const refresh = async () => {
+        const value = await selectPromise();
+
+        setOutput(value);
+
+        return value;
     };
 
     React.useEffect(() => {

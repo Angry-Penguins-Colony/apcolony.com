@@ -14,6 +14,7 @@ export interface ItemData {
     thumbnail: string;
     id: string;
     description: string;
+    nonce: number;
     title?: string;
     tier?: EggTier;
 }
@@ -30,6 +31,7 @@ export function fromNft(nft: NFT): ItemData[] {
                 thumbnail: getEggThumbnail(tier),
                 description: getEggDescription(tier),
                 id: '',
+                nonce: nft.nonce,
                 title: `Tier ${tier} Egg`,
                 tier,
             }, nft.balance);
@@ -40,6 +42,7 @@ export function fromNft(nft: NFT): ItemData[] {
                 thumbnail: nft.uri[0],
                 description: getPenguinDescription(),
                 title: 'Penguin #' + nft.nonce,
+                nonce: nft.nonce,
                 id: '',
             }, nft.balance);
 

@@ -5,11 +5,16 @@ import { cut_nonce } from 'utils/string';
 import { GatewayCaching } from './GatewayCaching';
 import { GatewayLogger } from './GatewayLogger';
 
+interface SmartContractResult {
+    data: string;
+}
+
 export class GatewayAPI {
     private readonly logger: GatewayLogger;
     private readonly cache: GatewayCaching;
 
-    constructor(public readonly baseURL: string,
+    constructor(public readonly baseUrlGateway: string,
+        public readonly baseUrlAPI: string,
         public readonly mintAddress: Address) {
 
         this.logger = new GatewayLogger(devModeActivate);
@@ -20,6 +25,23 @@ export class GatewayAPI {
         console.log('Cache cleared');
 
         this.cache.clear();
+    }
+
+    public async getSmartContractResult(transactionHash: string): Promise<SmartContractResult[]> {
+        const searchParams = '/transactions/' + transactionHash;
+        this.logger.logFetch(searchParams);
+
+        const url = this.baseUrlAPI + searchParams;
+
+        const response = await fetch(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        });
+        const json = await response.json();
+
+        return json.results;
     }
 
     public async getNfts(address: Address, ...identifier: string[]): Promise<NFT[]> {
@@ -100,7 +122,7 @@ export class GatewayAPI {
 
         this.logger.logFetch(`${funcName}`);
 
-        const url = this.baseURL + '/vm-values/int';
+        const url = this.baseUrlGateway + '/vm-values/int';
         const data = {
             'scAddress': this.mintAddress.bech32(),
             'funcName': funcName,
@@ -125,7 +147,7 @@ export class GatewayAPI {
     public async get(url: string) {
         this.logger.logFetch(`${url}`);
 
-        const response = await fetch(this.baseURL + url, {
+        const response = await fetch(this.baseUrlGateway + url, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'

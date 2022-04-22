@@ -12,7 +12,7 @@ export function useGetHatchStatus(props?: {
     onHatched?: () => void
 }): HatchStatus {
 
-    const hatchSessionId = useGetHatchTransaction();
+    const { sessionId: hatchSessionId } = useGetHatchTransaction();
     const [hatchStatus, setHatchStatus] = React.useState(HatchStatus.None);
 
     const transactionStatus = transactionServices.useTrackTransactionStatus({

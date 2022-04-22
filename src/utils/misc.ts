@@ -5,3 +5,7 @@ export function getSessionIdFromSearchParams(): string | null {
 
     return sessionId;
 }
+
+export function sleep(ms: number): Promise<void> {
+    return new Promise(r => setTimeout(r, ms));
+}

@@ -1,22 +1,25 @@
 import { API, hatchConfig } from 'config';
 import { fromNft, ItemData, ItemType } from 'structs/ItemData';
-import { NFT } from 'structs/NFT';
 import { useFetchWithAddress } from '../common/useFetchWithAddress';
 
 const useGetHatchInventory = () => {
 
-    const { output: nfts, refresh } = useFetchWithAddress(
-        (addr) => API.getNfts(addr, hatchConfig.eggsIdentifier, hatchConfig.penguinsIdentifier),
-        Promise.resolve([] as NFT[])
+    const { output, refresh } = useFetchWithAddress(
+        async (addr) => {
+            const nfts = await API.getNfts(addr, hatchConfig.eggsIdentifier, hatchConfig.penguinsIdentifier);
+
+            const items = nfts
+                .flatMap(nft => fromNft(nft));
+
+            return sortItems(items);
+        },
+        Promise.resolve([] as ItemData[])
     );
 
-    const items = nfts != undefined ? sortItems(nfts?.flatMap(fromNft)) : undefined;
-
-
     return {
-        items, refreshInventory: () => {
+        items: output, refreshInventory: () => {
             API.clearCache();
-            refresh();
+            return refresh();
         }
     };
 };

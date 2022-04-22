@@ -1,46 +1,54 @@
 import React from 'react';
+import { transactionServices } from '@elrondnetwork/dapp-core';
+import { API } from 'config';
 import { ItemData, ItemType } from 'structs/ItemData';
-import { getPenguinDescription } from 'texts';
+import { sleep } from 'utils/misc';
+import { getNonceFromData } from 'utils/string';
+import useGetHatchInventory from './useGetHatchInventory';
+import useGetHatchTransaction from './useGetHatchTransaction';
 
 export const useGetLastedHatch = () => {
 
-    const [eggsHatch, setEggsHatch] = React.useState<ItemData[]>([]);
+    const [hatchedPenguins, setHatchedPenguins] = React.useState<ItemData[]>([]);
 
-    React.useEffect(() => {
+    const { refreshInventory } = useGetHatchInventory();
+    const { sessionId, hash } = useGetHatchTransaction();
 
-        setTimeout(() => {
-            setEggsHatch([
-                {
-                    id: '1',
-                    type: ItemType.Penguin,
-                    title: 'Angry Pinguin #0550',
-                    thumbnail: '/img/penguins/Untitled design-2.png',
-                    description: getPenguinDescription()
-                },
-                {
-                    id: '2',
-                    type: ItemType.Penguin,
-                    title: 'Angry Pinguin #8745',
-                    thumbnail: '/img/penguins/Untitled design-3.png',
-                    description: getPenguinDescription()
-                },
-                {
-                    id: '3',
-                    type: ItemType.Penguin,
-                    title: 'Angry Pinguin #8272',
-                    thumbnail: '/img/penguins/Untitled design-5.png',
-                    description: getPenguinDescription()
-                },
-                {
-                    id: '4',
-                    type: ItemType.Penguin,
-                    title: 'Angry Pinguin #2887',
-                    thumbnail: '/img/penguins/Untitled design-7.png',
-                    description: getPenguinDescription()
-                }
-            ]);
-        }, 3500);
+    transactionServices.useTrackTransactionStatus({
+        transactionId: sessionId,
+        onSuccess: async () => {
+
+            await sleep(3000);
+
+            const nonces = await getTransferedNonces(hash);
+            const newItems = await refreshInventory();
+
+            console.log(nonces);
+            console.log(newItems);
+
+            const newHatchedPenguins = newItems
+                .filter(item => item.type == ItemType.Penguin && nonces.includes(item.nonce));
+            setHatchedPenguins(newHatchedPenguins);
+        }
     });
 
-    return eggsHatch;
+    return { hatchedPenguins };
 };
+
+async function getTransferedNonces(hash: string) {
+    if (hash == null) {
+        throw new Error('hash is null');
+    }
+
+
+    const results = await API.getSmartContractResult(hash);
+
+    const dataDecoded = results
+        .map(result => Buffer.from(result.data, 'base64').toString());
+
+    const nonces = dataDecoded
+        .filter(data => data.startsWith('ESDTNFTTransfer'))
+        .map(data => getNonceFromData(data));
+
+    return nonces;
+}

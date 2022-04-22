@@ -8,12 +8,10 @@ import styles from './HatchResult.module.scss';
 
 const HatchResult = () => {
     const status = useGetHatchStatus();
-    const eggsHatch = useGetLastedHatch();
-    const hatchSessionId = useGetHatchTransaction();
+    const { hatchedPenguins } = useGetLastedHatch();
+    const { sessionId: hatchSessionId } = useGetHatchTransaction();
 
     if (status == HatchStatus.Hatched) {
-
-        console.log('Showing HatchResult');
 
         return <div className={styles.hatchResult}>
 
@@ -33,7 +31,7 @@ const HatchResult = () => {
                 <p className={styles.subTtile}>Discover your Angry Penguin(s)<br /> in the Penguin Nest below!</p>
                 <ScrollContainer vertical={false} hideScrollbars={false} className={styles.result}>
                     {
-                        eggsHatch.map((eggResult, index) => {
+                        hatchedPenguins.map((eggResult, index) => {
                             return (
                                 <div key={index} className={styles.eggResult}>
                                     <img src={eggResult.thumbnail} />

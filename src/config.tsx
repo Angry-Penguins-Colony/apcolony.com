@@ -14,6 +14,7 @@ const getTotalConfig = () => {
                 mintConfig: mainnetMintConfig,
                 hatchConfig: mainnetHatchConfig,
                 gateway: 'https://api-eu1.tatum.io/v3/egld/node/6cf90622-7c84-4dad-9ced-95d929227e9d_100',
+                api: 'https://api.elrond.com'
             };
 
         case 'devnet':
@@ -22,6 +23,7 @@ const getTotalConfig = () => {
                 mintConfig: devnetMintConfig,
                 hatchConfig: devnetHatchConfig,
                 gateway: 'https://api-eu1.tatum.io/v3/egld/node/5a64b68c-ef24-4a43-966c-18da2cb1eb02_100',
+                api: 'https://devnet-api.elrond.com'
             };
 
         default:
@@ -40,7 +42,7 @@ export const startingSupply = 3000;
 
 export const hatchConfig = totalConfig.hatchConfig;
 export const mintConfig = totalConfig.mintConfig;
-export const API = new GatewayAPI(totalConfig.gateway, mintConfig.contractAddress);
+export const API = new GatewayAPI(totalConfig.gateway, totalConfig.api, mintConfig.contractAddress);
 
 export const getImagesFor = (n: number) => {
 
