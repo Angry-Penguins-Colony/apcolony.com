@@ -1,12 +1,11 @@
 import { Address } from '@elrondnetwork/erdjs/out';
 import { BigNumber } from 'bignumber.js';
-import { EggTier } from 'structs/EggTier';
 import { HatchConfig } from 'structs/HatchConfig';
 import { MintConfig } from 'structs/MintConfig';
 
 
 export const mainnetHatchConfig: HatchConfig = {
-    hatchAddresses: new Map<EggTier, Address>(),
+    hatchAddress: new Address(''),
     eggsIdentifier: 'EGGS-502867',
     penguinsIdentifier: ''
 };

@@ -1,5 +1,5 @@
 import { BigNumber } from 'bignumber.js';
-import { egldToWei, weiToEgld } from './convert';
+import { egldToWei, numberToHex, weiToEgld } from './convert';
 
 describe('egld to wei', () => {
     it('convert 1', () => {
@@ -38,4 +38,11 @@ describe('wei to egld', () => {
 
     expect(weiToEgld(new BigNumber('10' + '0'.repeat(18))))
         .toBe(10);
+});
+
+it('numberTOHex', () => {
+    expect(numberToHex(0)).toEqual('00');
+    expect(numberToHex(1)).toEqual('01');
+    expect(numberToHex(10)).toEqual('0a');
+    expect(numberToHex(16)).toEqual('10');
 });
