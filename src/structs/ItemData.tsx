@@ -39,6 +39,7 @@ export function fromNft(nft: NFT): ItemData[] {
                 type: ItemType.Penguin,
                 thumbnail: nft.uri[0],
                 description: getPenguinDescription(),
+                title: 'Penguin #' + nft.nonce,
                 id: '',
             }, nft.balance);
 

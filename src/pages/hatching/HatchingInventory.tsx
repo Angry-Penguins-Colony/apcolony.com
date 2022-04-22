@@ -1,4 +1,3 @@
-import { isNull } from 'util';
 import * as React from 'react';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -211,7 +210,7 @@ const HatchingInventory = (props: {
                 case ItemType.Penguin:
                     return <>
                         <img src={selectedItems[0].thumbnail} className={styles.egg} />
-                        <h4>Penguin</h4>
+                        <h4>{selectedItems[0].title}</h4>
                         {/* TODO: add good NFT name */}
                         <p>{selectedItems[0].description}</p>
                         {/* TODO: add good NFT description */}
