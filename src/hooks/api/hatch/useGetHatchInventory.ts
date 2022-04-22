@@ -24,11 +24,11 @@ const useGetHatchInventory = () => {
 export default useGetHatchInventory;
 
 function sortItems(items: ItemData[]) {
-    return items.sort((a, b) => {
+    return items.sort((a) => {
         if (a.type === ItemType.Penguin) {
-            return -1;
-        } else if (b.type === ItemType.Egg) {
             return 1;
+        } else if (a.type === ItemType.Egg) {
+            return -1;
         } else {
             return 0;
         }
