@@ -202,7 +202,7 @@ const HatchingInventory = (props: {
                     return <>
                         <img src={selectedItems[0].thumbnail} className={styles.egg} />
                         <h4>{selectedItems[0].title}</h4>
-                        <p>This is a tier {selectedItems[0].tier} egg, you can see it by is bronze halo on it</p>
+                        <p>{selectedItems[0].description}</p>
                         {/* TODO: add good description */}
                         <div className='button' onClick={startHatching}>HATCH THIS EGG</div>
                     </>;

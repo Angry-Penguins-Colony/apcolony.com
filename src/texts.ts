@@ -1,17 +1,19 @@
+import { EggTier } from 'structs/EggTier';
+
 export function getPenguinDescription() {
     return 'This is a Angry Penguin NFT';
 }
 
-export function getEggDescription(tier: number) {
+export function getEggDescription(tier: EggTier) {
     switch (tier) {
-        case 1:
-            return 'This is a Egg Tier 1';
+        case EggTier.Silver:
+            return 'This is a silver egg from the public sale.';
 
-        case 2:
-            return 'This is a Egg Tier 2';
+        case EggTier.Gold:
+            return 'This is a gold egg from the second presale. You slightly increase your chance to get a better penguin.';
 
-        case 3:
-            return 'This is a Egg Tier 3';
+        case EggTier.Diamond:
+            return 'This is a diamond egg from the first presale. You will have chance to get a better penguin.';
 
         default:
             throw new Error('Invalid tier');
