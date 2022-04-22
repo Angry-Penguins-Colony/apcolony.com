@@ -3,7 +3,7 @@ import { fromNft, ItemData, ItemType } from 'structs/ItemData';
 import { NFT } from 'structs/NFT';
 import { useFetchWithAddress } from '../common/useFetchWithAddress';
 
-const useGetInventory = () => {
+const useGetHatchInventory = () => {
 
     const { output: nfts } = useFetchWithAddress(
         (addr) => API.getNfts(addr, hatchConfig.eggsIdentifier, hatchConfig.penguinsIdentifier),
@@ -16,7 +16,7 @@ const useGetInventory = () => {
     return { items };
 };
 
-export default useGetInventory;
+export default useGetHatchInventory;
 
 function sortItems(items: ItemData[]) {
     return items.sort((a, b) => {
