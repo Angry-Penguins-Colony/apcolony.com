@@ -31,8 +31,6 @@ export class GatewayAPI {
         const nfts = await this.cache.nfts
             .get(address.bech32(), async () => {
                 const response = await this.get('/address/' + address.bech32() + '/esdt/');
-
-                console.log(response);
                 const esdts = response.data.esdts;
                 const output = [] as NFT[];
 
@@ -81,8 +79,6 @@ export class GatewayAPI {
 
     public async getRemainingNfts(): Promise<number> {
         const result = await this.cache.remainingNft.get(() => this.queryInt('getRemainingNft'));
-
-        console.log(result);
 
         return result;
     }

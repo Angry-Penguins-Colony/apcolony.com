@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { transactionServices } from '@elrondnetwork/dapp-core';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ScrollContainer from 'react-indiana-drag-scroll';
@@ -73,37 +74,34 @@ const HatchingInventory = (props: {
     const refVideoEgglight = React.useRef<HTMLVideoElement>(null);
     const [videoIsDisplay, setVideoIsDisplay] = React.useState<boolean>(false);
     const [videoIsEnded, setVideoIsEnded] = React.useState<boolean>(false);
+    const [sessionId, setSessionId] = React.useState<string | null>(null);
     const eggsHatch = useGetLastedHatch();
+
+    transactionServices.useTrackTransactionStatus({
+        transactionId: sessionId,
+        onSuccess: () => {
+            console.log('on success');
+        },
+        onFail: () => {
+            console.log('on fail');
+        },
+        onCancelled: () => {
+            console.log('on cancelled');
+        },
+        onCompleted: () => {
+            console.log('on completed');
+        }
+    });
 
     useOnAnyTransactionSuccess(() => {
         refreshInventory();
     });
 
     const startHatching = () => {
+        const eggsToHatch = getSelectedEggsToHatch(selectedItems);
 
-        if (selectedItems.length == 0) {
-            throw new Error('Cannot hatch, because no item selected');
-        }
-
-        if (selectedItems.some(item => item.type === ItemType.Penguin)) {
-            throw new Error('Cannot hatch a penguin');
-        }
-
-        setVideoIsDisplay(true);
-
-        const eggsToHatch = new Map<EggTier, number>();
-        selectedItems.forEach(item => {
-
-            if (!item.tier) {
-                throw new Error('Cannot hatch an egg without tier');
-            }
-
-            const currentValue = eggsToHatch.get(item.tier) || 0;
-            eggsToHatch.set(item.tier, currentValue + 1);
-        });
-
-
-        hatch(eggsToHatch);
+        hatch(eggsToHatch)
+            .then(id => setSessionId(id));
     };
 
     return (
@@ -317,3 +315,25 @@ const ItemSelectedCard = (props: {
         </>
     );
 };
+
+function getSelectedEggsToHatch(selectedItems: ItemData[]) {
+    if (selectedItems.length == 0) {
+        throw new Error('Cannot hatch, because no item selected');
+    }
+
+    if (selectedItems.some(item => item.type === ItemType.Penguin)) {
+        throw new Error('Cannot hatch a penguin');
+    }
+
+    const eggsToHatch = new Map<EggTier, number>();
+    selectedItems.forEach(item => {
+
+        if (!item.tier) {
+            throw new Error('Cannot hatch an egg without tier');
+        }
+
+        const currentValue = eggsToHatch.get(item.tier) || 0;
+        eggsToHatch.set(item.tier, currentValue + 1);
+    });
+    return eggsToHatch;
+}

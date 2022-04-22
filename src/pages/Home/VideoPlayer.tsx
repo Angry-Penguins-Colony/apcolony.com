@@ -14,8 +14,6 @@ const VideoPlayer = (props: {
     const [isPlay, setIsPlay] = React.useState<boolean>(false);
 
     const playPause = () => {
-        console.log('click');
-
         if (videoRef.current) {
             if (isPlay) {
                 videoRef.current.pause();
