@@ -1,11 +1,16 @@
 import { Address } from '@elrondnetwork/erdjs/out';
 import { BigNumber } from 'bignumber.js';
+import { EggTier } from 'structs/EggTier';
 import { HatchConfig } from 'structs/HatchConfig';
 import { MintConfig } from 'structs/MintConfig';
 
 const hatchInfos = { 'hatchAddresses': ['erd1qqqqqqqqqqqqqpgqt2ylp0zslqzshkf85gn77489pm3lddqzgn2qplg9ls', 'erd1qqqqqqqqqqqqqpgqawdgcrfmww5n5lufj9sq32gss5clvxxngn2q4d9gkv', 'erd1qqqqqqqqqqqqqpgqusx4l35upupyq8rj2d8lu48730us90svgn2q06ep43'], 'eggsIdentifier': 'EGGS-152d85', 'penguinsIdentifier': 'APC-516959' };
 export const devnetHatchConfig: HatchConfig = {
-    hatchAddresses: hatchInfos['hatchAddresses'].map(hatchAddress => new Address(hatchAddress)),
+    hatchAddresses: new Map<EggTier, Address>([
+        [EggTier.Diamond, new Address(hatchInfos.hatchAddresses[0])],
+        [EggTier.Gold, new Address(hatchInfos.hatchAddresses[1])],
+        [EggTier.Silver, new Address(hatchInfos.hatchAddresses[2])],
+    ]),
     eggsIdentifier: hatchInfos['eggsIdentifier'],
     penguinsIdentifier: hatchInfos['penguinsIdentifier']
 };
