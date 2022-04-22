@@ -57,7 +57,7 @@ function generateItems(item: ItemData, balance: number): ItemData[] {
         const newItem = { key: i, ...item };
 
         // generate id
-        newItem.id = hash(item);
+        newItem.id = hash(newItem);
         items.push(newItem);
     }
 
