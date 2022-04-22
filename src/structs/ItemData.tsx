@@ -18,40 +18,50 @@ export interface ItemData {
     tier?: EggTier;
 }
 
-export function fromNft(nft: NFT): ItemData {
-
+export function fromNft(nft: NFT): ItemData[] {
 
     switch (nft.identifier) {
         case hatchConfig.eggsIdentifier:
 
             const tier = fromNonce(nft.nonce);
 
-            return setId({
+            return generateItems({
                 type: ItemType.Egg,
-                title: `Tier ${tier} Egg`,
                 thumbnail: getEggThumbnail(tier),
-                tier,
                 description: getEggDescription(tier),
-                id: ''
-            });
+                id: '',
+                title: `Tier ${tier} Egg`,
+                tier,
+            }, nft.balance);
 
         case hatchConfig.penguinsIdentifier:
-            return setId({
+            return generateItems({
                 type: ItemType.Penguin,
                 thumbnail: nft.uri[0],
                 description: getPenguinDescription(),
-                id: ''
-            });
+                id: '',
+            }, nft.balance);
 
         default:
             throw new Error(`Unknown identifier: ${nft.identifier}`);
     }
 }
 
-function setId(object: ItemData): ItemData {
-    object.id = hash(object);
+function generateItems(item: ItemData, balance: number): ItemData[] {
 
-    return object;
+    const items = [];
+
+    for (let i = 0; i < balance; i++) {
+
+        // copy object
+        const newItem = { key: i, ...item };
+
+        // generate id
+        newItem.id = hash(item);
+        items.push(newItem);
+    }
+
+    return items;
 }
 
 function getEggThumbnail(tier: EggTier): string {

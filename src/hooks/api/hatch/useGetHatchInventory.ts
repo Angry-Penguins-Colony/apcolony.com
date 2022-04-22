@@ -10,7 +10,7 @@ const useGetHatchInventory = () => {
         Promise.resolve([] as NFT[])
     );
 
-    const items = nfts != undefined ? sortItems(nfts?.map(fromNft)) : undefined;
+    const items = nfts != undefined ? sortItems(nfts?.flatMap(fromNft)) : undefined;
 
 
     return { items };

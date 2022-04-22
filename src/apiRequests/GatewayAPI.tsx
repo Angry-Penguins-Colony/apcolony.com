@@ -48,7 +48,8 @@ export class GatewayAPI {
                         name: esdt.name,
                         identifier: cut_nonce(esdt.tokenIdentifier),
                         nonce: parseInt(esdt.nonce),
-                        uri: esdt.uris
+                        uri: esdt.uris,
+                        balance: parseInt(esdt.balance)
                     };
 
                     output.push(nft);

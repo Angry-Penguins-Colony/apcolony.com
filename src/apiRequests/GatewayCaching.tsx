@@ -14,7 +14,7 @@ export class GatewayCaching {
         this.boughtAmount = new CacheMap<string, number>(15_000, 'boughtAmount');
         this.hasDiscount = new CacheMap<string, boolean>(1_800_000, 'hasDiscount');
         this.whitelisted = new CacheMap<string, boolean>(1_800_000, 'isWhitelisted');
-        this.nfts = new CacheMap<string, NFT[]>(1_800_000, 'nfts');
+        this.nfts = new CacheMap<string, NFT[]>(15_000, 'nfts');
     }
 }
 
