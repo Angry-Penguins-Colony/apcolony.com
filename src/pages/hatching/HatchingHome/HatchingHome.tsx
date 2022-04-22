@@ -3,7 +3,9 @@ import './hatchingHome.scss';
 import { useGetLoginInfo } from '@elrondnetwork/dapp-core';
 import { ConnectWalletButton } from 'components/ConnectWallet/ConnectWalletButton';
 import { DisconnectWalletButton } from 'components/DisconnectWallet/DisconnectWalletButton';
-import HatchingCard from '../HatchingInventory';
+import HatchingInventory from '../HatchingInventory';
+import HatchingVideo from '../HatchingVideo/HatchingVideo';
+import HatchResult from '../HatchResult/HatchResult';
 import HowToHatch from '../HowTo';
 import RarityInfos from '../RarityInfos';
 
@@ -35,13 +37,19 @@ const HatchingHome = () => {
                 </div>
 
                 <HowToHatch />
-
                 <RarityInfos />
             </div>
 
+
+
+            <HatchingVideo />
+            <HatchResult />
+
+
             <div id="penguinNest">
                 <h2>PENGUIN NEST</h2>
-                <HatchingCard />
+                <HatchingInventory />
+
             </div>
         </div>
     );

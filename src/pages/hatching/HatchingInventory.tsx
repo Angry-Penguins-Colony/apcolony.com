@@ -1,15 +1,13 @@
 import * as React from 'react';
-import { transactionServices } from '@elrondnetwork/dapp-core';
-import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import { useOnAnyTransactionSuccess } from 'hooks/api/common/useOnAnyTransactionSuccess';
 import useGetHatchInventory from 'hooks/api/hatch/useGetHatchInventory';
-import { useGetLastedHatch } from 'hooks/api/hatch/useGetLastedHatch';
+import { useGetHatchStatus } from 'hooks/api/hatch/useGetHatchStatus';
 import { EggTier } from 'structs/EggTier';
 import hatch from 'transactions/hatch';
 import { ItemData, ItemType } from '../../structs/ItemData';
 import styles from './HatchingInventory.module.scss';
+import HatchingVideo from './HatchingVideo/HatchingVideo';
+import HatchResult from './HatchResult/HatchResult';
 
 
 const HatchingInventory = (props: {
@@ -71,37 +69,13 @@ const HatchingInventory = (props: {
         setConfirmSelection(!confirmSelection);
     };
 
-    const refVideoEgglight = React.useRef<HTMLVideoElement>(null);
-    const [videoIsDisplay, setVideoIsDisplay] = React.useState<boolean>(false);
-    const [videoIsEnded, setVideoIsEnded] = React.useState<boolean>(false);
-    const [sessionId, setSessionId] = React.useState<string | null>(null);
-    const eggsHatch = useGetLastedHatch();
-
-    transactionServices.useTrackTransactionStatus({
-        transactionId: sessionId,
-        onSuccess: () => {
-            console.log('on success');
-        },
-        onFail: () => {
-            console.log('on fail');
-        },
-        onCancelled: () => {
-            console.log('on cancelled');
-        },
-        onCompleted: () => {
-            console.log('on completed');
-        }
-    });
-
-    useOnAnyTransactionSuccess(() => {
-        refreshInventory();
+    useGetHatchStatus({
+        onHatched: () => refreshInventory()
     });
 
     const startHatching = () => {
         const eggsToHatch = getSelectedEggsToHatch(selectedItems);
-
-        hatch(eggsToHatch)
-            .then(id => setSessionId(id));
+        hatch(eggsToHatch);
     };
 
     return (
@@ -136,54 +110,6 @@ const HatchingInventory = (props: {
                     </div>
                 }
             </div>
-            {
-                videoIsDisplay &&
-                <div className={styles.video}>
-                    <div className={styles.content}>
-                        {
-                            videoIsEnded ?
-                                <FontAwesomeIcon icon={faCircleNotch} spin size='3x' className={styles.loader} />
-                                :
-                                <video src="/video/Eggs lumière excès.mp4" ref={refVideoEgglight} autoPlay onEnded={() => { setVideoIsEnded(true); }}></video>
-                        }
-                        <p className={styles.skipVideo} role="button" onClick={() => setVideoIsEnded(true)}>Skip video</p>
-                    </div>
-                </div>
-            }
-            {
-                // display result of hatch
-                videoIsEnded && eggsHatch.length > 0 &&
-                <div className={styles.hatchResult}>
-                    <header className='container'>
-                        <a href="/" className='logo'>
-                            <img src="/img/APC_LOGO_BLUE_WHITE.svg" alt="Angry Penguins Logo" />
-                        </a>
-                        <div className={styles.info}>
-                            <div className="button" onClick={() => { location.reload(); }}>RETURN TO SITE</div>
-                            <div className="numberOfEgg">
-                                {/* TODO: add comonent (same to nav bar) */}
-                            </div>
-                        </div>
-                    </header>
-                    <div className={styles.content + ' ' + styles.container}>
-                        <h1>HATCHING SUCCESSFUL !</h1>
-                        <p className={styles.subTtile}>Discover your Angry Penguin(s)<br /> in the Penguin Nest below!</p>
-                        <ScrollContainer vertical={false} hideScrollbars={false} className={styles.result}>
-                            {
-                                eggsHatch.map((eggResult, index) => {
-                                    return (
-                                        <div key={index} className={styles.eggResult}>
-                                            <img src={eggResult.thumbnail} />
-                                            <p className={styles.title} >{eggResult.title}</p>
-                                        </div>
-                                    );
-                                })
-                            }
-                        </ScrollContainer>
-                        <div className={'button ' + styles.button} onClick={() => { location.reload(); }}>RETURN TO SITE</div>
-                    </div>
-                </div>
-            }
         </div >
     );
 

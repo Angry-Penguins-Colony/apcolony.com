@@ -1,0 +1,123 @@
+@import "./../../../assets/sass/variables.scss";
+
+@mixin customScrollbarHorizontal {
+    padding-bottom: 10px;
+
+    &::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: transparent;
+        margin: 0 20px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: $primary;
+        border-radius: 3px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: $hover;
+    }
+}
+
+.hatchResult {
+    position: fixed;
+    inset: 0;
+    z-index: 81;
+    background-image: url(/assets/img/BG_Eclosion.png);
+    background-color: #000000;
+    background-size: cover;
+    background-position: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    > header {
+    }
+
+    > .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        > h1 {
+            font-family: "CHEDROS", sans-serif;
+            font-size: 4rem;
+            color: $white;
+            text-align: center;
+        }
+
+        > .subTtile {
+            font-family: "Montserrat", sans-serif;
+            font-size: 1.2rem;
+            color: $white;
+            text-align: center;
+        }
+
+        > .result {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            max-width: 100vw;
+            overflow: auto;
+            justify-content: flex-start;
+            padding-right: 20px;
+            padding-left: 20px;
+
+            @include customScrollbarHorizontal;
+
+            .eggResult {
+                width: 250px;
+                min-width: 250px;
+
+                background-color: #030519;
+
+                // TODO: add rarity background color
+                &.rarity-1 {
+                    background-color: #681216;
+                }
+
+                > img {
+                    max-width: 100%;
+                }
+
+                > .title {
+                    font-family: "Montserrat", sans-serif;
+                    font-size: 0.8rem;
+                    font-weight: bold;
+                    color: #fafafa;
+                    margin: 20px auto;
+                    text-align: center;
+                    letter-spacing: 0.5px;
+                }
+            }
+        }
+    }
+
+    > .button {
+        margin-bottom: 1rem;
+    }
+
+    @media (max-height: 725px) {
+        & {
+            > .content {
+                > h1 {
+                    display: none;
+                }
+
+                > .subTtile {
+                    display: none;
+                }
+            }
+        }
+    }
+}

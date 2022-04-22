@@ -1,0 +1,49 @@
+@import "./../../../assets/sass/variables.scss";
+
+.video {
+    z-index: 80;
+    position: fixed;
+    inset: 0;
+    background-color: #242424de;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > .content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        aspect-ratio: 1 / 1;
+        position: relative;
+
+        height: 80%;
+
+        @media (max-aspect-ratio: "1/1") {
+            width: 80%;
+            height: auto;
+        }
+
+        background-color: $white;
+        border-radius: 20px;
+        overflow: hidden;
+
+        > video {
+            width: 100%;
+        }
+
+        .skipVideo {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            padding: 20px;
+            font-weight: bold;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        > .loader {
+        }
+    }
+}
