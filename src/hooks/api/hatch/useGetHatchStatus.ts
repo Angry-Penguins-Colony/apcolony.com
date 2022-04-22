@@ -1,6 +1,5 @@
-import React from 'react';
-import { transactionServices } from '@elrondnetwork/dapp-core';
-import useGetHatchTransaction from './useGetHatchTransaction';
+import { useContext } from 'react';
+import HatchContext from 'pages/hatching/HatchContext/HatchContext';
 
 export enum HatchStatus {
     None = 'None',
@@ -12,34 +11,7 @@ export function useGetHatchStatus(props?: {
     onHatched?: () => void
 }): HatchStatus {
 
-    const { sessionId: hatchSessionId } = useGetHatchTransaction();
-    const [hatchStatus, setHatchStatus] = React.useState(HatchStatus.None);
-
-    const transactionStatus = transactionServices.useTrackTransactionStatus({
-        transactionId: hatchSessionId
-    });
-
-    if (hatchSessionId == null) {
-        if (hatchStatus != HatchStatus.None) {
-            setHatchStatus(HatchStatus.None);
-        }
-    }
-    else {
-        if (transactionStatus.isSuccessful) {
-            if (hatchStatus != HatchStatus.Hatched) {
-                setHatchStatus(HatchStatus.Hatched);
-
-                if (props && props.onHatched) {
-                    props.onHatched();
-                }
-            }
-        }
-        else {
-            if (hatchStatus != HatchStatus.Hatching) {
-                setHatchStatus(HatchStatus.Hatching);
-            }
-        }
-    }
+    const { hatchStatus } = useContext(HatchContext);
 
     return hatchStatus;
 } 

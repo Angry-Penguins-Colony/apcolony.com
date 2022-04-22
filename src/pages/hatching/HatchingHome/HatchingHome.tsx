@@ -3,6 +3,7 @@ import './hatchingHome.scss';
 import { useGetLoginInfo } from '@elrondnetwork/dapp-core';
 import { ConnectWalletButton } from 'components/ConnectWallet/ConnectWalletButton';
 import { DisconnectWalletButton } from 'components/DisconnectWallet/DisconnectWalletButton';
+import HatchContextProvider from '../HatchContext/HatchContextProvider';
 import HatchingInventory from '../HatchingInventory';
 import HatchingVideo from '../HatchingVideo/HatchingVideo';
 import HatchResult from '../HatchResult/HatchResult';
@@ -15,43 +16,45 @@ const HatchingHome = () => {
 
     document.body.style.background = '#6d92c5';
 
-
     return (
-        <div id="hatchingHome">
-            <div id="hatchingHero">
-                <img src="/img/Penguins_hatch_hero.png" />
-            </div>
-            <div id="topPage" className='container'>
-                <div className="reveal">
-                    <h1>REVEAL THE ANGRY<br /> PENGUINS IN YOUR EGGS</h1>
-                    <div className='eggSurprise'>
-                        <img src="/img/opened_egg_surprise.png" />
+        <HatchContextProvider>
+
+            <div id="hatchingHome">
+                <div id="hatchingHero">
+                    <img src="/img/Penguins_hatch_hero.png" />
+                </div>
+                <div id="topPage" className='container'>
+                    <div className="reveal">
+                        <h1>REVEAL THE ANGRY<br /> PENGUINS IN YOUR EGGS</h1>
+                        <div className='eggSurprise'>
+                            <img src="/img/opened_egg_surprise.png" />
+                        </div>
+                        {isLoggedIn ?
+                            <div className="d-flex flex-column">
+                                <a href="#penguinNest" className="button button-outline px-5">HATCH THEM NOW</a>
+                                <DisconnectWalletButton className="button-outline mt-3" showAddress={false} />
+                            </div> :
+                            <ConnectWalletButton className="button-outline" />
+                        }
                     </div>
-                    {isLoggedIn ?
-                        <div className="d-flex flex-column">
-                            <a href="#penguinNest" className="button button-outline px-5">HATCH THEM NOW</a>
-                            <DisconnectWalletButton className="button-outline mt-3" showAddress={false} />
-                        </div> :
-                        <ConnectWalletButton className="button-outline" />
-                    }
+
+                    <HowToHatch />
+                    <RarityInfos />
                 </div>
 
-                <HowToHatch />
-                <RarityInfos />
+
+
+                <HatchingVideo />
+                <HatchResult />
+
+
+                <div id="penguinNest">
+                    <h2>PENGUIN NEST</h2>
+                    <HatchingInventory />
+
+                </div>
             </div>
-
-
-
-            <HatchingVideo />
-            <HatchResult />
-
-
-            <div id="penguinNest">
-                <h2>PENGUIN NEST</h2>
-                <HatchingInventory />
-
-            </div>
-        </div>
+        </HatchContextProvider>
     );
 };
 
