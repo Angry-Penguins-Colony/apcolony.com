@@ -6,9 +6,6 @@ import { EggTier } from 'structs/EggTier';
 import hatch from 'transactions/hatch';
 import { ItemData, ItemType } from '../../structs/ItemData';
 import styles from './HatchingInventory.module.scss';
-import HatchingVideo from './HatchingVideo/HatchingVideo';
-import HatchResult from './HatchResult/HatchResult';
-
 
 const HatchingInventory = (props: {
     canMultiSelect?: boolean,
