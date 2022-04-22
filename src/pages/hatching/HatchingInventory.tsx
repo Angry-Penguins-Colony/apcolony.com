@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import useGetInventory from 'hooks/api/hatch/useGetInventory';
 import { useGetLastedHatch } from 'hooks/api/hatch/useGetLastedHatch';
+import { EggTier } from 'structs/EggTier';
+import hatch from 'transactions/hatch';
 import { ItemData, ItemType } from '../../structs/ItemData';
 import styles from './HatchingInventory.module.scss';
 
@@ -19,10 +21,6 @@ const HatchingInventory = (props: {
     const [selectedItems, setSelectedItems] = React.useState<ItemData[]>([]);
 
     const isSelected = (itemId: string) => {
-
-        console.log('Selected:' + itemId);
-        console.log(selectedItems != undefined ? selectedItems.map(i => i.id) : '');
-
 
         return selectedItems
             .find((item) => item.id == itemId) != undefined;
@@ -77,9 +75,30 @@ const HatchingInventory = (props: {
     const eggsHatch = useGetLastedHatch();
 
     const startHatching = () => {
+
+        if (selectedItems.length == 0) {
+            throw new Error('Cannot hatch, because no item selected');
+        }
+
+        if (selectedItems.some(item => item.type === ItemType.Penguin)) {
+            throw new Error('Cannot hatch a penguin');
+        }
+
         setVideoIsDisplay(true);
 
-        // TODO: send transaction
+        const eggsToHatch = new Map<EggTier, number>();
+        selectedItems.forEach(item => {
+
+            if (!item.tier) {
+                throw new Error('Cannot hatch an egg without tier');
+            }
+
+            const currentValue = eggsToHatch.get(item.tier) || 0;
+            eggsToHatch.set(item.tier, currentValue + 1);
+        });
+
+
+        hatch(eggsToHatch);
     };
 
     return (

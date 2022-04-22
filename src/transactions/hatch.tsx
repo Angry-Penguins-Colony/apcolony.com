@@ -1,12 +1,36 @@
+import { refreshAccount, transactionServices } from '@elrondnetwork/dapp-core';
 import { Address } from '@elrondnetwork/erdjs/out';
 import toHex from 'to-hex';
+import { hatchConfig } from 'config';
 import { EggTier } from 'structs/EggTier';
 import { numberToHex } from 'utils/convert';
 
 
-export default async function hatch() {
-    // send to self
-    // Multi sender
+export default async function hatch(noncesToHatch: Map<EggTier, number>) {
+    const { sendTransactions } = transactionServices;
+
+    const data = buildHatchData(hatchConfig.eggsIdentifier, noncesToHatch, hatchConfig.hatchAddress);
+
+    const sender = await refreshAccount();
+
+    const customizeTransaction = {
+        value: '0',
+        data: data,
+        receiver: sender?.address,
+        gasLimit: 20_000_000
+    };
+
+    const { sessionId } = await sendTransactions({
+        transactions: customizeTransaction,
+        transactionsDisplayInfo: {
+            processingMessage: 'Hatching...',
+            errorMessage: 'An error has occured during hatching',
+            successMessage: 'Hatched!',
+            transactionDuration: 60000
+        }
+    });
+
+    return sessionId;
 }
 
 export const errors = {
@@ -41,6 +65,8 @@ export function buildHatchData(eggIdentifier: string, noncesToHatch: Map<EggTier
     noncesToHatch.forEach((nonce, tier) => {
         data += '@' + toHex(eggIdentifier) + '@' + numberToHex(tier) + '@' + numberToHex(nonce);
     });
+
+    data += '@' + toHex('hatch');
 
     return data;
 }

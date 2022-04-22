@@ -36,7 +36,8 @@ describe('build hatch data', () => {
         const expected = 'MultiESDTNFTTransfer'
             + '@' + hatchAddress.hex()
             + '@' + '01'
-            + '@' + toHex(eggIdentifier) + '@01@01';
+            + '@' + toHex(eggIdentifier) + '@01@01'
+            + '@' + toHex('hatch');
 
         const actual = buildHatchData(eggIdentifier, new Map<EggTier, number>([[EggTier.Diamond, 1]]), hatchAddress);
 
@@ -47,7 +48,8 @@ describe('build hatch data', () => {
         const expected = 'MultiESDTNFTTransfer'
             + '@' + hatchAddress.hex()
             + '@' + '01'
-            + '@' + toHex(eggIdentifier) + '@01@02';
+            + '@' + toHex(eggIdentifier) + '@01@02'
+            + '@' + toHex('hatch');
 
         const actual = buildHatchData(eggIdentifier, new Map<EggTier, number>([[EggTier.Diamond, 2]]), hatchAddress);
 
@@ -58,7 +60,8 @@ describe('build hatch data', () => {
         const expected = 'MultiESDTNFTTransfer'
             + '@' + hatchAddress.hex()
             + '@' + '01'
-            + '@' + toHex(eggIdentifier) + '@02@02';
+            + '@' + toHex(eggIdentifier) + '@02@02'
+            + '@' + toHex('hatch');
 
         const actual = buildHatchData(eggIdentifier, new Map<EggTier, number>([[EggTier.Gold, 2]]), hatchAddress);
 
@@ -71,7 +74,8 @@ describe('build hatch data', () => {
             + '@' + '03'
             + '@' + toHex(eggIdentifier) + '@01@05'
             + '@' + toHex(eggIdentifier) + '@02@02'
-            + '@' + toHex(eggIdentifier) + '@03@0a';
+            + '@' + toHex(eggIdentifier) + '@03@0a'
+            + '@' + toHex('hatch');
 
         const actual = buildHatchData(eggIdentifier, new Map<EggTier, number>([
             [EggTier.Diamond, 5],
