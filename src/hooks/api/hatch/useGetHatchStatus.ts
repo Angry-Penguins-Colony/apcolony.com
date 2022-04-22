@@ -25,7 +25,7 @@ export function useGetHatchStatus(props?: {
         }
     }
     else {
-        if (transactionStatus.isCompleted) {
+        if (transactionStatus.isSuccessful) {
             if (hatchStatus != HatchStatus.Hatched) {
                 setHatchStatus(HatchStatus.Hatched);
 
@@ -41,6 +41,5 @@ export function useGetHatchStatus(props?: {
         }
     }
 
-    console.log('Current hatchStatus: ' + hatchStatus);
     return hatchStatus;
 } 

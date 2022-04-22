@@ -1,26 +1,43 @@
-import { transactionServices, useGetAccountInfo, useGetSignedTransactions } from '@elrondnetwork/dapp-core';
+import { SignedTransactionsType, SignedTransactionType, transactionServices, useGetAccountInfo, useGetSignedTransactions } from '@elrondnetwork/dapp-core';
+import { Address } from '@elrondnetwork/erdjs/out';
 import toHex from 'to-hex';
 
 export default function useGetHatchTransaction(): string | null {
-    const { address } = useGetAccountInfo();
+    const { address: bech32 } = useGetAccountInfo();
+    const address = new Address(bech32);
 
     const { pendingTransactions } = transactionServices.useGetPendingTransactions();
+    const { successfulTransactions } = transactionServices.useGetSuccessfulTransactions();
     const { signedTransactions } = useGetSignedTransactions();
 
     for (const sessionId in pendingTransactions) {
 
         const { transactions } = signedTransactions[sessionId];
 
-        if (transactions == undefined) continue;
+        if (isHatchTransaction(transactions, address)) {
+            return sessionId;
+        }
+    }
 
-        const data = Buffer.from(transactions[0].data, 'base64').toString();
-        console.log(data);
+    for (const sessionId in successfulTransactions) {
 
-        if (transactions[0].receiver === address && transactions[0].sender === address && data.includes(toHex('hatch'))) {
-            console.log('Found hatch transaction: ' + sessionId);
+        const { transactions } = signedTransactions[sessionId];
+
+        if (isHatchTransaction(transactions, address)) {
             return sessionId;
         }
     }
 
     return null;
+}
+
+function isHatchTransaction(transactions: SignedTransactionType[], address: Address) {
+
+    if (transactions == undefined) return false;
+
+    const data = Buffer.from(transactions[0].data, 'base64').toString();
+
+    return transactions[0].receiver === address.bech32()
+        && transactions[0].sender === address.bech32()
+        && data.includes(toHex('hatch'));
 }

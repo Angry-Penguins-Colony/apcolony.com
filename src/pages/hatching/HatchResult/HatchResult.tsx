@@ -1,13 +1,15 @@
 import React from 'react';
+import { transactionServices } from '@elrondnetwork/dapp-core';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { HatchStatus, useGetHatchStatus } from 'hooks/api/hatch/useGetHatchStatus';
+import useGetHatchTransaction from 'hooks/api/hatch/useGetHatchTransaction';
 import { useGetLastedHatch } from 'hooks/api/hatch/useGetLastedHatch';
 import styles from './HatchResult.module.scss';
 
 const HatchResult = () => {
     const status = useGetHatchStatus();
     const eggsHatch = useGetLastedHatch();
-
+    const hatchSessionId = useGetHatchTransaction();
 
     if (status == HatchStatus.Hatched) {
 
@@ -20,7 +22,7 @@ const HatchResult = () => {
                     <img src="/img/APC_LOGO_BLUE_WHITE.svg" alt="Angry Penguins Logo" />
                 </a>
                 <div className={styles.info}>
-                    <div className="button" onClick={() => { location.reload(); }}>RETURN TO SITE</div>
+                    <div className="button" onClick={returnToSite}>RETURN TO SITE</div>
                     <div className="numberOfEgg">
                         {/* TODO: add comonent (same to nav bar) */}
                     </div>
@@ -41,12 +43,20 @@ const HatchResult = () => {
                         })
                     }
                 </ScrollContainer>
-                <div className={'button ' + styles.button} onClick={() => { location.reload(); }}>RETURN TO SITE</div>
+                <div className={'button ' + styles.button} onClick={returnToSite}>RETURN TO SITE</div>
             </div>
         </div>;
     }
     else {
         return <></>;
+    }
+
+    function returnToSite() {
+        if (hatchSessionId != null) {
+            transactionServices.removeSignedTransaction(hatchSessionId);
+        }
+
+        location.reload();
     }
 };
 
