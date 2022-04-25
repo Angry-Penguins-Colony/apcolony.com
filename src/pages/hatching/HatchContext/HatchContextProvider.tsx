@@ -1,10 +1,15 @@
+import { EventEmitter } from 'events';
 import * as React from 'react';
 import { transactionServices } from '@elrondnetwork/dapp-core';
-import { HatchStatus } from 'hooks/api/hatch/useGetHatchStatus';
 import useGetHatchTransaction from 'hooks/api/hatch/useGetHatchTransaction';
+import { HatchStatus } from 'structs/HatchStatus';
 import HatchContext from './HatchContext';
 
+const EVENT_ON_HATCHED = 'onHatched';
+
 const HatchContextProvider = (props: any) => {
+
+    const events = new EventEmitter();
 
     const [hatchStatus, setHatchStatus] = React.useState(HatchStatus.None);
     const { sessionId: hatchSessionId } = useGetHatchTransaction();
@@ -23,9 +28,7 @@ const HatchContextProvider = (props: any) => {
             if (hatchStatus != HatchStatus.Hatched) {
                 setHatchStatus(HatchStatus.Hatched);
 
-                if (props && props.onHatched) {
-                    props.onHatched();
-                }
+                events.emit(EVENT_ON_HATCHED);
             }
         }
         else {
@@ -35,9 +38,17 @@ const HatchContextProvider = (props: any) => {
         }
     }
 
-    return <HatchContext.Provider value={{ hatchStatus }}>
+    const value = {
+        hatchStatus: hatchStatus,
+        onHatched: (fn: () => void) => {
+            events.addListener(EVENT_ON_HATCHED, fn);
+        }
+    };
+
+    return <HatchContext.Provider value={value} >
         {props.children}
-    </HatchContext.Provider>;
+    </HatchContext.Provider >;
+
 };
 
 export default HatchContextProvider;

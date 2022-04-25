@@ -4,6 +4,7 @@ import useGetHatchInventory from 'hooks/api/hatch/useGetHatchInventory';
 import { useGetHatchStatus } from 'hooks/api/hatch/useGetHatchStatus';
 import { EggTier } from 'structs/EggTier';
 import hatch from 'transactions/hatch';
+import { sleep } from 'utils/misc';
 import { ItemData, ItemType } from '../../structs/ItemData';
 import styles from './HatchingInventory.module.scss';
 
@@ -67,7 +68,10 @@ const HatchingInventory = (props: {
     };
 
     useGetHatchStatus({
-        onHatched: () => refreshInventory()
+        onHatched: () => {
+            sleep(10000)
+                .then(() => refreshInventory());
+        }
     });
 
     const startHatching = () => {

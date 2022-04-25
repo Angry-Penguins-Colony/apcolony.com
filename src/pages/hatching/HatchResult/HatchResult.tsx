@@ -1,9 +1,10 @@
 import React from 'react';
 import { transactionServices } from '@elrondnetwork/dapp-core';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import { HatchStatus, useGetHatchStatus } from 'hooks/api/hatch/useGetHatchStatus';
+import { useGetHatchStatus } from 'hooks/api/hatch/useGetHatchStatus';
 import useGetHatchTransaction from 'hooks/api/hatch/useGetHatchTransaction';
 import { useGetLastedHatch } from 'hooks/api/hatch/useGetLastedHatch';
+import { HatchStatus } from 'structs/HatchStatus';
 import styles from './HatchResult.module.scss';
 
 const HatchResult = () => {

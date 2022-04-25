@@ -1,7 +1,8 @@
 import React from 'react';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { HatchStatus, useGetHatchStatus } from 'hooks/api/hatch/useGetHatchStatus';
+import { useGetHatchStatus } from 'hooks/api/hatch/useGetHatchStatus';
+import { HatchStatus } from 'structs/HatchStatus';
 import styles from './HatchingVideo.module.scss';
 
 enum VideoStatus {

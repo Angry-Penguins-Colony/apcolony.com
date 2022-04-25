@@ -1,17 +1,17 @@
 import { useContext } from 'react';
 import HatchContext from 'pages/hatching/HatchContext/HatchContext';
-
-export enum HatchStatus {
-    None = 'None',
-    Hatching = 'Hatching',
-    Hatched = 'Hatched'
-}
+import { HatchStatus } from '../../../structs/HatchStatus';
 
 export function useGetHatchStatus(props?: {
     onHatched?: () => void
 }): HatchStatus {
 
-    const { hatchStatus } = useContext(HatchContext);
+    const context = useContext(HatchContext);
 
-    return hatchStatus;
+
+    if (props && props.onHatched) {
+        context.onHatched(props.onHatched);
+    }
+
+    return context.hatchStatus;
 } 
