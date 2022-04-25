@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DappUI, useGetAccountInfo } from '@elrondnetwork/dapp-core';
+import { useGetAccountInfo } from '@elrondnetwork/dapp-core';
 import { Address } from '@elrondnetwork/erdjs/out';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import LoadingIcon from 'components/LoadingIcon/LoadingIcon';
