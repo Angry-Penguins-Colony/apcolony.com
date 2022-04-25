@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useGetHatchStatus } from 'hooks/api/hatch/useGetHatchStatus';
 import { HatchStatus } from 'structs/HatchStatus';
+import HatchContext from '../HatchContext/HatchContext';
 import styles from './HatchingVideo.module.scss';
 
 enum VideoStatus {
@@ -13,9 +13,8 @@ enum VideoStatus {
 
 const HatchingVideo = () => {
 
-    const status = useGetHatchStatus();
+    const { hatchStatus: status, setHatchingVideoAsEnded } = useContext(HatchContext);
 
-    const refVideoEgglight = React.useRef<HTMLVideoElement>(null);
     const [videoStatus, setVideoStatus] = React.useState<VideoStatus>(VideoStatus.None);
 
     if (status == HatchStatus.Hatching || videoStatus == VideoStatus.Playing) {
@@ -24,21 +23,30 @@ const HatchingVideo = () => {
         return <div className={styles.video}>
             <div className={styles.content}>
                 {
-                    videoStatus ?
+                    videoStatus == VideoStatus.Ended ?
                         <FontAwesomeIcon icon={faCircleNotch} spin size='3x' className={styles.loader} />
                         :
-                        <video src="/video/Eggs lumière excès.mp4" ref={refVideoEgglight} autoPlay
+                        <video
+                            src="/video/Eggs lumière excès.mp4"
+                            autoPlay
+                            muted
                             onPlay={() => setVideoStatus(VideoStatus.Playing)}
-                            onEnded={() => { setVideoStatus(VideoStatus.Ended); }}></video>
+                            onEnded={() => setVideoAsEnded()}
+                        />
                 }
                 {status == HatchStatus.Hatched &&
-                    <p className={styles.skipVideo} role="button" onClick={() => setVideoStatus(VideoStatus.Ended)}>Skip video</p>
+                    <p className={styles.skipVideo} role="button" onClick={() => setVideoAsEnded()}>Skip video</p>
                 }
             </div>
         </div>;
     }
     else {
         return <></>;
+    }
+
+    function setVideoAsEnded() {
+        setHatchingVideoAsEnded();
+        setVideoStatus(VideoStatus.Ended);
     }
 };
 

@@ -12,6 +12,7 @@ const HatchContextProvider = (props: any) => {
     const events = new EventEmitter();
 
     const [hatchStatus, setHatchStatus] = React.useState(HatchStatus.None);
+    const [isHatchingVideoEnded, setIsHatchingVideoEnded] = React.useState(false);
     const { sessionId: hatchSessionId } = useGetHatchTransaction();
 
     const transactionStatus = transactionServices.useTrackTransactionStatus({
@@ -42,8 +43,14 @@ const HatchContextProvider = (props: any) => {
         hatchStatus: hatchStatus,
         onHatched: (fn: () => void) => {
             events.addListener(EVENT_ON_HATCHED, fn);
-        }
+        },
+        setHatchingVideoAsEnded: () => {
+            setIsHatchingVideoEnded(true);
+        },
+        isHatchingVideoEnded: isHatchingVideoEnded
     };
+
+    console.log('hatchstatus', hatchStatus);
 
     return <HatchContext.Provider value={value} >
         {props.children}

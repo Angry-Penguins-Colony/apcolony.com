@@ -1,10 +1,18 @@
 import { createContext } from 'react';
 import { HatchStatus } from 'structs/HatchStatus';
 
-const HatchContext = createContext({
+interface Context {
+    hatchStatus: HatchStatus;
+    isHatchingVideoEnded: boolean;
+    onHatched: (fn: () => void) => void,
+    setHatchingVideoAsEnded: () => void
+}
+
+const HatchContext = createContext<Context>({
     hatchStatus: HatchStatus.None,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    onHatched: (fn: () => void) => { },
+    isHatchingVideoEnded: false,
+    onHatched: () => { },
+    setHatchingVideoAsEnded: () => { }
 });
 
 export default HatchContext;
