@@ -4,7 +4,7 @@ import { HatchConfig } from 'structs/HatchConfig';
 import { MintConfig } from 'structs/MintConfig';
 
 
-const hatchInfos = { 'hatchAddress': 'erd1qqqqqqqqqqqqqpgq7pzxlwmatm7ugsc89kheuymnwtzp8f4cgn2qlr9tl4', 'eggsIdentifier': 'EGGS-0fe240', 'penguinsIdentifier': 'APC-1d6b4a' };
+const hatchInfos = { 'hatchAddress': 'erd1qqqqqqqqqqqqqpgqxp5l4wrnz5y64z7w5hcetq4ee8p9c9dfgn2qzypdfx', 'eggsIdentifier': 'EGGS-cc113b', 'penguinsIdentifier': 'APC-669033' };
 
 export const devnetHatchConfig: HatchConfig = {
     hatchAddress: new Address(hatchInfos.hatchAddress),

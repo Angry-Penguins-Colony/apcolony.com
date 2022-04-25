@@ -24,18 +24,18 @@ export const useGetLastedHatch = () => {
 
             setHatchedPenguins([]);
 
-            await sleep(3000);
+            let newHatchedPenguins = [];
 
-            const nonces = await getTransferedNonces(hatchHash);
-            const newItems = await refreshInventory();
+            do {
+                await sleep(3000);
 
-            console.log(nonces);
-            console.log(newItems);
+                const nonces = await getTransferedNonces(hatchHash);
+                const newItems = await refreshInventory();
 
-            const newHatchedPenguins = newItems
-                .filter(item => item.type == ItemType.Penguin && nonces.includes(item.nonce));
-            setHatchedPenguins(newHatchedPenguins);
-            console.log('Set hatched penguins to ', newHatchedPenguins, 'with length of', newHatchedPenguins.length);
+                newHatchedPenguins = newItems
+                    .filter(item => item.type == ItemType.Penguin && nonces.includes(item.nonce));
+                setHatchedPenguins(newHatchedPenguins);
+            } while (newHatchedPenguins.length == 0); // retry until we got an hatched penguin
         }
     });
 
