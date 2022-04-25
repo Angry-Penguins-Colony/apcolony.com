@@ -32,7 +32,7 @@ export function fromNft(nft: NFT): ItemData[] {
                 description: getEggDescription(tier),
                 id: '',
                 nonce: nft.nonce,
-                title: `Tier ${tier} Egg`,
+                title: `Rank ${nft.nonce} Egg`,
                 tier,
             }, nft.balance);
 
