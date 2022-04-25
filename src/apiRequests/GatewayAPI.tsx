@@ -41,6 +41,11 @@ export class GatewayAPI {
         });
         const json = await response.json();
 
+        if (json.results == undefined) {
+            console.log(json);
+            throw new Error('No results of smart cotnract in transaction ' + transactionHash);
+        }
+
         return json.results;
     }
 

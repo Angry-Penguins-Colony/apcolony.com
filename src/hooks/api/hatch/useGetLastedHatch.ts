@@ -18,6 +18,8 @@ export const useGetLastedHatch = () => {
         transactionId: sessionId,
         onSuccess: async () => {
 
+            setHatchedPenguins([]);
+
             await sleep(3000);
 
             const nonces = await getTransferedNonces(hash);

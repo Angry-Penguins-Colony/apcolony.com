@@ -3,7 +3,8 @@ import { BigNumber } from 'bignumber.js';
 import { HatchConfig } from 'structs/HatchConfig';
 import { MintConfig } from 'structs/MintConfig';
 
-const hatchInfos = { 'hatchAddress': 'erd1qqqqqqqqqqqqqpgqftjmyeev2q86uq8x643kx4am8ygylg57gn2qujhpl4', 'eggsIdentifier': 'EGGS-c7b2e1', 'penguinsIdentifier': 'APC-042d53' };
+
+const hatchInfos = { 'hatchAddress': 'erd1qqqqqqqqqqqqqpgq7pzxlwmatm7ugsc89kheuymnwtzp8f4cgn2qlr9tl4', 'eggsIdentifier': 'EGGS-0fe240', 'penguinsIdentifier': 'APC-1d6b4a' };
 
 export const devnetHatchConfig: HatchConfig = {
     hatchAddress: new Address(hatchInfos.hatchAddress),
