@@ -83,10 +83,7 @@
     "@typescript-eslint/no-empty-function": "off",
     "react/prop-types": "off",
     "react/display-name": "off",
-    "linebreak-style": [
-      "error",
-      "windows"
-    ],
+    "linebreak-style": "off",
     "quotes": [
       "error",
       "single"
