@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
-import { transactionServices } from '@elrondnetwork/dapp-core';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import useGetHatchTransaction from 'hooks/api/hatch/useGetHatchTransaction';
 import { useGetLastedHatch } from 'hooks/api/hatch/useGetLastedHatch';
 import { HatchStatus } from 'structs/HatchStatus';
 import HatchContext from '../HatchContext/HatchContext';
@@ -10,7 +8,6 @@ import styles from './HatchResult.module.scss';
 const HatchResult = () => {
     const { hatchStatus: status, isHatchingVideoEnded } = useContext(HatchContext);
     const { hatchedPenguins } = useGetLastedHatch();
-    const { sessionId: hatchSessionId } = useGetHatchTransaction();
 
     if (status == HatchStatus.Hatched && isHatchingVideoEnded == true) {
 
@@ -51,10 +48,6 @@ const HatchResult = () => {
     }
 
     function returnToSite() {
-        if (hatchSessionId != null) {
-            transactionServices.removeSignedTransaction(hatchSessionId);
-        }
-
         location.reload();
     }
 };

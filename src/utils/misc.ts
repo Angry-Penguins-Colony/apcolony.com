@@ -1,7 +1,9 @@
 export function getSessionIdFromSearchParams(): string | null {
 
+    console.log(window.location.href);
+
     const searchParams = new URLSearchParams(window.location.search);
-    const sessionId = searchParams.get('sessionId');
+    const sessionId = searchParams.get('signSession');
 
     return sessionId;
 }

@@ -6,6 +6,7 @@ import { EggTier } from 'structs/EggTier';
 import hatch from 'transactions/hatch';
 import { sleep } from 'utils/misc';
 import { ItemData, ItemType } from '../../structs/ItemData';
+import HatchContext from './HatchContext/HatchContext';
 import styles from './HatchingInventory.module.scss';
 
 const HatchingInventory = (props: {
@@ -14,6 +15,7 @@ const HatchingInventory = (props: {
     const canMultiSelect = props.canMultiSelect || true;
 
     const { items, refreshInventory } = useGetHatchInventory();
+    const { setHatchSessionId } = React.useContext(HatchContext);
 
     // function when selection is change
     const [selectedItems, setSelectedItems] = React.useState<ItemData[]>([]);
@@ -76,7 +78,7 @@ const HatchingInventory = (props: {
 
     const startHatching = () => {
         const eggsToHatch = getSelectedEggsToHatch(selectedItems);
-        hatch(eggsToHatch);
+        hatch(eggsToHatch).then((sessionId) => setHatchSessionId(sessionId));
     };
 
     return (
