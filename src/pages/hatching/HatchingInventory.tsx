@@ -1,10 +1,14 @@
 import * as React from 'react';
+import { DappUI, useGetAccountInfo } from '@elrondnetwork/dapp-core';
+import { Address } from '@elrondnetwork/erdjs/out';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import LoadingIcon from 'components/LoadingIcon/LoadingIcon';
 import useGetHatchInventory from 'hooks/api/hatch/useGetHatchInventory';
 import { useGetHatchStatus } from 'hooks/api/hatch/useGetHatchStatus';
 import { EggTier } from 'structs/EggTier';
 import hatch from 'transactions/hatch';
 import { sleep } from 'utils/misc';
+import { truncateAddress } from 'utils/string';
 import { ItemData, ItemType } from '../../structs/ItemData';
 import HatchContext from './HatchContext/HatchContext';
 import styles from './HatchingInventory.module.scss';
@@ -14,6 +18,7 @@ const HatchingInventory = (props: {
 }) => {
     const canMultiSelect = props.canMultiSelect || true;
 
+    const { address } = useGetAccountInfo();
     const { items, refreshInventory } = useGetHatchInventory();
     const { setHatchSessionId } = React.useContext(HatchContext);
 
@@ -161,10 +166,15 @@ const HatchingInventory = (props: {
     function getItemsCards(): JSX.Element | JSX.Element[] {
 
         if (items == undefined) {
-            return <p className={styles.centeredInfo}>Loading</p>;
+            return <LoadingIcon className={styles.centeredInfo} />;
         }
         else if (items.length == 0) {
-            return <p className={styles.centeredInfo}>You don&apos;t own a penguin or an egg.</p>;
+            return <p className={styles.centeredInfo}>
+                Sorry, you don&apos;t have any egg or penguin. <br />
+                <br />
+                You are connect with <b>{truncateAddress(new Address(address), 15)}</b>. Maybe this is the wrong wallet?<br />
+
+            </p>;
         }
         else {
 
