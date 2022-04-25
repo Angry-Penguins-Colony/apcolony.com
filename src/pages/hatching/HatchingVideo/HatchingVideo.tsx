@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import LoadingIcon from 'components/LoadingIcon/LoadingIcon';
 import { HatchStatus } from 'structs/HatchStatus';
 import HatchContext from '../HatchContext/HatchContext';
 import styles from './HatchingVideo.module.scss';
@@ -24,7 +23,7 @@ const HatchingVideo = () => {
             <div className={styles.content}>
                 {
                     videoStatus == VideoStatus.Ended ?
-                        <FontAwesomeIcon icon={faCircleNotch} spin size='3x' className={styles.loader} />
+                        <LoadingIcon className={styles.loader} />
                         :
                         <video
                             src="/video/Eggs lumière excès.mp4"

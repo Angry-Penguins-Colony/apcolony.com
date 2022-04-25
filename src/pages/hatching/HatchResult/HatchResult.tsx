@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import LoadingIcon from 'components/LoadingIcon/LoadingIcon';
 import { useGetLastedHatch } from 'hooks/api/hatch/useGetLastedHatch';
 import { HatchStatus } from 'structs/HatchStatus';
 import HatchContext from '../HatchContext/HatchContext';
@@ -26,6 +27,26 @@ const HatchResult = () => {
             </header>
             <div className={styles.content + ' ' + styles.container}>
                 <h1>HATCHING SUCCESSFUL !</h1>
+
+                {getHatchedPenguinsComponents()}
+
+            </div>
+        </div>;
+    }
+    else {
+        return <></>;
+    }
+
+    function getHatchedPenguinsComponents() {
+
+        if (hatchedPenguins.length == 0) {
+            return <>
+                <LoadingIcon className={styles.loaderIcon} />
+                <p className={styles.loaderText}>Loading can take up to 15 seconds</p>
+            </>;
+        }
+        else {
+            return <>
                 <p className={styles.subTtile}>Discover your Angry Penguin(s)<br /> in the Penguin Nest below!</p>
                 <ScrollContainer vertical={false} hideScrollbars={false} className={styles.result}>
                     {
@@ -40,11 +61,8 @@ const HatchResult = () => {
                     }
                 </ScrollContainer>
                 <div className={'button ' + styles.button} onClick={returnToSite}>RETURN TO SITE</div>
-            </div>
-        </div>;
-    }
-    else {
-        return <></>;
+            </>;
+        }
     }
 
     function returnToSite() {

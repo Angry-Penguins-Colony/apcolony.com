@@ -36,7 +36,9 @@
     overflow-x: hidden;
     overflow-y: auto;
 
-    > header {
+    .loaderIcon,
+    .loaderText {
+        color: white;
     }
 
     > .content {
