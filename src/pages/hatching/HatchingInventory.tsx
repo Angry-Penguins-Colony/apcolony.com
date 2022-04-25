@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { useGetAccountInfo } from '@elrondnetwork/dapp-core';
+import { useGetAccountInfo, useGetLoginInfo } from '@elrondnetwork/dapp-core';
 import { Address } from '@elrondnetwork/erdjs/out';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import { ConnectWalletButton } from 'components/ConnectWallet/ConnectWalletButton';
 import LoadingIcon from 'components/LoadingIcon/LoadingIcon';
 import useGetHatchInventory from 'hooks/api/hatch/useGetHatchInventory';
 import { useGetHatchStatus } from 'hooks/api/hatch/useGetHatchStatus';
@@ -19,6 +20,7 @@ const HatchingInventory = (props: {
     const canMultiSelect = props.canMultiSelect || true;
 
     const { address } = useGetAccountInfo();
+    const { isLoggedIn } = useGetLoginInfo();
     const { items, refreshInventory } = useGetHatchInventory();
     const { setHatchSessionId } = React.useContext(HatchContext);
 
@@ -164,6 +166,10 @@ const HatchingInventory = (props: {
     }
 
     function getItemsCards(): JSX.Element | JSX.Element[] {
+
+        if (isLoggedIn == false) {
+            return <ConnectWalletButton className={styles.centeredInfo} />;
+        }
 
         if (items == undefined) {
             return <LoadingIcon className={styles.centeredInfo} />;
