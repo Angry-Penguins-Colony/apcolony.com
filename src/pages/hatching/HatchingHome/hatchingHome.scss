@@ -84,13 +84,23 @@
             align-items: center;
 
             > h1 {
-                font-family: 'CHEDROS', sans-serif;
+                font-family: "CHEDROS", sans-serif;
                 font-size: 115px;
                 font-weight: bold;
                 color: $white;
                 text-align: center;
                 line-height: 0.9;
                 // z-index: 1;
+            }
+
+            .actionsButtons {
+                display: flex;
+                flex-direction: column;
+
+                @media (max-height: 720px) {
+                    position: absolute;
+                    bottom: 150px;
+                }
             }
 
             > .eggSurprise {
@@ -127,7 +137,7 @@
         padding: 0 15px;
 
         > h2 {
-            font-family: 'CHEDROS', sans-serif;
+            font-family: "CHEDROS", sans-serif;
             font-size: 3rem;
             font-weight: bold;
             color: $white;
@@ -146,7 +156,6 @@
 }
 
 @media (max-width: 768px) {
-
     #hatchingHome {
         #topPage {
             > .reveal {
@@ -159,7 +168,6 @@
 }
 
 @media (max-width: 400px) {
-
     #hatchingHome {
         #topPage {
             > .reveal {

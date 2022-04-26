@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './hatchingHome.scss';
 import { useGetLoginInfo } from '@elrondnetwork/dapp-core';
+import { Link } from 'react-router-dom';
 import { ConnectWalletButton } from 'components/ConnectWallet/ConnectWalletButton';
 import { DisconnectWalletButton } from 'components/DisconnectWallet/DisconnectWalletButton';
 import HatchContextProvider from '../HatchContext/HatchContextProvider';
@@ -30,8 +31,10 @@ const HatchingHome = () => {
                             <img src="/img/opened_egg_surprise.png" />
                         </div>
                         {isLoggedIn ?
-                            <div className="d-flex flex-column">
-                                <a href="#penguinNest" className="button button-outline px-5">HATCH THEM NOW</a>
+                            <div className="actionsButtons">
+                                <Link to="#penguinNest">
+                                    <div className="button button-outline px-5">HATCH THEM NOW</div>
+                                </Link>
                                 <DisconnectWalletButton className="button-outline mt-3" showAddress={false} />
                             </div> :
                             <ConnectWalletButton className="button-outline" />
