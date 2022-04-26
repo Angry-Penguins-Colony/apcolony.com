@@ -13,12 +13,11 @@ import './index.scss';
 import ItemsSlider from './ItemsSlider';
 import BonusTable from './Mint/BonusTable';
 import { Mint } from './Mint/Mint';
-import { MintHome } from './MintHome/MintHome';
 import RoadMap from './RoadMap';
 import TeamMember from './TeamMember';
-import VideoPlayer from './VideoPlayer';
 import 'lodash';
-import { Button } from 'react-bootstrap';
+import VideoPlayer from './VideoPlayer';
+import YoutubeVideoPlayer from './YoutubeVideoPlayer';
 
 
 const Home = () => {
@@ -249,7 +248,7 @@ const Home = () => {
                 <img src="/img/decorations/Corail_2.png" className="decorationImage" id='deco_11' />
                 <img src="/img/decorations/Corail_2.png" className="decorationImage" id='deco_12' />
                 <img src="/img/decorations/Corail_1.png" className="decorationImage" id='deco_13' />
-                <VideoPlayer videoSource="/video/GPS Institutional Clip.mp4" thumbnail="/img/GPS Institutional Clip_thumbnail.jpg" />
+                <YoutubeVideoPlayer youtubeId="G-JCp1egb6c" />
               </div>
               <div className="globalPoint develop">
                 <div className="title">
