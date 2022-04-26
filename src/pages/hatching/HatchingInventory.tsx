@@ -1,13 +1,16 @@
 import * as React from 'react';
-import { useGetAccountInfo, useGetLoginInfo } from '@elrondnetwork/dapp-core';
+import { useGetAccountInfo, useGetLoginInfo, useGetNetworkConfig } from '@elrondnetwork/dapp-core';
 import { Address } from '@elrondnetwork/erdjs/out';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import { Link } from 'react-router-dom';
 import { ConnectWalletButton } from 'components/ConnectWallet/ConnectWalletButton';
 import LoadingIcon from 'components/LoadingIcon/LoadingIcon';
+import { hatchConfig } from 'config';
 import useGetHatchInventory from 'hooks/api/hatch/useGetHatchInventory';
 import { useGetHatchStatus } from 'hooks/api/hatch/useGetHatchStatus';
 import { EggTier } from 'structs/EggTier';
 import hatch from 'transactions/hatch';
+import { numberToHex } from 'utils/convert';
 import { sleep } from 'utils/misc';
 import { truncateAddress } from 'utils/string';
 import { ItemData, ItemType } from '../../structs/ItemData';
@@ -18,6 +21,8 @@ const HatchingInventory = (props: {
     canMultiSelect?: boolean,
 }) => {
     const canMultiSelect = props.canMultiSelect || true;
+
+    const { network } = useGetNetworkConfig();
 
     const { address } = useGetAccountInfo();
     const { isLoggedIn } = useGetLoginInfo();
@@ -142,14 +147,20 @@ const HatchingInventory = (props: {
                     </>;
 
                 case ItemType.Penguin:
+
+                    const explorerLink = network.explorerAddress + '/nfts/' + hatchConfig.penguinsIdentifier + '-' + numberToHex(selectedItems[0].nonce);
+
                     return <>
                         <img src={selectedItems[0].thumbnail} className={styles.egg} />
                         <h4>{selectedItems[0].title}</h4>
-                        {/* TODO: add good NFT name */}
                         <p>{selectedItems[0].description}</p>
-                        {/* TODO: add good NFT description */}
-                        <div className='button'>SEE THIS NFT</div>
-                        {/* TODO: bind button */}
+                        <a
+                            href={explorerLink}
+                            target="_blank" rel="noopener noreferrer">
+                            <div className='button'>
+                                OPEN EXPLORER
+                            </div>
+                        </a>
                     </>;
 
                 default:
