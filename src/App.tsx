@@ -19,7 +19,6 @@ const App = () => {
       <DappProvider
         environment={environment}
         customNetworkConfig={{ name: 'customConfig', apiTimeout: 6000 }}
-        completedTransactionsDelay={1000}
       >
         <Layout>
           <TransactionsToastList />

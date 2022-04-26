@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './hatchingHome.scss';
 import { useGetLoginInfo } from '@elrondnetwork/dapp-core';
-import { Link } from 'react-router-dom';
+import { HashLink as Link } from 'react-router-hash-link';
 import { ConnectWalletButton } from 'components/ConnectWallet/ConnectWalletButton';
 import { DisconnectWalletButton } from 'components/DisconnectWallet/DisconnectWalletButton';
 import HatchContextProvider from '../HatchContext/HatchContextProvider';
