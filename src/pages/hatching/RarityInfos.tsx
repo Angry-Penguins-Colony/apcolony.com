@@ -28,7 +28,7 @@ const RarityInfos = () => {
             <Popup position="bottom" isOpen={rarityInfosOpen} onClose={() => setRarityInfosOpen(false)} className={styles.rarityPopup}>
                 <div className={styles.content}>
                     <div className={styles.egg}>
-                        <img src="/img/eggs/Silver_egg.png" alt="Silver Egg" />
+                        <img src="/img/eggs/Diamond_egg.png" alt="Diamond Egg" />
                         <p>RANK 1 EGG</p>
                     </div>
                     <div className={styles.egg}>
@@ -36,7 +36,7 @@ const RarityInfos = () => {
                         <p>RANK 2 EGG</p>
                     </div>
                     <div className={styles.egg}>
-                        <img src="/img/eggs/Diamond_egg.png" alt="Diamond Egg" />
+                        <img src="/img/eggs/Silver_egg.png" alt="Silver Egg" />
                         <p>RANK 3 EGG</p>
                     </div>
                 </div>

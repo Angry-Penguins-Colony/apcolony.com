@@ -16,7 +16,6 @@ import { Mint } from './Mint/Mint';
 import RoadMap from './RoadMap';
 import TeamMember from './TeamMember';
 import 'lodash';
-import VideoPlayer from './VideoPlayer';
 import YoutubeVideoPlayer from './YoutubeVideoPlayer';
 
 
@@ -24,7 +23,6 @@ const Home = () => {
 
   /* mint */
   const [mintIsOpen, setMintIsOpen] = React.useState(false);
-  const openMint = () => setMintIsOpen(true);
   const closeMint = () => setMintIsOpen(false);
 
   return (
