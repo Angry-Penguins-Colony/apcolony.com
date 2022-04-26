@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { BsArrowUpCircleFill as ScrollToTopIcon } from 'react-icons/bs';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import { Link } from 'react-router-dom';
 import ScrollToTop from 'react-scroll-to-top';
 import DiscordIcon from 'components/Icon/Discord';
 import ScrollDown from 'components/Icon/ScrollDown';
@@ -17,6 +18,7 @@ import RoadMap from './RoadMap';
 import TeamMember from './TeamMember';
 import VideoPlayer from './VideoPlayer';
 import 'lodash';
+import { Button } from 'react-bootstrap';
 
 
 const Home = () => {
@@ -47,9 +49,13 @@ const Home = () => {
             <img src="/img/Pingouin.png" />
           </div>
           <div id="publicSale">
-            <h1>PUBLIC SALE</h1>
+            <h1>HATCH NOW</h1>
             <div className="content">
-              <MintHome openMint={openMint} closeMint={closeMint} />
+              <Link to="/hatch">
+                <div className='button'>
+                  HATCH NOW
+                </div>
+              </Link>
             </div>
           </div>
 
