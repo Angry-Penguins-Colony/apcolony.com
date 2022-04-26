@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useGetAccountInfo, useGetLoginInfo, useGetNetworkConfig } from '@elrondnetwork/dapp-core';
 import { Address } from '@elrondnetwork/erdjs/out';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import { Link } from 'react-router-dom';
 import { ConnectWalletButton } from 'components/ConnectWallet/ConnectWalletButton';
 import LoadingIcon from 'components/LoadingIcon/LoadingIcon';
 import { hatchConfig } from 'config';
