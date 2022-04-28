@@ -19,7 +19,7 @@ const HatchContextProvider = (props: any) => {
     const hatchHash = useGetHashFromSessionId(hatchSessionId);
 
     const transactionStatus = transactionServices.useTrackTransactionStatus({
-        transactionId: hatchSessionId
+        transactionId: hatchSessionId,
     });
 
     // updates values
@@ -27,10 +27,6 @@ const HatchContextProvider = (props: any) => {
     updateHatchStatus();
 
     const value = buildValue();
-
-    console.log('hatchHash', hatchHash);
-    console.log('hatchstatus', hatchStatus);
-
     return <HatchContext.Provider value={value} >
         {props.children}
     </HatchContext.Provider >;
@@ -40,7 +36,6 @@ const HatchContextProvider = (props: any) => {
         const sessionId = getSessionIdFromSearchParams();
         if (hatchSessionId == null) {
             if (sessionId != hatchSessionId) {
-                console.log('HatchSession found in url', sessionId);
                 setHatchSessionId(sessionId);
             }
         }
@@ -63,7 +58,7 @@ const HatchContextProvider = (props: any) => {
     }
 
     function updateHatchStatus() {
-        if (hatchSessionId == null) {
+        if (hatchSessionId == null || hatchHash == null) {
             if (hatchStatus != HatchStatus.None) {
                 setHatchStatus(HatchStatus.None);
             }

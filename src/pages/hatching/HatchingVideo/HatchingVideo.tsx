@@ -18,12 +18,15 @@ const HatchingVideo = () => {
 
     if (status == HatchStatus.Hatching || videoStatus == VideoStatus.Playing) {
 
-        console.log('Showing video');
         return <div className={styles.video}>
             <div className={styles.content}>
                 {
                     videoStatus == VideoStatus.Ended ?
-                        <LoadingIcon className={styles.loader} />
+                        <div className="d-flex flex-column">
+                            <LoadingIcon className={styles.loader} />
+                            <p className="mt-3">Sorry, the transaction is a bit long. We will wait until it is processed</p>
+                        </div>
+
                         :
                         <video
                             src="/video/Eggs lumière excès.mp4"
