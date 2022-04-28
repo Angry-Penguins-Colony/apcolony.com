@@ -11,7 +11,6 @@ const twitter = 'https://twitter.com/angrypenguins_';
 export const routeNames = {
   home: '/',
   transaction: '/transaction',
-  unlock: '/unlock',
   ledger: '/ledger',
   walletconnect: '/walletconnect',
   discord: discord,
