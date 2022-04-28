@@ -73,7 +73,7 @@ const HatchResult = () => {
 
     function getLoadingText() {
         if (transactionStatus.isSuccessful && !transactionStatus.isPending) {
-            return 'Loading your new penguins from the smart contract results. It can take up to 15 seconds.';
+            return 'Your penguin is getting out of its eggs. It can take up to one minute.';
         }
         else {
             return 'Waiting for the transaction to be processed.';
