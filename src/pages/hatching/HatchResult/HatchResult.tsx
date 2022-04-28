@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { transactionServices } from '@elrondnetwork/dapp-core';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import LoadingIcon from 'components/LoadingIcon/LoadingIcon';
 import { useGetLastedHatch } from 'hooks/api/hatch/useGetLastedHatch';
@@ -7,8 +8,13 @@ import HatchContext from '../HatchContext/HatchContext';
 import styles from './HatchResult.module.scss';
 
 const HatchResult = () => {
-    const { hatchStatus: status, isHatchingVideoEnded } = useContext(HatchContext);
+    const { hatchStatus: status, isHatchingVideoEnded, hatchSessionId } = useContext(HatchContext);
     const { hatchedPenguins } = useGetLastedHatch();
+
+    const transactionStatus = transactionServices.useTrackTransactionStatus({
+        transactionId: hatchSessionId,
+    });
+
 
     if (status == HatchStatus.Hatched && isHatchingVideoEnded == true) {
 
@@ -42,7 +48,7 @@ const HatchResult = () => {
         if (hatchedPenguins.length == 0) {
             return <>
                 <LoadingIcon className={styles.loaderIcon} />
-                <p className={styles.loaderText}>Loading can take up to 15 seconds</p>
+                <p className={styles.loaderText}>{getLoadingText()}</p>
             </>;
         }
         else {
@@ -62,6 +68,15 @@ const HatchResult = () => {
                 </ScrollContainer>
                 <div className={'button ' + styles.button} onClick={returnToSite}>RETURN TO SITE</div>
             </>;
+        }
+    }
+
+    function getLoadingText() {
+        if (transactionStatus.isSuccessful && !transactionStatus.isPending) {
+            return 'Loading your new penguins from the smart contract results. It can take up to 15 seconds.';
+        }
+        else {
+            return 'Wait for the transaction to be processed.';
         }
     }
 

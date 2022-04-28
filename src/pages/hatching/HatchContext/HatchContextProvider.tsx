@@ -64,7 +64,7 @@ const HatchContextProvider = (props: any) => {
             }
         }
         else {
-            if (transactionStatus.isSuccessful) {
+            if (transactionStatus.isSuccessful || isHatchingVideoEnded) {
                 if (hatchStatus != HatchStatus.Hatched) {
                     setHatchStatus(HatchStatus.Hatched);
 
