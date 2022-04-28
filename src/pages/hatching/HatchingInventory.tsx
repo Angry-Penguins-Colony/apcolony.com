@@ -181,8 +181,11 @@ const HatchingInventory = (props: {
             return <ConnectWalletButton className={styles.centeredInfo} />;
         }
 
+
         if (items == undefined) {
-            return <LoadingIcon className={styles.centeredInfo} />;
+            return <div className={styles.centeredInfo}>
+                <LoadingIcon />;
+            </div>;
         }
         else if (items.length == 0) {
             return <p className={styles.centeredInfo}>

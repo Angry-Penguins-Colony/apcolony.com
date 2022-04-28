@@ -25,7 +25,9 @@ const HatchResult = () => {
                     <img src="/img/APC_LOGO_BLUE_WHITE.svg" alt="Angry Penguins Logo" />
                 </a>
                 <div className={styles.info}>
-                    <div className="button" onClick={returnToSite}>RETURN TO SITE</div>
+                    {hatchedPenguins.length > 0 &&
+                        <div className="button" onClick={returnToSite}>RETURN TO SITE</div>
+                    }
                     <div className="numberOfEgg">
                         {/* TODO: add comonent (same to nav bar) */}
                     </div>
@@ -48,7 +50,7 @@ const HatchResult = () => {
         if (hatchedPenguins.length == 0) {
             return <>
                 <LoadingIcon className={styles.loaderIcon} />
-                <p className={styles.loaderText}>{getLoadingText()}</p>
+                <p className={styles.loaderText + ' ' + 'text-center'}>{getLoadingText()}</p>
             </>;
         }
         else {

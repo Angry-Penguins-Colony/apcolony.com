@@ -12,6 +12,7 @@ export const DisconnectWalletButton = (props: {
     const showAddress = props.showAddress ?? true;
 
     const { address } = useGetAccountInfo();
+    console.log(address);
 
     const disconnectWallet = () => {
         logout();
