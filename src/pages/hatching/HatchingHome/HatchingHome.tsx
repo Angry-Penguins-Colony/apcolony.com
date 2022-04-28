@@ -57,7 +57,7 @@ const HatchingHome = () => {
 
 
                 <div id="claim-privileges" className='container'>
-                    <h2 >Claim your Emperor&apos; privileges</h2>
+                    <h2 >Claim your Emperor&apos;s privileges</h2>
                     <div className="alert alert-primary text-center" role="alert" id="join-discord-alert">
                         {/* <h4 className="alert-heading">Claim your Emperor&apos;s privileges</h4> */}
                         <br />
