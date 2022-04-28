@@ -76,7 +76,7 @@ const HatchResult = () => {
             return 'Loading your new penguins from the smart contract results. It can take up to 15 seconds.';
         }
         else {
-            return 'Wait for the transaction to be processed.';
+            return 'Waiting for the transaction to be processed.';
         }
     }
 
