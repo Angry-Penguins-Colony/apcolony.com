@@ -5,7 +5,7 @@ import withPageTitle from './components/PageTitle';
 import Home from './pages/Home';
 import Transaction from './pages/Transaction';
 
-const discord = 'https://discord.com/invite/aZ3Fjp8Vna';
+const discord = 'https://discord.gg/angry-penguins';
 const twitter = 'https://twitter.com/angrypenguins_';
 
 export const routeNames = {

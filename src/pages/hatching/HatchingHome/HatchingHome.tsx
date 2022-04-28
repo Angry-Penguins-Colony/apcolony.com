@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './hatchingHome.scss';
 import { useGetLoginInfo } from '@elrondnetwork/dapp-core';
+import { Link } from 'react-router-dom';
 import { HashLink as AnchorLink } from 'react-router-hash-link';
 import { ConnectWalletButton } from 'components/ConnectWallet/ConnectWalletButton';
 import { DisconnectWalletButton } from 'components/DisconnectWallet/DisconnectWalletButton';
@@ -65,9 +66,9 @@ const HatchingHome = () => {
                         <br />
                         Go to the « join » channel to register.<br />
 
-                        <AnchorLink to={routeNames.discord}>
+                        <a href={routeNames.discord}>
                             <div className="button button-outline px-5 mt-3">Join our discord</div>
-                        </AnchorLink>
+                        </a>
                     </div>
                 </div>
             </div>
