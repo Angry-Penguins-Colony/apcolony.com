@@ -184,7 +184,7 @@ const HatchingInventory = (props: {
 
         if (items == undefined) {
             return <div className={styles.centeredInfo}>
-                <LoadingIcon />;
+                <LoadingIcon />
             </div>;
         }
         else if (items.length == 0) {
