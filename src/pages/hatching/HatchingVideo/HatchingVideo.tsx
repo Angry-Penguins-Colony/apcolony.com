@@ -31,6 +31,7 @@ const HatchingVideo = () => {
                         <video
                             src="/video/Eggs lumière excès.mp4"
                             autoPlay
+                            playsInline
                             muted
                             onPlay={() => setVideoStatus(VideoStatus.Playing)}
                             onEnded={() => setVideoAsEnded()}
