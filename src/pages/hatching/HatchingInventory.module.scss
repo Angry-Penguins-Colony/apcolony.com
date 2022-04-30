@@ -283,6 +283,7 @@
             border-radius: 30px;
             overflow: hidden;
             min-height: 60vh;
+            max-height: unset;
 
             &::after {
                 right: 0;
