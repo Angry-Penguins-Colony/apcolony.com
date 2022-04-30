@@ -102,8 +102,8 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-gap: 10px;
-            overflow-x: auto;
             overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
             max-height: calc(100% - 2rem - 20px);
 
             > div {
