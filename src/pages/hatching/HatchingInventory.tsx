@@ -214,9 +214,9 @@ const HatchingInventory = (props: {
 
             return <>
                 <p className={styles.subTitle}>Select 1 or more eggs hatch</p>
-                <ScrollContainer horizontal={false} hideScrollbars={false} className={styles.items}>
+                <div className={styles.items}>
                     {itemsCards}
-                </ScrollContainer>
+                </div>
             </>;
         }
     }
