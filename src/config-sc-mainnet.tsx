@@ -5,9 +5,9 @@ import { MintConfig } from 'structs/MintConfig';
 
 
 export const mainnetHatchConfig: HatchConfig = {
-    hatchAddress: new Address(''),
+    hatchAddress: new Address('erd1qqqqqqqqqqqqqpgqf6d59x6lkanwzux7vs54e0pz7ze3m7flzjnser0v9m'),
     eggsIdentifier: 'EGGS-502867',
-    penguinsIdentifier: ''
+    penguinsIdentifier: 'APC-928458'
 };
 
 
