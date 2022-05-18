@@ -1,5 +1,5 @@
 import React from 'react';
-import { routeNames } from 'routes';
+import { routeNames } from 'config';
 import NavElements from '../NavElements';
 import './index.scss';
 

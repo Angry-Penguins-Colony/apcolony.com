@@ -1,33 +1,9 @@
-import { dAppName } from 'config';
+import { dAppName, routeNames } from 'config';
 import HatchingHome from 'pages/hatching/HatchingHome/HatchingHome';
 import HatchingSelection from 'pages/hatching/HatchingSelection/HatchingSelection';
 import withPageTitle from './components/PageTitle';
 import Home from './pages/Home';
 import Transaction from './pages/Transaction';
-
-const discord = 'https://discord.gg/angry-penguins';
-const twitter = 'https://twitter.com/angrypenguins_';
-
-export const routeNames = {
-  home: '/',
-  transaction: '/transaction',
-  ledger: '/ledger',
-  walletconnect: '/walletconnect',
-  discord: discord,
-  twitter: twitter,
-  skipperDiscord: discord,
-  skipperTwitter: 'https://twitter.com/APCSkipper',
-  fargerikDiscord: discord,
-  fargerikTwitter: twitter,
-  seymourDiscord: discord,
-  seymourTwitter: twitter,
-  ricoDiscord: discord,
-  ricoTwitter: twitter,
-  bossQcDiscord: discord,
-  bossQcTwitter: twitter,
-  hatchingHome: '/hatch',
-  hatchingSelection: '/hatch/selection',
-};
 
 const routes: Array<any> = [
   {

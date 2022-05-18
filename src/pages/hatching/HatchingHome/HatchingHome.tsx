@@ -4,7 +4,7 @@ import { useGetLoginInfo } from '@elrondnetwork/dapp-core';
 import { HashLink as AnchorLink } from 'react-router-hash-link';
 import { ConnectWalletButton } from 'components/ConnectWallet/ConnectWalletButton';
 import { DisconnectWalletButton } from 'components/DisconnectWallet/DisconnectWalletButton';
-import { routeNames } from 'routes';
+import { routeNames } from 'config';
 import HatchContextProvider from '../HatchContext/HatchContextProvider';
 import HatchingInventory from '../HatchingInventory';
 import HatchingVideo from '../HatchingVideo/HatchingVideo';

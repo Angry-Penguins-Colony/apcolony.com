@@ -1,5 +1,5 @@
 import React from 'react';
-import { routeNames } from 'routes';
+import { routeNames } from 'config';
 import './FollowUs.scss';
 
 const FollowUs = () => {

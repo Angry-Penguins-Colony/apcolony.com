@@ -1,6 +1,6 @@
 import React from 'react';
 import { DappUI } from '@elrondnetwork/dapp-core';
-import { routeNames } from 'routes';
+import { routeNames } from 'config';
 import './index.scss';
 
 export const UnlockRoute: () => JSX.Element = () => {

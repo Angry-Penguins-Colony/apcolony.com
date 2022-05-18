@@ -3,9 +3,9 @@ import { DappUI, DappProvider } from '@elrondnetwork/dapp-core';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import Layout from 'components/Layout';
-import { environment } from 'config';
+import { environment, routeNames } from 'config';
 import PageNotFound from 'pages/PageNotFound';
-import routes, { routeNames } from 'routes';
+import routes from 'routes';
 import '@elrondnetwork/dapp-core/dist/index.css';
 
 const {

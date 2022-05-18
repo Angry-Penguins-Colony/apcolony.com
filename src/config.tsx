@@ -4,6 +4,30 @@ import { mainnetHatchConfig, mainnetMintConfig } from 'config-sc-mainnet';
 import { assertValid } from 'structs/MintConfig';
 import 'dotenv/config';
 
+const discord = 'https://discord.gg/angry-penguins';
+const twitter = 'https://twitter.com/angrypenguins_';
+
+export const routeNames = {
+    home: '/',
+    transaction: '/transaction',
+    ledger: '/ledger',
+    walletconnect: '/walletconnect',
+    discord: discord,
+    twitter: twitter,
+    skipperDiscord: discord,
+    skipperTwitter: 'https://twitter.com/APCSkipper',
+    fargerikDiscord: discord,
+    fargerikTwitter: twitter,
+    seymourDiscord: discord,
+    seymourTwitter: twitter,
+    ricoDiscord: discord,
+    ricoTwitter: twitter,
+    bossQcDiscord: discord,
+    bossQcTwitter: twitter,
+    hatchingHome: '/hatch',
+    hatchingSelection: '/hatch/selection',
+};
+
 export const environment = process.env.REACT_APP_NET?.trim() ?? '';
 
 const getTotalConfig = () => {

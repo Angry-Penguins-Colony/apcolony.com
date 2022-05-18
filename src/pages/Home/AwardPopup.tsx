@@ -1,6 +1,6 @@
 import * as React from 'react';
 import DiscordIcon from 'components/Icon/Discord';
-import { routeNames } from 'routes';
+import { routeNames } from 'config';
 import styles from './awardpopup.module.scss';
 import Popup from './Popup';
 

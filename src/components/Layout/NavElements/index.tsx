@@ -1,6 +1,6 @@
 import React from 'react';
 import FollowUs from 'components/FollowUs/FollowUs';
-import { routeNames } from 'routes';
+import { routeNames } from 'config';
 import styles from './index.module.scss';
 
 
