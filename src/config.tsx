@@ -37,7 +37,7 @@ const getTotalConfig = () => {
             return {
                 mintConfig: mainnetMintConfig,
                 hatchConfig: mainnetHatchConfig,
-                gateway: 'https://api-eu1.tatum.io/v3/egld/node/6cf90622-7c84-4dad-9ced-95d929227e9d_100',
+                gateway: 'https://api-eu1.tatum.io/v3/egld/node/a3a9302b-e62d-4cf7-b7a0-a5cf84c8f194',
                 api: 'https://api.elrond.com'
             };
 
@@ -46,7 +46,7 @@ const getTotalConfig = () => {
             return {
                 mintConfig: devnetMintConfig,
                 hatchConfig: devnetHatchConfig,
-                gateway: 'https://api-eu1.tatum.io/v3/egld/node/5a64b68c-ef24-4a43-966c-18da2cb1eb02_100',
+                gateway: 'https://api-eu1.tatum.io/v3/egld/node/6ecbdd2a-31e1-4296-b33c-1720e4130263',
                 api: 'https://devnet-api.elrond.com'
             };
 
