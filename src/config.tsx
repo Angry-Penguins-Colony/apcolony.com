@@ -4,7 +4,7 @@ import { mainnetHatchConfig, mainnetMintConfig } from 'config-sc-mainnet';
 import { assertValid } from 'structs/MintConfig';
 import 'dotenv/config';
 
-const discord = 'https://discord.gg/angry-penguins';
+const discord = 'https://discord.com/invite/GKUV3XFcG8';
 const twitter = 'https://twitter.com/angrypenguins_';
 
 export const routeNames = {
