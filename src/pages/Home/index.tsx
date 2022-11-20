@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { BsArrowUpCircleFill as ScrollToTopIcon } from 'react-icons/bs';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import { Link } from 'react-router-dom';
 import ScrollToTop from 'react-scroll-to-top';
 import DiscordIcon from 'components/Icon/Discord';
 import ScrollDown from 'components/Icon/ScrollDown';
