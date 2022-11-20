@@ -46,13 +46,13 @@ const Home = () => {
             <img src="/img/Pingouin.png" />
           </div>
           <div id="publicSale">
-            <h1>HATCH NOW</h1>
+            <h1>CUSTOMIZE</h1>
             <div className="content">
-              <Link to="/hatch">
+              <a href="https://marketplace.angrypenguinscolony.com/">
                 <div className='button'>
-                  HATCH NOW
+                  LET&apos;S CUSTOMIZE
                 </div>
-              </Link>
+              </a>
             </div>
           </div>
 
