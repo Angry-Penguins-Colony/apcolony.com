@@ -37,7 +37,7 @@ const getTotalConfig = () => {
             return {
                 mintConfig: mainnetMintConfig,
                 hatchConfig: mainnetHatchConfig,
-                gateway: 'https://api-eu1.tatum.io/v3/egld/node/a3a9302b-e62d-4cf7-b7a0-a5cf84c8f194',
+                gateway: 'https://api-eu1.tatum.io/v3/egld/node/6cf90622-7c84-4dad-9ced-95d929227e9d',
                 api: 'https://api.elrond.com'
             };
 
