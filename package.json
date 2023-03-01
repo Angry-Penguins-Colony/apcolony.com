@@ -40,7 +40,7 @@
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "set GENERATE_SOURCEMAP=false react-app-rewired build --stats",
+    "build": "react-app-rewired build --stats",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
     "lint": "eslint --ext js,ts,tsx src",
