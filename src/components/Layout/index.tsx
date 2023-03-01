@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthenticatedRoutesWrapper } from '@elrondnetwork/dapp-core';
+import { AuthenticatedRoutesWrapper } from '@multiversx/sdk-dapp/wrappers';
 import { useLocation } from 'react-router-dom';
 import { routeNames } from 'config';
 import routes from 'routes';

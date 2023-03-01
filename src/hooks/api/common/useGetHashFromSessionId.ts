@@ -1,9 +1,10 @@
-import { SignedTransactionsType, transactionServices } from '@elrondnetwork/dapp-core';
+import { useGetPendingTransactions, useGetSuccessfulTransactions } from '@multiversx/sdk-dapp/hooks';
+import { SignedTransactionsType } from '@multiversx/sdk-dapp/types';
 
 export default function useGetHashFromSessionId(sessionId: string | null) {
 
-    const { pendingTransactions } = transactionServices.useGetPendingTransactions();
-    const { successfulTransactions } = transactionServices.useGetSuccessfulTransactions();
+    const { pendingTransactions } = useGetPendingTransactions();
+    const { successfulTransactions } = useGetSuccessfulTransactions();
 
     if (sessionId == null) return null;
 

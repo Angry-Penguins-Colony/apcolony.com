@@ -1,6 +1,7 @@
 import React from 'react';
-import { useGetAccountInfo, logout } from '@elrondnetwork/dapp-core';
 import { Address } from '@elrondnetwork/erdjs/out';
+import { useGetAccountInfo } from '@multiversx/sdk-dapp/hooks';
+import { logout } from '@multiversx/sdk-dapp/utils';
 import { truncateAddress } from 'utils/string';
 import styles from './index.module.scss';
 

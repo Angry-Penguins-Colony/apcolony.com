@@ -1,25 +1,23 @@
 import React from 'react';
-import { DappUI, DappProvider } from '@elrondnetwork/dapp-core';
+import {
+  TransactionsToastList,
+  SignTransactionsModals,
+  NotificationModal
+} from '@multiversx/sdk-dapp/UI';
+import { DappProvider } from '@multiversx/sdk-dapp/wrappers';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import Layout from 'components/Layout';
 import { environment, routeNames } from 'config';
 import PageNotFound from 'pages/PageNotFound';
 import routes from 'routes';
-import '@elrondnetwork/dapp-core/dist/index.css';
-
-const {
-  TransactionsToastList,
-  SignTransactionsModals,
-  NotificationModal,
-} = DappUI;
 
 const App = () => {
   return (
     <Router>
       <DappProvider
         environment={environment}
-        customNetworkConfig={{ name: 'customConfig', apiTimeout: 6000 }}
+        customNetworkConfig={{ name: 'customConfig', apiTimeout: 6000, walletConnectV2ProjectId: '91e54fcb2227b2c58e3c052f9806bdbe' }}
       >
         <Layout>
           <TransactionsToastList />

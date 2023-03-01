@@ -1,7 +1,7 @@
-import { Balance } from '@elrondnetwork/erdjs/out';
+import BigNumber from 'bignumber.js';
 
-export function humanizeBalance(balance: Balance, precision = 3): string {
-    return balance.valueOf()
+export function humanizeBalance(balance: BigNumber, precision = 3): string {
+    return balance
         .div(10 ** 18)
         .precision(precision)
         .toString();

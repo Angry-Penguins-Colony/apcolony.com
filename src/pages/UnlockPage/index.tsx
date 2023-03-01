@@ -1,15 +1,14 @@
 import React from 'react';
-import { DappUI } from '@elrondnetwork/dapp-core';
+import {
+  ExtensionLoginButton,
+  WebWalletLoginButton,
+  LedgerLoginButton,
+  WalletConnectLoginButton
+} from '@multiversx/sdk-dapp/UI';
 import { routeNames } from 'config';
 import './index.scss';
 
 export const UnlockRoute: () => JSX.Element = () => {
-  const {
-    ExtensionLoginButton,
-    WebWalletLoginButton,
-    LedgerLoginButton,
-    WalletConnectLoginButton
-  } = DappUI;
 
   return (
     <div className='home d-flex flex-fill align-items-center'>
@@ -22,8 +21,9 @@ export const UnlockRoute: () => JSX.Element = () => {
             <div className='d-flex flex-column justify-content-center unlock-page'>
 
               <WalletConnectLoginButton
-                callbackRoute={routeNames.home}
-                loginButtonText={'Maiar'}
+                loginButtonText={'xPortal'}
+
+                isWalletConnectV2={true}
               />
               <WebWalletLoginButton
                 callbackRoute={routeNames.home}
@@ -36,7 +36,6 @@ export const UnlockRoute: () => JSX.Element = () => {
               />
 
               <ExtensionLoginButton
-                callbackRoute={routeNames.home}
                 loginButtonText={'Extension'}
               />
             </div>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './hatchingHome.scss';
-import { useGetLoginInfo } from '@elrondnetwork/dapp-core';
+import { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks';
 import { HashLink as AnchorLink } from 'react-router-hash-link';
 import { ConnectWalletButton } from 'components/ConnectWallet/ConnectWalletButton';
 import { DisconnectWalletButton } from 'components/DisconnectWallet/DisconnectWalletButton';

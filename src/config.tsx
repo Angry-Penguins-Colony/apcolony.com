@@ -2,7 +2,6 @@ import { GatewayAPI } from 'apiRequests/GatewayAPI';
 import { devnetHatchConfig, devnetMintConfig } from 'config-sc-devnet';
 import { mainnetHatchConfig, mainnetMintConfig } from 'config-sc-mainnet';
 import { assertValid } from 'structs/MintConfig';
-import 'dotenv/config';
 
 const discord = 'https://discord.com/invite/GKUV3XFcG8';
 const twitter = 'https://twitter.com/angrypenguins_';

@@ -1,5 +1,6 @@
-import { refreshAccount, transactionServices } from '@elrondnetwork/dapp-core';
 import { Address } from '@elrondnetwork/erdjs/out';
+import { sendTransactions } from '@multiversx/sdk-dapp/services';
+import { refreshAccount } from '@multiversx/sdk-dapp/utils';
 import toHex from 'to-hex';
 import { hatchConfig } from 'config';
 import { EggTier } from 'structs/EggTier';
@@ -7,8 +8,6 @@ import { numberToHex } from 'utils/convert';
 
 
 export default async function hatch(noncesToHatch: Map<EggTier, number>) {
-    const { sendTransactions } = transactionServices;
-
     const data = buildHatchData(hatchConfig.eggsIdentifier, noncesToHatch, hatchConfig.hatchAddress);
 
     const sender = await refreshAccount();

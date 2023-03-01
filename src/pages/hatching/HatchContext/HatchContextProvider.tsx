@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 import * as React from 'react';
-import { transactionServices } from '@elrondnetwork/dapp-core';
+import { useTrackTransactionStatus } from '@multiversx/sdk-dapp/hooks';
 import useGetHashFromSessionId from 'hooks/api/common/useGetHashFromSessionId';
 import { HatchStatus } from 'structs/HatchStatus';
 import { getSessionIdFromSearchParams } from 'utils/misc';
@@ -18,7 +18,7 @@ const HatchContextProvider = (props: any) => {
 
     const hatchHash = useGetHashFromSessionId(hatchSessionId);
 
-    const transactionStatus = transactionServices.useTrackTransactionStatus({
+    const transactionStatus = useTrackTransactionStatus({
         transactionId: hatchSessionId,
     });
 

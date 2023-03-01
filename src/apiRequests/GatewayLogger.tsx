@@ -1,5 +1,3 @@
-import colors from 'colors';
-
 export class GatewayLogger {
 
     private readonly fetchPrefix: string;
@@ -8,10 +6,8 @@ export class GatewayLogger {
     constructor(
         public shouldLog: boolean,
     ) {
-        colors.enable();
-
-        this.cachePrefix = '[+]'.green + ' Cache hit:';
-        this.fetchPrefix = '[~]'.yellow + ' Fetching:';
+        this.cachePrefix = '[+]' + ' Cache hit:';
+        this.fetchPrefix = '[~]' + ' Fetching:';
     }
 
     public logFetch(message: string) {

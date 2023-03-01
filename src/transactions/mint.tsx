@@ -1,4 +1,5 @@
-import { refreshAccount, transactionServices } from '@elrondnetwork/dapp-core';
+import { sendTransactions } from '@multiversx/sdk-dapp/services';
+import { refreshAccount } from '@multiversx/sdk-dapp/utils';
 import { BigNumber } from 'bignumber.js';
 import { mintConfig } from 'config';
 import { numberToHex } from 'utils/convert';
@@ -16,7 +17,7 @@ export default async function mintEggs(wei: BigNumber, eggsCount: number) {
 
 
 
-    const { sessionId } = await transactionServices.sendTransactions({
+    const { sessionId } = await sendTransactions({
         transactions: customizeTransaction,
         transactionsDisplayInfo: {
             processingMessage: `Mint ${eggsCount} eggs`,

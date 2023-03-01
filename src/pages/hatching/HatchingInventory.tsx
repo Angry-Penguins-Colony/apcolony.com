@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useGetAccountInfo, useGetLoginInfo, useGetNetworkConfig } from '@elrondnetwork/dapp-core';
 import { Address } from '@elrondnetwork/erdjs/out';
+import { useGetAccountInfo, useGetLoginInfo, useGetNetworkConfig } from '@multiversx/sdk-dapp/hooks';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { ConnectWalletButton } from 'components/ConnectWallet/ConnectWalletButton';
 import LoadingIcon from 'components/LoadingIcon/LoadingIcon';

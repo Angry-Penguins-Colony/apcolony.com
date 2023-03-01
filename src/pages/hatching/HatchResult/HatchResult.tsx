@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { transactionServices } from '@elrondnetwork/dapp-core';
+import { useTrackTransactionStatus } from '@multiversx/sdk-dapp/hooks';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import LoadingIcon from 'components/LoadingIcon/LoadingIcon';
 import { useGetLastedHatch } from 'hooks/api/hatch/useGetLastedHatch';
@@ -11,7 +11,7 @@ const HatchResult = () => {
     const { hatchStatus: status, isHatchingVideoEnded, hatchSessionId } = useContext(HatchContext);
     const { hatchedPenguins } = useGetLastedHatch();
 
-    const transactionStatus = transactionServices.useTrackTransactionStatus({
+    const transactionStatus = useTrackTransactionStatus({
         transactionId: hatchSessionId,
     });
 

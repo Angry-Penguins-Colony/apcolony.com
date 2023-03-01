@@ -1,11 +1,11 @@
 import React from 'react';
-import { transactionServices } from '@elrondnetwork/dapp-core';
+import { useGetSuccessfulTransactions } from '@multiversx/sdk-dapp/hooks';
 
 export const useOnAnyTransactionSuccess = (onSuccess: (sessionId: string) => void) => {
 
     const [sessionIdTriggered, setTriggeredSessionId] = React.useState([] as string[]);
 
-    const { successfulTransactions } = transactionServices.useGetSuccessfulTransactions();
+    const { successfulTransactions } = useGetSuccessfulTransactions();
 
     for (const sessionId in successfulTransactions) {
 

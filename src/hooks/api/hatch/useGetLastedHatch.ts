@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { transactionServices } from '@elrondnetwork/dapp-core';
+import { useTrackTransactionStatus } from '@multiversx/sdk-dapp/hooks';
 import { API } from 'config';
 import HatchContext from 'pages/hatching/HatchContext/HatchContext';
 import { ItemData, ItemType } from 'structs/ItemData';
@@ -14,7 +14,7 @@ export const useGetLastedHatch = () => {
     const { refreshInventory } = useGetHatchInventory();
     const { hatchSessionId, hatchHash } = useContext(HatchContext);
 
-    transactionServices.useTrackTransactionStatus({
+    useTrackTransactionStatus({
         transactionId: hatchSessionId,
         onSuccess: async () => {
 

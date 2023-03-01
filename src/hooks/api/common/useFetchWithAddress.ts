@@ -1,6 +1,6 @@
 import React from 'react';
-import { useGetAccountInfo } from '@elrondnetwork/dapp-core';
 import { Address } from '@elrondnetwork/erdjs/out';
+import { useGetAccountInfo } from '@multiversx/sdk-dapp/hooks';
 
 export const useFetchWithAddress = <T>(
     hasAddress: (addr: Address) => Promise<T>,
