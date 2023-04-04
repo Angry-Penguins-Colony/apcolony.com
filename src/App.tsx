@@ -17,7 +17,7 @@ const App = () => {
     <Router>
       <DappProvider
         environment={environment}
-        customNetworkConfig={{ name: 'customConfig', apiTimeout: 6000, walletConnectV2ProjectId: '91e54fcb2227b2c58e3c052f9806bdbe' }}
+        customNetworkConfig={{ name: 'customConfig', apiTimeout: 6000, walletConnectV2ProjectId: 'd26851dff6f1e1204ce09eaa03869e91' }}
       >
         <Layout>
           <TransactionsToastList />
