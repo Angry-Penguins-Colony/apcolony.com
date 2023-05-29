@@ -3,7 +3,7 @@ import { devnetHatchConfig, devnetMintConfig } from 'config-sc-devnet';
 import { mainnetHatchConfig, mainnetMintConfig } from 'config-sc-mainnet';
 import { assertValid } from 'structs/MintConfig';
 
-const discord = 'https://discord.com/invite/GKUV3XFcG8';
+const discord = 'https://discord.gg/KxxrVQTVCV';
 const twitter = 'https://twitter.com/angrypenguins_';
 
 export const routeNames = {
