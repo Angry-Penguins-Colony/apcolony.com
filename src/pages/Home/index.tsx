@@ -99,15 +99,15 @@ const Home = () => {
 
       <div id="ourLaunchpad">
         <h2>OUR LAUNCHPAD</h2>
-        <p className="subTitle">A strive to empower ambitious projects on Elrond</p>
+        <p className="subTitle">A strive to empower ambitious projects on MultiversX</p>
         <div className="submersibleAndCard container-sm">
           <div className="submersible">
             <img src="/img/Deep Sea Submersible.png" />
           </div>
           <div className="card card-white">
             <p>Once our collection is deployed and our marketplace implemented, <b>we will take on an incubator role.</b></p>
-            <p><b>Participating in the construction of Elrond is our duty.</b></p>
-            <p><b>Our launchpad primarily focuses on Play-To-Earns</b> and <b>universes that add real value</b> to the Elrond ecosystem.</p>
+            <p><b>Participating in the construction of MultiversX is our duty.</b></p>
+            <p><b>Our launchpad primarily focuses on Play-To-Earns</b> and <b>universes that add real value</b> to the MultiversX ecosystem.</p>
             <p>We’ll support serious and ambitious projects in their development on the blockchain.</p>
           </div>
         </div>
@@ -122,7 +122,7 @@ const Home = () => {
                   <p>01</p>
                 </div>
                 <div className="content">
-                  <p>Put us as a true player in the <b>development and growth</b> of Elrond</p>
+                  <p>Put us as a true player in the <b>development and growth</b> of MultiversX</p>
                 </div>
               </div>
               <div className="item">
